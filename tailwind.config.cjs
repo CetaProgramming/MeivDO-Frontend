@@ -13,6 +13,11 @@ module.exports = {
       'MeivGray' : '#808080',
       'MeivLightGray' : '#838383',
     },
+    //colors of the company made to be used easily with tailwindcss
+    screens:{
+      'desktop' : '801px',
+      //media query for minimal desktop screen (min-width:801px), easy to use grid with tailwindcss
+    },
     extend: {},
   },
   plugins: [],

@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+:root{
+  --MeivRed: #CE0E2D;
+  --MeivGreen:#006857;
+  --MeivDarkGray: #1D1D1E;
+  --MeivYellow: #FBB03B;
+  --MeivGray: #808080;
+  --MeivLightGray: #838383;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Audiowide&display=swap");
+
+html {
+  font-family: "Audiowide", sans-serif;
+}
