@@ -1,7 +1,19 @@
+<script>
+export default {
+    data () {
+      return {
+        show1: false,
+        password: 'Password',
+      }
+    },
+  }
+</script>
+
 <template>
-  <div class="desktop:grid grid-cols-2 container">
+<div class="login">
+  <div id="container" class="desktop:grid grid-cols-2">
     <div class="image">
-      <img src="../assets/christopher-burns-Wiu3w-99tNg-unsplash.jpg" alt="" style="height: 300px;width:100%;" class="desktop:rounded-lg">
+      <img src="../assets/christopher-burns-Wiu3w-99tNg-unsplash.jpg" alt="" style="height: 300px;width:100%;" class="desktop:rounded-tl-lg rounded-bl-lg">
       <div class="company">
         <span>Welcome</span>
         <p>to</p>
@@ -11,7 +23,7 @@
         </div>
       </div>
     </div>
-    <form>
+    <form id="form" class="desktop:rounded-tr-lg rounded-br-lg">
       <div class="mt-8 mb-5 text-center">
         <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Email</label>
         <input type="email" id="email" class="border border-gray-500 text-neutral-900 text-sm w-80">
@@ -19,6 +31,14 @@
       <div class="mb-5 text-center">
         <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Password</label>
         <input type="password" id="password" class="border border-gray-500 text-neutral-900 text-sm w-80">
+        <v-text-field
+            v-model="password"
+            :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+            :type="show1 ? 'text' : 'password'"
+            name="input-10-1"
+            counter
+            @click:append="show1 = !show1"
+          ></v-text-field>
       </div>
       <div class="text-center">
         <button type="submit" class="btn bg-MeivRed py-2 px-4 rounded w-80 mb-6">Submit</button>
@@ -28,7 +48,10 @@
     </div>
     </form>
   </div>
+</div>
 </template>
+
+ /*---------------------------------------------Css-------------------------------------------------------*/ 
 
 <style>
 .image{
@@ -49,6 +72,7 @@
   color: white;
 }
 
+/*-------------------------------------------Css for the Logo---------------------------------------------*/ 
 .logo {
   text-transform: uppercase;
   display: flex;
@@ -71,5 +95,21 @@
   height: 1.5rem;
   border-radius: 50%;
   background: #fff;
+}
+
+/*---------------------------------------------------------------------------------------------------------*/
+
+/*-------------------------------------------Media query to adjust to desktop------------------------------*/
+@media(min-width:801px){
+  .login{
+    background-image: url(../assets/isis-franca-hsPFuudRg5I-unsplash.jpg);
+    background-size: cover;
+    padding: 160px;
+  }
+  #form{
+    background-color: white;
+    border: 1px;
+    height: 300px;
+  }
 }
 </style>
