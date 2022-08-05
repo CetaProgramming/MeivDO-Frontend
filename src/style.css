@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Audiowide&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -11,8 +13,6 @@
   --MeivGray: #808080;
   --MeivLightGray: #838383;
 }
-
-@import url("https://fonts.googleapis.com/css2?family=Audiowide&display=swap");
 
 html {
   font-family: "Audiowide", sans-serif;
