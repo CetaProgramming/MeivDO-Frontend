@@ -24,12 +24,6 @@
 <script>
 import Logo from './public/Logo.vue'
 export default {
-    data() {
-        return {
-            show1: false,
-            password: "Password",
-        };
-    },
     components: { Logo }
 }
 </script>
