@@ -18,6 +18,9 @@ module.exports = {
       gridTemplateRows: {
         // Simple 8 row grid
         '1fr-auto': '1fr auto',
+      },
+      gridTemplateColumns: {
+        '1fr-auto' : '1fr auto'
       }
     },
   },
