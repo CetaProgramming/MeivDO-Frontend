@@ -7,6 +7,10 @@ module.exports = {
   theme: {
     //colors of the company made to be used easily with tailwindcss
     extend: {
+      fontFamily: {
+        'meivdo': 'Audiowide',
+        'openSans': 'Open Sans'
+      },
       colors: {
         'MeivRed' : '#CE0E2D',
         'MeivGreen':'#006857',
@@ -21,6 +25,9 @@ module.exports = {
       },
       gridTemplateColumns: {
         '1fr-auto' : '1fr auto'
+      },
+      maxWidth: {
+        '4/5': '80%',
       }
     },
   },
