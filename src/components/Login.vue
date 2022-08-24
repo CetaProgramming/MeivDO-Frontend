@@ -26,6 +26,41 @@
 <script>
 import Logo from './public/Logo.vue'
 export default {
-    components: { Logo }
+  data(){
+    return {
+      emailerror: false,
+      passworderror: false
+    }
+  },
+  methods: {
+    inputEventChange(event){
+      this.inputValid(event.target);
+    },
+    inputValid(input){
+      if(!input.value)
+        return this[`${input.id}error`] = true
+      return this[`${input.id}error`] = false
+    },
+    formValid(event){
+      try {
+        event.preventDefault();
+        let isError = false;
+        [...event.target]
+                .filter(input => input.type === "password" || input.type === "email")
+                .forEach(input => {
+                    if(this.inputValid(input)) 
+                      isError = true
+                    }
+                );
+        if(!isError)
+          console.log('RequestAPI');
+      } catch (e) {
+        console.log(e);
+      }
+    }
+  },
+  components: { 
+    Logo 
+  }
 }
 </script>
