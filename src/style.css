@@ -19,7 +19,34 @@ html {
   font-family: "Audiowide", sans-serif;
 }
 
-.bg-image{
-  background-image: linear-gradient(to bottom, rgba(206, 14, 45, 0.2), rgba(206, 14, 45, 0.2)), url('assets/christopher-burns-Wiu3w-99tNg-unsplash.jpg');
-  background-size:cover;
+/* #region Animation */
+
+@keyframes opacity-change {
+  0% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+  }
 }
+
+/* #endregion */
+
+/* #region Animation classe  */
+
+.opacity-anim{
+  animation-name: opacity-change;
+  animation-duration: 1.5s;
+  animation-timing-function: ease-in;
+}
+
+/* #endregion */
+
+/* #region Background-Image */
+
+  .bg-image{
+    background-image: linear-gradient(to bottom, rgba(206, 14, 45, 0.2), rgba(206, 14, 45, 0.2)), url('assets/background.jpg');
+    background-size:cover;
+  }
+
+/* #endregion */
