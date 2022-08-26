@@ -1,29 +1,39 @@
 <template>
     <!-- <h5 class="text-white text-xs font-bold"></h5> -->
-    <select class="p-1" v-model="lang" @change="emitLanguagueChanged">
-        <option value="en">English</option>
-        <option value="pt">Português</option>
+    <select class="p-1" v-model="defaultLang"  @change="emitLanguagueChanged">
+        <option v-for="lang in languagues" :value="lang.value">{{ lang.name }}</option>
     </select>
 </template>
 
 <script>
+    import getUnicodeFlagIcon from 'country-flag-icons/unicode'
+
     export default {
         name: 'SelectLanguague',
         mounted(){
             if(!localStorage.getItem('lang'))
                 localStorage.setItem('lang', 'en')  
-            return this.lang = localStorage.getItem('lang');  
+            return this.defaultLang = localStorage.getItem('lang');  
         },
         data(){
             return {
-                lang: 'en'            
+                defaultLang: 'en',
+                languagues: [
+                    {
+                        name: `${getUnicodeFlagIcon('US')} English`,
+                        value: 'en'
+                    },
+                    {
+                        name: `${getUnicodeFlagIcon('PT')} Português`,
+                        value: 'pt'
+                    }
+                ]           
             }
         },
         methods: {
             emitLanguagueChanged(){
-                localStorage.setItem('lang', this.lang);
-                console.log(this.languag);
-                this.$emit('languagueChangedEvent', this.lang);
+                localStorage.setItem('lang', this.defaultLang);
+                this.$emit('languagueChangedEvent', this.defaultLang);
             }
         },
         computed: {
