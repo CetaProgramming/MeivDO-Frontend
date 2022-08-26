@@ -1,0 +1,12 @@
+{
+    "Lang" : "Language",
+    "Login" : {
+        "WelcomeMessage" : "Welcome",
+        "Slogan": "Here you can manage your tools, projects, inspections and reparations, and mutch more!",
+        "EmailInput": "Email",
+        "EmailError": "Email is required!",
+        "PasswordInput": "Password",
+        "PasswordError": "Password is required!",
+        "LoginButton": "Login"
+    }
+}

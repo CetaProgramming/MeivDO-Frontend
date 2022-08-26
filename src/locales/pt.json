@@ -1,0 +1,12 @@
+{
+    "Lang" : "Linguagem",
+    "Login" : {
+        "WelcomeMessage" : "Bem-vindo",
+        "Slogan": "Poderá efetuar a gestão das ferramentas, inspecões, reparações e muito mais!",
+        "EmailInput": "E-mail",
+        "EmailError": "Email é obrigatório!",
+        "PasswordInput": "Palavra-Passe",
+        "PasswordError": "Palavra-Passe é obrigatória!",
+        "LoginButton": "Entrar"
+    }
+}
