@@ -1,4 +1,5 @@
 <template>
+  <component :is="this.toast.type" v-if="this.toast.visible" :msg="this.langs.LoginWrong" @closeToast="this.toast.visible= false"/>
   <div class="grid items-center grid-rows-1fr-auto lg:grid-cols-1fr-auto lg:grid-rows-none bg-image min-h-screen lg:p-12">
     <div class="font-openSans flex justify-center my-2 gap-2 col-auto lg:col-span-2 lg:justify-end">
       <SelectLanguague @languagueChangedEvent="languageChanged"/>
@@ -31,6 +32,10 @@
 <script>
 import SelectLanguague from './public/Languague.vue';
 import Logo from './public/Logo.vue'
+import ToastInfo from './public/Toast/ToastInfo.vue';
+import ToastError from './public/Toast/ToastError.vue';
+import ToastWarning from './public/Toast/ToastWarning.vue';
+import ToastSuccess from './public/Toast/ToastSuccess.vue';
 
 export default {
   mounted(){
@@ -39,8 +44,12 @@ export default {
   data(){
     return {
       langs: {},
+      toast: {
+        type: ToastError,
+        visible: false
+      },
       emailerror: false,
-      passworderror: false
+      passworderror: false,
     }
   },
   methods: {
@@ -68,15 +77,21 @@ export default {
                     }
                 );
         if(!isError)
+          this.toast.visible = true;
           console.log('RequestAPI');
       } catch (e) {
         console.log(e);
       }
     }
   },
-  components: { 
+  components: {
     Logo,
-    SelectLanguague 
-  }
+    SelectLanguague,
+    ToastInfo,
+    ToastError,
+    ToastWarning,
+    ToastSuccess,
+    ToastError
+}
 }
 </script>

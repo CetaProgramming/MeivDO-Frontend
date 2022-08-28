@@ -7,6 +7,7 @@
         "EmailError": "Email é obrigatório!",
         "PasswordInput": "Palavra-Passe",
         "PasswordError": "Palavra-Passe é obrigatória!",
-        "LoginButton": "Entrar"
+        "LoginButton": "Entrar",
+        "LoginWrong": "Email / Password estão errados ou o seu utilizador não está ativo!"
     }
 }

@@ -7,6 +7,7 @@
         "EmailError": "Email is required!",
         "PasswordInput": "Password",
         "PasswordError": "Password is required!",
-        "LoginButton": "Login"
+        "LoginButton": "Login",
+        "LoginWrong": "Email / Password is wrong or your user is not active!"
     }
 }
