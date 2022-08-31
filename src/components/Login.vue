@@ -1,6 +1,5 @@
 <template>
-  <component :is="this.toast.type" v-if="this.toast.visible" :msg="this.langs.LoginWrong" @closeToast="this.toast.visible= false"/>
-  <div class="grid items-center grid-rows-1fr-auto lg:grid-cols-1fr-auto lg:grid-rows-none bg-image min-h-screen lg:p-12">
+  <div class="grid items-center grid-rows-1fr-auto lg:grid-cols-1fr-auto lg:grid-rows-auto-1fr bg-image min-h-screen lg:p-12">
     <div class="font-openSans flex justify-center my-2 gap-2 col-auto lg:col-span-2 lg:justify-end">
       <SelectLanguague @languagueChangedEvent="languageChanged"/>
     </div> 
@@ -21,15 +20,20 @@
 import SelectLanguague from './public/Languague.vue';
 import FormLogin from './login/formLogin.vue';
 import Logo from './public/Logo.vue'
-import ToastInfo from './public/Toast/ToastInfo.vue';
-import ToastError from './public/Toast/ToastError.vue';
-import ToastWarning from './public/Toast/ToastWarning.vue';
-import ToastSuccess from './public/Toast/ToastSuccess.vue';
+import { langStore } from '../store/langStore';
+import { computed } from 'vue';
 
 export default {
-  mounted(){
-    this.languageChanged()
-  },
+  setup(){
+    const store = langStore();
+    
+    const langs = computed(() => store.getLang.Login);
+
+  return {
+    langs
+  }
+},
+  
   data(){
     return {
       langs: {},
@@ -39,23 +43,10 @@ export default {
       }
     }
   },
-  methods: {
-    languageChanged(){
-      SelectLanguague.computed.langs()
-        .then(data => this.langs = data.Login);
-    },
-    
-    
-  },
   components: {
     Logo,
     SelectLanguague,
-    FormLogin,
-    ToastInfo,
-    ToastError,
-    ToastWarning,
-    ToastSuccess,
-    ToastError
-}
+    FormLogin
+  }
 }
 </script>

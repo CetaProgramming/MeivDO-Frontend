@@ -1,4 +1,5 @@
 <template>
+    <ToastError v-if="this.toast.visible" :msg="this.toast.msg" @closeToast="this.toast.visible= false"/>
     <form id="form" class="bg-white z-10 flex flex-col items-center gap-5" @submit.prevent="formValid">
         <div class="flex flex-col gap-2">
             <label for="email" class="block text-sm font-medium text-gray-900">{{this.langs.EmailInput}}</label>
@@ -15,16 +16,32 @@
 </template>
 
 <script>
-    import SelectLanguague from '../public/Languague.vue';
     import DataValidator from '../mixins/DataValidator.js';
+    import { computed } from 'vue';
+    import { langStore } from '../../store/langStore'
+    import { userLogin } from '../../store/userLogin'
+    import ToastError from './../public/Toast/ToastError.vue';
     
     export default {
-        mounted(){
-            this.languageChanged()
+        setup(){
+            const store = langStore();
+
+            const userLoginStore = userLogin();
+
+            const langs = computed(() => store.getLang.Login);
+
+            return {
+                langs,
+                userLoginStore
+            }
         },
         data(){
             return {
-                langs: {},
+                toast: {
+                    type: ToastError,
+                    msg: '',
+                    visible: false
+                },
                 formLogin: {
                     email: '',
                     password: '',
@@ -36,10 +53,6 @@
             }
         },
         methods: {
-            languageChanged(){
-                SelectLanguague.computed.langs()
-                    .then(data => this.langs = data.Login);
-            },
             inputValid(event){
                 if(this.empty(this.formLogin[event.target.id]))
                     this.errorsInputs[event.target.id] = true;
@@ -55,11 +68,21 @@
                         }
                     });
                     if(!isError)
-                        console.log('RequestAPI');
+                        (async () => {
+                            try {
+                                await this.userLoginStore.login(dataForm);
+                            } catch (error) {
+                                this.toast.msg = 'Error';
+                                this.toast.visible = true;
+                            }
+                        })();
                 } catch (e) {
                     console.log(e);
                 }
             }
+        },
+        components: {
+            ToastError
         },
         mixins: [ DataValidator ]
     }
