@@ -8,6 +8,8 @@
       <div class="flex flex-col gap-3 p-10 lg:p-0 lg:max-w-4/5">
         <h1 class="text-4xl text-white">{{this.langs.WelcomeMessage}}</h1>
         <p class="text-white font-openSans">{{this.langs.Slogan}}</p>
+        <h1 class="text-4xl text-white">{{langs.WelcomeMessage}}</h1>
+        <p class="text-white font-openSans">{{langs.Slogan}}</p>
       </div>
       <div class="p-3 rounded h-fit bg-white flex flex-col justify-center gap-6 lg:p-10">
         <Logo/>
@@ -25,10 +27,21 @@ import ToastInfo from './public/Toast/ToastInfo.vue';
 import ToastError from './public/Toast/ToastError.vue';
 import ToastWarning from './public/Toast/ToastWarning.vue';
 import ToastSuccess from './public/Toast/ToastSuccess.vue';
+import { langStore } from '../store/langStore';
+import { computed } from 'vue';
 
 export default {
   mounted(){
     this.languageChanged()
+  setup(){
+
+    const store = langStore();
+
+    const langs = computed(() => store.getLang.Login);
+
+    return {
+      langs
+    }
   },
   data(){
     return {

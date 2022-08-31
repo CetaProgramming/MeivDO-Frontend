@@ -1,23 +1,34 @@
 <template>
-    <!-- <h5 class="text-white text-xs font-bold"></h5> -->
-    <select class="p-1" v-model="defaultLang"  @change="emitLanguagueChanged">
+    <select class="p-1" v-model="lang"  @change="changeLanguague">
         <option v-for="lang in languagues" :value="lang.value">{{ lang.name }}</option>
     </select>
 </template>
 
 <script>
     import getUnicodeFlagIcon from 'country-flag-icons/unicode'
+    import { computed } from 'vue';
+    import { langStore } from '../../store/langStore'
+    import { storeToRefs } from 'pinia'
 
     export default {
         name: 'SelectLanguague',
-        mounted(){
-            if(!localStorage.getItem('lang'))
-                localStorage.setItem('lang', 'en')  
-            return this.defaultLang = localStorage.getItem('lang');  
+        setup(){
+
+            const store = langStore();
+
+            const { lang } = storeToRefs(store);
+
+            function changeLanguague(event){
+                store.setLanguague(event.target.value);
+            }
+            
+            return {
+                lang,
+                changeLanguague
+            }
         },
         data(){
             return {
-                defaultLang: 'en',
                 languagues: [
                     {
                         name: `${getUnicodeFlagIcon('US')} English`,
@@ -28,17 +39,6 @@
                         value: 'pt'
                     }
                 ]           
-            }
-        },
-        methods: {
-            emitLanguagueChanged(){
-                localStorage.setItem('lang', this.defaultLang);
-                this.$emit('languagueChangedEvent', this.defaultLang);
-            }
-        },
-        computed: {
-            langs(){
-                return import(`../../locales/${ localStorage.getItem('lang') }.json`)
             }
         }
     }
