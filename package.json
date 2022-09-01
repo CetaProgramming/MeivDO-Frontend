@@ -13,6 +13,7 @@
     "country-flag-icons": "^1.5.5",
     "pinia": "^2.0.21",
     "vue": "^3.2.37",
+    "vue-cookies": "^1.8.1",
     "vue-router": "^4.0.13"
   },
   "devDependencies": {
