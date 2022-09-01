@@ -1,8 +1,7 @@
 <template>
-  <component :is="this.toast.type" v-if="this.toast.visible" :msg="this.langs.LoginWrong" @closeToast="this.toast.visible= false"/>
   <div class="grid items-center grid-rows-1fr-auto lg:grid-cols-1fr-auto lg:grid-rows-auto-1fr bg-image min-h-screen lg:p-12">
     <div class="font-openSans flex justify-center my-2 gap-2 col-auto lg:col-span-2 lg:justify-end">
-      <SelectLanguague @languagueChangedEvent="languageChanged"/>
+      <SelectLanguague />
     </div> 
     <div class="grid items-center grid-rows-1fr-auto lg:grid-cols-1fr-auto lg:grid-rows-none">
       <div class="flex flex-col gap-3 p-10 lg:p-0 lg:max-w-4/5">
@@ -18,37 +17,27 @@
 </template>
 
 <script>
-import SelectLanguague from './public/Languague.vue';
 import FormLogin from './login/formLogin.vue';
 import Logo from './public/Logo.vue'
-import ToastError from './public/Toast/ToastError.vue';
 import { langStore } from '../store/langStore';
 import { computed } from 'vue';
+import SelectLanguague from './public/Languague.vue';
 
 export default {
   setup(){
 
     const store = langStore();
-
+    
     const langs = computed(() => store.getLang.Login);
 
     return {
       langs
     }
   },
-  data(){
-    return {
-      toast: {
-        type: ToastError,
-        visible: false
-      }
-    }
-  },
   components: {
     Logo,
-    SelectLanguague,
     FormLogin,
-    ToastError,
+    SelectLanguague
 }
 }
 </script>
