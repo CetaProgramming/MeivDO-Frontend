@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { defineStore } from 'pinia';
 import VueCookies from 'vue-cookies';
-import { useRouter } from 'vue-router'
 
 export const userLogin = defineStore('userLogin', {
     state: () => { 
