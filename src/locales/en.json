@@ -24,7 +24,7 @@
             {
                 "img": "src/assets/icons/tools.png",
                 "title": "Tools",
-                "description": "Here you can see the tools the company has as well as their details such as state."
+                "description": "Here you can see the tools the company has as well as their details such as it's state."
             },
             {
                 "img" : "src/assets/icons/reparations.png",
