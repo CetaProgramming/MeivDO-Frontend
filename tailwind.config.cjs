@@ -18,6 +18,7 @@ module.exports = {
         'MeivYellow' : '#FBB03B',
         'MeivGray' : '#808080',
         'MeivLightGray' : '#838383',
+        'MeivAsh' : '#E6E6E6',
       },
       gridTemplateRows: {
         // Simple 8 row grid

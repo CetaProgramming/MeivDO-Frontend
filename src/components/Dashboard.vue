@@ -1,17 +1,16 @@
 <template>
-  <div>
-    <MenuDashboard/>
-  </div>
+  <MenuDashboard/>
+  <FeatureMenu/>
 </template>
 
 <script>
-import MenuDashboard from "./dashboard/MenuDashboard.vue";
-  
-export default {
-    components: { MenuDashboard }
-}
+  import MenuDashboard from "./dashboard/MenuDashboard.vue";
+  import FeatureMenu from "./dashboard/FeatureMenu.vue";
+
+  export default {
+    components: { 
+      FeatureMenu,
+      MenuDashboard
+    }
+  }
 </script>
-
-<style lang="scss" scoped>
-
-</style>

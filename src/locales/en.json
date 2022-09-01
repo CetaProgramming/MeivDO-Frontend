@@ -8,5 +8,32 @@
         "PasswordError": "Password is required!",
         "LoginButton": "Login",
         "LoginWrong": "Email / Password is wrong or your user is not active!"
-    }
+    },
+    "ItemMenu" :  [
+        {
+                "img" : "src/assets/icons/projects.png",
+                "title": "Projects",
+                "description": "Which projects the company made and see the details of ongoing projects."
+            },
+            {
+                "img": "src/assets/icons/inspections.png",
+                "title": "Inspections",
+                "description": "View the inspections that the tools have and the detail of each inspection."
+            },
+            {
+                "img": "src/assets/icons/tools.png",
+                "title": "Tools",
+                "description": "Here you can see the tools the company has as well as their details such as it's state."
+            },
+            {
+                "img" : "src/assets/icons/reparations.png",
+                "title": "Repairs",
+                "description" :"View the tools that need a repair, as well as the details of each repair."
+            },
+            {
+                "img" : "src/assets/icons/Users.png",
+                "title" : "Users",
+                "description" :"View the list of users of the company."
+            }
+    ]      
 }
