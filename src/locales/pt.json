@@ -14,27 +14,27 @@
         {
                 "img" : "src/assets/icons/projects.png",
                 "title": "Projetos",
-                "description": "Which projects the company made and see the details of ongoing projects."
+                "description": "Quais os projectos que a empresa realizou e ver os detalhes dos projectos em curso."
             },
             {
                 "img": "src/assets/icons/inspections.png",
-                "title": "Inspections",
-                "description": "View the inspections that the tools have and the detail of each inspection."
+                "title": "Inspeções",
+                "description": "Veja as inspecções que as ferramentas têm e os detalhes de cada inspecção."
             },
             {
                 "img": "src/assets/icons/tools.png",
-                "title": "Tools",
-                "description": "Here you can see the tools the company has as well as their details such as status."
+                "title": "Ferramentas",
+                "description": "Aqui pode ver as ferramentas de que a empresa dispõe, bem como os seus detalhes, tais como o estado."
             },
             {
                 "img" : "src/assets/icons/reparations.png",
-                "title": "Repairs",
-                "description" :"View the tools that are not in perfect condition and need a repair and the details of each repair"
+                "title": "Reparações",
+                "description" :"Veja as ferramentas que precisam de uma reparação, como também os detalhes de cada reparação."
             },
             {
                 "img" : "src/assets/icons/Users.png",
-                "title" : "Users",
-                "description" :"View the list of users of the company"
+                "title" : "Utilizadores",
+                "description" :"Ver a lista de utilizadores da empresa."
             }
     ]
 }

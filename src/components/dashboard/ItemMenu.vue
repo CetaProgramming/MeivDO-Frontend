@@ -4,7 +4,7 @@
         <img :src="img" alt="" class="h-20">
     </div>
         <h1 class="pt-4 mb-2 text-xl font-bold text-black">{{title}}</h1>
-        <p class="text-gray-400 group-hover:text-black">{{description}}</p>
+        <p class="text-gray-400 group-hover:text-black pt-2">{{description}}</p>
     </div>
 </template>
 
