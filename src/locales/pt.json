@@ -1,5 +1,4 @@
 {
-    "Lang" : "Linguagem",
     "Login" : {
         "WelcomeMessage" : "Bem-vindo",
         "Slogan": "Poderá efetuar a gestão das ferramentas, inspecões, reparações e muito mais!",
@@ -9,5 +8,8 @@
         "PasswordError": "Palavra-Passe é obrigatória!",
         "LoginButton": "Entrar",
         "LoginWrong": "Email / Password estão errados ou o seu utilizador não está ativo!"
+    },
+    "Errors" : {
+        "401" : ""
     }
 }
