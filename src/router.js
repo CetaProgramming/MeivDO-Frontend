@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { userLogin } from "./store/userLogin"
 
 function laziLoad(view){
-     return import(`./components/${view}.vue`)
+     return () => import(`./components/${view}.vue`)
 }
 const routes = [
     {
@@ -22,5 +23,19 @@ const routes = [
 ];
 
 const router = createRouter({ history: createWebHistory(), routes});
+
+router.beforeEach(async (to, from) => {
+    const userLoginStore = userLogin();
+    try {
+        await userLoginStore.acessUser();
+        if ((userLoginStore.email) && to.name === 'login') 
+            return { name: 'dashboard' }
+        if (!userLogin().email && to.name !== 'login') 
+             return { name: 'login' }    
+    } catch (error) {
+        userLoginStore.deleteSession();
+        return { name: 'login' }
+    }
+})
 
 export default router;
