@@ -9,5 +9,38 @@
         "PasswordError": "Palavra-Passe é obrigatória!",
         "LoginButton": "Entrar",
         "LoginWrong": "Email / Password estão errados ou o seu utilizador não está ativo!"
+    },
+    "MenuDashboard" : {
+        "HeadingMenu": "Bem-vindo,",
+        "HeadingMenu2": "O que pretendes fazer hoje?",
+        "SearchFeat": "Procurar funcionalidade...",
+        "UserProf": "Perfil de utilizador",
+        "ChangePass": "Alterar palavra-passe",
+        "Settings": "Definições",
+        "Support": "Ajuda",
+        "Logout": "Terminar sessão"
+    },
+    "StandartProfile" : {
+        "Title2": "Mudar palavra passe",
+        "Title3": "Definições"
+    },
+    "PopupProfile" : 
+    {
+        "Title1" : "Perfil de Utilizador",
+        "Name" : "Nome",
+        "Role": "Nível de acesso",
+        "Picture": "Atualizar foto",
+        "SaveProf": "Salvar"
+    },
+    "PopupPassword" : {
+        "Password" : "Palavra-chave atual",
+        "NewPassword": "Nova palavra-chave",
+        "ConfirmNewPassword": "Confirmar nova palavra-chave",
+        "SavePass": "Salvar"
+    },
+    "PopupSettings" : {
+        "DarkMode" : "Modo noite",
+        "Zoom": "Zoom",
+        "Language": "Lingua"
     }
 }
