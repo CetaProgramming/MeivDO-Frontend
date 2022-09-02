@@ -40,7 +40,7 @@
         "DarkMode" : "Dark mode",
         "Zoom": "Zoom",
         "Language": "Language"
-    }
+    },
     "ItemMenu" :  [
         {
                 "img" : "src/assets/icons/projects.png",

@@ -41,8 +41,7 @@
         "DarkMode" : "Modo noite",
         "Zoom": "Zoom",
         "Language": "Lingua"
-    }
-}
+    },
     "ItemMenu" :  [
         {
                 "img" : "src/assets/icons/projects.png",
