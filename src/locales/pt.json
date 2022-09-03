@@ -64,7 +64,7 @@
                 "description" :"Veja as ferramentas que precisam de uma reparação, como também os detalhes de cada reparação."
             },
             {
-                "img" : "src/assets/icons/Users.png",
+                "img" : "src/assets/icons/users.png",
                 "title" : "Utilizadores",
                 "description" :"Ver a lista de utilizadores da empresa."
             }
