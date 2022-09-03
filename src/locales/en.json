@@ -63,7 +63,7 @@
                 "description" :"View the tools that need a repair, as well as the details of each repair."
             },
             {
-                "img" : "src/assets/icons/Users.png",
+                "img" : "src/assets/icons/users.png",
                 "title" : "Users",
                 "description" :"View the list of users of the company."
             }
