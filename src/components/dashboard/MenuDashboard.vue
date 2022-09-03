@@ -38,7 +38,7 @@
   <script>
 import Logo from '../public/Logo.vue';
 import Popoup from '../public/Popoup.vue';
-import PopupProfile from './PopupsMenu/popupProfile.vue';
+import PopupProfile from './PopupsMenu/PopupProfile.vue';
 import PopupPassword from './PopupsMenu/PopupPassword.vue';
 import PopupSettings from './PopupsMenu/PopupSettings.vue';
 import { computed } from 'vue';
