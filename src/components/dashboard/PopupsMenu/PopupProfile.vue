@@ -4,7 +4,7 @@
             <div class="flex flex-col gap-2 ">
                 <h1 class="font-bold">{{langs.Name}}</h1>
                 <!-- necessário ir a base de dados buscar os dados de utilizador -->
-                <input class=" w-4/5 p-3 rounded-md text-black text-sm bg-gray-300 pl-2 placeholder-black  " type="text" v-model="input" placeholder="Bruno Costa" />
+                <input class=" w-4/5 p-3 rounded-md text-black text-sm bg-gray-300 dark:bg-red-500 pl-2 placeholder-black  " type="text" v-model="input" placeholder="Bruno Costa" />
                 <h1 class="font-bold">Email</h1>
                 <h2 class="">email@email.com</h2>
                 <h1 class="font-bold">{{langs.Role}}</h1>
@@ -24,15 +24,21 @@
 import Popoup from '../../public/Popoup.vue';
 import { computed } from 'vue';
 import { langStore } from '../../../store/langStore';
+import {useDark, useToggle} from '@vueuse/core'
+
 
 export default {
+    props: ['mode'],
     setup() {
         const store = langStore();
+
+        const isDark= useDark()
+        const toggleDark = useToggle(isDark)
 
         const langs = computed(() => store.getLang.PopupProfile);
 
         return {
-            langs
+            langs,toggleDark,isDark
         }
     },
     components: {
