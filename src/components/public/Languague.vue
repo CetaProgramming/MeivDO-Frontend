@@ -1,5 +1,5 @@
 <template>
-    <select class="p-1" v-model="lang"  @change="changeLanguague">
+    <select class="p-1 dark:bg-zinc-800 dark:text-white" v-model="lang"  @change="changeLanguague">
         <option v-for="lang in languagues" :value="lang.value">{{ lang.name }}</option>
     </select>
 </template>
