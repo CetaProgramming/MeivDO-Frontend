@@ -3,7 +3,7 @@
         <div class="flex justify-between p-4">
             <Logo />
             <div class="relative font-openSans">
-                <img class="dropdown mr-6" @click="isMenuClicked = !isMenuClicked" src="" alt="f" />
+                <img class="dropdown mr-6" @click="isMenuClicked = !isMenuClicked" src=image alt="f" />
                 <div class="absolute md:right-10 right-0 md:w-44 w-52 text-black bg-white rounded-md text-sm p-1 dark:bg-black dark:text-white"
                     v-if="isMenuClicked">
                     <i class="fa-thin fa-user"></i>
@@ -25,7 +25,7 @@
             </div>
         </div>
         <div class="justify-center flex  flex-col items-center mt-24 md:mt-4  gap-2 font-openSans">
-            <h1 class="text-4xl">{{langs.HeadingMenu}}<span class="text-red-500 ">Bruno Costa</span></h1>
+            <h1 class="text-4xl">{{langs.HeadingMenu}}<span class="text-red-500 ">{{name}}</span></h1>
             <h1 class="text-2xl">{{langs.HeadingMenu2}}</h1>
             <input class="w-3/5 rounded-md text-black text-xl p-2 pl-2  dark:bg-black dark:text-white" type="text" v-model="input" :placeholder="langs.SearchFeat" />
         </div>
@@ -44,17 +44,33 @@ import PopupSettings from './PopupsMenu/PopupSettings.vue';
 import { computed } from 'vue';
 import { langStore } from '../../store/langStore';
 import {useDark, useToggle} from '@vueuse/core'
+import { userLogin } from '../../store/userLogin';
+import { defineStore } from 'pinia';
 
 export default {
     setup() {
         const store = langStore();
         const isDark= useDark()
         const toggleDark = useToggle(isDark)
+        const user = userLogin();
+        const loggedUser = user.defineDataUser;
+        const defineUser = defineStore("user", {
+            state: () => {
+                return {
+                    id : this.loggedUser.id,
+                    name : this.loggedUser.name,
+                    email : this.loggedUser.email,
+                    image : this.loggedUser.image,
+                    role : this.loggedUser.role
+                }
+            }
+        })
+        
 
         const langs = computed(() => store.getLang.MenuDashboard);
 
         return {
-            langs,toggleDark,isDark
+            langs,toggleDark,isDark,loggedUser,defineUser
         }
     },
     data() {
