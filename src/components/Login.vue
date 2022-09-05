@@ -8,7 +8,7 @@
         <h1 class="text-4xl text-white">{{langs.WelcomeMessage}}</h1>
         <p class="text-white font-openSans">{{langs.Slogan}}</p>
       </div>
-      <div class="p-3 rounded h-fit bg-white flex flex-col justify-center gap-6 lg:p-10">
+      <div class="p-3 rounded h-fit bg-white dark:bg-black  flex flex-col justify-center gap-6 lg:p-10">
         <Logo/>
         <FormLogin />
       </div>
@@ -22,16 +22,19 @@ import Logo from './public/Logo.vue'
 import { langStore } from '../store/langStore';
 import { computed } from 'vue';
 import SelectLanguague from './public/Languague.vue';
+import { useDark, useToggle } from '@vueuse/core'
 
 export default {
   setup(){
 
     const store = langStore();
+    const isDark= useDark()
+        
     
     const langs = computed(() => store.getLang.Login);
 
     return {
-      langs
+      langs,isDark
     }
   },
   components: {

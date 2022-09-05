@@ -1,5 +1,5 @@
 <template>
-    <div class="grid grid-cols-1  bg-MeivAsh gap-4 p-10 md:grid-cols-2 lg:grid-cols-4">
+    <div class="grid grid-cols-1  bg-MeivAsh gap-4 p-10 md:grid-cols-2 lg:grid-cols-4 dark:bg-zinc-900">
         <ItemMenu v-for="item in langs" :img="item.img" :title="item.title" :description="item.description"/>
     </div>
 </template>
