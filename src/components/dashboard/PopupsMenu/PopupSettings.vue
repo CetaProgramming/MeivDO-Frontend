@@ -1,5 +1,5 @@
 <template>
-    <Popoup titlePopUp="Change Password">
+    <Popoup :titlePopUp="langs.Title3">
         <div class="font-openSans  flex flex-col items-center">
             <div class="flex gap-20 justify-between w-2/4  mt-4 mb-10">
                 <h1>{{ langs.DarkMode }}</h1>
