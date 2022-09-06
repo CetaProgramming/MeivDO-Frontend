@@ -1,5 +1,6 @@
 <template>
-    <div class="group text-center p-6 md:max-w-sm max-w bg-white rounded-lg border-2 duration-200 font-openSans cursor-pointer hover:bg-red-300 hover:border-solid hover:border-red-500 dark:bg-black dark:border-zinc-900 dark:hover:border-red-700 dark:hover:bg-[#510000]">
+    <div class="group text-center p-10 md:max-w-sm max-w bg-white rounded-lg border-2 duration-200 font-openSans cursor-pointer
+     hover:bg-red-300 hover:border-solid hover:border-red-500 h-fit dark:bg-black dark:border-zinc-900 dark:hover:border-red-700 dark:hover:bg-MeivRedDark">
     <div class="flex justify-center">
         <img :src="img" alt="" class="h-14 md:h-20">
     </div>
