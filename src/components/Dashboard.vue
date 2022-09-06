@@ -1,16 +1,19 @@
 <template>
-  <MenuDashboard/>
-  <FeatureMenu/>
+  <div class="grid grid-rows-auto-1fr min-h-screen">
+    <MenuDashboard />
+    <FeatureMenu />
+  </div>
+
 </template>
 
 <script>
-  import MenuDashboard from "./dashboard/MenuDashboard.vue";
-  import FeatureMenu from "./dashboard/FeatureMenu.vue";
+import MenuDashboard from "./dashboard/MenuDashboard.vue";
+import FeatureMenu from "./dashboard/FeatureMenu.vue";
 
-  export default {
-    components: { 
-      FeatureMenu,
-      MenuDashboard
-    }
+export default {
+  components: {
+    FeatureMenu,
+    MenuDashboard
   }
+}
 </script>
