@@ -19,10 +19,6 @@
         "Support": "Ajuda",
         "Logout": "Terminar sessão"
     },
-    "StandartProfile" : {
-        "Title2": "Mudar palavra passe",
-        "Title3": "Definições"
-    },
     "PopupProfile" : 
     {
         "Title1" : "Perfil de Utilizador",
@@ -32,12 +28,14 @@
         "SaveProf": "Salvar"
     },
     "PopupPassword" : {
+        "Title2": "Mudar palavra-passe",
         "Password" : "Palavra-chave atual",
-        "NewPassword": "Nova palavra-chave",
-        "ConfirmNewPassword": "Confirmar nova palavra-chave",
+        "NewPassword": "Nova palavra-passe",
+        "ConfirmNewPassword": "Confirmar nova palavra-passe",
         "SavePass": "Salvar"
     },
     "PopupSettings" : {
+        "Title3": "Definições",
         "DarkMode" : "Modo noite",
         "Zoom": "Zoom",
         "Language": "Lingua"

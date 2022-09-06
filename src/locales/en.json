@@ -19,10 +19,6 @@
         "Support": "Support",
         "Logout": "Logout"
     },
-    "StandartProfile" : {
-        "Title2": "Change Password",
-        "Title3": "Settings"
-    },
     "PopupProfile" : {
         "Title1" : "User Profile",
         "Name" : "Name",
@@ -31,12 +27,14 @@
         "SaveProf": "Save"
     },
     "PopupPassword" : {
+        "Title2": "Change Password",
         "Password" : "Current password",
         "NewPassword": "New password",
         "ConfirmNewPassword": "Confirm new password",
         "SavePass": "Save"
     },
     "PopupSettings" : {
+        "Title3": "Settings",
         "DarkMode" : "Dark mode",
         "Zoom": "Zoom",
         "Language": "Language"
