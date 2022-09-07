@@ -1,9 +1,9 @@
 <template>
     <div class="bg-image p-4 text-white  ">
-        <div class="flex justify-between p-4">
-            <Logo />
+        <div class="flex justify-between items-center p-4">
+            <Logo class="h-fit"/>
             <div class="relative font-openSans">
-                <img class="cursor-pointer dropdown mr-6 h-9" @click="isMenuClicked = !isMenuClicked" :src=image alt="profile" title="Menu"/>
+                <img class="cursor-pointer dropdown mr-6 w-14 h-14 rounded-full object-top object-cover" @click="isMenuClicked = !isMenuClicked" :src=image alt="profile" title="Menu"/>
                 <div class="absolute md:right-10 right-0 md:w-44 w-52 text-black bg-white rounded-md text-sm p-1 dark:bg-black dark:text-white"
                     v-if="isMenuClicked">
                     <i class="fa-thin fa-user"></i>
