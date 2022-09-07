@@ -50,7 +50,7 @@ export const userLogin = defineStore('userLogin', {
         this.id = id;
         this.name = name;
         this.email = emailU;
-        this.image = image;
+        this.image = `${import.meta.env.VITE_API_ENDPOINT}${image}`;
         this.role = role;
       },
       isAllowed(accessRoute){
