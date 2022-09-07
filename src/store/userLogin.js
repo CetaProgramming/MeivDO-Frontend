@@ -53,6 +53,11 @@ export const userLogin = defineStore('userLogin', {
         this.image = image;
         this.role = role;
       },
+      isAllowed(accessRoute){
+        if(this.role)
+          return this.role.permissions.some(permission => permission.feature === accessRoute) 
+      }
+      ,
       deleteSession(){
         VueCookies.remove("XSRF-TOKEN");
         this.defineDataUser({

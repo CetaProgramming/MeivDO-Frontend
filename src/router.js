@@ -16,6 +16,36 @@ const routes = [
     component: laziLoad('Dashboard')
 },
 {
+    path: '/projects',
+    name: 'projects',
+    component: laziLoad('ProjectComponent')
+},
+{
+    path: '/inspections',
+    name: 'inspections',
+    component: laziLoad('InspectionComponent')
+},
+{
+    path: '/tools',
+    name: 'tools',
+    component: laziLoad('ToolComponent')
+},
+{
+    path: '/projects',
+    name: 'projects',
+    component: laziLoad('ProjectComponent')
+},
+{
+    path: '/users',
+    name: 'users',
+    component: laziLoad('UserComponent')
+},
+{
+    path: '/reparations',
+    name: 'reparations',
+    component: laziLoad('ReparationComponent')
+},
+{
     path: "/:pathMatch(.*)*",
     component: laziLoad('NotFound')
 },
@@ -24,14 +54,16 @@ const routes = [
 
 const router = createRouter({ history: createWebHistory(), routes});
 
-router.beforeEach(async (to, from) => {
+router.beforeEach(async (to) => {
     const userLoginStore = userLogin();
     try {
         await userLoginStore.acessUser();
+        if ((userLoginStore.email) && to.name !== 'login' && to.name !== 'dashboard' && !userLoginStore.isAllowed(to.name)) 
+        return { name: 'dashboard' }  
         if ((userLoginStore.email) && to.name === 'login') 
             return { name: 'dashboard' }
-        if (!userLogin().email && to.name !== 'login') 
-             return { name: 'login' }    
+        if (!userLoginStore.email && to.name !== 'login') 
+             return { name: 'login' }      
     } catch (error) {
         userLoginStore.deleteSession();
         return { name: 'login' }
