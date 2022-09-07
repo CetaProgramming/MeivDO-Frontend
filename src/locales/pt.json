@@ -40,31 +40,31 @@
         "Zoom": "Zoom",
         "Language": "Lingua"
     },
-    "ItemMenu" :  [
-        {
+    "ItemMenu" :  {
+        "projects": {
                 "img" : "src/assets/icons/projects.png",
                 "title": "Projetos",
                 "description": "Quais os projectos que a empresa realizou e ver os detalhes dos projectos em curso."
             },
-            {
+            "inspections":  {
                 "img": "src/assets/icons/inspections.png",
                 "title": "Inspeções",
                 "description": "Veja as inspecções que as ferramentas têm e os detalhes de cada inspecção."
             },
-            {
+            "tools":  {
                 "img": "src/assets/icons/tools.png",
                 "title": "Ferramentas",
                 "description": "Aqui pode ver as ferramentas de que a empresa dispõe, bem como os seus detalhes, tais como o estado."
             },
-            {
+            "reparations":  {
                 "img" : "src/assets/icons/reparations.png",
                 "title": "Reparações",
                 "description" :"Veja as ferramentas que precisam de uma reparação, como também os detalhes de cada reparação."
             },
-            {
+            "users": {
                 "img" : "src/assets/icons/users.png",
                 "title" : "Utilizadores",
                 "description" :"Ver a lista de utilizadores da empresa."
             }
-    ]
+        }
 }
