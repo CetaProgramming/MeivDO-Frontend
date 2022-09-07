@@ -31,6 +31,9 @@
         "Password" : "Current password",
         "NewPassword": "New password",
         "ConfirmNewPassword": "Confirm new password",
+        "PasswordError": "Password is required!",
+        "newPasswordError": "New Password is invalid!" ,
+        "passwordConfirmError": "Password doesn't match!",
         "SavePass": "Save"
     },
     "PopupSettings" : {

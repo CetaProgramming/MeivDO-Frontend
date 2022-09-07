@@ -32,11 +32,14 @@
         "Password" : "Palavra-chave atual",
         "NewPassword": "Nova palavra-passe",
         "ConfirmNewPassword": "Confirmar nova palavra-passe",
+        "PasswordError": "Palavra-Passe é obrigatória!",
+        "newPasswordError": "Nova Palavra-passe é inválida!" ,
+        "passwordConfirmError":"Palavra-passe não coincide!",
         "SavePass": "Salvar"
     },
     "PopupSettings" : {
         "Title3": "Definições",
-        "DarkMode" : "Modo noite",
+        "DarkMode" : "Modo escuro",
         "Zoom": "Zoom",
         "Language": "Lingua"
     },
