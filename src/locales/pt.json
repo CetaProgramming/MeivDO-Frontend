@@ -35,6 +35,8 @@
         "PasswordError": "Palavra-Passe é obrigatória!",
         "newPasswordError": "Nova Palavra-passe é inválida!" ,
         "passwordConfirmError":"Palavra-passe não coincide!",
+        "changedSucess":"Palavra-Passe alterada com sucesso!",
+        "changedFailed":"Não foi possível alterar a palavra-passe, verifique os campos",
         "SavePass": "Salvar"
     },
     "PopupSettings" : {

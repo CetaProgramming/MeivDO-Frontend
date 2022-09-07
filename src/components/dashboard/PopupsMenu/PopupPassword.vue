@@ -1,4 +1,5 @@
 <template>
+<component :is="this.toast.type" v-if="this.toast.visible" :msg="this.toast.msg" @closeToast="this.toast.visible = false"/>
     <Popoup :titlePopUp="langs.Title2">
         <form @submit.prevent="changePassword">
             <div class="font-openSans grid grid-cols-1  md:justify-between  md:flex-row gap-6 ">
@@ -51,13 +52,14 @@ import {userLogin} from "../../../store/userLogin"
 export default {
     setup() {
         const store = langStore();
-        const isDark= useDark()
-        const toggleDark = useToggle(isDark)
+        const isDark= useDark();
+        const toggleDark = useToggle(isDark);
+        const userLoginStore = userLogin();
 
         const langs = computed(() => store.getLang.PopupPassword);
 
         return {
-            langs,toggleDark,isDark
+            langs,toggleDark,isDark, userLoginStore
         }
     },
     components: {
@@ -123,11 +125,15 @@ export default {
                     (async () => {
                         try {
                             await this.userLoginStore.changePassword(this.formResetPassword);
-                            // this.$router.push("/dashboard");
-                        } catch (error) {
-                            this.toast.msg = this.langs.LoginWrong;
+                            this.toast.msg = this.langs.changedSucess;
                             this.toast.visible = true;
-                            console.log(error);
+                            this.toast.type = ToastSuccess;
+                            this.$emit("closePopUp");
+                            this.$emit("activeToast", this.toast);
+                        } catch (error) {
+                            this.toast.msg = this.langs.changedFailed;
+                            this.toast.visible = true;
+                            this.toast.type = ToastError;
                          }
                     })();
             } catch (e) {

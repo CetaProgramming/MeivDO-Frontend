@@ -34,6 +34,8 @@
         "PasswordError": "Password is required!",
         "newPasswordError": "New Password is invalid!" ,
         "passwordConfirmError": "Password doesn't match!",
+        "changedSucess":"Password changed successfully!",
+        "changedFailed":"Password couldn't be changed, please verify",
         "SavePass": "Save"
     },
     "PopupSettings" : {
