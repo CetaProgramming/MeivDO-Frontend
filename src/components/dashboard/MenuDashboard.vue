@@ -3,7 +3,7 @@
         <div class="flex justify-between p-4">
             <Logo />
             <div class="relative font-openSans">
-                <img class="dropdown mr-6" @click="isMenuClicked = !isMenuClicked" src=image alt="f" />
+                <img class="dropdown mr-6" @click="isMenuClicked = !isMenuClicked" :src=image alt="f" />
                 <div class="absolute md:right-10 right-0 md:w-44 w-52 text-black bg-white rounded-md text-sm p-1 dark:bg-black dark:text-white"
                     v-if="isMenuClicked">
                     <i class="fa-thin fa-user"></i>
@@ -45,32 +45,19 @@ import { computed } from 'vue';
 import { langStore } from '../../store/langStore';
 import {useDark, useToggle} from '@vueuse/core'
 import { userLogin } from '../../store/userLogin';
-import { defineStore } from 'pinia';
 
 export default {
     setup() {
         const store = langStore();
         const isDark= useDark()
         const toggleDark = useToggle(isDark)
-        const user = userLogin();
-        const loggedUser = user.defineDataUser;
-        const defineUser = defineStore("user", {
-            state: () => {
-                return {
-                    id : this.loggedUser.id,
-                    name : this.loggedUser.name,
-                    email : this.loggedUser.email,
-                    image : this.loggedUser.image,
-                    role : this.loggedUser.role
-                }
-            }
-        })
+        const {name,image} = userLogin();
         
 
         const langs = computed(() => store.getLang.MenuDashboard);
 
         return {
-            langs,toggleDark,isDark,loggedUser,defineUser
+            langs,toggleDark,isDark,name,image,
         }
     },
     data() {
