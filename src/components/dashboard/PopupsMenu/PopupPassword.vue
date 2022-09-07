@@ -122,8 +122,8 @@ export default {
                 if(!isError)
                     (async () => {
                         try {
-                            await this.userLoginStore.login(dataForm);
-                            this.$router.push("/dashboard");
+                            await this.userLoginStore.changePassword(this.formResetPassword);
+                            // this.$router.push("/dashboard");
                         } catch (error) {
                             this.toast.msg = this.langs.LoginWrong;
                             this.toast.visible = true;

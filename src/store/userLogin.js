@@ -63,6 +63,12 @@ export const userLogin = defineStore('userLogin', {
           role: null
         })
       },
+      async changePassword(){
+        await axios.post(`${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/changePassword`,{
+          password,
+        });
+        this.deleteSession();
+    },
       async logout(){
           await axios.get(`${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/logout`);
           this.deleteSession();
