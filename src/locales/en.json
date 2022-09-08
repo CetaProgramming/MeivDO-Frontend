@@ -1,6 +1,6 @@
 {
-    "Login" : {
-        "WelcomeMessage" : "Welcome",
+    "Login": {
+        "WelcomeMessage": "Welcome",
         "Slogan": "Here you can manage your tools, projects, inspections and reparations, and mutch more!",
         "EmailInput": "Email",
         "EmailError": "Email is required!",
@@ -9,7 +9,7 @@
         "LoginButton": "Login",
         "LoginWrong": "Email / Password is wrong or your user is not active!"
     },
-    "MenuDashboard" : {
+    "MenuDashboard": {
         "HeadingMenu": "Welcome,",
         "HeadingMenu2": "What do you want to do today?",
         "SearchFeat": "Search feature...",
@@ -19,16 +19,16 @@
         "Support": "Support",
         "Logout": "Logout"
     },
-    "PopupProfile" : {
-        "Title1" : "User Profile",
-        "Name" : "Name",
+    "PopupProfile": {
+        "Title1": "User Profile",
+        "Name": "Name",
         "Role": "Role",
         "Picture": "Upload new picture ",
         "SaveProf": "Save"
     },
-    "PopupPassword" : {
+    "PopupPassword": {
         "Title2": "Change Password",
-        "Password" : "Current password",
+        "Password": "Current password",
         "NewPassword": "New password",
         "ConfirmNewPassword": "Confirm new password",
         "PasswordError": "Password is required!",
@@ -38,37 +38,37 @@
         "changedFailed":"Password couldn't be changed, please verify",
         "SavePass": "Save"
     },
-    "PopupSettings" : {
+    "PopupSettings": {
         "Title3": "Settings",
-        "DarkMode" : "Dark mode",
+        "DarkMode": "Dark mode",
         "Zoom": "Zoom",
         "Language": "Language"
     },
-    "ItemMenu" :  [
-        {
-                "img" : "src/assets/icons/projects.png",
-                "title": "Projects",
-                "description": "Which projects the company made and see the details of ongoing projects."
-            },
-            {
-                "img": "src/assets/icons/inspections.png",
-                "title": "Inspections",
-                "description": "View the inspections that the tools have and the detail of each inspection."
-            },
-            {
-                "img": "src/assets/icons/tools.png",
-                "title": "Tools",
-                "description": "Here you can see the tools the company has as well as their details such as it's state."
-            },
-            {
-                "img" : "src/assets/icons/reparations.png",
-                "title": "Repairs",
-                "description" :"View the tools that need a repair, as well as the details of each repair."
-            },
-            {
-                "img" : "src/assets/icons/users.png",
-                "title" : "Users",
-                "description" :"View the list of users of the company."
-            }
-    ]     
+    "ItemMenu": {
+        "projects": {
+            "img": "src/assets/icons/projects.png",
+            "title": "Projects",
+            "description": "Which projects the company made and see the details of ongoing projects."
+        },
+        "inspections": {
+            "img": "src/assets/icons/inspections.png",
+            "title": "Inspections",
+            "description": "View the inspections that the tools have and the detail of each inspection."
+        },
+        "tools": {
+            "img": "src/assets/icons/tools.png",
+            "title": "Tools",
+            "description": "Here you can see the tools the company has as well as their details such as it's state."
+        },
+        "reparations": {
+            "img": "src/assets/icons/reparations.png",
+            "title": "Repairs",
+            "description": "View the tools that need a repair, as well as the details of each repair."
+        },
+        "users": {
+            "img": "src/assets/icons/users.png",
+            "title": "Users",
+            "description": "View the list of users of the company."
+        }
+    }
 }
