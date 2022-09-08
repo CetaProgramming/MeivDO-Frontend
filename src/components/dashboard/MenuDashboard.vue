@@ -27,15 +27,16 @@
         <div class="justify-center flex  flex-col items-center mt-24 md:mt-4  gap-2 font-openSans">
             <h1 class="text-4xl">{{langs.HeadingMenu}}<span class="text-red-500 ">{{name}}</span></h1>
             <h1 class="text-2xl">{{langs.HeadingMenu2}}</h1>
-            <input class="w-3/5 rounded-md text-black text-xl p-2 pl-2  dark:bg-black dark:text-white" type="text" v-model="input" :placeholder="langs.SearchFeat" />
+            <input class="w-3/5 rounded-md text-black text-xl p-2 pl-2  dark:bg-black dark:text-white" type="text"
+                @input="filterItemMenu" :placeholder="langs.SearchFeat" />
         </div>
     </div>
-    <PopupProfile v-if="isProfileClicked" @closePopUp="isProfileClicked= false"/>
+    <PopupProfile v-if="isProfileClicked" @closePopUp="isProfileClicked= false" />
     <PopupPassword v-if="isPasswordClicked" @closePopUp="isPasswordClicked= false"></PopupPassword>
     <PopupSettings v-if="isSettingsClicked" @closePopUp="isSettingsClicked= false"></PopupSettings>
 </template>
   
-  <script>
+<script>
 import Logo from '../public/Logo.vue';
 import Popoup from '../public/Popoup.vue';
 import PopupProfile from './PopupsMenu/PopupProfile.vue';
@@ -43,21 +44,22 @@ import PopupPassword from './PopupsMenu/PopupPassword.vue';
 import PopupSettings from './PopupsMenu/PopupSettings.vue';
 import { computed } from 'vue';
 import { langStore } from '../../store/langStore';
-import {useDark, useToggle} from '@vueuse/core'
+import { useDark, useToggle } from '@vueuse/core'
 import { userLogin } from '../../store/userLogin';
+
 
 export default {
     setup() {
         const store = langStore();
-        const isDark= useDark()
+        const isDark = useDark()
         const toggleDark = useToggle(isDark)
-        const {name,image} = userLogin();
-        
+        const { name, image } = userLogin();
+
 
         const langs = computed(() => store.getLang.MenuDashboard);
 
         return {
-            langs,toggleDark,isDark,name,image,
+            langs, toggleDark, isDark, name, image,
         }
     },
     data() {
@@ -69,15 +71,21 @@ export default {
 
         }
     },
+    methods: {
+        filterItemMenu(event) {
+            this.emitter.emit("filterItemMenu", event.target.value)
+        }
+    }
+    ,
     components: {
-    Logo,
-    Popoup, 
-    PopupProfile,
-    PopupPassword,
-    PopupSettings
-}
+        Logo,
+        Popoup,
+        PopupProfile,
+        PopupPassword,
+        PopupSettings
+    }
 }
 </script>
   
-  <style lang="scss" scoped>
-  </style>
+<style lang="scss" scoped>
+</style>
