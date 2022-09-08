@@ -69,11 +69,11 @@ export const userLogin = defineStore('userLogin', {
         })
       },
       async changePassword({password,newPassword}){
-       const request = await axios.put(`${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/changePassword`,{
+        await axios.put(`${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/changePassword`,{
           password,
           newPassword,
         });
-        console.log(request)
+        
     },
       async logout(){
           await axios.get(`${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/logout`);
