@@ -20,7 +20,7 @@
                         <fas class="mr-1" icon="fa-solid fa-headset" />{{langs.Support}}
                     </p>
                     <hr>
-                    <p class="hover:cursor-pointer">{{langs.Logout}}</p>
+                    <p class="hover:cursor-pointer" @click="logoutUser">{{langs.Logout}}</p>
                 </div>
             </div>
         </div>
@@ -53,13 +53,12 @@ export default {
         const store = langStore();
         const isDark = useDark()
         const toggleDark = useToggle(isDark)
-        const { name, image } = userLogin();
-
+        const { name, image, logout } = userLogin();
 
         const langs = computed(() => store.getLang.MenuDashboard);
 
         return {
-            langs, toggleDark, isDark, name, image,
+            langs, toggleDark, isDark, name, image, logout
         }
     },
     data() {
@@ -74,6 +73,10 @@ export default {
     methods: {
         filterItemMenu(event) {
             this.emitter.emit("filterItemMenu", event.target.value)
+        },
+        async logoutUser(){
+            await this.logout();
+            this.$router.push({name : 'login'});
         }
     }
     ,
