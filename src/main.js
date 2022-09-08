@@ -1,4 +1,5 @@
 import { createApp } from 'vue'
+import mitt from 'mitt';
 import { createPinia } from 'pinia'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -22,5 +23,7 @@ app.use(router)
 library.add(fas)
 library.add(faUser)
 app.component('fas', FontAwesomeIcon)
+const emitter = mitt();
+app.config.globalProperties.emitter = emitter;
 app.mount('#app')
 
