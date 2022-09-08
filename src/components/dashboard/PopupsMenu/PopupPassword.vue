@@ -1,6 +1,5 @@
 <template>
-<component :is="this.toast.type" v-if="this.toast.visible" :msg="this.toast.msg" @closeToast="this.toast.visible = false"/>
-    <Popoup :titlePopUp="langs.Title2">
+    <Popoup :titlePopUp="langs.Title2" >
         <form @submit.prevent="changePassword">
             <div class="font-openSans grid grid-cols-1  md:justify-between  md:flex-row gap-6 ">
                 <div class="flex flex-col gap-2">
@@ -125,15 +124,16 @@ export default {
                     (async () => {
                         try {
                             await this.userLoginStore.changePassword(this.formResetPassword);
-                            this.toast.msg = this.langs.changedSucess;
-                            this.toast.visible = true;
-                            this.toast.type = ToastSuccess;
                             this.$emit("closePopUp");
-                            this.$emit("activeToast", this.toast);
+                            this.$emit("activeToast", {
+                                msg: this.langs.changedSucess,
+                                type: ToastSuccess
+                            });
                         } catch (error) {
-                            this.toast.msg = this.langs.changedFailed;
-                            this.toast.visible = true;
-                            this.toast.type = ToastError;
+                            this.$emit("activeToast", {
+                                msg: this.langs.changedFailed,
+                                type: ToastError
+                            });
                          }
                     })();
             } catch (e) {

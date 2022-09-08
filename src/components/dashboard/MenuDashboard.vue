@@ -33,8 +33,8 @@
         </div>
     </div>
     <PopupProfile v-if="isProfileClicked" @closePopUp="isProfileClicked= false"/>
-    <PopupPassword v-if="isPasswordClicked" @closePopUp="isPasswordClicked= false" @activeToast="showToast"></PopupPassword>
-    <PopupSettings v-if="isSettingsClicked" @closePopUp="isSettingsClicked= false"></PopupSettings>
+    <PopupPassword v-if="isPasswordClicked" @activeToast="showToast" @closePopUp="isPasswordClicked= false"/>
+    <PopupSettings v-if="isSettingsClicked" @closePopUp="isSettingsClicked= false" />
 </template>
   
 <script>
@@ -47,8 +47,6 @@ import { computed } from 'vue';
 import { langStore } from '../../store/langStore';
 import { useDark, useToggle } from '@vueuse/core'
 import { userLogin } from '../../store/userLogin';
-import ToastSuccess from "../public/Toast/ToastSuccess.vue"
-
 
 export default {
     setup() {
@@ -78,10 +76,10 @@ export default {
         }
     },
     methods: {
-        showToast(event){
-            this.toast.msg = event.msg;
+        showToast(data){
+            this.toast.msg = data.msg;
             this.toast.visible = true;
-            this.toast.type = event.type;
+            this.toast.type = data.type;
         },
         filterItemMenu(event) {
             this.emitter.emit("filterItemMenu", event.target.value)
