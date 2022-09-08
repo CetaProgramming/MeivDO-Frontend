@@ -1,4 +1,5 @@
 <template>
+<component :is="this.toast.type" v-if="this.toast.visible" :msg="this.toast.msg" @closeToast="this.toast.visible = false"/>
     <div class="bg-image p-4 text-white  ">
         <div class="flex justify-between items-center p-4">
             <Logo class="h-fit"/>
@@ -31,8 +32,8 @@
                 @input="filterItemMenu" :placeholder="langs.SearchFeat" />
         </div>
     </div>
-    <PopupProfile v-if="isProfileClicked" @closePopUp="isProfileClicked= false" />
-    <PopupPassword v-if="isPasswordClicked" @closePopUp="isPasswordClicked= false"></PopupPassword>
+    <PopupProfile v-if="isProfileClicked" @closePopUp="isProfileClicked= false"/>
+    <PopupPassword v-if="isPasswordClicked" @closePopUp="isPasswordClicked= false" @activeToast="showToast"></PopupPassword>
     <PopupSettings v-if="isSettingsClicked" @closePopUp="isSettingsClicked= false"></PopupSettings>
 </template>
   
@@ -46,6 +47,7 @@ import { computed } from 'vue';
 import { langStore } from '../../store/langStore';
 import { useDark, useToggle } from '@vueuse/core'
 import { userLogin } from '../../store/userLogin';
+import ToastSuccess from "../public/Toast/ToastSuccess.vue"
 
 
 export default {
@@ -63,6 +65,11 @@ export default {
     },
     data() {
         return {
+            toast: {
+                msg: '',
+                visible: false,
+                type: ''
+            },
             isMenuClicked: false,
             isProfileClicked: false,
             isPasswordClicked: false,
@@ -71,6 +78,11 @@ export default {
         }
     },
     methods: {
+        showToast(event){
+            this.toast.msg = event.msg;
+            this.toast.visible = true;
+            this.toast.type = event.type;
+        },
         filterItemMenu(event) {
             this.emitter.emit("filterItemMenu", event.target.value)
         },
