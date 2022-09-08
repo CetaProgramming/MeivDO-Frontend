@@ -5,23 +5,23 @@
             <Logo class="h-fit"/>
             <div class="relative font-openSans">
                 <img class="cursor-pointer dropdown mr-6 w-14 h-14 rounded-full object-top object-cover" @click="isMenuClicked = !isMenuClicked" :src=image alt="profile" title="Menu"/>
-                <div class="absolute md:right-10 right-0 md:w-44 w-52 text-black bg-white rounded-md text-sm p-1 dark:bg-black dark:text-white"
+                <div class="absolute mt-3 right-6 md:w-44 w-52 text-black bg-white rounded-md text-sm p-1 dark:bg-black dark:text-white before:content-[''] before:block before:absolute before:w-0 before:h-0 before:border-[150px] before:border-t-0 before:border-b-12 before:border-x-12 before:border-l-transparent before:border-r-transparent before:border-b-white dark:before:border-b-black before:right-4 before:top-[-12px]"
                     v-if="isMenuClicked">
                     <i class="fa-thin fa-user"></i>
-                    <p @click="isProfileClicked = !isProfileClicked" class="mb-1 hover:cursor-pointer">
+                    <p @click="isProfileClicked = !isProfileClicked" class="duration-200 mb-1 p-1 hover:cursor-pointer sm:hover:bg-slate-200 dark:sm:hover:bg-zinc-900">
                         <fas class="mr-1" icon="fa-solid fa-user" /> {{langs.UserProf}}
                     </p>
-                    <p @click="isPasswordClicked = !isPasswordClicked" class="mb-1 hover:cursor-pointer">
+                    <p @click="isPasswordClicked = !isPasswordClicked" class="duration-200 mb-1 p-1 hover:cursor-pointer sm:hover:bg-slate-200 dark:sm:hover:bg-zinc-900">
                         <fas class="mr-1" icon="fa-solid fa-lock-open" /> {{langs.ChangePass}}
                     </p>
-                    <p @click="isSettingsClicked = !isSettingsClicked" class="mb-1 hover:cursor-pointer">
+                    <p @click="isSettingsClicked = !isSettingsClicked" class="duration-200 mb-1 p-1 hover:cursor-pointer sm:hover:bg-slate-200 dark:sm:hover:bg-zinc-900">
                         <fas class="mr-1" icon="fa-solid fa-gear" />{{langs.Settings}}
                     </p>
-                    <p class="mb-1 hover:cursor-pointer">
+                    <p class="duration-200 mb-1 p-1 hover:cursor-pointer sm:hover:bg-slate-200 dark:sm:hover:bg-zinc-900">
                         <fas class="mr-1" icon="fa-solid fa-headset" />{{langs.Support}}
                     </p>
                     <hr>
-                    <p class="hover:cursor-pointer" @click="logoutUser">{{langs.Logout}}</p>
+                    <p class="duration-200 p-1 hover:cursor-pointer sm:hover:bg-slate-200 dark:sm:hover:bg-zinc-900" @click="logoutUser">{{langs.Logout}}</p>
                 </div>
             </div>
         </div>
