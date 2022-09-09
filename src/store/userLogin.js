@@ -50,7 +50,7 @@ export const userLogin = defineStore('userLogin', {
         this.id = id;
         this.name = name;
         this.email = emailU;
-        this.image = image;
+        this.image = `${import.meta.env.VITE_API_ENDPOINT}${image}`;
         this.role = role;
       },
       isAllowed(accessRoute){
@@ -68,6 +68,13 @@ export const userLogin = defineStore('userLogin', {
           role: null
         })
       },
+      async changePassword({password,newPassword}){
+        await axios.put(`${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/changePassword`,{
+          password,
+          newPassword,
+        });
+        
+    },
       async logout(){
           await axios.get(`${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/logout`);
           this.deleteSession();

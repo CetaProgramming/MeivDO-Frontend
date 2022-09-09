@@ -32,7 +32,10 @@ module.exports = {
       },
       maxWidth: {
         '4/5': '80%',
-      }
+      },
+      borderWidth: {
+        '12': '12px'
+      },
     },
   },
   plugins: [],

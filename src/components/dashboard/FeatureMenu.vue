@@ -22,7 +22,7 @@ export default {
         const store = langStore();
         const user = userLogin();
         const langs = computed(() => store.getLang.ItemMenu);
-        const menuItems = computed(() => user.role.permissions.map(permission => permission.feature));
+        const menuItems = computed(() => user.role && user.role.permissions.map(permission => permission.feature));
         return {
             langs, menuItems
         }
@@ -43,13 +43,11 @@ export default {
             this.itemsSelector = this.menuItems.filter(item => this.langs[item].title.toLowerCase().includes(inputValue.toLowerCase()))
         });
     },
-    beforeUnmount() {
-        this.emitter.$off('filterItemMenu')
-    },
-    computed: {
-        menuItemsFilter() {
 
-        }
+    beforeUnmount() {  
+             this.emitter.off('filterItemMenu') 
+         },
+
     }
 }
 
