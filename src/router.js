@@ -13,7 +13,8 @@ const routes = [
 {
     path: '/dashboard',
     name: 'dashboard',
-    component: laziLoad('Dashboard')
+    component: laziLoad('Dashboard'),
+    
 },
 {
     path: '/projects',
@@ -40,10 +41,11 @@ const routes = [
     name: 'users',
     component: laziLoad('UserComponent')
 },
+
 {
-    path: '/reparations',
-    name: 'reparations',
-    component: laziLoad('ReparationComponent')
+    path: '/repairs',
+    name: 'repairs',
+    component: laziLoad('RepairsComponent')
 },
 {
     path: "/:pathMatch(.*)*",
@@ -59,7 +61,7 @@ router.beforeEach(async (to) => {
     try {
         await userLoginStore.acessUser();
         if ((userLoginStore.email) && to.name !== 'login' && to.name !== 'dashboard' && !userLoginStore.isAllowed(to.name)) 
-        return { name: 'dashboard' }  
+            return { name: 'dashboard' }  
         if ((userLoginStore.email) && to.name === 'login') 
             return { name: 'dashboard' }
         if (!userLoginStore.email && to.name !== 'login') 
