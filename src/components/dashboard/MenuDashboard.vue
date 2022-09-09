@@ -25,7 +25,7 @@
                 </div>
             </div>
         </div>
-        <div class="justify-center flex  flex-col items-center mt-24 md:mt-4  gap-2 font-openSans">
+        <div v-if="showDetails" class="justify-center flex  flex-col items-center mt-24 md:mt-4  gap-2 font-openSans">
             <h1 class="text-4xl">{{langs.HeadingMenu}}<span class="text-red-500 ">{{name}}</span></h1>
             <h1 class="text-2xl">{{langs.HeadingMenu2}}</h1>
             <input class="w-3/5 rounded-md text-black text-xl p-2 pl-2  dark:bg-black dark:text-white" type="text"
@@ -75,6 +75,8 @@ export default {
 
         }
     },
+    props: ['showDetails']
+    ,
     methods: {
         showToast(data){
             this.toast.msg = data.msg;
