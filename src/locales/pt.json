@@ -41,6 +41,7 @@
         "Language": "Lingua"
     },
     "ItemMenu" :  {
+        "noItemFound":"Não existe a funcionalidade com o nome ",
         "projects": {
                 "img" : "src/assets/icons/projects.png",
                 "title": "Projetos",
@@ -56,7 +57,7 @@
                 "title": "Ferramentas",
                 "description": "Aqui pode ver as ferramentas de que a empresa dispõe, bem como os seus detalhes, tais como o estado."
             },
-            "reparations":  {
+            "repairs":  {
                 "img" : "src/assets/icons/reparations.png",
                 "title": "Reparações",
                 "description" :"Veja as ferramentas que precisam de uma reparação, como também os detalhes de cada reparação."

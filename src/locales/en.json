@@ -40,6 +40,7 @@
         "Language": "Language"
     },
     "ItemMenu": {
+        "noItemFound": "No feature available with",
         "projects": {
             "img": "src/assets/icons/projects.png",
             "title": "Projects",
@@ -55,7 +56,7 @@
             "title": "Tools",
             "description": "Here you can see the tools the company has as well as their details such as it's state."
         },
-        "reparations": {
+        "repairs": {
             "img": "src/assets/icons/reparations.png",
             "title": "Repairs",
             "description": "View the tools that need a repair, as well as the details of each repair."
