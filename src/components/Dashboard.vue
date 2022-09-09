@@ -1,9 +1,8 @@
 <template>
   <div class="grid grid-rows-auto-1fr min-h-screen">
-    <MenuDashboard />
+    <MenuDashboard :showDetails="true" />
     <FeatureMenu />
   </div>
-
 </template>
 
 <script>
@@ -13,7 +12,7 @@ import FeatureMenu from "./dashboard/FeatureMenu.vue";
 export default {
   components: {
     FeatureMenu,
-    MenuDashboard
-  }
+    MenuDashboard },
 }
+
 </script>
