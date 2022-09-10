@@ -32,7 +32,7 @@
                 @input="filterItemMenu" :placeholder="langs.SearchFeat" />
         </div>
     </div>
-    <PopupProfile v-if="isProfileClicked" @closePopUp="isProfileClicked= false"/>
+    <PopupProfile v-if="isProfileClicked" @activeToast="showToast" @closePopUp="isProfileClicked= false"/>
     <PopupPassword v-if="isPasswordClicked" @activeToast="showToast" @closePopUp="isPasswordClicked= false"/>
     <PopupSettings v-if="isSettingsClicked" @closePopUp="isSettingsClicked= false" />
 </template>

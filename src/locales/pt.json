@@ -19,13 +19,17 @@
         "Support": "Ajuda",
         "Logout": "Terminar sessão"
     },
-    "PopupProfile" : 
-    {
+    "PopupProfile" : {
         "Title1" : "Perfil de Utilizador",
         "Name" : "Nome",
         "Role": "Nível de acesso",
         "Picture": "Atualizar foto",
-        "SaveProf": "Salvar"
+        "SaveProf": "Salvar",
+        "updateSucess":"Perfil atualizado com sucesso!",
+        "nameError" : "Nome é obrigatório!",
+        "bigFile" : "O ficheiro é demasiado grande para ser submetido!",
+        "notImage" : "O ficheiro submetido não é um ficheiro de imagem!",
+        "updateFailed":"Não foi possível atualizar o perfil, tente mais tarde!"
     },
     "PopupPassword" : {
         "Title2": "Mudar palavra-passe",

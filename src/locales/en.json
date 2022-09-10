@@ -23,8 +23,13 @@
         "Title1": "User Profile",
         "Name": "Name",
         "Role": "Role",
-        "Picture": "Upload new picture ",
-        "SaveProf": "Save"
+        "Picture": "Upload photo",
+        "SaveProf": "Save",
+        "updateSucess":"Profile successfully updated!",
+        "nameError" : "Name is required!",
+        "bigFile" : "The file is too big to be uploaded!",
+        "notImage" : "The file uploaded is not an image file!",
+        "updateFailed":"Unable to update profile, please try again later!"
     },
     "PopupPassword": {
         "Title2": "Change Password",

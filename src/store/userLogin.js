@@ -73,8 +73,14 @@ export const userLogin = defineStore('userLogin', {
           password,
           newPassword,
         });
-        
     },
+    async updateProfile({name,selectedFile}){
+      console.log(name, selectedFile);
+       await axios.put(`${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/users/${this.id}`,{
+         name,
+         image:selectedFile,
+       });
+  },
       async logout(){
           await axios.get(`${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/logout`);
           this.deleteSession();
