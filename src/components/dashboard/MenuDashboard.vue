@@ -5,7 +5,7 @@
             <Logo class="h-fit"/>
             <div class="relative font-openSans">
                 <img class="cursor-pointer dropdown mr-6 w-14 h-14 rounded-full object-top object-cover" @click="isMenuClicked = !isMenuClicked" :src=image alt="profile" title="Menu"/>
-                <div class="absolute mt-3 right-6 md:w-44 w-52 text-black bg-white rounded-md text-sm p-1 dark:bg-black dark:text-white before:content-[''] before:block before:absolute before:w-0 before:h-0 before:border-[150px] before:border-t-0 before:border-b-12 before:border-x-12 before:border-l-transparent before:border-r-transparent before:border-b-white dark:before:border-b-black before:right-4 before:top-[-12px]"
+                <div class="absolute mt-3 right-6 md:w-44 w-52 text-black bg-white rounded-md text-sm p-1 dark:bg-MeivMatteBlack dark:text-white before:content-[''] before:block before:absolute before:w-0 before:h-0 before:border-[150px] before:border-t-0 before:border-b-12 before:border-x-12 before:border-l-transparent before:border-r-transparent before:border-b-white dark:before:border-b-black before:right-4 before:top-[-12px]"
                     v-if="isMenuClicked">
                     <i class="fa-thin fa-user"></i>
                     <p @click="isProfileClicked = !isProfileClicked" class="duration-200 mb-1 p-1 hover:cursor-pointer sm:hover:bg-slate-200 dark:sm:hover:bg-zinc-900">
@@ -28,7 +28,7 @@
         <div v-if="showDetails" class="justify-center flex  flex-col items-center mt-24 md:mt-4  gap-2 font-openSans">
             <h1 class="text-4xl">{{langs.HeadingMenu}}<span class="text-red-500 ">{{name}}</span></h1>
             <h1 class="text-2xl">{{langs.HeadingMenu2}}</h1>
-            <input class="w-3/5 rounded-md text-black text-xl p-2 pl-2  dark:bg-black dark:text-white" type="text"
+            <input class="w-3/5 rounded-md text-black text-xl p-2 pl-2  dark:bg-MeivMatteBlack dark:text-white" type="text"
                 @input="filterItemMenu" :placeholder="langs.SearchFeat" />
         </div>
     </div>
