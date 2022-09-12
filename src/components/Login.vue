@@ -8,7 +8,7 @@
         <h1 class="text-4xl text-white">{{langs.WelcomeMessage}}</h1>
         <p class="text-white font-openSans">{{langs.Slogan}}</p>
       </div>
-      <div class="p-3 rounded h-fit bg-white dark:bg-black  flex flex-col justify-center gap-6 lg:p-10">
+      <div class="p-3 rounded h-fit bg-white dark:bg-MeivMatteBlack  flex flex-col justify-center gap-6 lg:p-10">
         <Logo/>
         <FormLogin />
       </div>
