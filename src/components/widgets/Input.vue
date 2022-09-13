@@ -6,10 +6,14 @@
     export default {
         data(){
             return {
-                value: ""
+                value: this.default
             }
         },
         props: {
+            default: {
+                type: String,
+                default: "",
+            },
             type: {
                 default: "text",
                 type: String
