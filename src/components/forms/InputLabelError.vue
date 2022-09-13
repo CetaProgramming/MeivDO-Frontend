@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col gap-2 w-full">
         <Label :name="name" :msg="name"/>
-        <Input :type="type" v-model="value" :placeholder="placeholder" @input="changeValue" :class="borders, background, color" />
+        <Input :type="type" v-model="value" :default="default" :placeholder="placeholder" @input="changeValue" :class="borders, background, color" />
         <Label v-if="isError" :name="name" class="font-openSans text-xs" color="text-red-500" :msg="msg"/>
     </div>
 </template>
@@ -13,10 +13,14 @@ export default {
     data(){
         return {
             isError: false,
-            value: ''
+            value: this.default
         }
     },
     props: {
+        default: {
+            type: String,
+            default: "",
+        },
         type: {
             default: "text",
             type: String
