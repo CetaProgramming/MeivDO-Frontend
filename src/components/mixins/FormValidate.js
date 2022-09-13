@@ -12,6 +12,9 @@ export default{
                 }
             });
             return error.value;
+        },
+        equalData(data1, data2){
+            return data1 === data2;
         }
     }
 }
