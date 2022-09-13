@@ -1,8 +1,5 @@
 <template>
-    <div class="flex flex-col gap-2">
-        <label for="{{name}}" class="block text-sm font-medium text-gray-900 dark:text-white">{{name}}</label>
-        <input :type="type" v-model="value" class="font-openSans border border-gray-500 rounded text-neutral-900 text-sm w-80 p-3 outline-none dark:bg-zinc-800 dark:text-white dark:border-zinc-800" :placeholder="placeholder" @change="inputValid" @input="this.$emit('update:modelValue', this.value);">
-    </div>
+    <input :type="type" v-model="value" class="font-openSans border rounded text-sm p-3 outline-none" :class="borders, background, color" :placeholder="placeholder" @input="this.$emit('update:modelValue', this.value);">
 </template>
 
 <script>
@@ -17,9 +14,17 @@
                 default: "text",
                 type: String
             },
-            name: {
-                default: "input",
+            borders: {
                 type: String,
+                default: "border-gray-500 dark:border-zinc-800"
+            },
+            background: {
+                type: String,
+                default: "dark:bg-zinc-800"
+            },
+            color: {
+                type: String,
+                default: "text-neutral-900 dark:text-white"
             },
             msg: {
                 default: "error",
@@ -30,10 +35,8 @@
                 type: String,
             }
         },
-
         emits: [ 
             'update:modelValue'
         ]
-        
     }
 </script>
