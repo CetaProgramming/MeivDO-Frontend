@@ -81,7 +81,10 @@ export default {
                 if(!isError.value)
                     (async () => {
                         try {
-                            await this.userLoginStore.changePassword(this.formResetPassword);
+                            await this.userLoginStore.changePassword({
+                                password: this.formResetPassword.password,
+                                newPassword: this.formResetPassword.newPassword,
+                            });
                             this.$emit("closePopUp");
                             this.$emit("activeToast", {
                                 msg: this.langs.changedSucess,

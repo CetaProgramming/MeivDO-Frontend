@@ -1,30 +1,9 @@
 <template>
-  <ToastError
-    v-if="this.toast.visible"
-    :msg="this.toast.msg"
-    @closeToast="this.toast.visible = false"
+  <ToastError v-if="this.toast.visible" :msg="this.toast.msg" @closeToast="this.toast.visible = false"
   />
-  <form
-    id="form"
-    class="mx-10 z-10 flex flex-col items-center gap-5 lg:w-64 lg:mx-0"
-    @submit.prevent="formValid"
-  >
-    <InputLabelError
-      ref="formLoginEmail"
-      type="email"
-      v-model="formLogin.email"
-      placeholder="example@email.com"
-      :msg="langs.EmailError"
-      :name="langs.EmailInput"
-    />
-    <InputLabelError
-      ref="formLoginPassword"
-      type="password"
-      v-model="formLogin.password"
-      placeholder="*********"
-      :msg="langs.PasswordError"
-      :name="langs.PasswordInput"
-    />
+  <form id="form" class="mx-10 z-10 flex flex-col items-center gap-5 lg:w-64 lg:mx-0" @submit.prevent="formValid">
+    <InputLabelError ref="formLoginEmail" type="email" v-model="formLogin.email" placeholder="example@email.com" :msg="langs.EmailError" :name="langs.EmailInput" />
+    <InputLabelError ref="formLoginPassword" type="password" v-model="formLogin.password" placeholder="*********" :msg="langs.PasswordError" :name="langs.PasswordInput" />
     <Button :text="langs.LoginButton" />
   </form>
 </template>
@@ -37,7 +16,6 @@ import { userLogin } from "../../store/userLogin";
 import ToastError from "./../public/Toast/ToastError.vue";
 import Input from "../widgets/Input.vue";
 import Button from "../widgets/Button.vue";
-import DataManipulate from "./../../helpers/DataManipulate";
 import InputLabelError from "../forms/InputLabelError.vue";
 
 export default {
@@ -75,9 +53,7 @@ export default {
         )
           (async () => {
             try {
-              await this.userLoginStore.login(
-                DataManipulate.formData(this.formLogin)
-              );
+              await this.userLoginStore.login(this.formLogin);
               this.$router.push("/dashboard");
             } catch (error) {
               this.toast.msg = this.langs.LoginWrong;
