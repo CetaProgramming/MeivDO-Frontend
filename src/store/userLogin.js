@@ -16,17 +16,16 @@ export const userLogin = defineStore('userLogin', {
       
     },
     actions: {
-      async login({email, password}) {
+      async login(data) {
         try {
             await axios.get(
                 `${import.meta.env.VITE_API_ENDPOINT}/sanctum/csrf-cookie`
             );
-  
-            const login = await axios.post(`${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/login`, {
-                email,
-                password
-            });
 
+            const login = await axios.post(`${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/login`,
+              data
+            );
+                        
             this.defineDataUser(login.data);
 
         } catch (error) {
@@ -68,18 +67,18 @@ export const userLogin = defineStore('userLogin', {
           role: null
         })
       },
-      async changePassword({password,newPassword}){
-        await axios.put(`${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/changePassword`,{
-          password,
-          newPassword,
-        });
+      async changePassword(data){
+        await axios.put(`${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/changePassword`,
+          data  
+          );
     },
-    async updateProfile({name,selectedFile}){
-      console.log(name, selectedFile);
-       await axios.put(`${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/users/${this.id}`,{
-         name,
-         image:selectedFile,
-       });
+    async updateProfile(data){
+
+      const request = await axios.post(`${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/changeInfo`,
+        data
+      );
+
+      console.log(request);
   },
       async logout(){
           await axios.get(`${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/logout`);

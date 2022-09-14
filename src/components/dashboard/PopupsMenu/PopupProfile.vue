@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import DataManipule from "./../../../helpers/DataManipulate";
 import Popoup from '../../public/Popoup.vue';
 import { computed } from 'vue';
 import { langStore } from '../../../store/langStore';
@@ -97,7 +98,6 @@ export default {
             };
             this.formUpdateInfo.selectedFile = selectedFile;
             this.formUpdateInfo.image = URL.createObjectURL(selectedFile);
-            console.log(event.target.files)
         },
         updateProfile() {
             try {
@@ -106,7 +106,12 @@ export default {
                 }))
                     (async () => {
                         try {
-                            await this.updateProfile(this.formUpdateInfo);
+                            await this.updateProfile(
+                                DataManipule.formDataImage({
+                                    name: this.formUpdateInfo.name,
+                                    image: this.formUpdateInfo.selectedFile
+                                }, true)
+                                );
                             this.$emit("closePopUp");
                             this.$emit("activeToast", {
                                 msg: this.langs.updateSucess,
