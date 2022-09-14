@@ -75,12 +75,12 @@ export default {
             formUpdateInfo: {
                 name: this.name,
                 image: this.image,
-                selectedFile: null,
+                selectedFile: "",
             }
         }
     },
     methods: {
-        changePicture(){
+        changePicture(event){
             const selectedFile = event.target.files[0];
             if(!selectedFile.type.includes("image")){
                 this.$emit("activeToast", {
