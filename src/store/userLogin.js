@@ -49,7 +49,7 @@ export const userLogin = defineStore('userLogin', {
         this.id = id;
         this.name = name;
         this.email = emailU;
-        this.image = `${import.meta.env.VITE_API_ENDPOINT}${image}`;
+        this.image = image ? `${import.meta.env.VITE_API_ENDPOINT}/storage/${image}` : image;
         this.role = role;
       },
       isAllowed(accessRoute){
@@ -73,12 +73,13 @@ export const userLogin = defineStore('userLogin', {
           );
     },
     async updateProfile(data){
-
       const request = await axios.post(`${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/changeInfo`,
         data
       );
 
-      console.log(request);
+      this.name = request.data.name;
+      this.image = `${import.meta.env.VITE_API_ENDPOINT}/storage/${request.data.image}`;
+
   },
       async logout(){
           await axios.get(`${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/logout`);
