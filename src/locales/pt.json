@@ -1,6 +1,6 @@
 {
-    "Login" : {
-        "WelcomeMessage" : "Bem-vindo",
+    "Login": {
+        "WelcomeMessage": "Bem-vindo",
         "Slogan": "Poderá efetuar a gestão das ferramentas, inspecões, reparações e muito mais!",
         "EmailInput": "E-mail",
         "EmailError": "Email é obrigatório!",
@@ -9,7 +9,7 @@
         "LoginButton": "Entrar",
         "LoginWrong": "Email / Password estão errados ou o seu utilizador não está ativo!"
     },
-    "MenuDashboard" : {
+    "MenuDashboard": {
         "HeadingMenu": "Bem-vindo,",
         "HeadingMenu2": "O que pretendes fazer hoje?",
         "SearchFeat": "Procurar funcionalidade...",
@@ -19,67 +19,76 @@
         "Support": "Ajuda",
         "Logout": "Terminar sessão"
     },
-    "PopupProfile" : {
-        "Title1" : "Perfil de Utilizador",
-        "Name" : "Nome",
+    "PopupProfile": {
+        "Title1": "Perfil de Utilizador",
+        "Name": "Nome",
         "Role": "Nível de acesso",
         "Picture": "Atualizar foto",
         "SaveProf": "Salvar",
-        "updateSucess":"Perfil atualizado com sucesso!",
-        "nameError" : "Nome é obrigatório!",
-        "bigFile" : "O ficheiro é demasiado grande para ser submetido!",
-        "notImage" : "O ficheiro submetido não é um ficheiro de imagem!",
-        "updateFailed":"Não foi possível atualizar o perfil, tente mais tarde!"
+        "updateSucess": "Perfil atualizado com sucesso!",
+        "nameError": "Nome é obrigatório!",
+        "bigFile": "O ficheiro é demasiado grande para ser submetido!",
+        "notImage": "O ficheiro submetido não é um ficheiro de imagem!",
+        "updateFailed": "Não foi possível atualizar o perfil, tente mais tarde!"
     },
-    "PopupPassword" : {
+    "PopupPassword": {
         "Title2": "Mudar palavra-passe",
-        "Password" : "Palavra-chave atual",
+        "Password": "Palavra-chave atual",
         "NewPassword": "Nova palavra-passe",
         "ConfirmNewPassword": "Confirmar nova palavra-passe",
         "PasswordError": "Palavra-Passe é obrigatória!",
-        "newPasswordError": "Nova Palavra-passe é inválida!" ,
-        "passwordConfirmError":"Palavra-passe não coincide!",
-        "changedSucess":"Palavra-Passe alterada com sucesso!",
-        "changedFailed":"Não foi possível alterar a palavra-passe, verifique os campos",
+        "newPasswordError": "Nova Palavra-passe é inválida!",
+        "passwordConfirmError": "Palavra-passe não coincide!",
+        "changedSucess": "Palavra-Passe alterada com sucesso!",
+        "changedFailed": "Não foi possível alterar a palavra-passe, verifique os campos",
         "SavePass": "Salvar"
     },
-    "PopupSettings" : {
+    "PopupSettings": {
         "Title3": "Definições",
-        "DarkMode" : "Modo escuro",
+        "DarkMode": "Modo escuro",
         "Zoom": "Zoom",
         "Language": "Lingua"
     },
-    "ItemMenu" :  {
-        "noItemFound":"Não existe a funcionalidade com o nome ",
+    "UserFeature": {
+        "View": "Ver",
+        "ButtonNew": "Novo",
+        "UserHeader": [
+            "Nr.", "Nome", "Email", "Cargo", "Estado", "Atualizado"
+        ],
+        "Active": "Ativo",
+        "Inactive": "Inativo"
+    },
+    "ItemMenu": {
+        "noItemFound": "Não existe a funcionalidade com o nome ",
         "projects": {
-                "img" : "src/assets/icons/projects.png",
-                "title": "Projetos",
-                "description": "Quais os projectos que a empresa realizou e ver os detalhes dos projectos em curso.",
-                "link": "projects"
-            },
-            "inspections":  {
-                "img": "src/assets/icons/inspections.png",
-                "title": "Inspeções",
-                "description": "Veja as inspecções que as ferramentas têm e os detalhes de cada inspecção.",
-                "link": "inspections"
-            },
-            "tools":  {
-                "img": "src/assets/icons/tools.png",
-                "title": "Ferramentas",
-                "description": "Aqui pode ver as ferramentas de que a empresa dispõe, bem como os seus detalhes, tais como o estado.",
-                "link": "tools"
-            },
-            "repairs":  {
-                "img" : "src/assets/icons/reparations.png",
-                "title": "Reparações",
-                "description" :"Veja as ferramentas que precisam de uma reparação, como também os detalhes de cada reparação.",
-                "link": "repairs"
-            },
-            "users": {
-                "img" : "src/assets/icons/users.png",
-                "title" : "Utilizadores",
-                "description" :"Ver a lista de utilizadores da empresa.",
-                "link": "users"
-            }
+            "img": "src/assets/icons/projects.png",
+            "title": "Projetos",
+            "description": "Quais os projectos que a empresa realizou e ver os detalhes dos projectos em curso.",
+            "link": "projects"
+        },
+        "inspections": {
+            "img": "src/assets/icons/inspections.png",
+            "title": "Inspeções",
+            "description": "Veja as inspecções que as ferramentas têm e os detalhes de cada inspecção.",
+            "link": "inspections"
+        },
+        "tools": {
+            "img": "src/assets/icons/tools.png",
+            "title": "Ferramentas",
+            "description": "Aqui pode ver as ferramentas de que a empresa dispõe, bem como os seus detalhes, tais como o estado.",
+            "link": "tools"
+        },
+        "repairs": {
+            "img": "src/assets/icons/reparations.png",
+            "title": "Reparações",
+            "description": "Veja as ferramentas que precisam de uma reparação, como também os detalhes de cada reparação.",
+            "link": "repairs"
+        },
+        "users": {
+            "img": "src/assets/icons/users.png",
+            "title": "Utilizadores",
+            "description": "Ver a lista de utilizadores da empresa.",
+            "link": "users"
         }
+    }
 }

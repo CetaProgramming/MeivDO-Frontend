@@ -1,19 +1,25 @@
 <template>
     <div>
-            <h1>user page</h1>
+        <div class="bg-image p-4 text-white "> 
+            <Header/>
+        </div>
+            <UserMain />
     </div>
+   
 </template>
 
 <script>
-export default {
-    setup () {
-        
+import MenuDashboard from './dashboard/MenuDashboard.vue';
+import UserMain from './user/UserMain.vue';
+import Header from './dashboard/Header.vue';
 
-        return {}
-    }
+export default {
+
+    components: {
+    UserMain,
+    MenuDashboard,
+    Header
+}
 }
 </script>
 
-<style lang="scss" scoped>
-
-</style>
