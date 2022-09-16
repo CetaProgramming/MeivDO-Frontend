@@ -31,6 +31,7 @@ module.exports = {
       gridTemplateColumns: {
         '1fr-auto' : '1fr auto',
         '1fr-auto-auto' : '1fr auto auto',
+        'auto-1fr': 'auto 1fr'
       },
       maxWidth: {
         '4/5': '80%',
