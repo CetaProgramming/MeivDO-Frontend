@@ -1,5 +1,5 @@
 <template>
-     <div class="flex flex-col mb-4 md:flex-row justify-between items-center gap-4">
+     <div class="flex flex-col md:flex-row justify-between items-center gap-4">
                 <UserImageName/>
                 <div>
                     <div class="flex gap-4 ">
