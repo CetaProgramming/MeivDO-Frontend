@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-MeivAsh  h-screen font-openSans">
+    <div class="bg-MeivAsh  min-h-screen font-openSans dark:bg-zinc-900">
         <div class="px-8 md:px-16 py-8 flex flex-col gap-5">
             <HeaderUser />
             <MenuUsers />
@@ -68,7 +68,7 @@ export default {
                     },
                     actions: {
                         type: 'HTML',
-                        value: "<select id=\"status\" class=\"bg-zinc-400 p-1 rounded-md text-center hover:cursor-pointer w-full lg:w-auto\"><option value=\"\" disabled selected hidden>Options</option><option value=\"Update\">Update</option><option value=\"ResetPassword\">Reset Password</option><option value=\"Delete\">Delete</option></select>"
+                        value: "<select id=\"status\" class=\"bg-zinc-400 p-1 rounded-md text-center hover:cursor-pointer w-full lg:w-auto dark:bg-zinc-800\"><option value=\"\" disabled selected hidden>Options</option><option value=\"Update\">Update</option><option value=\"ResetPassword\">Reset Password</option><option value=\"Delete\">Delete</option></select>"
                     }
                 },
                 {
@@ -102,7 +102,7 @@ export default {
                     },
                     actions: {
                         type: 'HTML',
-                        value: "<select id=\"status\" class=\"bg-zinc-400 p-1 rounded-md text-center hover:cursor-pointer w-full lg:w-auto\"><option value=\"\" disabled selected hidden>Options</option><option value=\"Update\">Update</option><option value=\"ResetPassword\">Reset Password</option><option value=\"Delete\">Delete</option></select>"
+                        value: "<select id=\"status\" class=\"bg-zinc-400 p-1 rounded-md text-center hover:cursor-pointer w-full lg:w-auto dark:bg-zinc-800\"><option value=\"\" disabled selected hidden>Options</option><option value=\"Update\">Update</option><option value=\"ResetPassword\">Reset Password</option><option value=\"Delete\">Delete</option></select>"
                     }
                 },
             ]

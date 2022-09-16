@@ -4,7 +4,7 @@
                 <div>
                     <div class="flex gap-4 ">
                         <SelectFeature/>
-                        <button class="bg-green-500 p-2 text-white rounded-lg">+ {{langsUser.ButtonNew}}</button>
+                        <button class="bg-green-500 p-2 text-white rounded-lg dark:bg-green-600 dark:text-black">+ {{langsUser.ButtonNew}}</button>
                     </div>
                 </div>
             </div>
