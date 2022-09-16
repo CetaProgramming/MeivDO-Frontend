@@ -53,8 +53,10 @@
         "View": "Ver",
         "ButtonNew": "Novo",
         "UserHeader": [
-            "Nr.", "Nome", "Email", "Cargo", "Estado", "Atualizado", "Ações"
-           ]
+            "Nr.", "Nome", "Email", "Cargo", "Estado", "Atualizado"
+        ],
+        "Active": "Ativo",
+        "Inactive": "Inativo"
     },
     "ItemMenu": {
         "noItemFound": "Não existe a funcionalidade com o nome ",

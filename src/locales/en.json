@@ -53,8 +53,10 @@
         "View": "View",
         "ButtonNew": "New",
         "UserHeader": [
-         "NO.", "Name", "Email", "Role", "Status", "Updated", "Actions"
-        ]
+         "NO.", "Name", "Email", "Role", "Status", "Updated"
+        ],
+        "Active": "Active",
+        "Inactive": "Inactive"
     },
     "ItemMenu": {
         "noItemFound": "No feature available with",
