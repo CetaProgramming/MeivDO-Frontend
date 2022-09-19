@@ -4,17 +4,20 @@
                 <div>
                     <div class="flex gap-4 ">
                         <SelectFeature/>
-                        <button class="bg-green-500 p-2 text-white rounded-lg">+ {{langsUser.ButtonNew}}</button>
+                        <Button @click="isAddUserClicked = !isAddUserClicked" :text="langsUser.ButtonNew" bg="bg-green-500" class="rounded-lg"></Button>
                     </div>
                 </div>
             </div>
+           <AddUserPop v-if="isAddUserClicked" @activeToast="showToast" @closePopUp="isAddUserClicked= false"/>
 </template>
 
 <script>
     import UserImageName from './UserImageName.vue';
     import SelectFeature from './SelectFeature.vue';
     import { computed } from 'vue';
-    import {langStore} from '../../store/langStore';
+    import {langStore} from '../../store/langStore'; 
+    import Button from '../widgets/Button.vue';
+    import AddUserPop from '../user/Popups User/AddUserPop.vue'
 export default {
     setup () {
         const store = langStore();
@@ -24,10 +27,18 @@ export default {
             langsUser
         }
     },
-    components:{
-        UserImageName,
-        SelectFeature
+    data(){
+        return{
+            isAddUserClicked: false,
+        }
     }
+    ,
+    components:{
+    UserImageName,
+    SelectFeature,
+    Button,
+    AddUserPop
+}
 }
 </script>
 

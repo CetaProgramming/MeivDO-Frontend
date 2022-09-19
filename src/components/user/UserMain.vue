@@ -9,6 +9,7 @@
             </div>
             <Paginate />
 
+            <AddUserPop v-if="isUpdatedUserClicked" @closePopUp="isUpdatedUserClicked= false"/>
         </div>
     </div>
 </template>
@@ -21,6 +22,7 @@ import MenuUsers from './MenuUsers.vue';
 import TableHeader from './../public/Table/TableHeader.vue';
 import TableBody from './../public/Table/TableBody.vue';
 import Paginate from './../public/Table/Paginate.vue';
+import AddUserPop from './Popups User/AddUserPop.vue';
 
 export default {
     setup() {
@@ -36,6 +38,7 @@ export default {
     },
     data() {
         return {
+            isUpdatedUserClicked: false,
             items: [
                 {
                     id: {
@@ -68,7 +71,7 @@ export default {
                     },
                     actions: {
                         type: 'HTML',
-                        value: "<select id=\"status\" class=\"bg-zinc-400 p-1 rounded-md text-center hover:cursor-pointer w-full lg:w-auto\"><option value=\"\" disabled selected hidden>Options</option><option value=\"Update\">Update</option><option value=\"ResetPassword\">Reset Password</option><option value=\"Delete\">Delete</option></select>"
+                        value: `<select id="status" class="bg-zinc-400 p-1 rounded-md text-center hover:cursor-pointer w-full lg:w-auto"><option value="" disabled selected hidden>Options</option><option value="Update">Updatee</option><option value="ResetPassword">Reset Password</option><option value="Delete">Delete</option></select>`
                     }
                 },
                 {
@@ -118,7 +121,8 @@ export default {
         MenuUsers,
         TableBody,
         Paginate,
-        TableHeader
+        TableHeader,
+        AddUserPop
     },
     
 }
