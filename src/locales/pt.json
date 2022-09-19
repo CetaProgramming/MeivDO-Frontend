@@ -58,6 +58,11 @@
         "Active": "Ativo",
         "Inactive": "Inativo"
     },
+    "Paginate": {
+        "Page" : "Página",
+        "BtnGo" : "Ir",
+        "PageNotFound": "Desculpe, mas a página que está a tentar aceder não está disponível"
+    },
     "ItemMenu": {
         "noItemFound": "Não existe a funcionalidade com o nome ",
         "projects": {

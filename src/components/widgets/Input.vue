@@ -1,5 +1,5 @@
 <template>
-    <input :type="type" v-model="value" class="font-openSans border rounded text-sm p-3 outline-none" :class="borders, background, color" :placeholder="placeholder" @input="this.$emit('update:modelValue', this.value);">
+    <input :type="type" v-model="value" class="font-openSans border rounded text-sm outline-none" :class="borders, background, color, pad" :placeholder="placeholder" @input="this.$emit('update:modelValue', this.value);">
 </template>
 
 <script>
@@ -16,6 +16,10 @@
             },
             type: {
                 default: "text",
+                type: String
+            },
+            pad: {
+                default: "p-3",
                 type: String
             },
             borders: {

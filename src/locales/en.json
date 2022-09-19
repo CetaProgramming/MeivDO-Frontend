@@ -58,6 +58,11 @@
         "Active": "Active",
         "Inactive": "Inactive"
     },
+    "Paginate": {
+        "Page" : "Page",
+        "BtnGo" : "Go",
+        "PageNotFound": "Sorry, but the page you try access is not available"
+    },
     "ItemMenu": {
         "noItemFound": "No feature available with",
         "projects": {
