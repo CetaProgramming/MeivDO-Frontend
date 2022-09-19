@@ -16,6 +16,7 @@ export default {
     components: {
         Select
     },
+    emits: [ 'selectOption'],
     methods: {
         selectItem(select,event){
             this.$emit('selectOption', select, event);
