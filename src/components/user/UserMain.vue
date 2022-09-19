@@ -8,7 +8,6 @@
                 <TableBody :header=langsUser.UserHeader :items=items :style="GetLenght"/>
             </div>
             <Paginate />
-
         </div>
     </div>
 </template>
@@ -21,6 +20,9 @@ import MenuUsers from './MenuUsers.vue';
 import TableHeader from './../public/Table/TableHeader.vue';
 import TableBody from './../public/Table/TableBody.vue';
 import Paginate from './../public/Table/Paginate.vue';
+import PopupResetPasswordVue from './Popups User/PopupResetPassword.vue';
+import { faHighlighter } from '@fortawesome/free-solid-svg-icons';
+import PopupResetPassword from './Popups User/PopupResetPassword.vue';
 
 export default {
     setup() {
@@ -68,7 +70,7 @@ export default {
                     },
                     actions: {
                         type: 'HTML',
-                        value: "<select id=\"status\" class=\"bg-zinc-400 p-1 rounded-md text-center hover:cursor-pointer w-full lg:w-auto dark:bg-zinc-800\"><option value=\"\" disabled selected hidden>Options</option><option value=\"Update\">Update</option><option value=\"ResetPassword\">Reset Password</option><option value=\"Delete\">Delete</option></select>"
+                        value: '<select id=\"status\" class=\"bg-zinc-400 p-1 rounded-md text-center hover:cursor-pointer w-full lg:w-auto dark:bg-zinc-800\"><option value=\"\" disabled selected hidden>Options</option><option value=\"Update\">Update</option><option @click="isOptionsClicked = !isOptionsClicked" value=\"ResetPassword\">Reset Password</option><option value=\"Delete\">Delete</option></select>'
                     }
                 },
                 {
@@ -102,10 +104,11 @@ export default {
                     },
                     actions: {
                         type: 'HTML',
-                        value: "<select id=\"status\" class=\"bg-zinc-400 p-1 rounded-md text-center hover:cursor-pointer w-full lg:w-auto dark:bg-zinc-800\"><option value=\"\" disabled selected hidden>Options</option><option value=\"Update\">Update</option><option value=\"ResetPassword\">Reset Password</option><option value=\"Delete\">Delete</option></select>"
+                        value: '<select id="status" class="bg-zinc-400 p-1 rounded-md text-center hover:cursor-pointer w-full lg:w-auto dark:bg-zinc-800"><option value="" disabled selected hidden>Options</option><option value="Update">Update</option><option value="ResetPassword">Reset Password</option><option value="Delete">Delete</option></select>'
                     }
                 },
-            ]
+            ],
+            isOptionsClicked: false,
         }
     },
     computed: {
@@ -114,12 +117,13 @@ export default {
         }
     },
     components: {
-        HeaderUser,
-        MenuUsers,
-        TableBody,
-        Paginate,
-        TableHeader
-    },
+    HeaderUser,
+    MenuUsers,
+    TableBody,
+    Paginate,
+    TableHeader,
+    PopupResetPassword
+},
     
 }
 </script>
