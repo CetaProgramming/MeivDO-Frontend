@@ -91,5 +91,15 @@
             "description": "View the list of users of the company.",
             "link": "users"
         }
+    },
+    "PopupAddUser": {
+        "Title": "User",
+        "Name": "Name",
+        "Email": "Email",
+        "Role": "Role",
+        "Active": "Active",
+        "Upload new picture": "Upload new picture",
+        "Save": "Save",
+        "SelectOption": "Select your option"
     }
 }
