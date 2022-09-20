@@ -13,15 +13,11 @@
 <script>
     import UserImageName from './UserImageName.vue';
     import SelectFeature from './SelectFeature.vue';
-    import { computed } from 'vue';
     import {langStore} from '../../store/langStore';
 export default {
-    setup () {
-        const store = langStore();
-        const langsUser = computed(() => store.getLang.UserFeature);
-
-        return {
-            langsUser
+    computed: {
+        langsUser(){
+            return langStore().getLang.UserFeature
         }
     },
     components:{

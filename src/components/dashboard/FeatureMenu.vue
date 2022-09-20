@@ -11,28 +11,24 @@
 
 <script>
 import ItemMenu from "./ItemMenu.vue";
-import { computed } from 'vue';
 import { langStore } from "../../store/langStore";
 import { userLogin } from "../../store/userLogin"
 
 
 export default {
-    setup() {
-
-        const store = langStore();
-        const user = userLogin();
-        const langs = computed(() => store.getLang.ItemMenu);
-        const menuItems = computed(() => user.role && user.role.permissions.map(permission => permission.feature));
-        return {
-            langs, menuItems
-        }
-    },
     data() {
-
         return {
             inputedText: '',
             itemsSelector: []
         }
+    },
+    computed: {
+        langs(){
+            return langStore().getLang.ItemMenu;
+        },
+        menuItems(){
+            return userLogin().role && userLogin().role.permissions.map(permission => permission.feature);
+        },
     },
     components: {
         ItemMenu

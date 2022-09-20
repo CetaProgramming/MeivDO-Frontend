@@ -15,23 +15,11 @@
 </template>
 
 <script>
-import { computed } from 'vue';
 import { langStore } from '../../store/langStore';
 import { useDark, useToggle } from '@vueuse/core'
 
 
 export default {
-    setup() {
-        const store = langStore();
-        const isDark = useDark()
-        const toggleDark = useToggle(isDark)
-
-        const langs = computed(() => store.getLang.StandartProfile);
-
-        return {
-            langs, toggleDark, isDark
-        }
-    },
     created() {
         window.addEventListener("resize", this.resizingPopUp);
     },
@@ -39,8 +27,15 @@ export default {
         document.body.classList.add("overflow-hidden")
         this.resizingPopUp
     },
-    unmounted() {
-        document.body.classList.remove("overflow-hidden")
+    data(){
+        return {
+            toggleDark: useToggle(useDark()),
+        }
+    },
+    computed: {
+        langs(){
+            return langStore().getLang.StandartProfile
+        }
     },
     props: {
         titlePopUp: String
@@ -55,7 +50,9 @@ export default {
                 "auto";
         }
     },
-    emits: ["closePopUp"]
-
+    emits: ["closePopUp"],
+    unmounted() {
+        document.body.classList.remove("overflow-hidden")
+    }
 }
 </script>
