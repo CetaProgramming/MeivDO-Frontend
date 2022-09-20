@@ -39,26 +39,9 @@
     import { useDark, useToggle } from '@vueuse/core'
     import { userLogin } from '../../store/userLogin';
     export default {
-        setup() {
-            const store = langStore();
-            const isDark = useDark()
-            const toggleDark = useToggle(isDark)
-            const loginStore = userLogin();
-
-            const langs = computed(() => store.getLang.MenuDashboard);
-
-            async function logout(){
-                await loginStore.logout();
-            }
-
-            const loginStoreImage = computed(() => loginStore.image);
-
-            return {
-                langs, toggleDark, isDark, logout, loginStoreImage
-            }
-        },
         data() {
             return {
+                toggleDark: useToggle(useDark()),
                 toast: {
                     msg: '',
                     visible: false,
@@ -71,6 +54,15 @@
 
             }
         },
+        computed: {
+            langs(){
+                return langStore().getLang.MenuDashboard;
+            },
+            loginStoreImage(){
+                return userLogin().image;
+            },
+        },
+        
         methods: {
             showToast(data){
                 this.toast.msg = data.msg;
@@ -78,7 +70,7 @@
                 this.toast.type = data.type;
             },
             async logoutUser(){
-                await this.logout();
+                await userLogin().logout();
                 this.$router.push({name : 'login'});
             }
         },
