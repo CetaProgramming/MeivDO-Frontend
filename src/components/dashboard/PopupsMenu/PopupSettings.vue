@@ -23,27 +23,23 @@
 
 <script>
 import Popoup from '../../public/Popoup.vue';
-import { computed } from 'vue';
 import { langStore } from '../../../store/langStore';
 import SelectLanguague from '../.././public/Languague.vue';
 import DarkModeSwitch from "../DarkModeSwitch.vue"
 import { useDark, useToggle } from '@vueuse/core'
 
-
-
 export default {
-    props: ['mode'],
-    setup() {
-        const store = langStore();
-        const isDark = useDark()
-        const toggleDark = useToggle(isDark)
-        const langs = computed(() => store.getLang.PopupSettings);
-
+    data(){
         return {
-            langs, toggleDark, isDark
-
+            toggleDark: useToggle(useDark()),
         }
     },
+    computed: {
+        langs(){
+            return langStore().getLang.PopupSettings;
+        }
+    },
+    props: ['mode'],
     components: {
         Popoup,
         SelectLanguague,

@@ -15,7 +15,7 @@
 
 <script>
 import Popoup from '../../public/Popoup.vue';
-import { computed, ref } from 'vue';
+import { ref } from 'vue';
 import { langStore } from '../../../store/langStore';
 import {useDark, useToggle} from '@vueuse/core'
 import ToastError from "../../public/Toast/ToastError.vue"
@@ -26,27 +26,9 @@ import Button from '../../widgets/Button.vue';
 import FormValidate from '../../mixins/FormValidate';
 
 export default {
-    setup() {
-        const store = langStore();
-        const isDark= useDark();
-        const toggleDark = useToggle(isDark);
-        const userLoginStore = userLogin();
-
-        const langs = computed(() => store.getLang.PopupPassword);
-
-        return {
-            langs,toggleDark,isDark, userLoginStore
-        }
-    },
-    components: {
-    Popoup,
-    ToastError,
-    ToastSuccess,
-    InputLabelError,
-    Button
-},
     data() {
         return {
+            toggleDark: useToggle(useDark()),
             toast: {
                 msg: '',
                 visible: false,
@@ -65,6 +47,11 @@ export default {
             }
         }
     },
+    computed: {
+        langs(){
+            return langStore().getLang.PopupPassword;
+        }
+    },
     methods: {
         changePassword() {
             try {
@@ -81,7 +68,7 @@ export default {
                 if(!isError.value)
                     (async () => {
                         try {
-                            await this.userLoginStore.changePassword({
+                            await userLogin().changePassword({
                                 password: this.formResetPassword.password,
                                 newPassword: this.formResetPassword.newPassword,
                             });
@@ -101,6 +88,13 @@ export default {
                 console.log(e);
             }
         },
+    },
+    components: {
+        Popoup,
+        ToastError,
+        ToastSuccess,
+        InputLabelError,
+        Button
     },
     mixins: [FormValidate]
 }
