@@ -34,7 +34,6 @@
     import PopupProfile from './PopupsMenu/PopupProfile.vue';
     import PopupPassword from './PopupsMenu/PopupPassword.vue';
     import PopupSettings from './PopupsMenu/PopupSettings.vue';
-    import { computed } from 'vue';
     import { langStore } from '../../store/langStore';
     import { useDark, useToggle } from '@vueuse/core'
     import { userLogin } from '../../store/userLogin';

@@ -11,14 +11,12 @@
 
 <script>
 import ItemMenu from "./ItemMenu.vue";
-import { computed } from 'vue';
 import { langStore } from "../../store/langStore";
 import { userLogin } from "../../store/userLogin"
 
 
 export default {
     data() {
-
         return {
             inputedText: '',
             itemsSelector: []
