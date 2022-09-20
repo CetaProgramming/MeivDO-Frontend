@@ -6,29 +6,14 @@
 
 <script>
     import getUnicodeFlagIcon from 'country-flag-icons/unicode'
-    import { computed } from 'vue';
     import { langStore } from '../../store/langStore'
     import { storeToRefs } from 'pinia'
 
     export default {
         name: 'SelectLanguague',
-        setup(){
-
-            const store = langStore();
-
-            const { lang } = storeToRefs(store);
-
-            function changeLanguague(event){
-                store.setLanguague(event.target.value);
-            }
-            
-            return {
-                lang,
-                changeLanguague
-            }
-        },
         data(){
             return {
+                lang: langStore().lang,
                 languagues: [
                     {
                         name: `${getUnicodeFlagIcon('US')} English`,
@@ -39,6 +24,11 @@
                         value: 'pt'
                     }
                 ]           
+            }
+        },
+        methods: {
+            changeLanguague(event){
+                langStore().setLanguague(event.target.value);
             }
         }
     }
