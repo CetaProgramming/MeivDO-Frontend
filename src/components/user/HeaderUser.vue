@@ -5,7 +5,6 @@
                     <div class="flex gap-4 ">
                         <NavigateItemMenu />
                         <Button @click="isAddUserClicked = !isAddUserClicked" :text="langsUser.ButtonNew" bg="bg-green-500" class="rounded-lg"></Button>
-                        <button class="bg-green-500 p-2 text-white rounded-lg dark:bg-green-600 dark:text-black">+ {{langsUser.ButtonNew}}</button>
                     </div>
                 </div>
             </div>
@@ -23,7 +22,7 @@
           return{
               isAddUserClicked: false,
           }
-        }
+        },
         computed: {
             langsUser(){
                 return langStore().getLang.UserFeature
