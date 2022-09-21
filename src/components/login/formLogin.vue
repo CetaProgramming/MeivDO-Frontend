@@ -10,7 +10,6 @@
 
 <script>
 import FormValidate from "../mixins/FormValidate.js";
-import { computed } from "vue";
 import { langStore } from "../../store/langStore";
 import { userLogin } from "../../store/userLogin";
 import ToastError from "./../public/Toast/ToastError.vue";
@@ -19,17 +18,6 @@ import Button from "../widgets/Button.vue";
 import InputLabelError from "../forms/InputLabelError.vue";
 
 export default {
-  setup() {
-    const store = langStore();
-    const userLoginStore = userLogin();
-
-    const langs = computed(() => store.getLang.Login);
-
-    return {
-      langs,
-      userLoginStore,
-    };
-  },
   data() {
     return {
       toast: {
@@ -42,6 +30,11 @@ export default {
       },
     };
   },
+  computed: {
+    langs(){
+      return langStore().getLang.Login;
+    }
+  },
   methods: {
     formValid() {
       try {
@@ -53,7 +46,7 @@ export default {
         )
           (async () => {
             try {
-              await this.userLoginStore.login(this.formLogin);
+              await userLogin().login(this.formLogin);
               this.$router.push("/dashboard");
             } catch (error) {
               this.toast.msg = this.langs.LoginWrong;

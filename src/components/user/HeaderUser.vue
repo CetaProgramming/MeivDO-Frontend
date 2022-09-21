@@ -3,8 +3,9 @@
                 <UserImageName/>
                 <div>
                     <div class="flex gap-4 ">
-                        <SelectFeature/>
+                        <NavigateItemMenu />
                         <Button @click="isAddUserClicked = !isAddUserClicked" :text="langsUser.ButtonNew" bg="bg-green-500" class="rounded-lg"></Button>
+                        <button class="bg-green-500 p-2 text-white rounded-lg dark:bg-green-600 dark:text-black">+ {{langsUser.ButtonNew}}</button>
                     </div>
                 </div>
             </div>
@@ -13,30 +14,24 @@
 
 <script>
     import UserImageName from './UserImageName.vue';
-    import SelectFeature from './SelectFeature.vue';
-    import { computed } from 'vue';
-    import {langStore} from '../../store/langStore'; 
+    import {langStore} from '../../store/langStore';
+    import NavigateItemMenu from '../public/NavigateItemMenu.vue';
     import Button from '../widgets/Button.vue';
-    import AddUserPop from './PopupsUser/AddUserPop.vue'
-export default {
-    setup () {
-        const store = langStore();
-        const langsUser = computed(() => store.getLang.UserFeature);
-
-        return {
-            langsUser
+    import AddUserPop from './PopupsUser/AddUserPop.vue';
+    export default {
+        data(){
+          return{
+              isAddUserClicked: false,
+          }
         }
-    },
-    data(){
-        return{
-            
-            isAddUserClicked: false,
-        }
-    }
-    ,
+        computed: {
+            langsUser(){
+                return langStore().getLang.UserFeature
+            }
+        },
     components:{
     UserImageName,
-    SelectFeature,
+    NavigateItemMenu,
     Button,
     AddUserPop
 }

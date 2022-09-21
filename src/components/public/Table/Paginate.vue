@@ -33,7 +33,7 @@ export default {
         },
         numberPage(){
             if(this.pag.actualPage != 1){
-                if(this.pag.actualPage === this.pag.lastPage)
+                if(this.pag.actualPage === this.pag.lastPage && this.pag.lastPage > 2)
                     return [this.pag.actualPage - 2, this.pag.actualPage -1, this.pag.actualPage];
                 if(this.pag.lastPage > 3)
                     if(this.pag.actualPage <= 2)
