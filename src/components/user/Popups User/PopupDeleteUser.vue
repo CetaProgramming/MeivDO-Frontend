@@ -18,7 +18,7 @@ import { langStore } from '../../../store/langStore';
 import {useDark, useToggle} from '@vueuse/core'
 import ToastError from "../../public/Toast/ToastError.vue"
 import ToastSuccess from "../../public/Toast/ToastSuccess.vue"
-import {userLogin} from "../../../store/userLogin"
+import {usersStore} from "../../../store/usersStore"
 import Button from '../../../components/widgets/Button.vue'
 import FormValidate from '../../mixins/FormValidate';
 
@@ -27,12 +27,12 @@ export default {
         const store = langStore();
         const isDark= useDark();
         const toggleDark = useToggle(isDark);
-        const userLoginStore = userLogin();
+        const userStore = usersStore();
 
         const langs = computed(() => store.getLang.PopupUserDelete);
 
         return {
-            langs,toggleDark,isDark, userLoginStore
+            langs,toggleDark,isDark, userStore
         }
     },
     components: { 

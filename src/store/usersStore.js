@@ -99,7 +99,18 @@ export const usersStore = defineStore('usersStore', {
 
             this.users.push(this.createObj(user));
             this.get(this.pag.actualPage);
-        }
+        },
+        async resetPassword(user){
+            const request = await axios.put(`${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/users/resetPassword/{id}`,
+              user
+            );
 
+            // this.password = null;
+        },
+        async deleteUser(user){
+            await axios.delete(`${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/users/{id}`,
+              user  
+              );
+        },
     }
 });

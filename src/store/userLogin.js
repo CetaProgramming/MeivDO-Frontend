@@ -80,7 +80,7 @@ export const userLogin = defineStore('userLogin', {
       this.name = request.data.name;
       this.image = `${import.meta.env.VITE_API_ENDPOINT}/storage/${request.data.image}`;
 
-  },
+    },
       async logout(){
           await axios.get(`${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/logout`);
           this.deleteSession();
