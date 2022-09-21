@@ -6,6 +6,7 @@ export const usersStore = defineStore('usersStore', {
     state: () => { 
         return {
             users: [],
+            roles: [],
             pag: {
                 actualPage: 1,
                 lastPage: null,
@@ -99,6 +100,16 @@ export const usersStore = defineStore('usersStore', {
 
             this.users.push(this.createObj(user));
             this.get(this.pag.actualPage);
+        },
+        async getRoles(){
+            try {
+                const response = await axios.get(
+                    `${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/roles`
+                );
+                return response.data
+            } catch (error) {
+               throw error 
+            }
         }
 
     }
