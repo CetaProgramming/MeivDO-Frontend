@@ -9,8 +9,7 @@
                 <TableBody :header=langsUser.UserHeader :items=userStore.viewing :style="GetLenght" :selectItems="selectItems" @selectOption="popUpOpen"/>
             </div>
             <Paginate @selectPage="changePage" :pag="userStore.pag" />
-
-            <AddUserPop v-if="isUpdatedUserClicked" @closePopUp="isUpdatedUserClicked= false"/>
+           <AddUserPop v-if="isUpdateClick" @closePopUp="isUpdateClick= false" :showActive="true" />
         </div>
     </div>
 </template>
@@ -25,8 +24,8 @@ import TableHeader from './../public/Table/TableHeader.vue';
 import TableBody from './../public/Table/TableBody.vue';
 import Paginate from './../public/Table/Paginate.vue';
 import AddUserPop from './Popups User/AddUserPop.vue';
-import ToastError from '../public/Toast/ToastError.vue';
-import ToastSuccess from '../public/Toast/ToastSuccess.vue';
+
+
 
 export default {
     setup() {
@@ -42,6 +41,9 @@ export default {
     },
     data() {
         return {
+            
+            isUpdateClick : false,
+            userID: null,
             toast: {
                 msg: '',
                 visible: false,
@@ -84,6 +86,8 @@ export default {
     methods: {
         popUpOpen(select, userId){
             console.log(select, userId);
+            this.userID = userId
+            if(select == "update") {this.isUpdateClick = true}
         },
         changePage(page){
             (async () => {
