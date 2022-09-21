@@ -64,6 +64,9 @@ export default {
         },
         langsUser() {
             return langStore().getLang.UserFeature
+        },
+        pages(){
+            return langStore().getLang.Paginate
         }
     },
     async mounted(){
@@ -79,7 +82,7 @@ export default {
                     await this.userStore.get(page)
                     this.$refs.header.$el.scrollIntoView({ behavior: "smooth" });
                 } catch (e){
-                    this.toast.msg = this.pages.PageNotFound;;
+                    this.toast.msg = this.pages.PageNotFound;
                     this.toast.type = ToastError
                     this.toast.visible = true;
                 }
