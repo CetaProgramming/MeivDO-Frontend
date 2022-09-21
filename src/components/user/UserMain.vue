@@ -10,8 +10,11 @@
             </div>
             <Paginate @selectPage="changePage" :pag="userStore.pag" />
 
+            
         </div>
     </div>
+        <PopupResetPassword v-if="isResetClicked" @activeToast="showToast" @closePopUp="isResetClicked= false" :IdUser="userID"/>
+        <PopupDeleteUser v-if="isDeleteClicked" @activeToast="showToast" @closePopUp="isDeleteClicked= false" :IdUser="userID"/>
 </template>
 <script>
 import { usersStore } from './../../store/usersStore';
@@ -25,6 +28,8 @@ import TableBody from './../public/Table/TableBody.vue';
 import Paginate from './../public/Table/Paginate.vue';
 import ToastError from '../public/Toast/ToastError.vue';
 import ToastSuccess from '../public/Toast/ToastSuccess.vue';
+import PopupResetPassword from '../../components/user/Popups User/PopupResetPassword.vue';
+import PopupDeleteUser from '../../components/user/Popups User/PopupDeleteUser.vue';
 
 export default {
     setup() {
@@ -45,7 +50,10 @@ export default {
                 visible: false,
                 type: ''
             },
-            userStore: usersStore(), 
+            userID: null,
+            isResetClicked : false,
+            isDeleteClicked : false,
+            userStore: usersStore(),
             selectItems: [
                 {
                     key: "",
@@ -81,7 +89,13 @@ export default {
     },
     methods: {
         popUpOpen(select, userId){
-            console.log(select, userId);
+            this.userID = userId;
+            if(select == "resetPassword"){
+                this.isResetClicked = true;
+            }
+            if(select == "deleted"){
+                this.isDeleteClicked = true;
+            }
         },
         changePage(page){
             (async () => {
@@ -102,7 +116,8 @@ export default {
     TableBody,
     Paginate,
     TableHeader,
-    PopupResetPassword
+    PopupResetPassword,
+    PopupDeleteUser
 },
     
 }

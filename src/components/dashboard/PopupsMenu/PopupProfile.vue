@@ -18,7 +18,6 @@
                 <input class="hidden" type="file" @change="changePicture" ref="fileInput">
                 <button class="bg-black text-white p-3 rounded-lg mt-2 dark:bg-zinc-800" @click.prevent="$refs.fileInput.click()">{{langs.Picture}}</button>
             </div>
-
         </div>
         <Button :text="langs.SaveProf" />
     </form>

@@ -3,7 +3,7 @@
         <form class="flex flex-col gap-5">
             <div class="font-openSans grid grid-cols-1  md:justify-between  md:flex-row gap-6 ">
                 <div class="grid gap-6 text-center text-3xl">
-                    {{langs.ResetTextFirst}}{{IdUser}}{{langs.ResetTextEnd}}
+                    {{langs.DeleteTextFirst}}{{IdUser}}{{langs.DeleteTextEnd}}
                 </div>
                  <Button :text="langs.Confirmation"/>
             </div>
@@ -29,7 +29,7 @@ export default {
         const toggleDark = useToggle(isDark);
         const userLoginStore = userLogin();
 
-        const langs = computed(() => store.getLang.PopupUserReset);
+        const langs = computed(() => store.getLang.PopupUserDelete);
 
         return {
             langs,toggleDark,isDark, userLoginStore

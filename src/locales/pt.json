@@ -49,6 +49,18 @@
         "Zoom": "Zoom",
         "Language": "Lingua"
     },
+    "PopupUserReset": {
+        "UserID" : "Utilizador ",
+        "ResetTextFirst": "Tem a certeza que pretende redefinir a palavra-passe do utilizador ",
+        "ResetTextEnd": "?",
+        "Confirmation": "Sim"
+    },
+    "PopupUserDelete": {
+        "UserID" : "Utilizador ",
+        "DeleteTextFirst": "Tem a certeza que pretende apagar o utilizador ",
+        "DeleteTextEnd": "?",
+        "Confirmation": "Sim"
+    },
     "UserFeature": {
         "View": "Ver",
         "ButtonNew": "Novo",
