@@ -17,7 +17,7 @@
     import { computed } from 'vue';
     import {langStore} from '../../store/langStore'; 
     import Button from '../widgets/Button.vue';
-    import AddUserPop from '../user/Popups User/AddUserPop.vue'
+    import AddUserPop from './PopupsUser/AddUserPop.vue'
 export default {
     setup () {
         const store = langStore();

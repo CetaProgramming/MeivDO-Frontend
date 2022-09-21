@@ -23,7 +23,7 @@ import MenuUsers from './MenuUsers.vue';
 import TableHeader from './../public/Table/TableHeader.vue';
 import TableBody from './../public/Table/TableBody.vue';
 import Paginate from './../public/Table/Paginate.vue';
-import AddUserPop from './Popups User/AddUserPop.vue';
+import AddUserPop from './PopupsUser/AddUserPop.vue'
 
 
 
