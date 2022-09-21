@@ -15,9 +15,7 @@
 </template>
 <script>
 import { usersStore } from './../../store/usersStore';
-import { computed } from 'vue';
 import { langStore } from "../../store/langStore";
-import { userLogin } from "../../store/userLogin"
 import HeaderUser from './HeaderUser.vue';
 import MenuUsers from './MenuUsers.vue';
 import TableHeader from './../public/Table/TableHeader.vue';
@@ -28,17 +26,6 @@ import AddUserPop from './PopupsUser/AddUserPop.vue'
 
 
 export default {
-    setup() {
-        const store = langStore();
-        const user = userLogin();
-        const langs = computed(() => store.getLang.ItemMenu);
-        const pages = computed(() => store.getLang.Paginate);
-        const langsUser = computed(() => store.getLang.UserFeature);
-        const menuItems = computed(() => user.role && user.role.permissions.map(permission => permission.feature));
-        return {
-            langs, menuItems, langsUser, pages
-        }
-    },
     data() {
         return {
             
@@ -75,13 +62,19 @@ export default {
             ]
         }
     },
-    async mounted(){
-        await this.userStore.mount()
-    },
     computed: {
         GetLenght() {
             return  `grid-template-columns: 50px repeat(${this.langsUser.UserHeader.length}, minmax(150px, 1fr));`
+        },
+        langsUser() {
+            return langStore().getLang.UserFeature
+        },
+        pages(){
+            return langStore().getLang.Paginate
         }
+    },
+    async mounted(){
+        await this.userStore.mount()
     },
     methods: {
         popUpOpen(select, userId){
@@ -95,7 +88,7 @@ export default {
                     await this.userStore.get(page)
                     this.$refs.header.$el.scrollIntoView({ behavior: "smooth" });
                 } catch (e){
-                    this.toast.msg = this.pages.PageNotFound;;
+                    this.toast.msg = this.pages.PageNotFound;
                     this.toast.type = ToastError
                     this.toast.visible = true;
                 }

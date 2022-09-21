@@ -3,8 +3,8 @@
                 <UserImageName/>
                 <div>
                     <div class="flex gap-4 ">
-                        <SelectFeature/>
-                        <Button @click="isAddUserClicked = !isAddUserClicked" :text="langsUser.ButtonNew" bg="bg-green-500" class="rounded-lg"></Button>
+                        <NavigateItemMenu />
+                        <button class="bg-green-500 p-2 text-white rounded-lg dark:bg-green-600 dark:text-black">+ {{langsUser.ButtonNew}}</button>
                     </div>
                 </div>
             </div>
@@ -13,32 +13,17 @@
 
 <script>
     import UserImageName from './UserImageName.vue';
-    import SelectFeature from './SelectFeature.vue';
-    import { computed } from 'vue';
-    import {langStore} from '../../store/langStore'; 
-    import Button from '../widgets/Button.vue';
-    import AddUserPop from './PopupsUser/AddUserPop.vue'
-export default {
-    setup () {
-        const store = langStore();
-        const langsUser = computed(() => store.getLang.UserFeature);
-
-        return {
-            langsUser
-        }
-    },
-    data(){
-        return{
-            
-            isAddUserClicked: false,
-        }
-    }
-    ,
+    import {langStore} from '../../store/langStore';
+    import NavigateItemMenu from '../public/NavigateItemMenu.vue';
+    export default {
+        computed: {
+            langsUser(){
+                return langStore().getLang.UserFeature
+            }
+        },
     components:{
     UserImageName,
-    SelectFeature,
-    Button,
-    AddUserPop
+    NavigateItemMenu
 }
 }
 </script>

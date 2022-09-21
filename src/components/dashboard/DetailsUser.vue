@@ -12,32 +12,31 @@
 
 <script>
     import Input from '../widgets/Input.vue';
-    import { computed } from 'vue';
     import { langStore } from '../../store/langStore';
     import { useDark, useToggle } from '@vueuse/core'
     import { userLogin } from '../../store/userLogin';
     export default {
-        setup() {
-            const store = langStore();
-            const isDark = useDark()
-            const toggleDark = useToggle(isDark)
-            const loginStore = userLogin();
-
-            const langs = computed(() => store.getLang.MenuDashboard);
-            const loginStoreName = computed(() => loginStore.name);
-
+        data(){
             return {
-                langs, toggleDark, isDark, name, loginStoreName
+                toggleDark: useToggle(useDark()),
             }
-    },
-    methods: {
-        filterItemMenu(event) {
-            this.emitter.emit("filterItemMenu", event.target.value)
+        },
+        computed: {
+            langs(){
+                return langStore().getLang.MenuDashboard;
+            },
+            loginStoreName(){
+                return userLogin().name;
+            },
+        },
+        methods: {
+            filterItemMenu(event) {
+                this.emitter.emit("filterItemMenu", event.target.value)
+            }
+        },
+        components: {
+            Input
         }
-    },
-    components: {
-        Input
-    }
     }
 </script>
 
