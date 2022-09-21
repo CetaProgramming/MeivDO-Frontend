@@ -26,7 +26,7 @@ import DarkModeSwitch from '../../dashboard/DarkModeSwitch.vue';
 import InputLabelError from '../../forms/InputLabelError.vue';
 import SelectLabel from '../../forms/SelectLabel.vue';
 import {usersStore} from '../../../store/usersStore'
-import LabelAndSwitch from '../../forms/labelAndSwitch.vue';
+import LabelAndSwitch from '../../forms/LabelAndSwitch.vue';
 import ImgAndButton from '../../forms/ImgAndButton.vue';
 
 
