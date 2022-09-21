@@ -95,5 +95,15 @@
             "description": "Ver a lista de utilizadores da empresa.",
             "link": "users"
         }
+    },
+    "PopupAddUser": {
+        "Title": "Utilizador",
+        "Name": "Nome",
+        "Email": "Email",
+        "Role": "Cargo",
+        "Active": "Ativo",
+        "UploadNewPicture": "Atualizar nova foto",
+        "Save": "Guardar",
+        "SelectOption": "Seleciona uma opção"
     }
 }

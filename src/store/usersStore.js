@@ -1,11 +1,11 @@
 import { defineStore } from 'pinia';
 import axios from 'axios';
-import Button  from './../components/widgets/Button.vue';
 
 export const usersStore = defineStore('usersStore', {
     state: () => { 
         return {
             users: [],
+            roles: [],
             pag: {
                 actualPage: 1,
                 lastPage: null,
@@ -19,30 +19,12 @@ export const usersStore = defineStore('usersStore', {
     actions: {
         createObj(user){
             return {
-                id: {
-                    type: 'Text',
-                    value: user.id
-                },
-                name: {
-                    type: 'Text',
-                    value: user.name
-                },
-                email: {
-                    type: 'Text',
-                    value: user.email
-                },
-                role: {
-                    type: 'Text',
-                    value: user.role.name
-                },
-                active: {
-                    type: 'Component',
-                    value: `<div class="flex justify-center items-center gap-2"><circle class=\"${user.active ? 'bg-green-400' : 'bg-red-400'} rounded-xl w-3 h-3 block\"></circle></div>`,
-                },
-                updated: {
-                    type: 'Text',
-                    value: "dasadsas",
-                }
+                id: user.id,
+                name: user.name,
+                email: user.email,
+                role: user.role,
+                active: user.active,
+                updated: user.updated_at
             }
         },
         async mount(){
@@ -99,6 +81,16 @@ export const usersStore = defineStore('usersStore', {
 
             this.users.push(this.createObj(user));
             this.get(this.pag.actualPage);
+        },
+        async getRoles(){
+            try {
+                const response = await axios.get(
+                    `${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/roles`
+                );
+                return response.data
+            } catch (error) {
+               throw error 
+            }
         }
 
     }
