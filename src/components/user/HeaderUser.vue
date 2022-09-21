@@ -8,7 +8,7 @@
                     </div>
                 </div>
             </div>
-           <AddUserPop v-if="isAddUserClicked" @activeToast="showToast" @closePopUp="isAddUserClicked= false"/>
+           <AddUserPop v-if="isAddUserClicked" @activeToast="showToast" @closePopUp="isAddUserClicked= false" :showActive="false"/>
 </template>
 
 <script>
@@ -29,6 +29,7 @@ export default {
     },
     data(){
         return{
+            
             isAddUserClicked: false,
         }
     }
