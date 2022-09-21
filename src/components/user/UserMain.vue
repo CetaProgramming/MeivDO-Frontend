@@ -6,7 +6,7 @@
             <MenuUsers />
             <div class="grid gap-1 lg:gap-0 lg:flex lg:flex-col lg:overflow-auto">
                 <TableHeader ref="header" :header=langsUser.UserHeader :style="GetLenght" />
-                <TableBody :header=langsUser.UserHeader :items=userStore.viewing :style="GetLenght" :selectItems="selectItems" @selectOption="popUpOpen"/>
+                <TableBody :header=langsUser.UserHeader :component="ComponentUser" :items=userStore.viewing :style="GetLenght" :selectItems="selectItems" @selectOption="popUpOpen"/>
             </div>
             <Paginate @selectPage="changePage" :pag="userStore.pag" />
            <AddUserPop v-if="isUpdateClick" @closePopUp="isUpdateClick= false" :showActive="true" />
@@ -23,9 +23,10 @@ import MenuUsers from './MenuUsers.vue';
 import TableHeader from './../public/Table/TableHeader.vue';
 import TableBody from './../public/Table/TableBody.vue';
 import Paginate from './../public/Table/Paginate.vue';
-import AddUserPop from './PopupsUser/AddUserPop.vue'
-
-
+import AddUserPop from './PopupsUser/AddUserPop.vue';
+import ComponentRowText from '../public/Table/ComponentsTable/ComponentRowText.vue';
+import ComponentRowStatus from '../public/Table/ComponentsTable/ComponentRowStatus.vue';
+import ComponentRowObject from '../public/Table/ComponentsTable/ComponentRowObject.vue';
 
 export default {
     setup() {
@@ -41,7 +42,14 @@ export default {
     },
     data() {
         return {
-            
+            ComponentUser: [ 
+                ComponentRowText, 
+                ComponentRowText,
+                ComponentRowText, 
+                ComponentRowObject,
+                ComponentRowStatus,
+                ComponentRowText
+            ],
             isUpdateClick : false,
             userID: null,
             toast: {
@@ -103,13 +111,16 @@ export default {
         }
     },
     components: {
-        HeaderUser,
-        MenuUsers,
-        TableBody,
-        Paginate,
-        TableHeader,
-        AddUserPop
-    },
+    HeaderUser,
+    MenuUsers,
+    TableBody,
+    Paginate,
+    TableHeader,
+    AddUserPop,
+    ComponentRowText,
+    ComponentRowStatus,
+    ComponentRowObject
+},
     
 }
 </script>
