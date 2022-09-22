@@ -12,6 +12,8 @@
            <AddUserPop v-if="isUpdateClick" @closePopUp="isUpdateClick= false" :user="getDataUser" :showActive="true" />
         </div>
     </div>
+        <PopupResetPassword v-if="isResetClicked" @activeToast="showToast" @closePopUp="isResetClicked= false" :IdUser="userID"/>
+        <PopupDeleteUser v-if="isDeleteClicked" @activeToast="showToast" @closePopUp="isDeleteClicked= false" :IdUser="userID"/>
 </template>
 <script>
 import { markRaw } from "vue";
@@ -22,6 +24,8 @@ import MenuUsers from './MenuUsers.vue';
 import TableHeader from './../public/Table/TableHeader.vue';
 import TableBody from './../public/Table/TableBody.vue';
 import Paginate from './../public/Table/Paginate.vue';
+import PopupResetPassword from '../../components/user/PopupsUser/PopupResetPassword.vue';
+import PopupDeleteUser from '../../components/user/PopupsUser/PopupDeleteUser.vue';
 import AddUserPop from './PopupsUser/AddUserPop.vue';
 import ComponentRowText from '../public/Table/ComponentsTable/ComponentRowText.vue';
 import ComponentRowStatus from '../public/Table/ComponentsTable/ComponentRowStatus.vue';
@@ -45,7 +49,9 @@ export default {
                 visible: false,
                 type: ''
             },
-            usersStore: usersStore(), 
+            isResetClicked : false,
+            isDeleteClicked : false,
+            userStore: usersStore(),
             selectItems: [
                 {
                     key: "",
@@ -92,8 +98,13 @@ export default {
     },
     methods: {
         popUpOpen(select, userId){
-            console.log(select, userId);
-            this.userID = userId
+            this.userID = userId;
+            if(select == "resetPassword"){
+                this.isResetClicked = true;
+            }
+            if(select == "deleted"){
+                this.isDeleteClicked = true;
+            }
             if(select == "update") {this.isUpdateClick = true}
         },
         changePage(page){
@@ -107,7 +118,12 @@ export default {
                     this.toast.visible = true;
                 }
                 })()
-        }
+        },
+        showToast(data){
+            this.toast.msg = data.msg;
+            this.toast.type = data.type;
+            this.toast.visible = true;
+        },
     },
     components: {
     HeaderUser,
@@ -115,6 +131,8 @@ export default {
     TableBody,
     Paginate,
     TableHeader,
+    PopupResetPassword,
+    PopupDeleteUser,
     AddUserPop,
     ComponentRowText,
     ComponentRowStatus,
