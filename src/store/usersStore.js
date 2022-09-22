@@ -102,11 +102,11 @@ export const usersStore = defineStore('usersStore', {
         async getRoles(){
             try {
                 const response = await axios.get(
-                    `${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/roles`
+                    `${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/users/roles`
                 );
                 return response.data
             } catch (error) {
-               throw error 
+                throw error
             }
         }
 
