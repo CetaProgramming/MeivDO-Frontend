@@ -20,7 +20,7 @@
             required: true
         },
         item: {
-            type: String,
+            type: Number,
             required: true
         }
     },
