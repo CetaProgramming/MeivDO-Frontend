@@ -21,10 +21,21 @@ export const usersStore = defineStore('usersStore', {
             return {
                 id: user.id,
                 name: user.name,
+                image: `${import.meta.env.VITE_API_ENDPOINT}/storage/${user.image}`, 
                 email: user.email,
                 role: user.role,
                 active: user.active,
                 updated: user.updated_at
+            }
+        },
+        createViewing(user){
+            return {
+                id: user.id,
+                name: user.name,
+                email: user.email,
+                role: user.role,
+                active: user.active,
+                updated: user.updated,
             }
         },
         async mount(){
@@ -37,7 +48,10 @@ export const usersStore = defineStore('usersStore', {
             this.perPage = response.data.per_page;
             this.pagesLoad.push(1);
             this.users = response.data.data.map(user => this.createObj(user)),
-            this.viewing = this.users
+            this.viewing = this.pageViewing(this.users)
+        },
+        pageViewing(users){
+            return users.map(user => this.createViewing(user));
         },
         async load(page){
             try {
@@ -63,7 +77,7 @@ export const usersStore = defineStore('usersStore', {
                 const itemPageAtual = this.perPage * (indexPage + 1);
                 const lastIndex = itemPageAtual < this.users.length ? itemPageAtual : this.users.length;
                 this.users.sort((user1,user2) =>user1.id.value - user2.id.value);
-                this.viewing = this.users.slice(firstIndex , lastIndex);
+                this.viewing = this.pageViewing(this.users.slice(firstIndex , lastIndex));
                 this.pag.actualPage = page;
             } catch(e){
                 throw e;
@@ -78,8 +92,11 @@ export const usersStore = defineStore('usersStore', {
                 active: 0,
                 updated: "ddasdsad"
             }
-
             this.users.push(this.createObj(user));
+            this.get(this.pag.actualPage);
+        },
+        async change(){
+            this.users[0].id = 10
             this.get(this.pag.actualPage);
         },
         async getRoles(){
