@@ -11,7 +11,7 @@ import ComponentRowText from './ComponentRowText.vue';
                 required: true
             },
             item: {
-                type: String,
+                type: Object,
                 required: true
             }
         },

@@ -14,6 +14,7 @@
     </div>
 </template>
 <script>
+import { markRaw } from "vue";
 import { usersStore } from './../../store/usersStore';
 import { langStore } from "../../store/langStore";
 import HeaderUser from './HeaderUser.vue';
@@ -30,12 +31,12 @@ export default {
     data() {
         return {
             ComponentUser: [ 
-                ComponentRowText, 
-                ComponentRowText,
-                ComponentRowText, 
-                ComponentRowObject,
-                ComponentRowStatus,
-                ComponentRowText
+                markRaw(ComponentRowText), 
+                markRaw(ComponentRowText),
+                markRaw(ComponentRowText), 
+                markRaw(ComponentRowObject),
+                markRaw(ComponentRowStatus),
+                markRaw(ComponentRowText)
             ],
             isUpdateClick : false,
             userID: null,
