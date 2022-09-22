@@ -34,7 +34,7 @@ export default {
                 markRaw(ComponentRowText), 
                 markRaw(ComponentRowText),
                 markRaw(ComponentRowText), 
-                markRaw( ComponentRowObject),
+                markRaw(ComponentRowObject),
                 markRaw(ComponentRowStatus),
                 markRaw(ComponentRowText)
             ],
