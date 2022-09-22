@@ -1,11 +1,11 @@
 import { defineStore } from 'pinia';
 import axios from 'axios';
-import Button  from './../components/widgets/Button.vue';
 
 export const usersStore = defineStore('usersStore', {
     state: () => { 
         return {
             users: [],
+            roles: [],
             pag: {
                 actualPage: 1,
                 lastPage: null,
@@ -19,30 +19,23 @@ export const usersStore = defineStore('usersStore', {
     actions: {
         createObj(user){
             return {
-                id: {
-                    type: 'Text',
-                    value: user.id
-                },
-                name: {
-                    type: 'Text',
-                    value: user.name
-                },
-                email: {
-                    type: 'Text',
-                    value: user.email
-                },
-                role: {
-                    type: 'Text',
-                    value: user.role.name
-                },
-                active: {
-                    type: 'Component',
-                    value: `<div class="flex justify-center items-center gap-2"><circle class=\"${user.active ? 'bg-green-400' : 'bg-red-400'} rounded-xl w-3 h-3 block\"></circle></div>`,
-                },
-                updated: {
-                    type: 'Text',
-                    value: "dasadsas",
-                }
+                id: user.id,
+                name: user.name,
+                image: `${import.meta.env.VITE_API_ENDPOINT}/storage/${user.image}`, 
+                email: user.email,
+                role: user.role,
+                active: user.active,
+                updated: user.updated_at
+            }
+        },
+        createViewing(user){
+            return {
+                id: user.id,
+                name: user.name,
+                email: user.email,
+                role: user.role,
+                active: user.active,
+                updated: user.updated,
             }
         },
         async mount(){
@@ -55,7 +48,10 @@ export const usersStore = defineStore('usersStore', {
             this.perPage = response.data.per_page;
             this.pagesLoad.push(1);
             this.users = response.data.data.map(user => this.createObj(user)),
-            this.viewing = this.users
+            this.viewing = this.pageViewing(this.users)
+        },
+        pageViewing(users){
+            return users.map(user => this.createViewing(user));
         },
         async load(page){
             try {
@@ -81,7 +77,7 @@ export const usersStore = defineStore('usersStore', {
                 const itemPageAtual = this.perPage * (indexPage + 1);
                 const lastIndex = itemPageAtual < this.users.length ? itemPageAtual : this.users.length;
                 this.users.sort((user1,user2) =>user1.id.value - user2.id.value);
-                this.viewing = this.users.slice(firstIndex , lastIndex);
+                this.viewing = this.pageViewing(this.users.slice(firstIndex , lastIndex));
                 this.pag.actualPage = page;
             } catch(e){
                 throw e;
@@ -96,21 +92,44 @@ export const usersStore = defineStore('usersStore', {
                 active: 0,
                 updated: "ddasdsad"
             }
-
             this.users.push(this.createObj(user));
             this.get(this.pag.actualPage);
         },
-        async resetPassword(user){
-            const request = await axios.put(`${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/users/resetPassword/{id}`,
-              user
-            );
-
-            // this.password = null;
+        async resetPassword(userId){
+            try{
+                await axios.put(`${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/users/resetPassword/${userId}`);
+                this.users.find(user => user.id === userId).updated = new Date();
+                this.get(this.pag.actualPage);
+            } catch(error){
+                throw error;
+            }
+            
         },
-        async deleteUser(user){
-            await axios.delete(`${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/users/{id}`,
-              user  
-              );
+        async change(){
+            this.users[0].id = 10
+            this.get(this.pag.actualPage);
+        },
+        async getRoles(){
+            try {
+                const response = await axios.get(
+                    `${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/roles`
+                );
+                return response.data
+            } catch (error) {
+               throw error 
+            }
+        },
+        async deleteUser(userId){
+            try{
+                await axios.delete(`${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/users/${userId}`);
+
+                const userDelete = this.users.findIndex(user => user.id === userId)
+                this.users.splice(userDelete, userDelete+1)
+                this.get(this.pag.actualPage);
+
+            } catch(error){
+                throw error;
+            }
         },
     }
 });

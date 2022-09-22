@@ -15,10 +15,6 @@
                 <option value="disabled">disabled</option>
             </select>
         </div>
-        <!-- <div>
-            <p class="mb-2">More Details</p>
-            <DarkModeSwitch/>
-        </div> -->
     </div>
 </template>
 
@@ -26,9 +22,6 @@
 import DarkModeSwitch from '../dashboard/DarkModeSwitch.vue';
     
 export default {
-    setup() {
-        return {};
-    },
     components: { DarkModeSwitch }
 }
 </script>

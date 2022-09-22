@@ -52,11 +52,15 @@
     "PopupUserReset": {
         "ResetTextFirst": "Are you sure you want to reset user ",
         "ResetTextEnd": " password?",
+        "ResetPasswordSucess": "Password successfully reset!",
+        "ResetPasswordError": "Password couldn't be reset, please verify",
         "Confirmation": "Yes"
     },
     "PopupUserDelete": {
         "DeleteTextFirst": "Are you sure you want to delete user ",
         "DeleteTextEnd": "?",
+        "DeleteUserSucess":"User deleted successfully!",
+        "DeleteUserError":"User couldn't be deleted, please verify",
         "Confirmation": "Yes"
     },
     "UserFeature": {
@@ -106,5 +110,15 @@
             "description": "View the list of users of the company.",
             "link": "users"
         }
+    },
+    "PopupAddUser": {
+        "Title": "User",
+        "Name": "Name",
+        "Email": "Email",
+        "Role": "Role",
+        "Active": "Active",
+        "Upload new picture": "Upload new picture",
+        "Save": "Save",
+        "SelectOption": "Select your option"
     }
 }

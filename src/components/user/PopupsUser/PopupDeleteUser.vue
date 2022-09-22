@@ -1,6 +1,6 @@
 <template>
     <Popoup>
-        <form class="flex flex-col gap-5">
+        <form class="flex flex-col gap-5" @submit.prevent="deleteUser">
             <div class="font-openSans grid grid-cols-1  md:justify-between  md:flex-row gap-6 ">
                 <div class="grid gap-6 text-center text-3xl">
                     {{langs.DeleteTextFirst}}{{IdUser}}{{langs.DeleteTextEnd}}
@@ -12,28 +12,19 @@
 </template>
 
 <script>
+import { markRaw } from "vue";
 import Popoup from '../../public/Popoup.vue';
-import { computed, ref } from 'vue';
 import { langStore } from '../../../store/langStore';
-import {useDark, useToggle} from '@vueuse/core'
 import ToastError from "../../public/Toast/ToastError.vue"
 import ToastSuccess from "../../public/Toast/ToastSuccess.vue"
-import {usersStore} from "../../../store/usersStore"
+import { usersStore } from "../../../store/usersStore"
 import Button from '../../../components/widgets/Button.vue'
-import FormValidate from '../../mixins/FormValidate';
 
 export default {
-    setup() {
-        const store = langStore();
-        const isDark= useDark();
-        const toggleDark = useToggle(isDark);
-        const userStore = usersStore();
-
-        const langs = computed(() => store.getLang.PopupUserDelete);
-
-        return {
-            langs,toggleDark,isDark, userStore
-        }
+    computed: {
+        langs() {
+            return langStore().getLang.PopupUserDelete
+        },
     },
     components: { 
         Popoup,
@@ -53,6 +44,22 @@ export default {
             },
         }
     },
-    mixins: [FormValidate]
+    methods:{
+        async deleteUser(){
+            try { 
+                await usersStore().deleteUser(this.IdUser)
+                this.$emit("closePopUp");
+                this.$emit("activeToast", {
+                    msg: this.langs.DeleteUserSucess,
+                    type: markRaw(ToastSuccess)
+                });
+                } catch (error) {
+                    this.$emit("activeToast", {
+                        msg: this.langs.DeleteUserError,
+                        type: markRaw(ToastError)
+                });
+            }
+        }
+    }
 }
 </script>

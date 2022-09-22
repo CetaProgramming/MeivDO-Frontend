@@ -6,51 +6,49 @@
             <MenuUsers />
             <div class="grid gap-1 lg:gap-0 lg:flex lg:flex-col lg:overflow-auto">
                 <TableHeader ref="header" :header=langsUser.UserHeader :style="GetLenght" />
-                <TableBody :header=langsUser.UserHeader :items=userStore.viewing :style="GetLenght" :selectItems="selectItems" @selectOption="popUpOpen"/>
+                <TableBody :header=langsUser.UserHeader :component="ComponentUser" :items=userStore.viewing :style="GetLenght" :selectItems="selectItems" @selectOption="popUpOpen"/>
             </div>
             <Paginate @selectPage="changePage" :pag="userStore.pag" />
-
-            
+           <AddUserPop v-if="isUpdateClick" @closePopUp="isUpdateClick= false" :showActive="true" />
         </div>
     </div>
         <PopupResetPassword v-if="isResetClicked" @activeToast="showToast" @closePopUp="isResetClicked= false" :IdUser="userID"/>
         <PopupDeleteUser v-if="isDeleteClicked" @activeToast="showToast" @closePopUp="isDeleteClicked= false" :IdUser="userID"/>
 </template>
 <script>
+import { markRaw } from "vue";
 import { usersStore } from './../../store/usersStore';
-import { computed } from 'vue';
 import { langStore } from "../../store/langStore";
-import { userLogin } from "../../store/userLogin"
 import HeaderUser from './HeaderUser.vue';
 import MenuUsers from './MenuUsers.vue';
 import TableHeader from './../public/Table/TableHeader.vue';
 import TableBody from './../public/Table/TableBody.vue';
 import Paginate from './../public/Table/Paginate.vue';
-import ToastError from '../public/Toast/ToastError.vue';
-import ToastSuccess from '../public/Toast/ToastSuccess.vue';
-import PopupResetPassword from '../../components/user/Popups User/PopupResetPassword.vue';
-import PopupDeleteUser from '../../components/user/Popups User/PopupDeleteUser.vue';
+import PopupResetPassword from '../../components/user/PopupsUser/PopupResetPassword.vue';
+import PopupDeleteUser from '../../components/user/PopupsUser/PopupDeleteUser.vue';
+import AddUserPop from './PopupsUser/AddUserPop.vue';
+import ComponentRowText from '../public/Table/ComponentsTable/ComponentRowText.vue';
+import ComponentRowStatus from '../public/Table/ComponentsTable/ComponentRowStatus.vue';
+import ComponentRowObject from '../public/Table/ComponentsTable/ComponentRowObject.vue';
 
 export default {
-    setup() {
-        const store = langStore();
-        const user = userLogin();
-        const langs = computed(() => store.getLang.ItemMenu);
-        const pages = computed(() => store.getLang.Paginate);
-        const langsUser = computed(() => store.getLang.UserFeature);
-        const menuItems = computed(() => user.role && user.role.permissions.map(permission => permission.feature));
-        return {
-            langs, menuItems, langsUser, pages
-        }
-    },
     data() {
         return {
+            ComponentUser: [ 
+                markRaw(ComponentRowText), 
+                markRaw(ComponentRowText),
+                markRaw(ComponentRowText), 
+                markRaw(ComponentRowObject),
+                markRaw(ComponentRowStatus),
+                markRaw(ComponentRowText)
+            ],
+            isUpdateClick : false,
+            userID: null,
             toast: {
                 msg: '',
                 visible: false,
                 type: ''
             },
-            userID: null,
             isResetClicked : false,
             isDeleteClicked : false,
             userStore: usersStore(),
@@ -79,13 +77,19 @@ export default {
             ]
         }
     },
-    async mounted(){
-        await this.userStore.mount()
-    },
     computed: {
         GetLenght() {
             return  `grid-template-columns: 50px repeat(${this.langsUser.UserHeader.length}, minmax(150px, 1fr));`
+        },
+        langsUser() {
+            return langStore().getLang.UserFeature
+        },
+        pages(){
+            return langStore().getLang.Paginate
         }
+    },
+    async mounted(){
+        await this.userStore.mount()
     },
     methods: {
         popUpOpen(select, userId){
@@ -96,6 +100,7 @@ export default {
             if(select == "deleted"){
                 this.isDeleteClicked = true;
             }
+            if(select == "update") {this.isUpdateClick = true}
         },
         changePage(page){
             (async () => {
@@ -103,12 +108,17 @@ export default {
                     await this.userStore.get(page)
                     this.$refs.header.$el.scrollIntoView({ behavior: "smooth" });
                 } catch (e){
-                    this.toast.msg = this.pages.PageNotFound;;
+                    this.toast.msg = this.pages.PageNotFound;
                     this.toast.type = ToastError
                     this.toast.visible = true;
                 }
                 })()
-        }
+        },
+        showToast(data){
+            this.toast.msg = data.msg;
+            this.toast.type = data.type;
+            this.toast.visible = true;
+        },
     },
     components: {
     HeaderUser,
@@ -117,7 +127,11 @@ export default {
     Paginate,
     TableHeader,
     PopupResetPassword,
-    PopupDeleteUser
+    PopupDeleteUser,
+    AddUserPop,
+    ComponentRowText,
+    ComponentRowStatus,
+    ComponentRowObject
 },
     
 }

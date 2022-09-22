@@ -6,11 +6,11 @@
             <InputLabelError ref="formUpdateInfoName" v-model="formUpdateInfo.name" :default="formUpdateInfo.name" class="md:w-4/5" :placeholder="langs.Name" :msg="langs.nameError" :name="langs.Name"/>
             <div class="flex flex-col gap-2">
                 <label class="font-bold">Email</label>
-                <h2 class="ml-4">{{email}}</h2>
+                <h2 class="ml-4">{{userLogin.email}}</h2>
             </div>
             <div class="flex flex-col gap-2">
                 <label class="font-bold">{{langs.Role}}</label>
-                <h2 class="ml-4 capitalize">{{role.name}}</h2>
+                <h2 class="ml-4 capitalize">{{userLogin.role.name}}</h2>
             </div>
         </div>
             <div class="flex flex-col justify-center items-center">
@@ -27,7 +27,6 @@
 <script>
 import DataManipule from "./../../../helpers/DataManipulate";
 import Popoup from '../../public/Popoup.vue';
-import { computed } from 'vue';
 import { langStore } from '../../../store/langStore';
 import {useDark, useToggle} from '@vueuse/core';
 import { userLogin } from '../../../store/userLogin';
@@ -39,28 +38,10 @@ import FormValidate from '../../mixins/FormValidate';
 
 
 export default {
-    setup() {
-        const store = langStore();
-
-        const isDark= useDark()
-        const toggleDark = useToggle(isDark)
-        const { name, image, email, role, updateProfile } = userLogin();
-
-        const langs = computed(() => store.getLang.PopupProfile);
-
-        return {
-            langs,toggleDark,isDark, name, image, email, role, updateProfile
-        }
-    },
-    components: {
-    Popoup,
-    ToastError,
-    ToastSuccess,
-    InputLabelError,
-    Button
-},
     data(){
         return {
+            userLogin: userLogin(),
+            toggleDark: useToggle(useDark()),
             toast: {
                 msg: '',
                 visible: false,
@@ -72,10 +53,15 @@ export default {
 
             },
             formUpdateInfo: {
-                name: this.name,
-                image: this.image,
+                name: userLogin().name,
+                image: userLogin().image,
                 selectedFile: "",
             }
+        }
+    },
+    computed: {
+        langs(){
+            return langStore().getLang.PopupProfile;
         }
     },
     methods: {
@@ -105,7 +91,7 @@ export default {
                 }))
                     (async () => {
                         try {
-                            await this.updateProfile(
+                            await this.userLogin.updateProfile(
                                 DataManipule.formDataImage({
                                     name: this.formUpdateInfo.name,
                                     image: this.formUpdateInfo.selectedFile
@@ -128,6 +114,13 @@ export default {
                 console.log(e);
             }
         },
+    },
+    components: {
+        Popoup,
+        ToastError,
+        ToastSuccess,
+        InputLabelError,
+        Button
     },
     mixins: [FormValidate],
 }
