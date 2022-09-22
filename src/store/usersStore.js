@@ -95,6 +95,16 @@ export const usersStore = defineStore('usersStore', {
             this.users.push(this.createObj(user));
             this.get(this.pag.actualPage);
         },
+        async resetPassword(userId){
+            try{
+                await axios.put(`${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/users/resetPassword/${userId}`);
+                this.users.find(user => user.id === userId).updated = new Date();
+                this.get(this.pag.actualPage);
+            } catch(error){
+                throw error;
+            }
+            
+        },
         async change(){
             this.users[0].id = 10
             this.get(this.pag.actualPage);
@@ -108,7 +118,18 @@ export const usersStore = defineStore('usersStore', {
             } catch (error) {
                throw error 
             }
-        }
+        },
+        async deleteUser(userId){
+            try{
+                await axios.delete(`${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/users/${userId}`);
 
+                const userDelete = this.users.findIndex(user => user.id === userId)
+                this.users.splice(userDelete, userDelete+1)
+                this.get(this.pag.actualPage);
+
+            } catch(error){
+                throw error;
+            }
+        },
     }
 });

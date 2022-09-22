@@ -49,6 +49,20 @@
         "Zoom": "Zoom",
         "Language": "Language"
     },
+    "PopupUserReset": {
+        "ResetTextFirst": "Are you sure you want to reset user ",
+        "ResetTextEnd": " password?",
+        "ResetPasswordSucess": "Password successfully reset!",
+        "ResetPasswordError": "Password couldn't be reset, please verify",
+        "Confirmation": "Yes"
+    },
+    "PopupUserDelete": {
+        "DeleteTextFirst": "Are you sure you want to delete user ",
+        "DeleteTextEnd": "?",
+        "DeleteUserSucess":"User deleted successfully!",
+        "DeleteUserError":"User couldn't be deleted, please verify",
+        "Confirmation": "Yes"
+    },
     "UserFeature": {
         "View": "View",
         "ButtonNew": "New",
