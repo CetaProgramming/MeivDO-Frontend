@@ -6,14 +6,14 @@
             <MenuUsers />
             <div class="grid gap-1 lg:gap-0 lg:flex lg:flex-col lg:overflow-auto">
                 <TableHeader ref="header" :header=langsUser.UserHeader :style="GetLenght" />
-                <TableBody :header=langsUser.UserHeader :component="ComponentUser" :items=usersStore.viewing :style="GetLenght" :selectItems="selectItems" @selectOption="popUpOpen" />
+                <TableBody :header=langsUser.UserHeader :component="ComponentUser" :items=userStore.viewing :style="GetLenght" :selectItems="selectItems" @selectOption="popUpOpen" />
             </div>
-            <Paginate @selectPage="changePage" :pag="usersStore.pag" />
-           <AddUserPop v-if="isUpdateClick" @closePopUp="isUpdateClick= false" :user="getDataUser" :showActive="true" />
+            <Paginate @selectPage="changePage" :pag="userStore.pag" />
         </div>
     </div>
         <PopupResetPassword v-if="isResetClicked" @activeToast="showToast" @closePopUp="isResetClicked= false" :IdUser="userID"/>
         <PopupDeleteUser v-if="isDeleteClicked" @activeToast="showToast" @closePopUp="isDeleteClicked= false" :IdUser="userID"/>
+        <AddUserPop v-if="isUpdateClick" @activeToast="showToast" @closePopUp="isUpdateClick= false" :user="getDataUser" :showActive="true" />
 </template>
 <script>
 import { markRaw } from "vue";
@@ -83,7 +83,7 @@ export default {
         },
         getDataUser(){
             
-            return this.usersStore.users.find(user =>  this.userID == user.id)
+            return this.userStore.users.find(user =>  this.userID == user.id)
             
         },
         langsUser() {
@@ -94,7 +94,7 @@ export default {
         }
     },
     async mounted(){
-        await this.usersStore.mount()
+        await this.userStore.mount()
     },
     methods: {
         popUpOpen(select, userId){
@@ -110,7 +110,7 @@ export default {
         changePage(page){
             (async () => {
                 try {
-                    await this.usersStore.get(page)
+                    await this.userStore.get(page)
                     this.$refs.header.$el.scrollIntoView({ behavior: "smooth" });
                 } catch (e){
                     this.toast.msg = this.pages.PageNotFound;
