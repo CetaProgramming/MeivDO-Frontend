@@ -30,6 +30,7 @@ import AddUserPop from './PopupsUser/AddUserPop.vue';
 import ComponentRowText from '../public/Table/ComponentsTable/ComponentRowText.vue';
 import ComponentRowStatus from '../public/Table/ComponentsTable/ComponentRowStatus.vue';
 import ComponentRowObject from '../public/Table/ComponentsTable/ComponentRowObject.vue';
+import ComponentTimePassed from "../public/Table/ComponentsTable/ComponentTimePassed.vue";
 
 export default {
     data() {
@@ -40,7 +41,7 @@ export default {
                 markRaw(ComponentRowText), 
                 markRaw(ComponentRowObject),
                 markRaw(ComponentRowStatus),
-                markRaw(ComponentRowText)
+                markRaw(ComponentTimePassed)
             ],
             isUpdateClick : false,
             userID: null,
@@ -131,7 +132,8 @@ export default {
     AddUserPop,
     ComponentRowText,
     ComponentRowStatus,
-    ComponentRowObject
+    ComponentRowObject,
+    ComponentTimePassed
 },
     
 }
