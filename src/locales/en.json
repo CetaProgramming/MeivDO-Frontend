@@ -120,5 +120,31 @@
         "Upload new picture": "Upload new picture",
         "Save": "Save",
         "SelectOption": "Select your option"
+    },
+    "HoursComponents": {
+        "SEC" : {
+            "sing":"second",
+            "plr": "seconds"
+        },
+        "MIN" : {
+            "sing":"minute",
+            "plr": "minutes"
+        },
+        "HOUR" : {
+            "sing":"hour",
+            "plr": "hours"
+        },
+        "DAY" : {
+            "sing":"day",
+            "plr": "days"
+        },
+        "MONTH" : {
+            "sing":"month",
+            "plr": "months"
+        },
+        "YEAR" : {
+            "sing":"year",
+            "plr": "years"
+        }
     }
 }
