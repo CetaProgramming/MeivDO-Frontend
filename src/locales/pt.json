@@ -121,5 +121,31 @@
         "UploadNewPicture": "Atualizar nova foto",
         "Save": "Guardar",
         "SelectOption": "Seleciona uma opção"
+    },
+    "HoursComponents": {
+        "SEC" : {
+            "sing":"segundo",
+            "plr": "segundos"
+        },
+        "MIN" : {
+            "sing":"minuto",
+            "plr": "minutos"
+        },
+        "HOUR" : {
+            "sing":"hora",
+            "plr": "horas"
+        },
+        "DAY" : {
+            "sing":"dia",
+            "plr": "dias"
+        },
+        "MONTH" : {
+            "sing":"mês",
+            "plr": "mêses"
+        },
+        "YEAR" : {
+            "sing":"ano",
+            "plr": "anos"
+        }
     }
 }
