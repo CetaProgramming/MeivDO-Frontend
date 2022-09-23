@@ -1,9 +1,8 @@
 <template>
     <Popoup :titlePopUp="langs.Title">
         <form @submit.prevent="updateUser" class="flex flex-col gap-5">
-            <div
-                class="font-openSans grid grid-cols-1 items-center md:gap-1  md:grid-cols-1fr-auto md:justify-between  md:flex-row ">
-                <div class="flex flex-col gap-7">
+            <div class="font-openSans grid grid-cols-1 items-center gap-5 md:gap-1  lg:grid-cols-1fr-auto md:justify-between ">
+                <div class="flex flex-col gap-7 lg:w-4/5">
                     <InputLabelError ref="formUserCreateName" v-model="formUserCreateUpdate.name"
                         placeholder="Insert a name" :msg="langs.EmailError" :name="langs.Name"
                         :default="formUserCreateUpdate.name" />
@@ -15,7 +14,7 @@
                     <SwitchLabel v-if="showActive" v-model="formUserCreateUpdate.active" @change="changeValue"
                         :default="Boolean(formUserCreateUpdate.active)  " :name="langs.Active" />
                 </div>
-                <ImgAndButton @activeToast="activeToast" @changePicture="selectedFile"
+                <ImgAndButton class="gap-3" @activeToast="activeToast" @changePicture="selectedFile"
                     :image="formUserCreateUpdate.image" :btnTitle="langs.UploadNewPicture" />
             </div>
             <Button :text="langs.Save"> </Button>

@@ -1,8 +1,8 @@
 <template>
     <div class="flex flex-col gap-2">
         <Label :name="name" :msg="name" />
-        <select id="status" :value="value" @change="changeValue"
-            class="bg-zinc-300 p-1 rounded-md hover:cursor-pointer w-full">
+        <select id="status" :value="value" @change="changeValue" 
+            class="bg-zinc-300 p-2 rounded-md hover:cursor-pointer w-full dark:bg-zinc-800 ">
             <option value="" disabled hidden>Select option</option>
             <option v-for="item in items" :value="item.id">{{item.name}}</option>
         </select>
