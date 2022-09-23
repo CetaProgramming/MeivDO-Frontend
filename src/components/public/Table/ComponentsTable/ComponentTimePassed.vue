@@ -8,6 +8,7 @@
     import { isNumber } from '@vueuse/shared';
     import TimePassed from '../../../../helpers/TimePassed';
     import ComponentBaseTableRow from './ComponentBaseTableRow.vue';
+    import { langStore } from "./../../../../store/langStore";
     export default {
         data(){
             return {
@@ -30,8 +31,12 @@
             this.setIntervalTime();
         },
         computed: {
+            langs(){
+                return langStore().getLang.HoursComponents;
+            },
             getTime(){
-                return this.item && `At ${this.time} ${this.codeTime} ago`;
+                if(this.time)
+                    return `${this.time} ${this.time > 1 ? this.langs[this.codeTime].plr : this.langs[this.codeTime].sing}`;
             },
             getIntervalTime(){
                 return 1000 * (Math.pow(60,this.setInterval[this.codeTime]));
