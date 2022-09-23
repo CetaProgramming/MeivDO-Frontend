@@ -1,82 +1,33 @@
 <template>
-  <div class="toggle-wrapper">
+  <!-- <div class="toggle-wrapper">
     <label class="toggle">
-      <input 
-        type="checkbox" 
-        :checked="(isDarkMode === 'auto') ? 'checked' : false" 
-        @change="ChangeMode"
-      />
+      <input type="checkbox" :checked="(isDarkMode === 'auto') ? 'checked' : false" @change="ChangeMode" />
       <span class="toggler round"></span>
     </label>
-  </div>
+  </div> -->
+  <Switch v-model="enable"  @change="ChangeMode" :default="defaultValue"/>
 </template>
 <script>
+import Switch from '../widgets/Switch.vue';
 export default {
-  data(){
-    
-    return{
-      isDarkMode: localStorage.getItem('vueuse-color-scheme') || 'light'
+  data() {
+    return {
+      isDarkMode: localStorage.getItem("vueuse-color-scheme") || "light",
+      enable: true
+    };
+  },
+  computed:{
+    defaultValue(){
+      return this.isDarkMode == 'auto'
     }
   },
   methods: {
     ChangeMode() {
-
-      this.isDarkMode= this.isDarkMode === 'auto' ? 'light' : 'auto'
-      this.$emit('toggle')
+      this.isDarkMode = this.isDarkMode === "auto" ? "light" : "auto";
+      this.$emit("toggle");
     }
-  
-  }
+  },
+
+  components: { Switch }
 }
 </script>
-<style>
-.toggle {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 34px;
-}
-.toggle input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-.toggler {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: #15202B;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
-}
-.toggler:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background: #FFF;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
-}
-input:checked + .toggler {
-  background: #2196F3;
-}
-input:focus + toggler {
-  box-shadow: 0 0 2px #2196F3;
-}
-input:checked + .toggler:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
-}
-.toggler.round {
-  border-radius: 34px;
-}
-.toggler.round:before {
-  border-radius: 50%;
-}
-</style>
