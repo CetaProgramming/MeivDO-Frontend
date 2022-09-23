@@ -6,14 +6,14 @@
             <MenuUsers />
             <div class="grid gap-1 lg:gap-0 lg:flex lg:flex-col lg:overflow-auto">
                 <TableHeader ref="header" :header=langsUser.UserHeader :style="GetLenght" />
-                <TableBody :header=langsUser.UserHeader :component="ComponentUser" :items=userStore.viewing :style="GetLenght" :selectItems="selectItems" @selectOption="popUpOpen"/>
+                <TableBody :header=langsUser.UserHeader :component="ComponentUser" :items=userStore.viewing :style="GetLenght" :selectItems="selectItems" @selectOption="popUpOpen" />
             </div>
             <Paginate @selectPage="changePage" :pag="userStore.pag" />
-           <AddUserPop v-if="isUpdateClick" @closePopUp="isUpdateClick= false" :showActive="true" />
         </div>
     </div>
         <PopupResetPassword v-if="isResetClicked" @activeToast="showToast" @closePopUp="isResetClicked= false" :IdUser="userID"/>
         <PopupDeleteUser v-if="isDeleteClicked" @activeToast="showToast" @closePopUp="isDeleteClicked= false" :IdUser="userID"/>
+        <AddUserPop v-if="isUpdateClick" @activeToast="showToast" @closePopUp="isUpdateClick= false" :user="getDataUser" :showActive="true" />
 </template>
 <script>
 import { markRaw } from "vue";
@@ -81,6 +81,11 @@ export default {
     computed: {
         GetLenght() {
             return  `grid-template-columns: 50px repeat(${this.langsUser.UserHeader.length}, minmax(150px, 1fr));`
+        },
+        getDataUser(){
+            
+            return this.userStore.users.find(user =>  this.userID == user.id)
+            
         },
         langsUser() {
             return langStore().getLang.UserFeature

@@ -1,5 +1,5 @@
 <template>
-    <button type="submit" class="tracking-widest rounded" :class="bg, color, typeFont, pad, fontSize, width">{{ text }}</button>
+    <button type="submit"  class="tracking-widest rounded" :class="bg, color, typeFont, pad, fontSize, width">{{ text }} </button>
 </template>
 
 <script>
