@@ -2,9 +2,9 @@
     <div class="bg-white items  grid md:grid-cols-1fr-auto-auto gap-3 p-5 rounded-md dark:bg-MeivMatteBlack dark:text-white">
         <div>
             <p class="mb-2 text-center">Keywords</p>
-            <div class="bg-zinc-300 p-1 rounded-md dark:bg-zinc-800">
-                <fas icon="fa-solid fa-search" />
-                <input class=" indent-2 bg-zinc-300 md:w-5/6 outline-0 dark:bg-zinc-800" type="text" >
+            <div class="flex bg-zinc-300 p-1 rounded-md dark:bg-zinc-800 relative items-center">
+                <fas class="" icon="fa-solid fa-search" />
+                <input class=" indent-2 bg-zinc-300 w-full outline-0 dark:bg-zinc-800" type="text" >
             </div>
         </div>
         <div class=" ">
