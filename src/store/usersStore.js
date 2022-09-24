@@ -60,7 +60,7 @@ export const usersStore = defineStore('usersStore', {
                 const response = await axios.get(
                     `${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/users?page=${page}`
                 );
-                await response.data.data.forEach(user => !this.users.some(userVer => userVer.id.value === user.id) && this.users.push(this.createObj(user)));
+                await response.data.data.forEach(user => !this.users.some(userVer => userVer.id === user.id) && this.users.push(this.createObj(user)));
                 this.users.sort((user1, user2) => user1.id.value - user2.id.value);
                 this.pagesLoad.push(page);
                 this.pagesLoad.sort((a, b) => a - b);
@@ -92,13 +92,17 @@ export const usersStore = defineStore('usersStore', {
                     formData
                 );
                 this.users.push(this.createObj(response.data));
+                this.calculatePages();
                 this.get(this.pag.actualPage);
                 return response.data
             } catch (error) {
                 throw error
             }
-
-
+        },
+        calculatePages(){
+            const lastPage = Math.ceil(this.users.length / this.perPage);
+            if(this.pag.lastPage !== lastPage)
+                return this.pag.lastPage = lastPage;
         },
         async resetPassword(userId) {
             try {
@@ -108,7 +112,6 @@ export const usersStore = defineStore('usersStore', {
             } catch (error) {
                 throw error;
             }
-
         },
         async update(userId, formData) {
             try {
@@ -138,11 +141,9 @@ export const usersStore = defineStore('usersStore', {
         async deleteUser(userId) {
             try {
                 await axios.delete(`${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/users/${userId}`);
-
                 const userDelete = this.users.findIndex(user => user.id === userId)
-                this.users.splice(userDelete, userDelete + 1)
-                this.get(this.pag.actualPage);
-
+                this.users.splice(userDelete, 1);
+                this.get(this.calculatePages() ?? this.pag.actualPage);
             } catch (error) {
                 throw error;
             }
