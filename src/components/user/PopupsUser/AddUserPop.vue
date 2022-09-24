@@ -9,13 +9,13 @@
                     <InputLabelError ref="formUserCreateEmail" type="email" v-model="formUserCreateUpdate.email"
                         placeholder="Insert email" :msg="langs.EmailError" :name="langs.Email"
                         :default="formUserCreateUpdate.email" />
-                    <SelectLabel ref="formUserCreateRole"  name="teste" :items="roles"
+                    <SelectLabel ref="formUserCreateRole" :items="roles" :name="langs.Role"
                         :default="formUserCreateUpdate.role_id" v-model="formUserCreateUpdate.role_id" />
                     <SwitchLabel v-if="showActive" v-model="formUserCreateUpdate.active" @change="changeValue"
                         :default="Boolean(formUserCreateUpdate.active)  " :name="langs.Active" />
                 </div>
                 <ImgAndButton class="gap-3" @activeToast="activeToast" @changePicture="selectedFile"
-                    :image="formUserCreateUpdate.image" :btnTitle="langs.UploadNewPicture" />
+                    :image="formUserCreateUpdate.image" :btnTitle="langs.Upload" />
             </div>
             <Button :text="langs.Save"> </Button>
         </form>
@@ -25,7 +25,6 @@
 
 <script>
 import DataManipulate from "../../../helpers/DataManipulate";
-import { markRaw } from "vue";
 import Popoup from '../../public/Popoup.vue';
 import { langStore } from '../../../store/langStore';
 import Button from '../../widgets/Button.vue';
