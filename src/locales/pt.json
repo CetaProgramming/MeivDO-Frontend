@@ -120,7 +120,13 @@
         "Active": "Ativo",
         "Upload": "Atualizar nova foto",
         "Save": "Guardar",
-        "SelectOption": "Seleciona uma opção"
+        "SelectOption": "Seleciona uma opção",
+        "updatedSucess": "Atualizadas as informações do utilizador",
+        "createdSucess": "Utilizador inserido com sucesso",
+        "errorCreatedUpdated": "Ocorreu um erro ao efetuar a operação, verique os campos",
+        "EmailError": "Email é obrigatório!",
+        "NameError": "Nome é obrigatório!",
+        "RoleError": "Cargo é obrigatório!"
     },
     "HoursComponents": {
         "SEC" : {
