@@ -2,12 +2,12 @@
 
     <div v-for="item in items"
         class="bg-white rounded-md flex flex-col min-w-fit md:flex-row md:flex-wrap gap-2 lg:grid py-2 px-4 mt-1 items-center md:overflow-auto dark:bg-MeivMatteBlack"
-        :style="style" :key=item.id.value>
+        :style="style" :key=item.id>
         <div v-for="subitem,index in Object.keys(item)"
             class="grid overflow-auto md:text-ellipsis lg:block w-full lg:w-auto gap-3 justify-items-start md:w-[49%] grid-cols-auto-1fr">
             <component :is="component[index]" v-bind="{ headerTitle: header[index], item: item[subitem] }" />
         </div>
-        <Select :selectItems="selectItems" @selectOption="selectItem($event, item.id)"/>
+        <Select :selectItems="selectItems" @input="selectItem($event, item.id)" @selectOption="selectItem($event, item.id)"/>
     </div>
 </template>
 
