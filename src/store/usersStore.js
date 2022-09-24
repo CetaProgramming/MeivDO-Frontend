@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
 import axios from 'axios';
+import { userLogin } from './userLogin';
 
 export const usersStore = defineStore('usersStore', {
     state: () => {
@@ -116,6 +117,7 @@ export const usersStore = defineStore('usersStore', {
                     formData
                 );
                 this.users[this.users.findIndex(user => user.id == userId)] = this.createObj(response.data)
+                userLogin().defineDataUser(response.data);
                 this.get(this.pag.actualPage);
                 return response.data
             } catch (error) {
