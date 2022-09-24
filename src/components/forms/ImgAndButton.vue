@@ -2,7 +2,7 @@
     <div class="flex flex-col justify-center items-center">
         <img class="dropdown w-28 h-28 md:w-32 md:h-32 rounded-full object-top object-cover" :src="photo" alt="foto" />
         <input class="hidden" type="file" @change="changePicture" ref="fileInput">
-        <Button :width="w-2/5" class=" p-3  dark:bg-zinc-800" :text="btnTitle" bg="bg-black"
+        <Button width="w-auto" space="dasd" typeFont="normal" pad="px-5 py-2"  class="dark:bg-zinc-800" :text="btnTitle" bg="bg-black"
             @click.prevent="$refs.fileInput.click()" />
     </div>
 

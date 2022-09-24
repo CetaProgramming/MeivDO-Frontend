@@ -46,11 +46,11 @@ export const userLogin = defineStore('userLogin', {
           
       },
       defineDataUser({id, name, email:emailU, image, role}){
-        this.id = id;
-        this.name = name;
-        this.email = emailU;
-        this.image = image ? `${import.meta.env.VITE_API_ENDPOINT}/storage/${image}` : image;
-        this.role = role;
+        if(role) this.id = id;
+        if(name) this.name = name;
+        if(emailU) this.email = emailU;
+        if(image) this.image = image ? `${import.meta.env.VITE_API_ENDPOINT}/storage/${image}` : image;
+        if(role) this.role = role;
       },
       isAllowed(accessRoute){
         if(this.role)

@@ -117,9 +117,15 @@
         "Email": "Email",
         "Role": "Role",
         "Active": "Active",
-        "Upload new picture": "Upload new picture",
+        "Upload": "Upload new picture",
         "Save": "Save",
-        "SelectOption": "Select your option"
+        "SelectOption": "Select your option",
+        "updatedSucess": "User info successfully updated!",
+        "createdSucess": "User info successfully added!",
+        "errorCreatedUpdated": "Ocurred a error when doing this task, please verify data!",
+        "EmailError": "Email is required!",
+        "NameError": "Name is required!",
+        "RoleError": "Role is required!"
     },
     "HoursComponents": {
         "SEC" : {

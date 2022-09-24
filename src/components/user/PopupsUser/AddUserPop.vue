@@ -1,21 +1,21 @@
 <template>
-    <Popoup :titlePopUp="langs.Title">
+    <Popoup :titlePopUp="langs.Title" class="font-meivdo">
         <form @submit.prevent="updateUser" class="flex flex-col gap-5">
             <div class="font-openSans grid grid-cols-1 items-center gap-5 md:gap-1  lg:grid-cols-1fr-auto md:justify-between ">
                 <div class="flex flex-col gap-7 lg:w-4/5">
                     <InputLabelError ref="formUserCreateName" v-model="formUserCreateUpdate.name"
-                        placeholder="Insert a name" :msg="langs.EmailError" :name="langs.Name"
+                        placeholder="Insert a name" :msg="langs.NameError" :name="langs.Name"
                         :default="formUserCreateUpdate.name" />
                     <InputLabelError ref="formUserCreateEmail" type="email" v-model="formUserCreateUpdate.email"
                         placeholder="Insert email" :msg="langs.EmailError" :name="langs.Email"
                         :default="formUserCreateUpdate.email" />
-                    <SelectLabel ref="formUserCreateRole"  name="teste" :items="roles"
+                    <SelectLabel ref="formUserCreateRole" :msg="langs.RoleError" :items="roles" :name="langs.Role"
                         :default="formUserCreateUpdate.role_id" v-model="formUserCreateUpdate.role_id" />
                     <SwitchLabel v-if="showActive" v-model="formUserCreateUpdate.active" @change="changeValue"
                         :default="Boolean(formUserCreateUpdate.active)  " :name="langs.Active" />
                 </div>
                 <ImgAndButton class="gap-3" @activeToast="activeToast" @changePicture="selectedFile"
-                    :image="formUserCreateUpdate.image" :btnTitle="langs.UploadNewPicture" />
+                    :image="formUserCreateUpdate.image" :btnTitle="langs.Upload" />
             </div>
             <Button :text="langs.Save"> </Button>
         </form>
@@ -25,7 +25,6 @@
 
 <script>
 import DataManipulate from "../../../helpers/DataManipulate";
-import { markRaw } from "vue";
 import Popoup from '../../public/Popoup.vue';
 import { langStore } from '../../../store/langStore';
 import Button from '../../widgets/Button.vue';
@@ -109,17 +108,15 @@ export default {
                                     role_id: this.formUserCreateUpdate.role_id
                                 })
                                 );
-
-                           
+                                console.log(this.user);
                             this.$emit("closePopUp");
                             this.$emit("activeToast", {
-                                msg: this.langs.updateSucess,
+                                msg: this.user && this.langs.updatedSucess || !this.user && this.langs.createdSucess,
                                 type: ToastSuccess
                             });
                         } catch (error) {
-                            console.log(error)
                             this.$emit("activeToast", {
-                                msg: this.langs.updateFailed,
+                                msg: this.langs.errorCreatedUpdated,
                                 type: ToastError
                             });
                          }

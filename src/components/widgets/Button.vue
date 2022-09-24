@@ -1,10 +1,14 @@
 <template>
-    <button type="submit"  class="tracking-widest rounded" :class="bg, color, typeFont, pad, fontSize, width">{{ text }} </button>
+    <button type="submit"  class="rounded" :class="bg, color, typeFont, pad, fontSize, width, space">{{ text }} </button>
 </template>
 
 <script>
     export default {
       props: {
+        space: {
+          default: "tracking-widest",
+          type: String
+        },
         text: {
           default: "Text",
           type: String

@@ -2,7 +2,7 @@
     <component :is="this.toast.type" v-if="this.toast.visible" :msg="this.toast.msg" @closeToast="this.toast.visible = false"/>
     <div class="bg-MeivAsh  min-h-screen font-openSans dark:bg-zinc-900">
         <div class="px-8 md:px-16 py-8 flex flex-col gap-5">
-            <HeaderUser />
+            <HeaderUser @activeToast="showToast"/>
             <MenuUsers />
             <div class="grid gap-1 lg:gap-0 lg:flex lg:flex-col lg:overflow-auto">
                 <TableHeader ref="header" :header=langsUser.UserHeader :style="GetLenght" />
