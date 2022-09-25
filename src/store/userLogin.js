@@ -45,12 +45,12 @@ export const userLogin = defineStore('userLogin', {
         }
           
       },
-      defineDataUser({id, name, email:emailU, image, role}){
-        if(role) this.id = id;
-        if(name) this.name = name;
-        if(emailU) this.email = emailU;
-        if(image) this.image = image ? `${import.meta.env.VITE_API_ENDPOINT}/storage/${image}` : image;
-        if(role) this.role = role;
+      defineDataUser({id, name, email:emailU, image, role}, reset = false){
+        if(role || reset) this.id = id;
+        if(name || reset) this.name = name;
+        if(emailU || reset) this.email = emailU;
+        if(image || reset) this.image = image ? `${import.meta.env.VITE_API_ENDPOINT}/storage/${image}` : image;
+        if(role || reset) this.role = role;
       },
       isAllowed(accessRoute){
         if(this.role)
@@ -65,7 +65,7 @@ export const userLogin = defineStore('userLogin', {
           email: null,
           image: null,
           role: null
-        })
+        }, true);
       },
       async changePassword(data){
         await axios.put(`${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/changePassword`,
