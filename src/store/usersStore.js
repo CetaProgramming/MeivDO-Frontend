@@ -40,10 +40,19 @@ export const usersStore = defineStore('usersStore', {
                 updated: user.updated,
             }
         },
+        async doSearch({Name = '', Active = ''}){
+            const response = await axios.get(
+                `${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/users/search?name=${Name}&active=${Active}`
+            );
+            this.refactoringViewing(response);
+        },
         async mount() {
             const response = await axios.get(
                 `${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/users`
             );
+            this.refactoringViewing(response);
+        },
+        refactoringViewing(response){
             this.pag.actualPage = response.data.current_page;
             this.pag.lastPage = response.data.last_page;
             this.totalItems = response.data.total;
