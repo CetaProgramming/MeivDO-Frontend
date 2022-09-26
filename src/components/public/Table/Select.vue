@@ -13,7 +13,7 @@
         },
         methods: {
             optionSelected(event){
-                if(event.target.tagName.toLowerCase().includes("option"))
+                if(this.value)
                     this.$emit('selectOption', this.value)
             }
         },
