@@ -11,7 +11,8 @@
     export default {
     computed:{
         background(){
-            return this.item && 'bg-green-400' || !this.item && 'bg-red-400';
+            const value = Number(this.item)
+            return value && 'bg-green-400' || !value && 'bg-red-400';
         }
     },
     props: {
