@@ -7,7 +7,7 @@
             class="grid overflow-auto md:text-ellipsis lg:block w-full lg:w-auto gap-3 justify-items-start md:w-[49%] grid-cols-auto-1fr">
             <component :is="component[index]" v-bind="{ headerTitle: header[index], item: item[subitem] }" />
         </div>
-        <Select :selectItems="selectItems" @input="selectItem($event, item.id)" @selectOption="selectItem($event, item.id)"/>
+        <Select :selectItems="selectItems" @selectOption="selectItem($event, item.id)"/>
     </div>
 </template>
 
