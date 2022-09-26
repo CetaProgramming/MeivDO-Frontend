@@ -74,6 +74,15 @@
         "Active": "Ativo",
         "Inactive": "Inativo"
     },
+    "ToolFeature": {
+        "View": "Ver",
+        "ButtonNew": "Novo",
+        "ToolHeader": [
+            "Nr.", "Nome", "Email", "Cargo", "Estado", "Atualizado"
+        ],
+        "Active": "Ativo",
+        "Inactive": "Inativo"
+    },
     "Paginate": {
         "Page" : "Página",
         "BtnGo" : "Ir",
@@ -112,6 +121,11 @@
             "link": "users"
         }
     },
+    "User": {
+        "Keywords": "Palavras chave",
+        "Status": "Estado",
+        "SelectOpion": "Selecione a sua opção"
+    },
     "PopupAddUser": {
         "Title": "Utilizador",
         "Name": "Nome",
@@ -127,6 +141,20 @@
         "EmailError": "Email é obrigatório!",
         "NameError": "Nome é obrigatório!",
         "RoleError": "Cargo é obrigatório!"
+    },
+    "Tool": {
+        "Keywords": "Palavras chave",
+        "Category": "Categorias",
+        "SelectOpion": "Selecione a sua opção"
+    },
+    "PopupAddTool": {
+        "Title": "Ferramenta",
+        "Name": "Nome",
+        "Save": "Guardar",
+        "updatedSucess": "Atualizadas as informações da ferramenta",
+        "createdSucess": "Ferramenta inserida com sucesso",
+        "errorCreatedUpdated": "Ocorreu um erro ao efetuar a operação, verique os campos",
+        "NameError": "Nome é obrigatório!"
     },
     "HoursComponents": {
         "SEC" : {
