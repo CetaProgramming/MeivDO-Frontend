@@ -26,7 +26,7 @@ export const usersStore = defineStore('usersStore', {
                 image: `${import.meta.env.VITE_API_ENDPOINT}/storage/${user.image}`,
                 email: user.email,
                 role: user.role,
-                active: user.active,
+                active: Number(user.active),
                 updated: user.updated_at
             }
         },
@@ -36,7 +36,7 @@ export const usersStore = defineStore('usersStore', {
                 name: user.name,
                 email: user.email,
                 role: user.role,
-                active: user.active,
+                active: Number(user.active),
                 updated: user.updated,
             }
         },
@@ -120,7 +120,7 @@ export const usersStore = defineStore('usersStore', {
                     formData
                 );
                 this.users[this.users.findIndex(user => user.id == userId)] = this.createObj(response.data)
-                userLogin().defineDataUser(response.data);
+                userLogin().id == userId && userLogin().acessUser();
                 this.get(this.pag.actualPage);
                 return response.data
             } catch (error) {
