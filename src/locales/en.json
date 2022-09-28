@@ -127,6 +127,31 @@
         "NameError": "Name is required!",
         "RoleError": "Role is required!"
     },
+    "Filters": {
+        "Users": {
+            "Keyword": {
+                "Label" : "Keywords",
+                "Input" : "Type Name or Email"
+            },
+            "Status": {
+                "Text": "Status",
+                "Options": [
+                    {
+                        "name": "Both",
+                        "value": ""
+                    },
+                    {
+                        "name": "Active",
+                        "value": 1
+                    },
+                    {
+                        "name": "Inactive",
+                        "value": 0
+                    }
+                ]
+            }
+        }
+    },
     "HoursComponents": {
         "SEC" : {
             "sing":"second",
