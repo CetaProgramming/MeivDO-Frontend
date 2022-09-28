@@ -4,8 +4,9 @@
         <select id="status" :value="value" @change="changeValue" 
             class="bg-zinc-300 p-2 rounded-md hover:cursor-pointer w-full dark:bg-zinc-800 ">
             <option value="" disabled hidden>Select option</option>
-            <option v-for="item in items" :value="item.value">{{item.name}}</option>
+            <option v-for="item in items" :value="item.id">{{item.name}}</option>
         </select>
+        <Label v-if="isError" :name="name" class="font-openSans text-xs" color="text-red-500" :msg="msg"/>
     </div>
 </template>
 
@@ -14,6 +15,7 @@ import Label from '../widgets/Label.vue';
 export default {
     data() {
         return {
+            isError: false,
             value: this.default
         };
     },
@@ -29,14 +31,21 @@ export default {
             required: true,
             type: Array,
         },
+        msg: {
+            default: "error",
+            type: String,
+        },
     },
     methods: {
+        inputValid(){
+            if(!this.value)
+                return this.isError = true;
+            return this.isError = false;
+        },
         changeValue(event) {
             this.value = event.target.value
+            this.inputValid();
             this.$emit('update:modelValue', event.target.value)
-        },
-        resetValues(){
-            this.value = '';
         }
     },
 
@@ -45,3 +54,4 @@ export default {
     }
 }
 </script>
+
