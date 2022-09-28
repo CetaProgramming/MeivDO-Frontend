@@ -9,7 +9,7 @@
                     <InputLabelError ref="formUserCreateEmail" type="email" v-model="formUserCreateUpdate.email"
                         placeholder="Insert email" :msg="langs.EmailError" :name="langs.Email"
                         :default="formUserCreateUpdate.email" />
-                    <SelectLabel ref="formUserCreateRole" :msg="langs.RoleError" :items="roles" :name="langs.Role"
+                    <SelectLabelError ref="formUserCreateRole" :msg="langs.RoleError" :items="roles" :name="langs.Role"
                         :default="formUserCreateUpdate.role_id" v-model="formUserCreateUpdate.role_id" />
                     <SwitchLabel v-if="showActive" v-model="formUserCreateUpdate.active" @change="changeValue"
                         :default="Boolean(formUserCreateUpdate.active)  " :name="langs.Active" />
@@ -31,7 +31,7 @@ import Button from '../../widgets/Button.vue';
 import Input from '../../widgets/Input.vue';
 import DarkModeSwitch from '../../dashboard/DarkModeSwitch.vue';
 import InputLabelError from '../../forms/InputLabelError.vue';
-import SelectLabel from '../../forms/SelectLabel.vue';
+import SelectLabelError from '../../forms/SelectLabelError.vue';
 import { usersStore } from '../../../store/usersStore'
 import ImgAndButton from '../../forms/ImgAndButton.vue';
 import SwitchLabel from '../../forms/SwitchLabel.vue';
@@ -132,7 +132,7 @@ export default {
         Input,
         DarkModeSwitch,
         InputLabelError,
-        SelectLabel,
+        SelectLabelError,
         ImgAndButton,
         SwitchLabel
     },
