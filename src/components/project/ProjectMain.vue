@@ -1,0 +1,137 @@
+<template>
+    <component :is="this.toast.type" v-if="this.toast.visible" :msg="this.toast.msg" @closeToast="this.toast.visible = false"/>
+    <div class="bg-MeivAsh  min-h-screen font-openSans dark:bg-zinc-900">
+        <div class="px-8 md:px-16 py-8 flex flex-col gap-5">
+            <HeaderProject @activeToast="showToast"/>
+            <MenuProjects />
+            <div class="grid gap-1 lg:gap-0 lg:flex lg:flex-col lg:overflow-auto">
+                <TableHeader ref="header" :header=langsProject.ProjectHeader :style="GetLenght" />
+                <TableBody :header=langsProject.ProjectHeader :component="ComponentProject" :items=projectStore.viewing :style="GetLenght" :selectItems="selectItems" @selectOption="popUpOpen" />
+            </div>
+            <Paginate @selectPage="changePage" :pag="projectStore.pag" />
+        </div>
+    </div>
+        <PopupDeleteProject v-if="isDeleteClicked" @activeToast="showToast" @closePopUp="isDeleteClicked= false" :IdProject="projectID"/>
+        <AddProjectPop v-if="isUpdateClick" @activeToast="showToast" @closePopUp="isUpdateClick= false" :project="getDataProject" :showActive="true" />
+</template>
+<script>
+import { markRaw } from "vue";
+import { projectStore } from './../../store/projectStore';
+import { langStore } from "../../store/langStore";
+import HeaderProject from './HeaderProject.vue';
+import MenuProjects from './MenuProjects.vue';
+import TableHeader from './../public/Table/TableHeader.vue';
+import TableBody from './../public/Table/TableBody.vue';
+import Paginate from './../public/Table/Paginate.vue';
+import PopupDeleteProject from '../../components/project/PopupsProject/PopupDeleteProject.vue';
+import AddProjectPop from './PopupsProject/AddProjectPop.vue';
+import ComponentRowText from '../public/Table/ComponentsTable/ComponentRowText.vue';
+import ComponentRowStatus from '../public/Table/ComponentsTable/ComponentRowStatus.vue';
+import ComponentRowObject from '../public/Table/ComponentsTable/ComponentRowObject.vue';
+import ComponentTimePassed from "../public/Table/ComponentsTable/ComponentTimePassed.vue";
+
+export default {
+    data() {
+        return {
+            ComponentProject: [ 
+                markRaw(ComponentRowText), 
+                markRaw(ComponentRowText),
+                markRaw(ComponentRowText), 
+                markRaw(ComponentRowStatus),
+                markRaw(ComponentRowText),
+                markRaw(ComponentRowText),
+                markRaw(ComponentTimePassed),
+                // markRaw(ComponentRowObject)
+            ],
+            isUpdateClick : false,
+            projectID: null,
+            toast: {
+                msg: '',
+                visible: false,
+                type: ''
+            },
+            isDeleteClicked : false,
+            projectStore: projectStore(),
+            selectItems: [
+                {
+                    key: "",
+                    disabled: true,
+                    component: "",
+                    value: "Options"
+                },
+                {
+                    key: "update",
+                    component: "",
+                    value: "Updated"
+                },
+                {
+                    key: "deleted",
+                    component: "",
+                    value: "Deleted"
+                }
+            ]
+        }
+    },
+    computed: {
+        GetLenght() {
+            return  `grid-template-columns: 50px repeat(${this.langsProject.ProjectHeader.length}, minmax(150px, 1fr));`
+        },
+        getDataProject(){
+            
+            return this.projectStore.projects.find(project =>  this.projectID == project.id)
+            
+        },
+        langsProject() {
+            return langStore().getLang.ProjectFeature
+        },
+        pages(){
+            return langStore().getLang.Paginate
+        }
+    },
+    async mounted(){
+        await this.projectStore.mount()
+    },
+    methods: {
+        popUpOpen(select, projectId){
+            this.projectID = projectId;
+            if(select == "deleted"){
+                this.isDeleteClicked = true;
+            }
+            if(select == "update") {
+                this.isUpdateClick = true
+            }
+        },
+        changePage(page){
+            (async () => {
+                try {
+                    await this.projectStore.get(page)
+                    this.$refs.header.$el.scrollIntoView({ behavior: "smooth" });
+                } catch (e){
+                    this.toast.msg = this.pages.PageNotFound;
+                    this.toast.type = ToastError
+                    this.toast.visible = true;
+                }
+                })()
+        },
+        showToast(data){
+            this.toast.msg = data.msg;
+            this.toast.type = data.type;
+            this.toast.visible = true;
+        },
+    },
+    components: {
+    HeaderProject,
+    MenuProjects,
+    TableBody,
+    Paginate,
+    TableHeader,
+    PopupDeleteProject,
+    AddProjectPop,
+    ComponentRowText,
+    ComponentRowStatus,
+    ComponentRowObject,
+    ComponentTimePassed
+},
+    
+}
+</script>

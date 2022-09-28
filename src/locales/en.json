@@ -127,6 +127,34 @@
         "NameError": "Name is required!",
         "RoleError": "Role is required!"
     },
+    "PopupProjectDelete": {
+        "DeleteTextFirst": "Are you sure you want to delete project ",
+        "DeleteTextEnd": "?",
+        "DeleteProjectSucess":"Project deleted successfully!",
+        "DeleteProjectError":"Project couldn't be deleted, please verify",
+        "Confirmation": "Yes"
+    },
+    "ProjectFeature": {
+        "View": "View",
+        "ButtonNew": "New",
+        "ProjectHeader": [
+         "NO.", "Name", "Address", "Status", "Start Date", "End Date", "Updated"
+        ],
+        "Active": "Active",
+        "Inactive": "Inactive"
+    },
+    "PopupAddProject": {
+        "Title": "Project",
+        "Name": "Name",
+        "Address": "Address",
+        "Status": "Status",
+        "Save": "Save",
+        "SelectOption": "Select your option",
+        "updatedSucess": "Project info successfully updated!",
+        "createdSucess": "Project info successfully added!",
+        "errorCreatedUpdated": "Ocurred a error when doing this task, please verify data!",
+        "NameError": "Name is required!"
+    },
     "HoursComponents": {
         "SEC" : {
             "sing":"second",

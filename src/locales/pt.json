@@ -128,6 +128,35 @@
         "NameError": "Nome é obrigatório!",
         "RoleError": "Cargo é obrigatório!"
     },
+    "PopupProjectDelete": {
+        "ProjectID" : "Projeto ",
+        "DeleteTextFirst": "Tem a certeza que pretende apagar o projeto ",
+        "DeleteTextEnd": "?",
+        "DeleteProjectSucess":"Projeto apagado com sucesso!",
+        "DeleteProjectError":"Não foi possível apagar o projeto, verifique",
+        "Confirmation": "Sim"
+    },
+    "ProjectFeature": {
+        "View": "Ver",
+        "ButtonNew": "Novo",
+        "ProjectHeader": [
+            "Nr.", "Nome", "Morada", "Estado", "Data Início", "Data Fim", "Atualizado"
+        ],
+        "Active": "Ativo",
+        "Inactive": "Inativo"
+    },
+    "PopupAddProject": {
+        "Title": "Projeto",
+        "Name": "Nome",
+        "Address": "Morada",
+        "Status": "Estado",
+        "Save": "Guardar",
+        "SelectOption": "Seleciona uma opção",
+        "updatedSucess": "Atualizadas as informações do projeto",
+        "createdSucess": "Projeto inserido com sucesso",
+        "errorCreatedUpdated": "Ocorreu um erro ao efetuar a operação, verique os campos",
+        "NameError": "Nome é obrigatório!"
+    },
     "HoursComponents": {
         "SEC" : {
             "sing":"segundo",

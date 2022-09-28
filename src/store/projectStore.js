@@ -37,9 +37,7 @@ export const projectStore = defineStore('projectStore', {
                 status: Number(project.status),
                 startDate: project.startDate,
                 endDate: project.endDate,
-                userId: project.user_id,
                 updated: project.updated,
-                project_tools: project.project_tools
             }
         },
         async mount() {
@@ -51,7 +49,7 @@ export const projectStore = defineStore('projectStore', {
             this.totalItems = response.data.total;
             this.perPage = response.data.per_page;
             this.pagesLoad.push(1);
-            this.projects = response.data.data.map(user => this.createObj(project)),
+            this.projects = response.data.data.map(project => this.createObj(project)),
                 this.viewing = this.pageViewing(this.projects)
         },
         pageViewing(projects) {
