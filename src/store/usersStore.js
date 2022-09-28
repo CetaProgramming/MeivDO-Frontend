@@ -12,6 +12,7 @@ export const usersStore = defineStore('usersStore', {
                 actualPage: 1,
                 lastPage: null,
             },
+            filtered: false,
             viewing: [],
             pagesLoad: [],
             perPage: null,
@@ -40,7 +41,11 @@ export const usersStore = defineStore('usersStore', {
                 updated: user.updated,
             }
         },
-        async doSearch({Name = '', Active = ''}){
+        async doSearch({Name = '', Active = ''}, reset = false){
+            console.log(reset, this.filtered);
+            if(reset && this.filtered === false || !reset && this.filtered === false && (!Name && !Active))
+                return;
+            this.filtered = reset ? false : true;
             const response = await axios.get(
                 `${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/users/search?name=${Name}&active=${Active && Number(Active)}`
             );
