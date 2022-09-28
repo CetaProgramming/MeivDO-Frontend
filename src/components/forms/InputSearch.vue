@@ -2,8 +2,7 @@
     <div class="flex flex-col gap-2">
         <Label :name="name.Label" :msg="name.Label" />
         <div class="flex bg-zinc-300 p-1 rounded-md dark:bg-zinc-800 relative items-center">
-            <fas class="pl-1" icon="fa-solid fa-search" />
-            <Input ref="inputReset" v-model="value" :placeholder="name.Input" pad="p-1" @input="changeValue" class="indent-1 w-full" />
+            <Input ref="inputReset" v-model="value" :placeholder="name.Input" pad="p-1" @input="changeValue" class=" w-full" />
         </div>
     </div>
 </template>
