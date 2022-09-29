@@ -7,7 +7,7 @@
             class="grid overflow-auto md:text-ellipsis lg:block w-full lg:w-auto gap-3 justify-items-start md:w-[49%] grid-cols-auto-1fr">
             <component :is="component[index]" v-bind="{ headerTitle: header[index], item: item[subitem] }" />
         </div>
-        <Select :selectItems="selectItems" @selectOption="selectItem($event, item.id)"/>
+        <Select  :select="resetSelect" :selectItems="selectItems" @selectOption="selectItem($event, item.id)"/>
     </div>
 </template>
 
@@ -15,6 +15,11 @@
 import Select from './../Table/Select.vue'
 
 export default {
+    data(){
+        return{
+            resetSelect: false
+        }
+    },
     props: ['style', 'items', 'header', 'selectItems', 'component'],
     components: {
         Select
@@ -23,6 +28,7 @@ export default {
     methods: {
         selectItem(select, event) {
             this.$emit('selectOption', select, event);
+            this.resetSelect = !this.resetSelect
         }
     }
 }
