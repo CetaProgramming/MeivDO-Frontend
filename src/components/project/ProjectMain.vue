@@ -36,7 +36,6 @@ export default {
             ComponentProject: [ 
                 markRaw(ComponentRowText), 
                 markRaw(ComponentRowText),
-                markRaw(ComponentRowText), 
                 markRaw(ComponentRowStatus),
                 markRaw(ComponentRowText),
                 markRaw(ComponentRowText),

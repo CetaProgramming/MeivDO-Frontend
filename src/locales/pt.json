@@ -140,7 +140,7 @@
         "View": "Ver",
         "ButtonNew": "Novo",
         "ProjectHeader": [
-            "Nr.", "Nome", "Morada", "Estado", "Data Início", "Data Fim", "Atualizado"
+            "ID", "Nome", "Estado", "Data Início", "Data Fim", "Atualizado"
         ],
         "Active": "Ativo",
         "Inactive": "Inativo"

@@ -138,7 +138,7 @@
         "View": "View",
         "ButtonNew": "New",
         "ProjectHeader": [
-         "NO.", "Name", "Address", "Status", "Start Date", "End Date", "Updated"
+         "ID", "Name", "Status", "Start Date", "End Date", "Updated"
         ],
         "Active": "Active",
         "Inactive": "Inactive"

@@ -33,7 +33,6 @@ export const projectStore = defineStore('projectStore', {
             return {
                 id: project.id,
                 name: project.name,
-                address: project.address,
                 status: Number(project.status),
                 startDate: project.startDate,
                 endDate: project.endDate,
