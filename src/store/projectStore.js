@@ -33,11 +33,31 @@ export const projectStore = defineStore('projectStore', {
             return {
                 id: project.id,
                 name: project.name,
-                status: Number(project.status),
                 startDate: project.startDate,
                 endDate: project.endDate,
+                status: Number(project.status),
                 updated: project.updated,
             }
+        },
+        async doSearch({Name = '', Active = '', StartDate = '', EndDate = ''}, reset = false){
+            console.log(reset, this.filtered);
+            if(reset && this.filtered === false || !reset && this.filtered === false && (!Name && !Active && !StartDate && !EndDate))
+                return;
+            this.filtered = reset ? false : true;
+            const response = await axios.get(
+                `${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/projects/search?name=${Name}&active=${Active && Number(Active)}&startDate=${StartDate}&endDate=${EndDate}`
+            );
+            this.refactoringViewing(response);
+        },
+        refactoringViewing(response){
+            this.pag.actualPage = response.data.current_page;
+            this.pag.lastPage = response.data.last_page;
+            this.totalItems = response.data.total;
+            this.perPage = response.data.per_page;
+            this.pagesLoad = [];
+            this.pagesLoad.push(1);
+            this.projects = response.data.data.map(project => this.createObj(project)),
+                this.viewing = this.pageViewing(this.projects)
         },
         async mount() {
             const response = await axios.get(

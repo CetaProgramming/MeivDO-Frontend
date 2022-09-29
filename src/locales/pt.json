@@ -128,34 +128,65 @@
         "NameError": "Nome é obrigatório!",
         "RoleError": "Cargo é obrigatório!"
     },
-    "PopupProjectDelete": {
-        "ProjectID" : "Projeto ",
-        "DeleteTextFirst": "Tem a certeza que pretende apagar o projeto ",
-        "DeleteTextEnd": "?",
-        "DeleteProjectSucess":"Projeto apagado com sucesso!",
-        "DeleteProjectError":"Não foi possível apagar o projeto, verifique",
-        "Confirmation": "Sim"
-    },
-    "ProjectFeature": {
-        "View": "Ver",
-        "ButtonNew": "Novo",
-        "ProjectHeader": [
-            "ID", "Nome", "Estado", "Data Início", "Data Fim", "Atualizado"
-        ],
-        "Active": "Ativo",
-        "Inactive": "Inativo"
-    },
-    "PopupAddProject": {
-        "Title": "Projeto",
-        "Name": "Nome",
-        "Address": "Morada",
-        "Status": "Estado",
-        "Save": "Guardar",
-        "SelectOption": "Seleciona uma opção",
-        "updatedSucess": "Atualizadas as informações do projeto",
-        "createdSucess": "Projeto inserido com sucesso",
-        "errorCreatedUpdated": "Ocorreu um erro ao efetuar a operação, verique os campos",
-        "NameError": "Nome é obrigatório!"
+    "PageProjects": {
+        "PopupAddProject": {
+            "Title": "Projeto",
+            "Name": "Nome",
+            "Address": "Morada",
+            "Status": "Estado",
+            "Save": "Guardar",
+            "updatedSucess": "Atualizadas as informações do projeto",
+            "createdSucess": "Projeto inserido com sucesso",
+            "errorCreatedUpdated": "Ocorreu um erro ao efetuar a operação, verique os campos",
+            "NameError": "Nome é obrigatório!"
+        },
+        "PopupProjectDelete": {
+            "ProjectID" : "Projeto ",
+            "DeleteTextFirst": "Tem a certeza que pretende apagar o projeto ",
+            "DeleteTextEnd": "?",
+            "DeleteProjectSucess":"Projeto apagado com sucesso!",
+            "DeleteProjectError":"Não foi possível apagar o projeto, verifique",
+            "Confirmation": "Sim"
+        },
+        "ProjectFeature": {
+            "View": "Ver",
+            "ButtonNew": "Novo",
+            "ProjectHeader": [
+                "ID",
+                "Nome",
+                "Data de Início",
+                "Data de Fim",
+                "Estado",
+                "Atualizado"
+            ],
+            "Active": "Active",
+            "Inactive": "Inactive"
+        },
+        "Filters": {
+                "Keyword": {
+                    "Label": "Palavra-Chave",
+                    "Input": "Digite um nome"
+                },
+                "Status": {
+                    "Text": "Estado",
+                    "Options": [
+                        {
+                            "name": "Ambos",
+                            "value": ""
+                        },
+                        {
+                            "name": "Aberto",
+                            "value": 1
+                        },
+                        {
+                            "name": "Fechado",
+                            "value": 0
+                        }
+                    ]
+                },
+                "StartDate": "Data de Início",
+                "EndDate": "Data de Fim"
+            }
     },
     "HoursComponents": {
         "SEC" : {

@@ -3,7 +3,7 @@
     <div class="bg-MeivAsh  min-h-screen font-openSans dark:bg-zinc-900">
         <div class="px-8 md:px-16 py-8 flex flex-col gap-5">
             <HeaderProject @activeToast="showToast"/>
-            <MenuProjects />
+            <FilterProjects />
             <div class="grid gap-1 lg:gap-0 lg:flex lg:flex-col lg:overflow-auto">
                 <TableHeader ref="header" :header=langsProject.ProjectHeader :style="GetLenght" />
                 <TableBody :header=langsProject.ProjectHeader :component="ComponentProject" :items=projectStore.viewing :style="GetLenght" :selectItems="selectItems" @selectOption="popUpOpen" />
@@ -19,7 +19,7 @@ import { markRaw } from "vue";
 import { projectStore } from './../../store/projectStore';
 import { langStore } from "../../store/langStore";
 import HeaderProject from './HeaderProject.vue';
-import MenuProjects from './MenuProjects.vue';
+import FilterProjects from './FilterProjects.vue';
 import TableHeader from './../public/Table/TableHeader.vue';
 import TableBody from './../public/Table/TableBody.vue';
 import Paginate from './../public/Table/Paginate.vue';
@@ -27,6 +27,7 @@ import PopupDeleteProject from '../../components/project/PopupsProject/PopupDele
 import AddProjectPop from './PopupsProject/AddProjectPop.vue';
 import ComponentRowText from '../public/Table/ComponentsTable/ComponentRowText.vue';
 import ComponentRowStatus from '../public/Table/ComponentsTable/ComponentRowStatus.vue';
+import ComponentRowStatusWord from '../public/Table/ComponentsTable/ComponentRowStatusWord.vue';
 import ComponentRowObject from '../public/Table/ComponentsTable/ComponentRowObject.vue';
 import ComponentTimePassed from "../public/Table/ComponentsTable/ComponentTimePassed.vue";
 
@@ -36,9 +37,9 @@ export default {
             ComponentProject: [ 
                 markRaw(ComponentRowText), 
                 markRaw(ComponentRowText),
-                markRaw(ComponentRowStatus),
                 markRaw(ComponentRowText),
                 markRaw(ComponentRowText),
+                markRaw(ComponentRowStatusWord),
                 markRaw(ComponentTimePassed),
                 // markRaw(ComponentRowObject)
             ],
@@ -81,7 +82,7 @@ export default {
             
         },
         langsProject() {
-            return langStore().getLang.ProjectFeature
+            return langStore().getLang.PageProjects.ProjectFeature
         },
         pages(){
             return langStore().getLang.Paginate
@@ -120,7 +121,7 @@ export default {
     },
     components: {
     HeaderProject,
-    MenuProjects,
+    FilterProjects,
     TableBody,
     Paginate,
     TableHeader,
@@ -128,6 +129,7 @@ export default {
     AddProjectPop,
     ComponentRowText,
     ComponentRowStatus,
+    ComponentRowStatusWord,
     ComponentRowObject,
     ComponentTimePassed
 },

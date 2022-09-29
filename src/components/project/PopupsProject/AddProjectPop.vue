@@ -50,7 +50,7 @@ export default {
     },
     computed: {
         langs() {
-            return langStore().getLang.PopupAddProject
+            return langStore().getLang.PageProjects.PopupAddProject
         }
     },
     methods: {

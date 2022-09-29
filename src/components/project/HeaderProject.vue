@@ -25,7 +25,7 @@
        },
        computed: {
            langsProject(){
-               return langStore().getLang.ProjectFeature
+               return langStore().getLang.PageProjects.ProjectFeature
            },
            langsItems(){
                return langStore().getLang.ItemMenu

@@ -23,7 +23,7 @@ import Button from '../../../components/widgets/Button.vue'
 export default {
     computed: {
         langs() {
-            return langStore().getLang.PopupProjectDelete
+            return langStore().getLang.PageProjects.PopupProjectDelete
         },
     },
     components: { 
