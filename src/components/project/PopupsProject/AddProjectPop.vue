@@ -1,8 +1,8 @@
 <template>
     <Popoup :titlePopUp="langs.Title" class="font-meivdo">
         <form @submit.prevent="updateProject" class="flex flex-col gap-5">
-            <div class="font-openSans grid grid-cols-1 items-center gap-5 md:gap-1  lg:grid-cols-1fr-auto md:justify-between ">
-                <div class="flex flex-col gap-7 lg:w-4/5">
+            <div class="font-openSans grid grid-cols-1 items-center gap-5 md:gap-1 md:justify-between ">
+                <div class="flex flex-col gap-7">
                     <InputLabelError ref="formProjectCreateName" v-model="formProjectCreateUpdate.name"
                         placeholder="Insert a name" :msg="langs.NameError" :name="langs.Name"
                         :default="formProjectCreateUpdate.name" />
