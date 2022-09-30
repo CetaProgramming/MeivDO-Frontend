@@ -9,8 +9,10 @@
                     <InputLabelError ref="formProjectCreateAddress" v-model="formProjectCreateUpdate.address"
                         placeholder="Insert address" :msg="langs.AddressError" :name="langs.Address"
                         :default="formProjectCreateUpdate.address" />
-                    <!-- <SelectLabel ref="formUserCreateRole" :msg="langs.RoleError" :items="roles" :name="langs.Role"
-                        :default="formUserCreateUpdate.role_id" v-model="formUserCreateUpdate.role_id" /> -->
+                        <div class="grid grid-cols-2 gap-6">
+                            <SelectDate ref="selectDate"  v-model="startDate" :name="langs.StartDate"/>
+                            <SelectDate ref="selectDate"  v-model="endDate" :name="langs.EndDate"/>
+                        </div>
                     <SwitchLabel v-if="showStatus" v-model="formProjectCreateUpdate.status" @change="changeValue"
                         :default="Boolean(formProjectCreateUpdate.status)  " :name="langs.Status" />
                 </div>
@@ -34,6 +36,7 @@ import SwitchLabel from '../../forms/SwitchLabel.vue';
 import ToastError from "../../public/Toast/ToastError.vue"
 import ToastSuccess from "../../public/Toast/ToastSuccess.vue"
 import FormValidate from "../../mixins/FormValidate";
+import SelectDate from '../../forms/SelectDate.vue';
 
 
 export default {
@@ -44,7 +47,8 @@ export default {
             formProjectCreateUpdate: {
                 name: this.project ? this.project.name : '',
                 address: this.project ? this.project.address : '',
-                status: this.project ? this.project.status : '',
+                startDate: this.project ? this.project.startDate : '',
+                endDate: this.project ? this.project.endDate : '',
             }
         }
     },
@@ -105,14 +109,15 @@ export default {
         },
     },
     components: {
-        Popoup,
-        Button,
-        Input,
-        DarkModeSwitch,
-        InputLabelError,
-        SelectLabel,
-        SwitchLabel
-    },
+    Popoup,
+    Button,
+    Input,
+    DarkModeSwitch,
+    InputLabelError,
+    SelectLabel,
+    SwitchLabel,
+    SelectDate
+},
     emits: ['activeToast'],
     mixins: [FormValidate]
 }

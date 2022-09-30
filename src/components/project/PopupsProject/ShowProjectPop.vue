@@ -7,6 +7,7 @@
                     <LabelShowInfoVue :header="langs.Address" :info="formProjectShow.address"/>
                     <LabelShowInfoVue :header="langs.StartDate" :info="formProjectShow.startDate"/>
                     <LabelShowInfoVue :header="langs.EndDate" :info="formProjectShow.endDate"/>
+                    <LabelShowInfoVue :header="langs.EndDate" :info="formProjectShow.project_tools"/>
                 </div>
             </div>
         </form>
@@ -38,6 +39,7 @@ export default {
                 address: this.project.address,
                 startDate: this.project.startDate,
                 endDate: this.project.endDate,
+                projectTools: this.project.project_tools.name,
             },
         }
     },
