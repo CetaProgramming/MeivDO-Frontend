@@ -13,6 +13,7 @@
     </div>
         <PopupDeleteProject v-if="isDeleteClicked" @activeToast="showToast" @closePopUp="isDeleteClicked= false" :IdProject="projectID"/>
         <AddProjectPop v-if="isUpdateClick" @activeToast="showToast" @closePopUp="isUpdateClick= false" :project="getDataProject" :showActive="true" />
+        <ShowProjectPop v-if="isShowClick" @activeToast="showToast" @closePopUp="isShowClick= false" :project="getDataProject" :showActive="true" />
 </template>
 <script>
 import { markRaw } from "vue";
@@ -25,6 +26,7 @@ import TableBody from './../public/Table/TableBody.vue';
 import Paginate from './../public/Table/Paginate.vue';
 import PopupDeleteProject from '../../components/project/PopupsProject/PopupDeleteProject.vue';
 import AddProjectPop from './PopupsProject/AddProjectPop.vue';
+import ShowProjectPop from './PopupsProject/ShowProjectPop.vue';
 import ComponentRowText from '../public/Table/ComponentsTable/ComponentRowText.vue';
 import ComponentRowStatus from '../public/Table/ComponentsTable/ComponentRowStatus.vue';
 import ComponentRowStatusWord from '../public/Table/ComponentsTable/ComponentRowStatusWord.vue';
@@ -41,8 +43,8 @@ export default {
                 markRaw(ComponentRowText),
                 markRaw(ComponentRowStatusWord),
                 markRaw(ComponentTimePassed),
-                // markRaw(ComponentRowObject)
             ],
+            isShowClick: false,
             isUpdateClick : false,
             projectID: null,
             toast: {
@@ -60,14 +62,19 @@ export default {
                     value: "Options"
                 },
                 {
+                    key: "show",
+                    component: "",
+                    value: "Show"
+                },
+                {
                     key: "update",
                     component: "",
-                    value: "Updated"
+                    value: "Update"
                 },
                 {
                     key: "deleted",
                     component: "",
-                    value: "Deleted"
+                    value: "Delete"
                 }
             ]
         }
@@ -94,6 +101,9 @@ export default {
     methods: {
         popUpOpen(select, projectId){
             this.projectID = projectId;
+            if(select == "show"){
+                this.isShowClick = true;
+            }
             if(select == "deleted"){
                 this.isDeleteClicked = true;
             }
@@ -127,6 +137,7 @@ export default {
     TableHeader,
     PopupDeleteProject,
     AddProjectPop,
+    ShowProjectPop,
     ComponentRowText,
     ComponentRowStatus,
     ComponentRowStatusWord,

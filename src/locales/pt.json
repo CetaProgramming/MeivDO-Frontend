@@ -129,6 +129,13 @@
         "RoleError": "Cargo é obrigatório!"
     },
     "PageProjects": {
+        "PopupShowProject": {
+            "Title": "Project",
+            "Name" : "Nome",
+            "Address": "Morada",
+            "StartDate" : "Data de Início",
+            "EndDate" : "Data de Fim"
+        },
         "PopupAddProject": {
             "Title": "Projeto",
             "Name": "Nome",
