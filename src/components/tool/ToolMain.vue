@@ -1,18 +1,18 @@
 <template>
     <div class="bg-MeivAsh  min-h-screen font-openSans dark:bg-zinc-900">
         <div class="px-8 md:px-16 py-8 flex flex-col gap-5">
-            <HeaderTool />
+            <HeaderTool :newOptions="tableOptionSelected"/>
             <component :is="componentFilter"></component>
             <TableOptions @tableChange="tableChange" />
             <div class="grid gap-1 lg:gap-0 lg:flex lg:flex-col lg:overflow-auto">
-                <TableHeader ref="header" :header=langsTool.ToolHeader :style="GetLenght" />
-                <!-- <TableBody :header=langsTool.ToolHeader :component="Components[tableOptionSelected]" :items=toolStore.viewing
-                    :style="GetLenght" :selectItems="selectItems" /> -->
+                <TableHeader ref="header" :header=langsTool.Headers[tableOptionSelected] :style="GetLenght" />
+                <TableBody :header=langsTool.Headers[tableOptionSelected] :component="Components[tableOptionSelected]" :items=toolStore.viewing
+                    :style="GetLenght" :selectItems="selectItems" @selectOption="popUpOpen" />
             </div>
             <Paginate @selectPage="changePage" :pag="toolStore.pag" />
         </div>
-
     </div>
+    <component v-if="isAddToolClicked" @closePopUp="isAddToolClicked= false" :is="componentFilter"></component>
 </template>
 
 <script>
@@ -35,6 +35,7 @@ import ToolsFilter from "./filters/ToolsFilter.vue";
 export default {
     data() {
         return {
+            valueID: '',
             tableOptionSelected: "Tools",
             Components:{
                   Tools: [
@@ -44,22 +45,13 @@ export default {
                 markRaw(ComponentRowObject),
                 markRaw(ComponentRowStatus),
                 markRaw(ComponentTimePassed),
+                
             ],
             GroupTools: [
-                markRaw(ComponentRowText),
-                markRaw(ComponentRowText),
-                markRaw(ComponentRowText),
-                markRaw(ComponentRowObject),
-                markRaw(ComponentRowText),
-                markRaw(ComponentTimePassed),
+            markRaw(ComponentRowText),
             ],
             Category: [
-                markRaw(ComponentRowText),
-                markRaw(ComponentRowText),
-                markRaw(ComponentRowText),
-                markRaw(ComponentRowObject),
-                markRaw(ComponentRowStatus),
-                markRaw(ComponentTimePassed),
+            markRaw(ComponentRowText),
             ],
             },
             isPicked: false,
@@ -103,7 +95,7 @@ export default {
 },
     computed: {
         GetLenght() {
-            return `grid-template-columns: 50px repeat(${this.langsTool.ToolHeader.length}, minmax(150px, 1fr));`
+            return `grid-template-columns: 50px repeat(${this.langsTool.Headers[this.tableOptionSelected].length}, minmax(150px, 1fr));`
         },
         langsTool() {
             return langStore().getLang.PageTool.ToolFeature
@@ -138,6 +130,16 @@ export default {
             this.toast.msg = data.msg;
             this.toast.type = data.type;
             this.toast.visible = true;
+        },
+        popUpOpen(select, valueId){
+            this.valueID = valueId;
+            if(select == "view"){
+                this.isResetClicked = true;
+            }
+            if(select == "delete"){
+                this.isDeleteClicked = true;
+            }
+            if(select == "update") {this.isUpdateClick = true}
         },
     }
 }
