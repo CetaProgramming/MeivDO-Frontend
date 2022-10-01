@@ -72,6 +72,15 @@
         "Active": "Active",
         "Inactive": "Inactive"
     },
+    "ToolFeature": {
+        "View": "View",
+        "ButtonNew": "New",
+        "ToolHeader": [
+         "NO.", "Name", "Email", "Role", "Status", "Updated"
+        ],
+        "Active": "Active",
+        "Inactive": "Inactive"
+    },
     "Paginate": {
         "Page" : "Page",
         "BtnGo" : "Go",
@@ -110,6 +119,11 @@
             "description": "View the list of users of the company.",
             "link": "users"
         }
+    },
+    "User": {
+        "Keywords": "Keywords",
+        "Status": "Status",
+        "SelectOpion": "Select your option"
     },
     "PopupAddUser": {
         "Title": "User",
@@ -192,6 +206,42 @@
                 },
                 "StartDate": "Start Date",
                 "EndDate": "End Date"
+    "Tool": {
+        "keywords": "Keywords",
+        "Category": "Category",
+        "SelectOpion": "Select your option"
+    },
+    "PopupAddTool": {
+        "Title": "Tool",
+        "Name": "Name",
+        "Save": "Save",
+        "updatedSucess": "Tool info successfully updated!",
+        "createdSucess": "Rool info successfully added!",
+        "errorCreatedUpdated": "Ocurred a error when doing this task, please verify data!",
+        "NameError": "Name is required!"
+    },
+    "Filters": {
+        "Users": {
+            "Keyword": {
+                "Label" : "Keywords",
+                "Input" : "Type Name or Email"
+            },
+            "Status": {
+                "Text": "Status",
+                "Options": [
+                    {
+                        "name": "Both",
+                        "value": ""
+                    },
+                    {
+                        "name": "Active",
+                        "value": 1
+                    },
+                    {
+                        "name": "Inactive",
+                        "value": 0
+                    }
+                ]
             }
     },
     "HoursComponents": {

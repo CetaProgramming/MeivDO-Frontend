@@ -74,6 +74,15 @@
         "Active": "Ativo",
         "Inactive": "Inativo"
     },
+    "ToolFeature": {
+        "View": "Ver",
+        "ButtonNew": "Novo",
+        "ToolHeader": [
+            "Nr.", "Nome", "Email", "Cargo", "Estado", "Atualizado"
+        ],
+        "Active": "Ativo",
+        "Inactive": "Inativo"
+    },
     "Paginate": {
         "Page" : "Página",
         "BtnGo" : "Ir",
@@ -111,6 +120,11 @@
             "description": "Ver a lista de utilizadores da empresa.",
             "link": "users"
         }
+    },
+    "User": {
+        "Keywords": "Palavras chave",
+        "Status": "Estado",
+        "SelectOpion": "Selecione a sua opção"
     },
     "PopupAddUser": {
         "Title": "Utilizador",
@@ -194,6 +208,44 @@
                 },
                 "StartDate": "Data de Início",
                 "EndDate": "Data de Fim"
+         },
+
+    "Tool": {
+        "Keywords": "Palavras chave",
+        "Category": "Categorias",
+        "SelectOpion": "Selecione a sua opção"
+    },
+    "PopupAddTool": {
+        "Title": "Ferramenta",
+        "Name": "Nome",
+        "Save": "Guardar",
+        "updatedSucess": "Atualizadas as informações da ferramenta",
+        "createdSucess": "Ferramenta inserida com sucesso",
+        "errorCreatedUpdated": "Ocorreu um erro ao efetuar a operação, verique os campos",
+        "NameError": "Nome é obrigatório!"
+
+    "Filters": {
+        "Users": {
+            "Keyword": {
+                "Label" : "Palavra-Chave",
+                "Input" : "Nome ou E-mail"
+            },
+            "Status": {
+                "Text": "Estado",
+                "Options": [
+                    {
+                        "name": "Ambos",
+                        "value": ""
+                    },
+                    {
+                        "name": "Ativo",
+                        "value": 1
+                    },
+                    {
+                        "name": "Inativo",
+                        "value": 0
+                    }
+                ]
             }
     },
     "HoursComponents": {
