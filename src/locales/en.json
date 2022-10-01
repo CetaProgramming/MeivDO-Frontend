@@ -72,6 +72,15 @@
         "Active": "Active",
         "Inactive": "Inactive"
     },
+    "ToolFeature": {
+        "View": "View",
+        "ButtonNew": "New",
+        "ToolHeader": [
+         "NO.", "Name", "Email", "Role", "Status", "Updated"
+        ],
+        "Active": "Active",
+        "Inactive": "Inactive"
+    },
     "Paginate": {
         "Page" : "Page",
         "BtnGo" : "Go",
@@ -111,6 +120,11 @@
             "link": "users"
         }
     },
+    "User": {
+        "Keywords": "Keywords",
+        "Status": "Status",
+        "SelectOpion": "Select your option"
+    },
     "PopupAddUser": {
         "Title": "User",
         "Name": "Name",
@@ -127,6 +141,21 @@
         "NameError": "Name is required!",
         "RoleError": "Role is required!"
     },
+
+    "Tool": {
+        "keywords": "Keywords",
+        "Category": "Category",
+        "SelectOpion": "Select your option"
+    },
+    "PopupAddTool": {
+        "Title": "Tool",
+        "Name": "Name",
+        "Save": "Save",
+        "updatedSucess": "Tool info successfully updated!",
+        "createdSucess": "Rool info successfully added!",
+        "errorCreatedUpdated": "Ocurred a error when doing this task, please verify data!",
+        "NameError": "Name is required!"
+
     "Filters": {
         "Users": {
             "Keyword": {
