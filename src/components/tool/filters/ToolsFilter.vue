@@ -2,9 +2,9 @@
    <form class="bg-white items  grid lg:grid-cols-1fr-auto gap-3 p-5 rounded-md dark:bg-MeivMatteBlack dark:text-white" @submit.prevent="doSearch">
     <div class="grid lg:grid-cols-2 gap-3">
          <InputSearch class="w-auto" ref="inputSearch"  :name="langsTool.Keyword"/>
-        <SelectLabel ref="selectLabel"  name="group tools" items="Group Tools"/>
-        <SelectLabel ref="selectLabel"  name="Status" items="Status"/>
-        <SelectLabel ref="selectLabel"  name="Active" items="active"/>
+        <SelectLabel ref="selectLabel"  :name="langsTool.GroupTools" items="Group Tools"/>
+        <SelectLabel ref="selectLabel"  :name="langsTool.Text" items="lang"/>
+        <SelectLabel ref="selectLabel"  :name="langsTool.Status.Text" :items="langsTool.Status.Options"/>
      </div>
         <div class="flex flex-col md:flex-row lg:flex-col gap-4 justify-end">
             <ButtonIcon icon="fa-solid fa-magnifying-glass" text=""  pad="p-3" bg="bg-blue-600" space="normal" />
@@ -19,7 +19,7 @@ import InputSearch from '../../forms/InputSearch.vue';
 import SelectLabel from '../../forms/SelectLabel.vue';
 import ButtonIcon from '../../widgets/ButtonIcon.vue';
 export default {
-    setup() {
+    data() {
         return {
             FilterTool: {
                 Name: '',

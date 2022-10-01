@@ -4,8 +4,8 @@
         <div class="flex flex-col gap-3">
             <InputSearch class="w-auto" ref="inputSearch" :name="langsTool.Keyword" />
             <div class="lg:flex gap-4">
-                <SelectLabel class="lg:w-2/4" ref="selectLabel" name="Category" :items="['Group', 'Tools']" />
-                <SelectLabel class="lg:w-2/4" ref="selectLabel" name="Avaiable" :items="['Group', 'Tools']" />
+                <SelectLabel class="lg:w-2/4" ref="selectLabel" :name="langsTool.Category" :items="['Group', 'Tools']" />
+                <SelectLabel class="lg:w-2/4" ref="selectLabel" :name="langsTool.Status.Text" :items="langsTool.Status.Options" />
             </div>
         </div>
         <div class="flex flex-col md:flex-row lg:flex-col gap-4 justify-end">
