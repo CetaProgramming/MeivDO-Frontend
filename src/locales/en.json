@@ -272,5 +272,8 @@
             "sing":"year",
             "plr": "years"
         }
+    },
+    "Options": {
+        "inProgress": "In Progress"
     }
 }
