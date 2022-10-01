@@ -178,9 +178,7 @@
                 "End Date",
                 "Status",
                 "Updated"
-            ],
-            "Active": "Active",
-            "Inactive": "Inactive"
+            ]
         },
         "Filters": {
                 "Keyword": {
