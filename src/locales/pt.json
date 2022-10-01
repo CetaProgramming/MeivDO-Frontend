@@ -208,8 +208,8 @@
                 },
                 "StartDate": "Data de Início",
                 "EndDate": "Data de Fim"
-         },
-
+        }
+    },
     "Tool": {
         "Keywords": "Palavras chave",
         "Category": "Categorias",
@@ -223,7 +223,7 @@
         "createdSucess": "Ferramenta inserida com sucesso",
         "errorCreatedUpdated": "Ocorreu um erro ao efetuar a operação, verique os campos",
         "NameError": "Nome é obrigatório!"
-
+    },
     "Filters": {
         "Users": {
             "Keyword": {
@@ -247,6 +247,7 @@
                     }
                 ]
             }
+        }
     },
     "HoursComponents": {
         "SEC" : {
