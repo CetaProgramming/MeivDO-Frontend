@@ -9,6 +9,7 @@ export const projectStore = defineStore('projectStore', {
                 actualPage: 1,
                 lastPage: null,
             },
+            filtered: false,
             viewing: [],
             pagesLoad: [],
             perPage: null,
@@ -39,13 +40,13 @@ export const projectStore = defineStore('projectStore', {
                 updated: project.updated,
             }
         },
-        async doSearch({Name = '', Active = '', StartDate = '', EndDate = ''}, reset = false){
+        async doSearch({Name = '', Status = '', StartDate = '', EndDate = ''}, reset = false){
             console.log(reset, this.filtered);
-            if(reset && this.filtered === false || !reset && this.filtered === false && (!Name && !Active && !StartDate && !EndDate))
+            if(reset && this.filtered === false || !reset && this.filtered === false && (!Name && !Status && !StartDate && !EndDate))
                 return;
             this.filtered = reset ? false : true;
             const response = await axios.get(
-                `${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/projects/search?name=${Name}&active=${Active && Number(Active)}&startDate=${StartDate}&endDate=${EndDate}`
+                `${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/projects/search?name=${Name}&status=${Status && Number(Status)}&startDate=${StartDate ?? new Date(StartDate)}&endDate=${EndDate ?? new Date(EndDate)}`
             );
             this.refactoringViewing(response);
         },
@@ -106,6 +107,7 @@ export const projectStore = defineStore('projectStore', {
         },
         async add(formData) {
             try {
+                console.log(formData);
                 const response = await axios.post(
                     `${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/projects`,
                     formData

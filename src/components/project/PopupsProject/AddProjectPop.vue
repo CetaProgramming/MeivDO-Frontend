@@ -6,18 +6,16 @@
                     <InputLabelError ref="formProjectCreateName" v-model="formProjectCreateUpdate.name"
                         placeholder="Insert a name" :msg="langs.NameError" :name="langs.Name"
                         :default="formProjectCreateUpdate.name" />
-                    <InputLabelError ref="formProjectCreateAddress" v-model="formProjectCreateUpdate.address"
-                        placeholder="Insert address" :msg="langs.AddressError" :name="langs.Address"
+                    <InputLabel v-model="formProjectCreateUpdate.address"
+                        placeholder="Insert address" :name="langs.Address"
                         :default="formProjectCreateUpdate.address" />
                         <div class="grid grid-cols-2 gap-6">
-                            <SelectDate ref="selectDate"  v-model="startDate" :name="langs.StartDate"/>
-                            <SelectDate ref="selectDate"  v-model="endDate" :name="langs.EndDate"/>
+                            <SelectDate v-model="startDate" :name="langs.StartDate"/>
+                            <SelectDate v-model="endDate" :name="langs.EndDate"/>
                         </div>
-                    <SwitchLabel v-if="showStatus" v-model="formProjectCreateUpdate.status" @change="changeValue"
-                        :default="Boolean(formProjectCreateUpdate.status)  " :name="langs.Status" />
                 </div>
             </div>
-            <Button :text="langs.Save"> </Button>
+            <Button :text="langs.Save" />
         </form>
     </Popoup>
 
@@ -30,6 +28,7 @@ import Button from '../../widgets/Button.vue';
 import Input from '../../widgets/Input.vue';
 import DarkModeSwitch from '../../dashboard/DarkModeSwitch.vue';
 import InputLabelError from '../../forms/InputLabelError.vue';
+import InputLabel from '../../forms/InputLabel.vue';
 import SelectLabel from '../../forms/SelectLabel.vue';
 import { projectStore } from '../../../store/projectStore'
 import SwitchLabel from '../../forms/SwitchLabel.vue';
@@ -67,13 +66,9 @@ export default {
         updateProject() {
             try {
                 if (this.validateData({
-                    name: this.formProjectCreateUpdate.name,
-                    address: this.formProjectCreateUpdate.address,
-                    status: this.formProjectCreateUpdate.status
+                    name: this.formProjectCreateUpdate.name
                 }, {
-                    name: this.$refs.formProjectCreateName,
-                    address: this.$refs.formProjectCreateAddress,
-                    status: this.$refs.formProjectCreateStatus
+                    name: this.$refs.formProjectCreateName
                 }))
                     (async () => {
                         try {
@@ -86,11 +81,7 @@ export default {
                              );
                            
                             !this.project &&
-                             await this.projectStore.add(
-                                    this.name = this.formProjectCreateUpdate.name,
-                                    this.address = this.formProjectCreateUpdate.address,
-                                    this.status = this.formProjectCreateUpdate.status,
-                             );
+                             await this.projectStore.add(this.formProjectCreateUpdate);
                             this.$emit("closePopUp");
                             this.$emit("activeToast", {
                                 msg: this.project && this.langs.updatedSucess || !this.user && this.langs.createdSucess,
@@ -114,6 +105,7 @@ export default {
     Input,
     DarkModeSwitch,
     InputLabelError,
+    InputLabel,
     SelectLabel,
     SwitchLabel,
     SelectDate
