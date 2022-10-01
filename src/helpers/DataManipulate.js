@@ -9,6 +9,16 @@ class DataManipulate{
         });
         return dataForm;
     }
+
+    static formDate(data, operator ="/"){
+        if(!data)
+            return;
+        let dataForm = data;
+        if(typeof Date !== dataForm)
+            dataForm = new Date(data);
+        return `${String(dataForm.getDay()).padStart(2,'0')}${operator}${String(dataForm.getMonth()).padStart(2,'0')}${operator}${dataForm.getFullYear()}`;
+        
+    }
 }
 
 export default DataManipulate;

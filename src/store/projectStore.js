@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
 import axios from 'axios';
+import DataManipulate from '../helpers/DataManipulate';
 
 export const projectStore = defineStore('projectStore', {
     state: () => {
@@ -23,8 +24,8 @@ export const projectStore = defineStore('projectStore', {
                 name: project.name,
                 address: project.address,
                 status: Number(project.status),
-                startDate: project.startDate,
-                endDate: project.endDate,
+                startDate: DataManipulate.formDate(project.startDate),
+                endDate: DataManipulate.formDate(project.endDate),
                 userId: project.user_id,
                 updated : project.updated_at,
                 project_tools: project.project_tools
@@ -36,7 +37,7 @@ export const projectStore = defineStore('projectStore', {
                 name: project.name,
                 startDate: project.startDate,
                 endDate: project.endDate,
-                status: Number(project.status),
+                status: project.status,
                 updated: project.updated,
             }
         },
