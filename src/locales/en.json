@@ -173,6 +173,17 @@
             "NameError": "Name is required!",
             "Active": "Active"
         },
+        "PopupViewTool": {
+            "Title": "Tool",
+            "Name": "Name",
+            "Placeholder": "Insert a name",
+            "Save": "Save",
+            "updatedSucess": "Tool info successfully updated!",
+            "createdSucess": "Rool info successfully added!",
+            "errorCreatedUpdated": "Ocurred a error when doing this task, please verify data!",
+            "NameError": "Name is required!",
+            "Active": "Active"
+        },
         "ToolFeature": {
             "View": "View",
             "ButtonNew": "New",

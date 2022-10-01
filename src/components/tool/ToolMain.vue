@@ -13,6 +13,9 @@
         </div>
     </div>
     <component v-if="isAddToolClicked" @closePopUp="isAddToolClicked= false" :is="componentFilter"></component>
+    <!-- <ViewCategory></ViewCategory> -->
+    <ViewTool> </ViewTool>
+    <!-- <ViewGroupTool></ViewGroupTool> -->
 </template>
 
 <script>
@@ -32,6 +35,9 @@ import TableOptions from "../public/Table/TableOptions.vue";
 import CategoryFilter from "./filters/CategoryFilter.vue";
 import GroupToolsFilter from "./filters/GroupToolsFilter.vue";
 import ToolsFilter from "./filters/ToolsFilter.vue";
+import ViewCategory from "./PopupsTool/ViewCategory.vue";
+import ViewTool from "./PopupsTool/ViewTool.vue";
+import ViewGroupTool from "./PopupsTool/ViewGroupTool.vue";
 export default {
     data() {
         return {
@@ -91,7 +97,10 @@ export default {
     TableOptions,
     CategoryFilter,
     GroupToolsFilter,
-    ToolsFilter
+    ToolsFilter,
+    ViewCategory,
+    ViewTool,
+    ViewGroupTool
 },
     computed: {
         GetLenght() {
