@@ -180,9 +180,7 @@
                 "Data de Fim",
                 "Estado",
                 "Atualizado"
-            ],
-            "Active": "Active",
-            "Inactive": "Inactive"
+            ]
         },
         "Filters": {
                 "Keyword": {
