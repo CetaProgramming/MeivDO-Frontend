@@ -43,6 +43,11 @@
                 type: String,
             }
         },
+        methods: {
+            resetValues(){
+                this.value = '';
+            }
+        },
         emits: [ 
             'update:modelValue'
         ]

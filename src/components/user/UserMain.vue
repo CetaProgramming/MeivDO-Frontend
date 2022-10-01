@@ -3,7 +3,7 @@
     <div class="bg-MeivAsh  min-h-screen font-openSans dark:bg-zinc-900">
         <div class="px-8 md:px-16 py-8 flex flex-col gap-5">
             <HeaderUser @activeToast="showToast"/>
-            <MenuUsers />
+            <FilterUsers />
             <div class="grid gap-1 lg:gap-0 lg:flex lg:flex-col lg:overflow-auto">
                 <TableHeader ref="header" :header=langsUser.UserHeader :style="GetLenght" />
                 <TableBody :header=langsUser.UserHeader :component="ComponentUser" :items=userStore.viewing :style="GetLenght" :selectItems="selectItems" @selectOption="popUpOpen" />
@@ -20,7 +20,6 @@ import { markRaw } from "vue";
 import { usersStore } from './../../store/usersStore';
 import { langStore } from "../../store/langStore";
 import HeaderUser from './HeaderUser.vue';
-import MenuUsers from './MenuUsers.vue';
 import TableHeader from './../public/Table/TableHeader.vue';
 import TableBody from './../public/Table/TableBody.vue';
 import Paginate from './../public/Table/Paginate.vue';
@@ -31,6 +30,7 @@ import ComponentRowText from '../public/Table/ComponentsTable/ComponentRowText.v
 import ComponentRowStatus from '../public/Table/ComponentsTable/ComponentRowStatus.vue';
 import ComponentRowObject from '../public/Table/ComponentsTable/ComponentRowObject.vue';
 import ComponentTimePassed from "../public/Table/ComponentsTable/ComponentTimePassed.vue";
+import FilterUsers from "./FilterUsers.vue";
 
 export default {
     data() {
@@ -128,7 +128,6 @@ export default {
     },
     components: {
     HeaderUser,
-    MenuUsers,
     TableBody,
     Paginate,
     TableHeader,
@@ -138,7 +137,8 @@ export default {
     ComponentRowText,
     ComponentRowStatus,
     ComponentRowObject,
-    ComponentTimePassed
+    ComponentTimePassed,
+    FilterUsers
 },
     
 }

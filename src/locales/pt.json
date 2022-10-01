@@ -142,6 +142,7 @@
         "NameError": "Nome é obrigatório!",
         "RoleError": "Cargo é obrigatório!"
     },
+
     "Tool": {
         "Keywords": "Palavras chave",
         "Category": "Categorias",
@@ -155,6 +156,31 @@
         "createdSucess": "Ferramenta inserida com sucesso",
         "errorCreatedUpdated": "Ocorreu um erro ao efetuar a operação, verique os campos",
         "NameError": "Nome é obrigatório!"
+
+    "Filters": {
+        "Users": {
+            "Keyword": {
+                "Label" : "Palavra-Chave",
+                "Input" : "Nome ou E-mail"
+            },
+            "Status": {
+                "Text": "Estado",
+                "Options": [
+                    {
+                        "name": "Ambos",
+                        "value": ""
+                    },
+                    {
+                        "name": "Ativo",
+                        "value": 1
+                    },
+                    {
+                        "name": "Inativo",
+                        "value": 0
+                    }
+                ]
+            }
+        }
     },
     "HoursComponents": {
         "SEC" : {
