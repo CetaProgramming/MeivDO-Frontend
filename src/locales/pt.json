@@ -145,29 +145,79 @@
         "ToolFeature": {
             "View": "Ver",
             "ButtonNew": "Novo",
-            "ToolHeader": [
-                "Nr.", "Nome", "Email", "Cargo", "Estado", "Atualizado"
-            ],
             "Active": "Ativo",
-            "Inactive": "Inativo"
-        },
-        "TableOptions": [
-            {
-                "name": "Tools",
-                "value": "Tools"
-            },
-            {
-                "name": "GroupTools",
-                "value": "GroupTools"
-            },
-            {
-                "name": "Category",
-                "value": "Category"
+            "Inactive": "Inativo",
+            "Headers":{
+                "Tools": [
+                    "ID",
+                    "Código",
+                    "Grupo de Ferramentas",
+                    "Status",
+                    "Ativo",
+                    "Atualizado"
+                ],
+                "GroupTools": [
+                    "ID",
+                    "Código",
+                    "Categorias",
+                    "Ativo",
+                    "Atualizado"
+                ],
+                "Category": [
+                    "ID",
+                    "Nome",
+                    "Ativo",
+                    "Atualizado"
+                    
+                ]
             }
-        ]
-
+        },
+        "TableOptions": {
+            "name":"Tabelas",
+            "items": [
+                {
+                    "name": "Ferramentas",
+                    "value": "Tools"
+                },
+                {
+                    "name": "Grupo de Ferramentas",
+                    "value": "GroupTools"
+                },
+                {
+                    "name": "Categoria",
+                    "value": "Category"
+                }
+            ]
+        },
+        "Filters": {
+                "Keyword": {
+                    "Label": "Palavra-Chave",
+                    "Input": "Insira o código"
+                },
+                "Status": {
+                    "Text": "Ativo",
+                    "Options": [
+                        {
+                            "name": "Ambos",
+                            "value": ""
+                        },
+                        {
+                            "name": "Ativo",
+                            "value": 1
+                        },
+                        {
+                            "name": "Inativo",
+                            "value": 0
+                        }
+                    ]
+                },
+               
+                   "Text": "Status",
+                   "GroupTools": "Grupo de ferramentas",
+                   "Category": "Categoria"
+                
+            }
     },
-    
     "Filters": {
         "Users": {
             "Keyword": {

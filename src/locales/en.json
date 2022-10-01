@@ -131,37 +131,77 @@
         "NameError": "Name is required!",
         "RoleError": "Role is required!"
     },
-    "Tool": {
-        "keywords": "Keywords",
-        "Category": "Category",
-        "SelectOpion": "Select your option"
-    },
     "PageTool": {
         "Keywords": "Palavras chave",
         "Category": "Categorias",
         "SelectOpion": "Selecione a sua opção",
         "PopupAddTool": {
             "Title": "Tool",
-            "Name": "Name",
+            "Code": "Code",
+            "Placeholder": "Insert a code",
+            "Save": "Save",
+            "updatedSucess": "Tool info successfully updated!",
+            "createdSucess": "Tool info successfully added!",
+            "errorCreatedUpdated": "Ocurred a error when doing this task, please verify data!",
+            "CodeError": "Code is required!",
+            "GroupTools": "Group Tools",
+            "Active": "Active"
+        },
+        "PopupAddGroupTool": {
+            "Title": "Group Tool",
+            "Code": "Code",
+            "Placeholder": "Insert a code",
             "Save": "Save",
             "updatedSucess": "Tool info successfully updated!",
             "createdSucess": "Rool info successfully added!",
             "errorCreatedUpdated": "Ocurred a error when doing this task, please verify data!",
-            "NameError": "Name is required!"
+            "CodeError": "Code is required!",
+            "Category": "Categories",
+            "Active": "Active",
+            "UploadNewPicture": "Upload New Picture",
+            "Description": "Description",
+            "PlaceholderDescription": "Insert a description..."
+        },
+        "PopupAddCategory": {
+            "Title": "Category",
+            "Name": "Name",
+            "Placeholder": "Insert a name",
+            "Save": "Save",
+            "updatedSucess": "Tool info successfully updated!",
+            "createdSucess": "Rool info successfully added!",
+            "errorCreatedUpdated": "Ocurred a error when doing this task, please verify data!",
+            "NameError": "Name is required!",
+            "Active": "Active"
         },
         "ToolFeature": {
             "View": "View",
             "ButtonNew": "New",
-            "ToolHeader": [
-                "Nr.",
-                "Name",
-                "Email",
-                "Cargo",
-                "Estado",
-                "Atualizado"
-            ],
             "Active": "Ativo",
-            "Inactive": "Inativo"
+            "Inactive": "Inativo",
+            "Headers":{
+                "Tools": [
+                    "ID",
+                    "Code",
+                    "Group Tool",
+                    "Status",
+                    "Active",
+                    "Updated"
+                ],
+                "GroupTools": [
+                    "ID",
+                    "Code",
+                    "Category",
+                    "Active",
+                    "Updated"
+                ],
+                "Category": [
+                    "ID",
+                    "Name",
+                    "Active",
+                    "Updated"
+                    
+                ]
+            }
         },
         "TableOptions": {
             "name":"Tables",
@@ -181,13 +221,12 @@
             ]
         },
         "Filters": {
-           
                 "Keyword": {
                     "Label": "Keywords",
-                    "Input": "Type name"
+                    "Input": "Type code"
                 },
                 "Status": {
-                    "Text": "Status",
+                    "Text": "Active",
                     "Options": [
                         {
                             "name": "Both",
@@ -202,7 +241,12 @@
                             "value": 0
                         }
                     ]
-                }
+                },
+               
+                   "Text": "Status",
+                   "GroupTools": "Group Tools",
+                   "Category": "Category"
+                
             }
     },
     "Filters": {
