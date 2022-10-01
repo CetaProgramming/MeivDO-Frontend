@@ -141,7 +141,71 @@
         "NameError": "Name is required!",
         "RoleError": "Role is required!"
     },
-
+    "PageProjects": {
+        "PopupShowProject": {
+            "Title": "Project",
+            "Name" : "Name",
+            "Address": "Address",
+            "StartDate" : "Start Date",
+            "EndDate" : "End Date"
+        },
+        "PopupAddProject": {
+            "Title": "Project",
+            "Name": "Name",
+            "Address": "Address",
+            "StartDate": "Start Date",
+            "EndDate" : "End Date",
+            "Save": "Save",
+            "updatedSucess": "Project info successfully updated!",
+            "createdSucess": "Project info successfully added!",
+            "errorCreatedUpdated": "Ocurred a error when doing this task, please verify data!",
+            "NameError": "Name is required!"
+        },
+        "PopupProjectDelete": {
+            "DeleteTextFirst": "Are you sure you want to delete project ",
+            "DeleteTextEnd": "?",
+            "DeleteProjectSucess":"Project deleted successfully!",
+            "DeleteProjectError":"Project couldn't be deleted, please verify",
+            "Confirmation": "Yes"
+        },
+        "ProjectFeature": {
+            "View": "View",
+            "ButtonNew": "New",
+            "ProjectHeader": [
+                "ID",
+                "Name",
+                "Start Date",
+                "End Date",
+                "Status",
+                "Updated"
+            ],
+            "Active": "Active",
+            "Inactive": "Inactive"
+        },
+        "Filters": {
+                "Keyword": {
+                    "Label": "Keywords",
+                    "Input": "Type name"
+                },
+                "Status": {
+                    "Text": "Status",
+                    "Options": [
+                        {
+                            "name": "Both",
+                            "value": ""
+                        },
+                        {
+                            "name": "Open",
+                            "value": 1
+                        },
+                        {
+                            "name": "Close",
+                            "value": 0
+                        }
+                    ]
+                },
+                "StartDate": "Start Date",
+                "EndDate": "End Date"
     "Tool": {
         "keywords": "Keywords",
         "Category": "Category",
@@ -155,7 +219,7 @@
         "createdSucess": "Rool info successfully added!",
         "errorCreatedUpdated": "Ocurred a error when doing this task, please verify data!",
         "NameError": "Name is required!"
-
+    },
     "Filters": {
         "Users": {
             "Keyword": {
@@ -179,7 +243,6 @@
                     }
                 ]
             }
-        }
     },
     "HoursComponents": {
         "SEC" : {
