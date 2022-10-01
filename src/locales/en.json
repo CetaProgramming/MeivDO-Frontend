@@ -206,6 +206,8 @@
                 },
                 "StartDate": "Start Date",
                 "EndDate": "End Date"
+        }
+    },
     "Tool": {
         "keywords": "Keywords",
         "Category": "Category",
@@ -243,6 +245,7 @@
                     }
                 ]
             }
+        }
     },
     "HoursComponents": {
         "SEC" : {
