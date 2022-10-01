@@ -50,7 +50,7 @@
         "Language": "Lingua"
     },
     "PopupUserReset": {
-        "UserID" : "Utilizador ",
+        "UserID": "Utilizador ",
         "ResetTextFirst": "Tem a certeza que pretende redefinir a palavra-passe do utilizador ",
         "ResetTextEnd": "?",
         "ResetPasswordSucess": "Password redefinida com sucesso!",
@@ -58,26 +58,30 @@
         "Confirmation": "Sim"
     },
     "PopupUserDelete": {
-        "UserID" : "Utilizador ",
+        "UserID": "Utilizador ",
         "DeleteTextFirst": "Tem a certeza que pretende apagar o utilizador ",
         "DeleteTextEnd": "?",
-        "DeleteUserSucess":"Utilizador apagado com sucesso!",
-        "DeleteUserError":"Não foi possível apagar o utilizador, verifique",
+        "DeleteUserSucess": "Utilizador apagado com sucesso!",
+        "DeleteUserError": "Não foi possível apagar o utilizador, verifique",
         "Confirmation": "Sim"
     },
     "UserFeature": {
         "View": "Ver",
         "ButtonNew": "Novo",
         "UserHeader": [
-            "Nr.", "Nome", "Email", "Cargo", "Estado", "Atualizado"
+            "Nr.",
+            "Nome",
+            "Email",
+            "Cargo",
+            "Estado",
+            "Atualizado"
         ],
         "Active": "Ativo",
         "Inactive": "Inativo"
     },
-  
     "Paginate": {
-        "Page" : "Página",
-        "BtnGo" : "Ir",
+        "Page": "Página",
+        "BtnGo": "Ir",
         "PageNotFound": "Desculpe, mas a página que está a tentar aceder não está disponível"
     },
     "ItemMenu": {
@@ -147,7 +151,7 @@
             "ButtonNew": "Novo",
             "Active": "Ativo",
             "Inactive": "Inativo",
-            "Headers":{
+            "Headers": {
                 "Tools": [
                     "ID",
                     "Código",
@@ -168,12 +172,11 @@
                     "Nome",
                     "Ativo",
                     "Atualizado"
-                    
                 ]
             }
         },
         "TableOptions": {
-            "name":"Tabelas",
+            "name": "Tabelas",
             "items": [
                 {
                     "name": "Ferramentas",
@@ -190,39 +193,105 @@
             ]
         },
         "Filters": {
-                "Keyword": {
-                    "Label": "Palavra-Chave",
-                    "Input": "Insira o código"
-                },
-                "Status": {
-                    "Text": "Ativo",
-                    "Options": [
-                        {
-                            "name": "Ambos",
-                            "value": ""
-                        },
-                        {
-                            "name": "Ativo",
-                            "value": 1
-                        },
-                        {
-                            "name": "Inativo",
-                            "value": 0
-                        }
-                    ]
-                },
-               
-                   "Text": "Status",
-                   "GroupTools": "Grupo de ferramentas",
-                   "Category": "Categoria"
-                
-            }
+            "Keyword": {
+                "Label": "Palavra-Chave",
+                "Input": "Insira o código"
+            },
+            "Status": {
+                "Text": "Ativo",
+                "Options": [
+                    {
+                        "name": "Ambos",
+                        "value": ""
+                    },
+                    {
+                        "name": "Ativo",
+                        "value": 1
+                    },
+                    {
+                        "name": "Inativo",
+                        "value": 0
+                    }
+                ]
+            },
+            "Text": "Status",
+            "GroupTools": "Grupo de ferramentas",
+            "Category": "Categoria"
+        }
+    },
+    "PageProjects": {
+        "PopupShowProject": {
+            "Title": "Project",
+            "Name": "Nome",
+            "Address": "Morada",
+            "StartDate": "Data de Início",
+            "EndDate": "Data de Fim"
+        },
+        "PopupAddProject": {
+            "Title": "Projeto",
+            "Name": "Nome",
+            "Address": "Morada",
+            "StartDate": "Data de Início",
+            "EndDate": "Data de Fim",
+            "Save": "Guardar",
+            "updatedSucess": "Atualizadas as informações do projeto",
+            "createdSucess": "Projeto inserido com sucesso",
+            "errorCreatedUpdated": "Ocorreu um erro ao efetuar a operação, verique os campos",
+            "NameError": "Nome é obrigatório!"
+        },
+        "PopupProjectDelete": {
+            "ProjectID": "Projeto ",
+            "DeleteTextFirst": "Tem a certeza que pretende apagar o projeto ",
+            "DeleteTextEnd": "?",
+            "DeleteProjectSucess": "Projeto apagado com sucesso!",
+            "DeleteProjectError": "Não foi possível apagar o projeto, verifique",
+            "Confirmation": "Sim"
+        },
+        "ProjectFeature": {
+            "View": "Ver",
+            "ButtonNew": "Novo",
+            "ProjectHeader": [
+                "ID",
+                "Nome",
+                "Data de Início",
+                "Data de Fim",
+                "Estado",
+                "Atualizado"
+            ],
+            "Active": "Active",
+            "Inactive": "Inactive"
+        },
+        "Filters": {
+            "Keyword": {
+                "Label": "Palavra-Chave",
+                "Input": "Digite um nome"
+            },
+            "Status": {
+                "Text": "Estado",
+                "Options": [
+                    {
+                        "name": "Ambos",
+                        "value": ""
+                    },
+                    {
+                        "name": "Aberto",
+                        "value": 1
+                    },
+                    {
+                        "name": "Fechado",
+                        "value": 0
+                    }
+                ]
+            },
+            "StartDate": "Data de Início",
+            "EndDate": "Data de Fim"
+        }
     },
     "Filters": {
         "Users": {
             "Keyword": {
-                "Label" : "Palavra-Chave",
-                "Input" : "Nome ou E-mail"
+                "Label": "Palavra-Chave",
+                "Input": "Nome ou E-mail"
             },
             "Status": {
                 "Text": "Estado",
@@ -244,28 +313,28 @@
         }
     },
     "HoursComponents": {
-        "SEC" : {
-            "sing":"segundo",
+        "SEC": {
+            "sing": "segundo",
             "plr": "segundos"
         },
-        "MIN" : {
-            "sing":"minuto",
+        "MIN": {
+            "sing": "minuto",
             "plr": "minutos"
         },
-        "HOUR" : {
-            "sing":"hora",
+        "HOUR": {
+            "sing": "hora",
             "plr": "horas"
         },
-        "DAY" : {
-            "sing":"dia",
+        "DAY": {
+            "sing": "dia",
             "plr": "dias"
         },
-        "MONTH" : {
-            "sing":"mês",
+        "MONTH": {
+            "sing": "mês",
             "plr": "mêses"
         },
-        "YEAR" : {
-            "sing":"ano",
+        "YEAR": {
+            "sing": "ano",
             "plr": "anos"
         }
     }
