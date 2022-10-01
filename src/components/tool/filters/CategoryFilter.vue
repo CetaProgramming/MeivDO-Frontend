@@ -2,7 +2,7 @@
      <form class="bg-white items  grid md:grid-cols-1fr-auto-auto gap-3 p-5 rounded-md dark:bg-MeivMatteBlack dark:text-white" @submit.prevent="doSearch">
      
           <InputSearch class="w-auto" ref="inputSearch"  :name="langsTool.Keyword"/>
-         <SelectLabel ref="selectLabel"  name="Active" items="Group Tools"/>
+         <SelectLabel ref="selectLabel" :name="langsTool.Status.Text" :items="langsTool.Status.Options"/>
          <div class="flex gap-3">
              <ButtonIcon icon="fa-solid fa-magnifying-glass" text=""  pad="p-3" bg="bg-blue-600" space="normal" />
              <ButtonIcon icon="fa-solid fa-trash" @click.stop.prevent="resetValues" text=""  pad="p-3"  space="normal" />
