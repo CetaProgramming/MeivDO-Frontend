@@ -141,6 +141,12 @@
         "NameError": "Name is required!",
         "RoleError": "Role is required!"
     },
+    "PageInspections": {
+        "InspectionFeature": {
+            "View": "View",
+            "ButtonNew": "New"
+        }
+    },
     "PageProjects": {
         "PopupShowProject": {
             "Title": "Project",

@@ -142,6 +142,12 @@
         "NameError": "Nome é obrigatório!",
         "RoleError": "Cargo é obrigatório!"
     },
+    "PageInspections": {
+        "InspectionFeature": {
+            "View": "Ver",
+            "ButtonNew": "Novo"
+        }
+    },
     "PageProjects": {
         "PopupShowProject": {
             "Title": "Project",
