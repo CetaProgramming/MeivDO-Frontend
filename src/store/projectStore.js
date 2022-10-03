@@ -35,8 +35,8 @@ export const projectStore = defineStore('projectStore', {
             return {
                 id: project.id,
                 name: project.name,
-                startDate: project.startDate,
-                endDate: project.endDate,
+                startDate: DataManipulate.formDate(project.startDate),
+                endDate: DataManipulate.formDate(project.endDate),
                 status: project.status,
                 updated: project.updated,
             }
@@ -128,7 +128,7 @@ export const projectStore = defineStore('projectStore', {
         },
         async update(projectId, formData) {
             try {
-                const response = await axios.post(
+                const response = await axios.put(
                     `${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/projects/${projectId}`,
                     formData
                 );
