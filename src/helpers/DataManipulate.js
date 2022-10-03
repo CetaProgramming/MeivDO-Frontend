@@ -10,14 +10,23 @@ class DataManipulate{
         return dataForm;
     }
 
-    static formDate(data, operator ="/"){
+    static formDate(data){
         if(!data)
             return;
         let dataForm = data;
         if(typeof Date !== dataForm)
             dataForm = new Date(data);
-        return `${String(dataForm.getDay()).padStart(2,'0')}${operator}${String(dataForm.getMonth()).padStart(2,'0')}${operator}${dataForm.getFullYear()}`;
-        
+        return new Intl.DateTimeFormat(Navigator.language).format(dataForm) 
+    }
+
+    static formInputDate(data){
+        if(!data)
+            return;
+        let dataForm = data;
+        if(typeof Date !== dataForm)
+            dataForm = new Date(data);
+        console.log(dataForm.toISOString().split('T')[0]);
+        return dataForm.toISOString().split('T')[0]
     }
 }
 
