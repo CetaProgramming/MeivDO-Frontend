@@ -160,7 +160,8 @@
             "updatedSucess": "Project info successfully updated!",
             "createdSucess": "Project info successfully added!",
             "errorCreatedUpdated": "Ocurred a error when doing this task, please verify data!",
-            "NameError": "Name is required!"
+            "NameError": "Name is required!",
+            "addTools": "Management tools associated of the project"
         },
         "PopupProjectDelete": {
             "DeleteTextFirst": "Are you sure you want to delete project ",

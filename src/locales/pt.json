@@ -161,7 +161,8 @@
             "updatedSucess": "Atualizadas as informações do projeto",
             "createdSucess": "Projeto inserido com sucesso",
             "errorCreatedUpdated": "Ocorreu um erro ao efetuar a operação, verique os campos",
-            "NameError": "Nome é obrigatório!"
+            "NameError": "Nome é obrigatório!",
+            "addTools": "Gestão de tools associadas ao projeto!"
         },
         "PopupProjectDelete": {
             "ProjectID" : "Projeto ",
