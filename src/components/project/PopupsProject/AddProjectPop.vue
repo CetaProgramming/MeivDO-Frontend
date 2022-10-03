@@ -13,7 +13,7 @@
                             <SelectDate v-model="formProjectCreateUpdate.startDate" :default="formProjectCreateUpdate.startDate" :name="langs.StartDate"/>
                             <SelectDate v-model="formProjectCreateUpdate.endDate" :default="formProjectCreateUpdate.endDate" :name="langs.EndDate"/>
                         </div>
-                        <InputCheckbox v-model="showTools" @update:model-value="isShowToolsManagament" :name="langs.addTools" />
+                        <InputCheckbox v-if="this.project?.status || !this.project" v-model="showTools" @update:model-value="isShowToolsManagament" :name="langs.addTools" />
                         <ManagementTools v-if="showTools" />
                 </div>
             </div>
