@@ -148,7 +148,8 @@
             "Name" : "Nome",
             "Address": "Morada",
             "StartDate" : "Data de Início",
-            "EndDate" : "Data de Fim"
+            "EndDate" : "Data de Fim",
+            "Status" : "Estado"
         },
         "PopupAddProject": {
             "Title": "Projeto",
