@@ -1,10 +1,10 @@
 <template>
-    <div class="grid overflow-auto md:text-ellipsis w-full gap-3 justify-items-start md:w-[49%] grid-cols-auto-1fr">
+    <div class="grid overflow-auto md:text-ellipsis w-full gap-3 justify-items-start grid-cols-auto-1fr">
         <p class="font-bold dark:text-white">
             {{header}}
         </p>
         <p class="text-center truncate dark:text-white">
-            {{info}}
+            {{info ?? '-'}}
         </p>
     </div>
 </template>
