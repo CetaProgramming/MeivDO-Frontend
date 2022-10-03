@@ -2,12 +2,11 @@
     <Popoup :titlePopUp="langs.Title" class="font-meivdo">
         <form @submit.prevent="updateProject" class="flex flex-col gap-5">
             <div class="font-openSans grid grid-cols-1 items-center gap-5 md:gap-1  lg:grid-cols-1fr-auto md:justify-between ">
-                <div class="flex flex-col gap-2 lg:w-4/5">
+                <div class="flex flex-col gap-2">
                     <LabelShowInfoVue :header="langs.Name" :info="formProjectShow.name"/>
                     <LabelShowInfoVue :header="langs.Address" :info="formProjectShow.address"/>
                     <LabelShowInfoVue :header="langs.StartDate" :info="formProjectShow.startDate"/>
                     <LabelShowInfoVue :header="langs.EndDate" :info="formProjectShow.endDate"/>
-                    <LabelShowInfoVue :header="langs.EndDate" :info="formProjectShow.project_tools"/>
                 </div>
             </div>
         </form>
