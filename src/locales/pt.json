@@ -276,6 +276,19 @@
         }
     },
     "Options": {
-        "inProgress": "A decorrer"
+        "inProgress": "A decorrer",
+        "ManagementTools": {
+            "Filters": {
+                "CodeInput": {
+                    "Name": "Código",
+                    "Placeholder": "" 
+                },
+                "GroupToolsInput": {
+                    "Name": "Grupo",
+                    "Placeholder": "" 
+                }
+            }
+        },
+        "TableHeader": ["Code", "GroupTools"]
     }
 }
