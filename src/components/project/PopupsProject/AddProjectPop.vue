@@ -13,6 +13,8 @@
                             <SelectDate v-model="formProjectCreateUpdate.startDate" :default="formProjectCreateUpdate.startDate" :name="langs.StartDate"/>
                             <SelectDate v-model="formProjectCreateUpdate.endDate" :default="formProjectCreateUpdate.endDate" :name="langs.EndDate"/>
                         </div>
+                        <InputCheckbox v-model="showTools" @update:model-value="isShowToolsManagament" :name="langs.addTools" />
+                        <ManagementTools v-if="showTools" />
                 </div>
             </div>
             <Button :text="langs.Save" />
@@ -37,11 +39,14 @@ import ToastSuccess from "../../public/Toast/ToastSuccess.vue"
 import FormValidate from "../../mixins/FormValidate";
 import SelectDate from '../../forms/SelectDate.vue';
 import DataManipulate from '../../../helpers/DataManipulate';
+import InputCheckbox from '../../forms/InputCheckbox.vue';
+import ManagementTools from '../managementTools/ManagementTools.vue';
 
 export default {
     props: ['status', 'project', 'showStatus'],
     data() {
         return {
+            showTools: false,
             projectStore: projectStore(),
             formProjectCreateUpdate: {
                 name: this.project ? this.project.name : '',
@@ -57,6 +62,9 @@ export default {
         }
     },
     methods: {
+        isShowToolsManagament(value){
+            this.showTools = value;
+        },
         activeToast(toast) {
             this.$emit('activeToast', toast);
         },
@@ -103,7 +111,9 @@ export default {
     InputLabel,
     SelectLabel,
     SwitchLabel,
-    SelectDate
+    SelectDate,
+    InputCheckbox,
+    ManagementTools
 },
     emits: ['activeToast'],
     mixins: [FormValidate]
