@@ -10,8 +10,8 @@
                         placeholder="Insert address" :name="langs.Address"
                         :default="formProjectCreateUpdate.address" />
                         <div class="grid grid-cols-2 gap-6">
-                            <SelectDate v-model="startDate" :name="langs.StartDate"/>
-                            <SelectDate v-model="endDate" :name="langs.EndDate"/>
+                            <SelectDate v-model="formProjectCreateUpdate.startDate" :default="formProjectCreateUpdate.startDate" :name="langs.StartDate"/>
+                            <SelectDate v-model="formProjectCreateUpdate.endDate" :default="formProjectCreateUpdate.endDate" :name="langs.EndDate"/>
                         </div>
                 </div>
             </div>
@@ -36,7 +36,7 @@ import ToastError from "../../public/Toast/ToastError.vue"
 import ToastSuccess from "../../public/Toast/ToastSuccess.vue"
 import FormValidate from "../../mixins/FormValidate";
 import SelectDate from '../../forms/SelectDate.vue';
-
+import DataManipulate from '../../../helpers/DataManipulate';
 
 export default {
     props: ['status', 'project', 'showStatus'],
@@ -46,8 +46,8 @@ export default {
             formProjectCreateUpdate: {
                 name: this.project ? this.project.name : '',
                 address: this.project ? this.project.address : '',
-                startDate: this.project ? this.project.startDate : '',
-                endDate: this.project ? this.project.endDate : '',
+                startDate: this.project ? DataManipulate.formInputDate(this.project.startDate) : '',
+                endDate: this.project ? DataManipulate.formInputDate(this.project.endDate) : '',
             }
         }
     },
@@ -59,9 +59,6 @@ export default {
     methods: {
         activeToast(toast) {
             this.$emit('activeToast', toast);
-        },
-        changeValue() {
-            this.formProjectCreateUpdate.status = Number(this.formProjectCreateUpdate.status)
         },
         updateProject() {
             try {
@@ -75,9 +72,7 @@ export default {
                             this.project &&
                              await this.projectStore.update(
                                 this.project.id,
-                                this.project.name, 
-                                this.project.address, 
-                                this.project.status
+                                this.formProjectCreateUpdate
                              );
                            
                             !this.project &&
