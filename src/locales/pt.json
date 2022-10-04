@@ -224,8 +224,9 @@
             "Title": "Project",
             "Name": "Nome",
             "Address": "Morada",
-            "StartDate": "Data de Início",
-            "EndDate": "Data de Fim"
+            "StartDate" : "Data de Início",
+            "EndDate" : "Data de Fim",
+            "Status" : "Estado"
         },
         "PopupAddProject": {
             "Title": "Projeto",
@@ -257,9 +258,7 @@
                 "Data de Fim",
                 "Estado",
                 "Atualizado"
-            ],
-            "Active": "Active",
-            "Inactive": "Inactive"
+            ]
         },
         "Filters": {
             "Keyword": {
@@ -337,5 +336,8 @@
             "sing": "ano",
             "plr": "anos"
         }
+    },
+    "Options": {
+        "inProgress": "A decorrer"
     }
 }

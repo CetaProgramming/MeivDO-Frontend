@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
 import axios from 'axios';
+import DataManipulate from '../helpers/DataManipulate';
 
 export const projectStore = defineStore('projectStore', {
     state: () => {
@@ -9,6 +10,7 @@ export const projectStore = defineStore('projectStore', {
                 actualPage: 1,
                 lastPage: null,
             },
+            filtered: false,
             viewing: [],
             pagesLoad: [],
             perPage: null,
@@ -22,8 +24,8 @@ export const projectStore = defineStore('projectStore', {
                 name: project.name,
                 address: project.address,
                 status: Number(project.status),
-                startDate: project.startDate,
-                endDate: project.endDate,
+                startDate: DataManipulate.formDate(project.startDate),
+                endDate: DataManipulate.formDate(project.endDate),
                 userId: project.user_id,
                 updated : project.updated_at,
                 project_tools: project.project_tools
@@ -33,19 +35,19 @@ export const projectStore = defineStore('projectStore', {
             return {
                 id: project.id,
                 name: project.name,
-                startDate: project.startDate,
-                endDate: project.endDate,
-                status: Number(project.status),
+                startDate: DataManipulate.formDate(project.startDate),
+                endDate: DataManipulate.formDate(project.endDate),
+                status: project.status,
                 updated: project.updated,
             }
         },
-        async doSearch({Name = '', Active = '', StartDate = '', EndDate = ''}, reset = false){
+        async doSearch({Name = '', Status = '', StartDate = '', EndDate = ''}, reset = false){
             console.log(reset, this.filtered);
-            if(reset && this.filtered === false || !reset && this.filtered === false && (!Name && !Active && !StartDate && !EndDate))
+            if(reset && this.filtered === false || !reset && this.filtered === false && (!Name && !Status && !StartDate && !EndDate))
                 return;
             this.filtered = reset ? false : true;
             const response = await axios.get(
-                `${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/projects/search?name=${Name}&active=${Active && Number(Active)}&startDate=${StartDate}&endDate=${EndDate}`
+                `${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/projects/search?name=${Name}&status=${Status && Number(Status)}&startDate=${StartDate ?? new Date(StartDate)}&endDate=${EndDate ?? new Date(EndDate)}`
             );
             this.refactoringViewing(response);
         },
@@ -106,6 +108,7 @@ export const projectStore = defineStore('projectStore', {
         },
         async add(formData) {
             try {
+                console.log(formData);
                 const response = await axios.post(
                     `${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/projects`,
                     formData
@@ -125,7 +128,7 @@ export const projectStore = defineStore('projectStore', {
         },
         async update(projectId, formData) {
             try {
-                const response = await axios.post(
+                const response = await axios.put(
                     `${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/projects/${projectId}`,
                     formData
                 );

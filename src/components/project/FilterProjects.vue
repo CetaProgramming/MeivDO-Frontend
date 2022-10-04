@@ -2,9 +2,9 @@
     <form class="bg-white items  grid lg:grid-cols-1fr-auto gap-3 p-5 rounded-md dark:bg-MeivMatteBlack dark:text-white" @submit.prevent="doSearch">
      <div class="grid lg:grid-cols-2 gap-3">
         <InputSearch ref="inputSearch" v-model="FilterProject.Name" :name="langs.Keyword"/>
-        <SelectLabel ref="selectLabel" v-model="FilterProject.Active" :name="langs.Status.Text" :items="langs.Status.Options"/>
-        <SelectDate ref="selectDate"  v-model="FilterProject.StartDate" :name="langs.StartDate"/>
-        <SelectDate ref="selectDate"  v-model="FilterProject.EndDate" :name="langs.EndDate"/>
+        <SelectLabel ref="selectLabel" v-model="FilterProject.Status" :name="langs.Status.Text" :items="langs.Status.Options"/>
+        <SelectDate ref="startDate"  v-model="FilterProject.StartDate" :name="langs.StartDate"/>
+        <SelectDate ref="endDate"  v-model="FilterProject.EndDate" :name="langs.EndDate"/>
       </div>
         <div class="flex flex-col md:flex-row lg:flex-col gap-4 justify-end">
             <ButtonIcon icon="fa-solid fa-magnifying-glass" text=""  pad="p-3" bg="bg-blue-600" space="normal" />
@@ -27,7 +27,7 @@ export default {
         return {
             FilterProject: {
                 Name: '',
-                Active: '',
+                Status: '',
                 StartDate: '',
                 EndDate: ''
             }
@@ -44,11 +44,13 @@ export default {
         },
         async resetValues(){
             this.FilterProject.Name = "";
-            this.FilterProject.Active = "";
+            this.FilterProject.Status = "";
             this.FilterProject.StartDate = "";
             this.FilterProject.EndDate = "";
             this.$refs['inputSearch'].resetValues();
             this.$refs['selectLabel'].resetValues();
+            this.$refs['startDate'].resetValues();
+            this.$refs['endDate'].resetValues();
             await projectStore().doSearch(this.FilterProject, true);
         }
     },

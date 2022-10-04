@@ -1,6 +1,6 @@
 <template>
     <ComponentBaseTableRow :headerItem="headerTitle">
-        <p :title="item" class="text-center truncate dark:text-white">{{item}}</p>
+        <p :title="item" class="text-center truncate dark:text-white">{{item ?? "-"}}</p>
     </ComponentBaseTableRow>
 </template>
 

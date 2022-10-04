@@ -9,15 +9,19 @@
 
 <script>
     import ComponentBaseTableRow from './ComponentBaseTableRow.vue';
+    import { langStore } from '../../../../store/langStore';
     export default {
     computed:{
         background(){
             const value = Number(this.item)
             return value && 'bg-green-400' || !value && 'bg-red-400';
         },
+        pageLocales(){
+            return `PageProjects`
+        },
         word(){
             const value = Number(this.item)
-            return value && 'Open' || !value && 'Close';
+            return value && langStore().getLang[this.pageLocales].Filters.Status.Options[1].name || !value && langStore().getLang[this.pageLocales].Filters.Status.Options[2].name;
         }
     },
     props: {

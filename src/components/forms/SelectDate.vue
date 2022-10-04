@@ -2,7 +2,7 @@
     <div class="flex flex-col gap-2">
         <Label :name="name" :msg="name" />
         <div class="flex bg-zinc-300 p-1 rounded-md dark:bg-zinc-800 relative items-center">
-            <input type="date" ref="inputReset" v-model="value" :placeholder="name.Input" pad="p-1" @input="changeValue" class=" w-full bg-zinc-300 dark:bg-zinc-800">
+            <Input type="date" ref="inputReset" v-model="value" :default="value"  :placeholder="name.Input" pad="p-1" @input="changeValue" class=" w-full bg-zinc-300 dark:bg-zinc-800" />
         </div>
     </div>
 </template>
@@ -13,7 +13,7 @@ import Input from '../widgets/Input.vue';
 export default {
     data() {
         return {
-            value: ''
+            value: this.default
         };
     },
     props: {
