@@ -106,13 +106,9 @@ export const toolsStore = defineStore('toolsStore', {
                 return this.pag.lastPage = lastPage;
         },
         
-
-
-
-
         async update(toolId, formData) {
             try {
-                const response = await axios.post(
+                const response = await axios.put(
                     `${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/tools/${toolId}`,
                     formData
                 );
