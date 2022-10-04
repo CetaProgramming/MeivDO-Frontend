@@ -50,7 +50,7 @@
         "Language": "Lingua"
     },
     "PopupUserReset": {
-        "UserID" : "Utilizador ",
+        "UserID": "Utilizador ",
         "ResetTextFirst": "Tem a certeza que pretende redefinir a palavra-passe do utilizador ",
         "ResetTextEnd": "?",
         "ResetPasswordSucess": "Password redefinida com sucesso!",
@@ -58,34 +58,30 @@
         "Confirmation": "Sim"
     },
     "PopupUserDelete": {
-        "UserID" : "Utilizador ",
+        "UserID": "Utilizador ",
         "DeleteTextFirst": "Tem a certeza que pretende apagar o utilizador ",
         "DeleteTextEnd": "?",
-        "DeleteUserSucess":"Utilizador apagado com sucesso!",
-        "DeleteUserError":"Não foi possível apagar o utilizador, verifique",
+        "DeleteUserSucess": "Utilizador apagado com sucesso!",
+        "DeleteUserError": "Não foi possível apagar o utilizador, verifique",
         "Confirmation": "Sim"
     },
     "UserFeature": {
         "View": "Ver",
         "ButtonNew": "Novo",
         "UserHeader": [
-            "Nr.", "Nome", "Email", "Cargo", "Estado", "Atualizado"
-        ],
-        "Active": "Ativo",
-        "Inactive": "Inativo"
-    },
-    "ToolFeature": {
-        "View": "Ver",
-        "ButtonNew": "Novo",
-        "ToolHeader": [
-            "Nr.", "Nome", "Email", "Cargo", "Estado", "Atualizado"
+            "Nr.",
+            "Nome",
+            "Email",
+            "Cargo",
+            "Estado",
+            "Atualizado"
         ],
         "Active": "Ativo",
         "Inactive": "Inativo"
     },
     "Paginate": {
-        "Page" : "Página",
-        "BtnGo" : "Ir",
+        "Page": "Página",
+        "BtnGo": "Ir",
         "PageNotFound": "Desculpe, mas a página que está a tentar aceder não está disponível"
     },
     "ItemMenu": {
@@ -121,11 +117,6 @@
             "link": "users"
         }
     },
-    "User": {
-        "Keywords": "Palavras chave",
-        "Status": "Estado",
-        "SelectOpion": "Selecione a sua opção"
-    },
     "PopupAddUser": {
         "Title": "Utilizador",
         "Name": "Nome",
@@ -142,10 +133,96 @@
         "NameError": "Nome é obrigatório!",
         "RoleError": "Cargo é obrigatório!"
     },
+    "PageTool": {
+        "Keywords": "Palavras chave",
+        "Category": "Categorias",
+        "SelectOpion": "Selecione a sua opção",
+        "PopupAddTool": {
+            "Title": "Ferramenta",
+            "Name": "Nome",
+            "Save": "Guardar",
+            "updatedSucess": "Atualizadas as informações da ferramenta",
+            "createdSucess": "Ferramenta inserida com sucesso",
+            "errorCreatedUpdated": "Ocorreu um erro ao efetuar a operação, verique os campos",
+            "NameError": "Nome é obrigatório!"
+        },
+        "ToolFeature": {
+            "View": "Ver",
+            "ButtonNew": "Novo",
+            "Active": "Ativo",
+            "Inactive": "Inativo",
+            "Headers": {
+                "Tools": [
+                    "ID",
+                    "Código",
+                    "Grupo de Ferramentas",
+                    "Status",
+                    "Ativo",
+                    "Atualizado"
+                ],
+                "GroupTools": [
+                    "ID",
+                    "Código",
+                    "Categorias",
+                    "Ativo",
+                    "Atualizado"
+                ],
+                "Category": [
+                    "ID",
+                    "Nome",
+                    "Ativo",
+                    "Atualizado"
+                ]
+            }
+        },
+        "TableOptions": {
+            "name": "Tabelas",
+            "items": [
+                {
+                    "name": "Ferramentas",
+                    "value": "Tools"
+                },
+                {
+                    "name": "Grupo de Ferramentas",
+                    "value": "GroupTools"
+                },
+                {
+                    "name": "Categoria",
+                    "value": "Category"
+                }
+            ]
+        },
+        "Filters": {
+            "Keyword": {
+                "Label": "Palavra-Chave",
+                "Input": "Insira o código"
+            },
+            "Status": {
+                "Text": "Ativo",
+                "Options": [
+                    {
+                        "name": "Ambos",
+                        "value": ""
+                    },
+                    {
+                        "name": "Ativo",
+                        "value": 1
+                    },
+                    {
+                        "name": "Inativo",
+                        "value": 0
+                    }
+                ]
+            },
+            "Text": "Status",
+            "GroupTools": "Grupo de ferramentas",
+            "Category": "Categoria"
+        }
+    },
     "PageProjects": {
         "PopupShowProject": {
             "Title": "Project",
-            "Name" : "Nome",
+            "Name": "Nome",
             "Address": "Morada",
             "StartDate" : "Data de Início",
             "EndDate" : "Data de Fim",
@@ -156,7 +233,7 @@
             "Name": "Nome",
             "Address": "Morada",
             "StartDate": "Data de Início",
-            "EndDate" : "Data de Fim",
+            "EndDate": "Data de Fim",
             "Save": "Guardar",
             "updatedSucess": "Atualizadas as informações do projeto",
             "createdSucess": "Projeto inserido com sucesso",
@@ -164,11 +241,11 @@
             "NameError": "Nome é obrigatório!"
         },
         "PopupProjectDelete": {
-            "ProjectID" : "Projeto ",
+            "ProjectID": "Projeto ",
             "DeleteTextFirst": "Tem a certeza que pretende apagar o projeto ",
             "DeleteTextEnd": "?",
-            "DeleteProjectSucess":"Projeto apagado com sucesso!",
-            "DeleteProjectError":"Não foi possível apagar o projeto, verifique",
+            "DeleteProjectSucess": "Projeto apagado com sucesso!",
+            "DeleteProjectError": "Não foi possível apagar o projeto, verifique",
             "Confirmation": "Sim"
         },
         "ProjectFeature": {
@@ -184,50 +261,36 @@
             ]
         },
         "Filters": {
-                "Keyword": {
-                    "Label": "Palavra-Chave",
-                    "Input": "Digite um nome"
-                },
-                "Status": {
-                    "Text": "Estado",
-                    "Options": [
-                        {
-                            "name": "Ambos",
-                            "value": ""
-                        },
-                        {
-                            "name": "Aberto",
-                            "value": 1
-                        },
-                        {
-                            "name": "Fechado",
-                            "value": 0
-                        }
-                    ]
-                },
-                "StartDate": "Data de Início",
-                "EndDate": "Data de Fim"
+            "Keyword": {
+                "Label": "Palavra-Chave",
+                "Input": "Digite um nome"
+            },
+            "Status": {
+                "Text": "Estado",
+                "Options": [
+                    {
+                        "name": "Ambos",
+                        "value": ""
+                    },
+                    {
+                        "name": "Aberto",
+                        "value": 1
+                    },
+                    {
+                        "name": "Fechado",
+                        "value": 0
+                    }
+                ]
+            },
+            "StartDate": "Data de Início",
+            "EndDate": "Data de Fim"
         }
-    },
-    "Tool": {
-        "Keywords": "Palavras chave",
-        "Category": "Categorias",
-        "SelectOpion": "Selecione a sua opção"
-    },
-    "PopupAddTool": {
-        "Title": "Ferramenta",
-        "Name": "Nome",
-        "Save": "Guardar",
-        "updatedSucess": "Atualizadas as informações da ferramenta",
-        "createdSucess": "Ferramenta inserida com sucesso",
-        "errorCreatedUpdated": "Ocorreu um erro ao efetuar a operação, verique os campos",
-        "NameError": "Nome é obrigatório!"
     },
     "Filters": {
         "Users": {
             "Keyword": {
-                "Label" : "Palavra-Chave",
-                "Input" : "Nome ou E-mail"
+                "Label": "Palavra-Chave",
+                "Input": "Nome ou E-mail"
             },
             "Status": {
                 "Text": "Estado",
@@ -249,28 +312,28 @@
         }
     },
     "HoursComponents": {
-        "SEC" : {
-            "sing":"segundo",
+        "SEC": {
+            "sing": "segundo",
             "plr": "segundos"
         },
-        "MIN" : {
-            "sing":"minuto",
+        "MIN": {
+            "sing": "minuto",
             "plr": "minutos"
         },
-        "HOUR" : {
-            "sing":"hora",
+        "HOUR": {
+            "sing": "hora",
             "plr": "horas"
         },
-        "DAY" : {
-            "sing":"dia",
+        "DAY": {
+            "sing": "dia",
             "plr": "dias"
         },
-        "MONTH" : {
-            "sing":"mês",
+        "MONTH": {
+            "sing": "mês",
             "plr": "mêses"
         },
-        "YEAR" : {
-            "sing":"ano",
+        "YEAR": {
+            "sing": "ano",
             "plr": "anos"
         }
     },

@@ -9,7 +9,7 @@
 
 <script>
 import Header from './dashboard/Header.vue';
-import ToolMain from './dashboard/Tool/ToolMain.vue';
+import ToolMain from './tool/ToolMain.vue';
 
 
 

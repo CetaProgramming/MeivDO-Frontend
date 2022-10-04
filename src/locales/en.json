@@ -25,11 +25,11 @@
         "Role": "Role",
         "Picture": "Upload photo",
         "SaveProf": "Save",
-        "updateSucess":"Profile successfully updated!",
-        "nameError" : "Name is required!",
-        "bigFile" : "The file is too big to be uploaded!",
-        "notImage" : "The file uploaded is not an image file!",
-        "updateFailed":"Unable to update profile, please try again later!"
+        "updateSucess": "Profile successfully updated!",
+        "nameError": "Name is required!",
+        "bigFile": "The file is too big to be uploaded!",
+        "notImage": "The file uploaded is not an image file!",
+        "updateFailed": "Unable to update profile, please try again later!"
     },
     "PopupPassword": {
         "Title2": "Change Password",
@@ -37,10 +37,10 @@
         "NewPassword": "New password",
         "ConfirmNewPassword": "Confirm new password",
         "PasswordError": "Password is required!",
-        "newPasswordError": "New Password is invalid!" ,
+        "newPasswordError": "New Password is invalid!",
         "passwordConfirmError": "Password doesn't match!",
-        "changedSucess":"Password changed successfully!",
-        "changedFailed":"Password couldn't be changed, please verify",
+        "changedSucess": "Password changed successfully!",
+        "changedFailed": "Password couldn't be changed, please verify",
         "SavePass": "Save"
     },
     "PopupSettings": {
@@ -59,31 +59,27 @@
     "PopupUserDelete": {
         "DeleteTextFirst": "Are you sure you want to delete user ",
         "DeleteTextEnd": "?",
-        "DeleteUserSucess":"User deleted successfully!",
-        "DeleteUserError":"User couldn't be deleted, please verify",
+        "DeleteUserSucess": "User deleted successfully!",
+        "DeleteUserError": "User couldn't be deleted, please verify",
         "Confirmation": "Yes"
     },
     "UserFeature": {
         "View": "View",
         "ButtonNew": "New",
         "UserHeader": [
-         "NO.", "Name", "Email", "Role", "Status", "Updated"
-        ],
-        "Active": "Active",
-        "Inactive": "Inactive"
-    },
-    "ToolFeature": {
-        "View": "View",
-        "ButtonNew": "New",
-        "ToolHeader": [
-         "NO.", "Name", "Email", "Role", "Status", "Updated"
+            "NO.",
+            "Name",
+            "Email",
+            "Role",
+            "Status",
+            "Updated"
         ],
         "Active": "Active",
         "Inactive": "Inactive"
     },
     "Paginate": {
-        "Page" : "Page",
-        "BtnGo" : "Go",
+        "Page": "Page",
+        "BtnGo": "Go",
         "PageNotFound": "Sorry, but the page you try access is not available"
     },
     "ItemMenu": {
@@ -105,7 +101,6 @@
             "title": "Tools",
             "description": "Here you can see the tools the company has as well as their details such as it's state.",
             "link": "tools"
-
         },
         "repairs": {
             "img": "src/assets/icons/reparations.png",
@@ -119,11 +114,6 @@
             "description": "View the list of users of the company.",
             "link": "users"
         }
-    },
-    "User": {
-        "Keywords": "Keywords",
-        "Status": "Status",
-        "SelectOpion": "Select your option"
     },
     "PopupAddUser": {
         "Title": "User",
@@ -140,6 +130,143 @@
         "EmailError": "Email is required!",
         "NameError": "Name is required!",
         "RoleError": "Role is required!"
+    },
+    "PageTool": {
+        "Keywords": "Palavras chave",
+        "Category": "Categorias",
+        "SelectOpion": "Selecione a sua opção",
+        "PopupAddTool": {
+            "Title": "Tool",
+            "Code": "Code",
+            "Placeholder": "Insert a code",
+            "Save": "Save",
+            "updatedSucess": "Tool info successfully updated!",
+            "createdSucess": "Tool info successfully added!",
+            "errorCreatedUpdated": "Ocurred a error when doing this task, please verify data!",
+            "CodeError": "Code is required!",
+            "GroupTools": "Group Tools",
+            "Active": "Active"
+        },
+        "PopupAddGroupTool": {
+            "Title": "Group Tool",
+            "Code": "Code",
+            "Placeholder": "Insert a code",
+            "Save": "Save",
+            "updatedSucess": "Tool info successfully updated!",
+            "createdSucess": "Rool info successfully added!",
+            "errorCreatedUpdated": "Ocurred a error when doing this task, please verify data!",
+            "CodeError": "Code is required!",
+            "Category": "Categories",
+            "Active": "Active",
+            "UploadNewPicture": "Upload New Picture",
+            "Description": "Description",
+            "PlaceholderDescription": "Insert a description..."
+        },
+        "PopupAddCategory": {
+            "Title": "Category",
+            "Name": "Name",
+            "Placeholder": "Insert a name",
+            "Save": "Save",
+            "updatedSucess": "Tool info successfully updated!",
+            "createdSucess": "Rool info successfully added!",
+            "errorCreatedUpdated": "Ocurred a error when doing this task, please verify data!",
+            "NameError": "Name is required!",
+            "Active": "Active"
+        },
+        "PopupViewTool": {
+            "Title": "Tool",
+            "Code": "Code",
+            "Placeholder": "Insert a name",
+            "Save": "Save",
+            "updatedSucess": "Tool info successfully updated!",
+            "createdSucess": "Rool info successfully added!",
+            "errorCreatedUpdated": "Ocurred a error when doing this task, please verify data!",
+            "NameError": "Name is required!",
+            "Active": "Active"
+        },
+        "PopupDeleteTool": {
+            "Title": "Tool",
+            "DeleteTextFirst": "Are you sure you want to delete tool ",
+            "DeleteTextEnd": "?",
+            "DeleteToolSucess":"Tool deleted successfully!",
+            "DeleteToolError":"Tool couldn't be deleted, please verify",
+            "Confirmation": "Yes"
+        },
+        "ToolFeature": {
+            "View": "View",
+            "ButtonNew": "New",
+            "Active": "Ativo",
+            "Inactive": "Inativo",
+            "Headers":{
+                "Tools": [
+                    "ID",
+                    "Code",
+                    "Group Tool",
+                    "Status",
+                    "Active",
+                    "Updated"
+                ],
+                "GroupTools": [
+                    "ID",
+                    "Code",
+                    "Category",
+                    "Active",
+                    "Updated"
+                ],
+                "Category": [
+                    "ID",
+                    "Name",
+                    "Active",
+                    "Updated"
+                    
+                ]
+            }
+        },
+        "TableOptions": {
+            "name":"Tables",
+            "items": [
+                {
+                    "name": "Tools",
+                    "value": "Tools"
+                },
+                {
+                    "name": "GroupTools",
+                    "value": "GroupTools"
+                },
+                {
+                    "name": "Category",
+                    "value": "Category"
+                }
+            ]
+        },
+        "Filters": {
+                "Keyword": {
+                    "Label": "Keywords",
+                    "Input": "Type code"
+                },
+                "Status": {
+                    "Text": "Active",
+                    "Options": [
+                        {
+                            "name": "Both",
+                            "value": ""
+                        },
+                        {
+                            "name": "Active",
+                            "value": 1
+                        },
+                        {
+                            "name": "Inactive",
+                            "value": 0
+                        }
+                    ]
+                },
+               
+                   "Text": "Status",
+                   "GroupTools": "Group Tools",
+                   "Category": "Category"
+                
+            }
     },
     "PageProjects": {
         "PopupShowProject": {
@@ -184,10 +311,10 @@
         "Filters": {
                 "Keyword": {
                     "Label": "Keywords",
-                    "Input": "Type name"
+                    "Input": "Type code"
                 },
                 "Status": {
-                    "Text": "Status",
+                    "Text": "Active",
                     "Options": [
                         {
                             "name": "Both",
@@ -202,30 +329,19 @@
                             "value": 0
                         }
                     ]
-                },
-                "StartDate": "Start Date",
-                "EndDate": "End Date"
-        }
-    },
-    "Tool": {
-        "keywords": "Keywords",
-        "Category": "Category",
-        "SelectOpion": "Select your option"
-    },
-    "PopupAddTool": {
-        "Title": "Tool",
-        "Name": "Name",
-        "Save": "Save",
-        "updatedSucess": "Tool info successfully updated!",
-        "createdSucess": "Rool info successfully added!",
-        "errorCreatedUpdated": "Ocurred a error when doing this task, please verify data!",
-        "NameError": "Name is required!"
+                },              
+                   "Text": "Status",
+                   "GroupTools": "Group Tools",
+                   "Category": "Category",
+                   "StartDate": "Start Date",
+                "EndDate": "End Date"  
+            }
     },
     "Filters": {
         "Users": {
             "Keyword": {
-                "Label" : "Keywords",
-                "Input" : "Type Name or Email"
+                "Label": "Keywords",
+                "Input": "Type Name or Email"
             },
             "Status": {
                 "Text": "Status",
@@ -247,32 +363,33 @@
         }
     },
     "HoursComponents": {
-        "SEC" : {
-            "sing":"second",
+        "SEC": {
+            "sing": "second",
             "plr": "seconds"
         },
-        "MIN" : {
-            "sing":"minute",
+        "MIN": {
+            "sing": "minute",
             "plr": "minutes"
         },
-        "HOUR" : {
-            "sing":"hour",
+        "HOUR": {
+            "sing": "hour",
             "plr": "hours"
         },
-        "DAY" : {
-            "sing":"day",
+        "DAY": {
+            "sing": "day",
             "plr": "days"
         },
-        "MONTH" : {
-            "sing":"month",
+        "MONTH": {
+            "sing": "month",
             "plr": "months"
         },
-        "YEAR" : {
-            "sing":"year",
+        "YEAR": {
+            "sing": "year",
             "plr": "years"
         }
     },
     "Options": {
         "inProgress": "In Progress"
     }
+    
 }

@@ -8,7 +8,7 @@
     export default{
         data(){
             return {
-                value: ''
+                value: '',
             }
         },
         methods: {
@@ -17,7 +17,12 @@
                     this.$emit('selectOption', this.value)
             }
         },
-        props: ['selectItems', 'num'],
+        watch:{
+            select(){
+                this.value = ''
+            }
+        },
+        props: ['select','selectItems'],
         emits: ['selectOption']
     }
 </script>
