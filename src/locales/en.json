@@ -175,7 +175,7 @@
         },
         "PopupViewTool": {
             "Title": "Tool",
-            "Name": "Name",
+            "Code": "Code",
             "Placeholder": "Insert a name",
             "Save": "Save",
             "updatedSucess": "Tool info successfully updated!",
@@ -183,6 +183,14 @@
             "errorCreatedUpdated": "Ocurred a error when doing this task, please verify data!",
             "NameError": "Name is required!",
             "Active": "Active"
+        },
+        "PopupDeleteTool": {
+            "Title": "Tool",
+            "DeleteTextFirst": "Are you sure you want to delete tool ",
+            "DeleteTextEnd": "?",
+            "DeleteToolSucess":"Tool deleted successfully!",
+            "DeleteToolError":"Tool couldn't be deleted, please verify",
+            "Confirmation": "Yes"
         },
         "ToolFeature": {
             "View": "View",
