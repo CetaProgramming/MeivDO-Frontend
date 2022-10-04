@@ -1,55 +1,123 @@
 <template>
     <Popoup :titlePopUp="langs.Title" class="font-meivdo">
-        <form class="flex flex-col gap-5">
+        <form @submit.prevent="updateTool" class="flex flex-col gap-5">
             <div
                 class="font-openSans grid grid-cols-1 items-center gap-5 md:gap-1  lg:grid-cols-1fr-auto md:justify-between ">
                 <div class="flex flex-col gap-7">
-                    <InputLabelError ref="formToolCreateName" v-model="formToolCreateUpdate.code"
+                    <InputLabelError ref="formToolCreateCode" v-model="formToolCreateUpdate.code"
                         :placeholder="langs.Placeholder" msg="langs.NameError" :name="langs.Code"
                         :default="formToolCreateUpdate.code" />
-                        <div class="flex flex-col md:flex-row gap-5 ">
-                            <SelectLabelError class="w-full" ref="formTollCreateGroup" :msg="langs.CodeError" :items="groupTools" :name="langs.GroupTools"
-                        :default="formToolCreateUpdate.id" v-model="formToolCreateUpdate.groupTool" />
-                        <SwitchLabel v-if="showActive"  v-model="formToolCreateUpdate.active" @change="changeValue"
-                        :default="Boolean(formToolCreateUpdate.active)  " :name="langs.Active" />
-                        </div>
-                        
+                    <div class="flex flex-col md:flex-row gap-5 ">
+                        <SelectLabelError class="w-full" ref="formToolCreateGroup" :msg="langs.CodeError"
+                            :items="groupTools" :name="langs.GroupTools" :default="formToolCreateUpdate.id"
+                            v-model="formToolCreateUpdate.groupTool" />
+                        <SwitchLabel v-if="value" v-model="formToolCreateUpdate.active" @change="changeValue"
+                            :default="Boolean(formToolCreateUpdate.active)" :name="langs.Active" />
+                    </div>
                 </div>
             </div>
-<Button :text="langs.Save"></Button>
+            <Button :text="langs.Save"></Button>
         </form>
     </Popoup>
-    <!-- v-if="showActive" -->
 </template>
 
 <script>
+import DataManipulate from "../../../helpers/DataManipulate";
 import Popoup from '../../public/Popoup.vue';
 import { langStore } from '../../../store/langStore';
 import InputLabelError from '../../forms/InputLabelError.vue';
 import SelectLabelError from '../../forms/SelectLabelError.vue';
 import SwitchLabel from '../../forms/SwitchLabel.vue';
 import Button from '../../widgets/Button.vue';
+import { toolsStore } from '../../../store/toolsStore';
+import ToastError from "../../public/Toast/ToastError.vue"
+import ToastSuccess from "../../public/Toast/ToastSuccess.vue"
+import FormValidate from "../../mixins/FormValidate";
 export default {
+    props: ['value'],
     data() {
         return {
+            toolStore: toolsStore(),
             formToolCreateUpdate: {
-                code: this.code ? this.tool.code : '',
-                id: this.tool ? this.tool.id : '',
-                groupTool: this.tool ? this.tool.GroupTool : '',
-                active: this.tool ? this.tool.active : '',
+                code: this.value ? this.value.code : '',
+                id: this.value ? this.value.id : '',
+                groupTool: this.value ? this.value.group.id : 2,
+                // nao esquecer de tirar o um para vazio
+                active: this.value ? this.value.active : '',
             }
         };
     },
     computed: {
         langs() {
             return langStore().getLang.PageTool.PopupAddTool
+        },
+        langsToast() {
+            return langStore().getLang.PopupAddUser
+        },
+        isTool() {
+            return Boolean(this.tool)
         }
     },
-    methods:{
+    methods: {
         changeValue() {
             this.formToolCreateUpdate.active = Number(this.formToolCreateUpdate.active)
         },
+        updateTool() {
+            console.log(this.value)
+            try {
+                if (this.validateData({
+                    code: this.formToolCreateUpdate.code,
+                    group: this.formToolCreateUpdate.groupTool,
+                }, {
+                    code: this.$refs.formToolCreateCode,
+                    group: this.$refs.formToolCreateGroup,
+
+                }))
+                    (async () => {
+                        try {
+                            this.value &&
+                                await this.toolStore.update(this.value.id,
+                                    {
+                                        code: this.formToolCreateUpdate.code,
+                                        group_tools_id: this.formToolCreateUpdate.groupTool ,
+                                        active: this.formToolCreateUpdate.active,
+                                    }
+                                );
+
+                            !this.value &&
+                                await this.toolStore.add(
+                                    {
+                                        code: this.formToolCreateUpdate.code,
+                                        group_tools_id: this.formToolCreateUpdate.groupTool,
+                                    }
+                                );
+                            this.$emit("closePopUp");
+                            this.$emit("activeToast", {
+                                msg: this.value && this.langsToast.updatedSucess || !this.value && this.langsToast.createdSucess,
+                                type: ToastSuccess
+                            });
+                        } catch (error) {
+                            this.$emit("activeToast", {
+                                msg: this.langsToast.errorCreatedUpdated,
+                                type: ToastError
+                            });
+                        }
+                    })();
+            } catch (e) {
+                console.log(e);
+            }
+        },
+
     },
-    components: { Popoup, InputLabelError, SelectLabelError, SwitchLabel, Button }
+    components: {
+        Popoup,
+        InputLabelError,
+        SelectLabelError,
+        SwitchLabel,
+        Button
+    },
+    emits: ['activeToast'],
+    mixins: [FormValidate]
 }
+
 </script>
