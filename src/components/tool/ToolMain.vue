@@ -1,21 +1,20 @@
 <template>
     <div class="bg-MeivAsh  min-h-screen font-openSans dark:bg-zinc-900">
         <div class="px-8 md:px-16 py-8 flex flex-col gap-5">
-            <HeaderTool :newOptions="tableOptionSelected"/>
-            <component :is="componentFilter"></component>
+            <HeaderTool :newOptions="tableOptionSelected" />
+            <component :is="dynamicComponent('Filter')"></component>
             <TableOptions @tableChange="tableChange" />
             <div class="grid gap-1 lg:gap-0 lg:flex lg:flex-col lg:overflow-auto">
                 <TableHeader ref="header" :header=langsTool.Headers[tableOptionSelected] :style="GetLenght" />
-                <TableBody :header=langsTool.Headers[tableOptionSelected] :component="Components[tableOptionSelected]" :items=toolStore.viewing
-                    :style="GetLenght" :selectItems="selectItems" @selectOption="popUpOpen" />
+                <TableBody :header=langsTool.Headers[tableOptionSelected] :component="Components[tableOptionSelected]"
+                    :items=toolStore.viewing :style="GetLenght" :selectItems="selectItems" @selectOption="popUpOpen" />
             </div>
             <Paginate @selectPage="changePage" :pag="toolStore.pag" />
         </div>
     </div>
-    <component v-if="isAddToolClicked" @closePopUp="isAddToolClicked= false" :is="componentFilter"></component>
-    <!-- <ViewCategory></ViewCategory> -->
-    <ViewTool> </ViewTool>
-    <!-- <ViewGroupTool></ViewGroupTool> -->
+    <component v-if="isActivePopUp"  @activeToast="showToast" @closePopUp="isActivePopUp= false" :is="dynamicComponent(selectedOption) "
+        v-bind="propsDynamicComponent"></component>
+        <component :is="this.toast.type" v-if="this.toast.visible" :msg="this.toast.msg" @closeToast="this.toast.visible = false"/>
 </template>
 
 <script>
@@ -32,33 +31,41 @@ import ComponentRowObject from "../public/Table/ComponentsTable/ComponentRowObje
 import ComponentTimePassed from "../public/Table/ComponentsTable/ComponentTimePassed.vue";
 import Paginate from "../public/Table/Paginate.vue";
 import TableOptions from "../public/Table/TableOptions.vue";
-import CategoryFilter from "./filters/CategoryFilter.vue";
-import GroupToolsFilter from "./filters/GroupToolsFilter.vue";
-import ToolsFilter from "./filters/ToolsFilter.vue";
+import FilterCategory from "./filters/FilterCategory.vue";
+import FilterGroupTools from "./filters/FilterGroupTools.vue";
+import FilterTools from "./filters/FilterTools.vue";
 import ViewCategory from "./PopupsTool/ViewCategory.vue";
-import ViewTool from "./PopupsTool/ViewTool.vue";
-import ViewGroupTool from "./PopupsTool/ViewGroupTool.vue";
+import ViewTools from "./PopupsTool/ViewTools.vue";
+import ViewGroupTools from "./PopupsTool/ViewGroupTools.vue";
+import AddUpdateTools from "./PopupsTool/AddUpdateTools.vue";
+import DeleteTools from "./PopupsTool/DeleteTools.vue";
+
 export default {
     data() {
         return {
+            isActivePopUp: false,
+            selectedOption: '',
             valueID: '',
             tableOptionSelected: "Tools",
-            Components:{
-                  Tools: [
-                markRaw(ComponentRowText),
-                markRaw(ComponentRowText),
-                markRaw(ComponentRowText),
-                markRaw(ComponentRowObject),
-                markRaw(ComponentRowStatus),
-                markRaw(ComponentTimePassed),
-                
-            ],
-            GroupTools: [
-            markRaw(ComponentRowText),
-            ],
-            Category: [
-            markRaw(ComponentRowText),
-            ],
+            props: {
+                Tools: this.getDataTool
+            },
+            Components: {
+                Tools: [
+                    markRaw(ComponentRowText),
+                    markRaw(ComponentRowText),
+                    markRaw(ComponentRowText),
+                    markRaw(ComponentRowObject),
+                    markRaw(ComponentRowStatus),
+                    markRaw(ComponentTimePassed),
+
+                ],
+                GroupTools: [
+                    markRaw(ComponentRowText),
+                ],
+                Category: [
+                    markRaw(ComponentRowText),
+                ],
             },
             isPicked: false,
             toolStore: toolsStore(),
@@ -75,7 +82,7 @@ export default {
                     value: "View"
                 },
                 {
-                    key: "update",
+                    key: "addUpdate",
                     component: "",
                     value: "Update"
                 },
@@ -84,42 +91,60 @@ export default {
                     component: "",
                     value: "Delete"
                 }
-            ]
+            ],
+            toast: {
+                msg: '',
+                visible: false,
+                type: ''
+            }
         }
     },
     components:
     {
-    HeaderTool,
-    Button,
-    TableHeader,
-    TableBody,
-    Paginate,
-    TableOptions,
-    CategoryFilter,
-    GroupToolsFilter,
-    ToolsFilter,
-    ViewCategory,
-    ViewTool,
-    ViewGroupTool
-},
+        HeaderTool,
+        Button,
+        TableHeader,
+        TableBody,
+        Paginate,
+        TableOptions,
+        FilterCategory,
+        FilterGroupTools,
+        FilterTools,
+        ViewCategory,
+        ViewTools,
+        ViewGroupTools,
+        AddUpdateTools,
+        DeleteTools,
+    },
     computed: {
+        getDataTool() {
+            return this.toolStore.tools.find(tool => this.valueID == tool.id)
+
+        },
+        propsDynamicComponent() {
+            if (this.tableOptionSelected=='Tools' && (this.selectedOption == 'View' || this.selectedOption == 'AddUpdate'))
+                return { value: this.getDataTool }
+                if (this.tableOptionSelected=='Tools' && this.selectedOption == 'Delete')
+                return { value: this.valueID }
+        },
         GetLenght() {
             return `grid-template-columns: 50px repeat(${this.langsTool.Headers[this.tableOptionSelected].length}, minmax(150px, 1fr));`
         },
+
         langsTool() {
             return langStore().getLang.PageTool.ToolFeature
         },
         pages() {
             return langStore().getLang.Paginate
         },
-        componentFilter(){
-            return `${this.tableOptionSelected}Filter`
-        }
     },
     async mounted() {
         await this.toolStore.mount()
     },
     methods: {
+        dynamicComponent(option) {
+            return `${option}${this.tableOptionSelected}`
+        },
         tableChange(value) {
             this.tableOptionSelected = value
         },
@@ -140,17 +165,16 @@ export default {
             this.toast.type = data.type;
             this.toast.visible = true;
         },
-        popUpOpen(select, valueId){
+        popUpOpen(select, valueId) {
             this.valueID = valueId;
-            if(select == "view"){
-                this.isResetClicked = true;
-            }
-            if(select == "delete"){
-                this.isDeleteClicked = true;
-            }
-            if(select == "update") {this.isUpdateClick = true}
+            this.selectedOption = select.charAt(0).toUpperCase() + select.slice(1)
+            this.isActivePopUp = true
         },
+        showToast(data){
+            this.toast.msg = data.msg;
+            this.toast.type = data.type;
+            this.toast.visible = true;
+        }
     }
 }
 </script>
-
