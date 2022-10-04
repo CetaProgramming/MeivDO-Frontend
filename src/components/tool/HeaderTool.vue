@@ -1,7 +1,6 @@
 <template>
     <div class="flex flex-col md:flex-row justify-between items-center gap-4">
         <PageImageName :img="langsItems.tools.img" :title="langsItems.tools.title" />
-        {{newOptions}}
         <div>
             <div class="flex gap-4 ">
                 <NavigateItemMenu />
@@ -40,11 +39,6 @@ export default {
         componentFilter(){
             this.popUpSelected = this.newOptions
             return `AddUpdate${this.popUpSelected}`
-        }
-    },
-    watch:{
-        newOptions(){
-            console.log("options change")
         }
     },
     components:
