@@ -7,20 +7,24 @@
             <div class="grid gap-1 lg:gap-0 lg:flex lg:flex-col lg:overflow-auto">
                 <TableHeader ref="header" :header=langsTool.Headers[tableOptionSelected] :style="GetLenght" />
                 <TableBody :header=langsTool.Headers[tableOptionSelected] :component="Components[tableOptionSelected]"
-                    :items=toolStore.viewing :style="GetLenght" :selectItems="selectItems" @selectOption="popUpOpen" />
+                    :items=store[tableOptionSelected].viewing :style="GetLenght" :selectItems="selectItems"
+                    @selectOption="popUpOpen" />
             </div>
             <Paginate @selectPage="changePage" :pag="toolStore.pag" />
         </div>
     </div>
-    <component v-if="isActivePopUp"  @activeToast="showToast" @closePopUp="isActivePopUp= false" :is="dynamicComponent(selectedOption) "
-        v-bind="propsDynamicComponent"></component>
-        <component :is="this.toast.type" v-if="this.toast.visible" :msg="this.toast.msg" @closeToast="this.toast.visible = false"/>
+    <component v-if="isActivePopUp" @activeToast="showToast" @closePopUp="isActivePopUp= false"
+        :is="dynamicComponent(selectedOption) " v-bind="propsDynamicComponent"></component>
+    <component :is="this.toast.type" v-if="this.toast.visible" :msg="this.toast.msg"
+        @closeToast="this.toast.visible = false" />
 </template>
 
 <script>
 import { markRaw } from "vue";
 import { langStore } from '../../store/langStore';
 import { toolsStore } from '../../store/toolsStore'
+import { categoryStore } from '../../store/categoryStore'
+import { groupToolsStore } from "../../store/groupToolsStore";
 import HeaderTool from './HeaderTool.vue';
 import Button from '../widgets/Button.vue';
 import TableHeader from '../public/Table/TableHeader.vue';
@@ -62,13 +66,26 @@ export default {
                 ],
                 GroupTools: [
                     markRaw(ComponentRowText),
+                    markRaw(ComponentRowText),
+                    markRaw(ComponentRowText),
+                    markRaw(ComponentRowStatus),
+                    markRaw(ComponentTimePassed),
                 ],
                 Category: [
                     markRaw(ComponentRowText),
+                    markRaw(ComponentRowText),
+                    markRaw(ComponentRowStatus),
+                    markRaw(ComponentTimePassed),
                 ],
             },
             isPicked: false,
+            store: {
+                Category: categoryStore(),
+                GroupTools: groupToolsStore(),
+                Tools: toolsStore()
+            },
             toolStore: toolsStore(),
+            groupToolStore: groupToolsStore(),
             selectItems: [
                 {
                     key: "",
@@ -117,14 +134,13 @@ export default {
         DeleteTools,
     },
     computed: {
-        getDataTool() {
-            return this.toolStore.tools.find(tool => this.valueID == tool.id)
-
+        getDataStore() {
+            return this.store[this.tableOptionSelected].getData(this.valueID)
         },
         propsDynamicComponent() {
-            if (this.tableOptionSelected=='Tools' && (this.selectedOption == 'View' || this.selectedOption == 'AddUpdate'))
-                return { value: this.getDataTool }
-                if (this.tableOptionSelected=='Tools' && this.selectedOption == 'Delete')
+            if (this.selectedOption == 'View' || this.selectedOption == 'AddUpdate')
+                return { value: this.getDataStore }
+            if (this.selectedOption == 'Delete')
                 return { value: this.valueID }
         },
         GetLenght() {
@@ -139,7 +155,9 @@ export default {
         },
     },
     async mounted() {
-        await this.toolStore.mount()
+        // Object.keys(this.store).forEach(async store => await this.store[store].mount())
+        Promise.all([await this.store.Category.mount(),await this.store.GroupTools.mount(),await this.store.Tools.mount()])
+
     },
     methods: {
         dynamicComponent(option) {
@@ -170,7 +188,7 @@ export default {
             this.selectedOption = select.charAt(0).toUpperCase() + select.slice(1)
             this.isActivePopUp = true
         },
-        showToast(data){
+        showToast(data) {
             this.toast.msg = data.msg;
             this.toast.type = data.type;
             this.toast.visible = true;
