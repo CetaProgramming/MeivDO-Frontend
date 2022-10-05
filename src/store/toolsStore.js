@@ -1,13 +1,11 @@
 import { defineStore } from "pinia";
 import axios from "axios";
-
+import { groupToolsStore } from "./groupToolsStore";
 
 export const toolsStore = defineStore('toolsStore', {
     state: () => {
         return {
             tools: [],
-            imgProfileDefault: `${import.meta.env.VITE_API_ENDPOINT}/storage/default/default-profile.png`,
-            // roles: [],
             pag: {
                 actualPage: 1,
                 lastPage: null,
@@ -20,11 +18,13 @@ export const toolsStore = defineStore('toolsStore', {
     },
     actions: {
         createObj(tool) {
+            const refGroupTools = groupToolsStore().groupTools.findIndex(groupTool => groupTool.id === tool.group_tools_id)
+            console.log(refGroupTools)
             return {
                 id: tool.id,
                 code: tool.code,
                 status: tool.status_tools, 
-                group: tool.group_tools,
+                group: groupToolsStore().groupTools.slice(refGroupTools,refGroupTools),
                 user: tool.user,
                 active: Number(tool.active),
                 updated: tool.updated_at,
@@ -32,10 +32,12 @@ export const toolsStore = defineStore('toolsStore', {
             }
         },
         createViewing(tool) {
+            const refGroupTools = groupToolsStore().groupTools.findIndex(groupTool => groupTool.id === tool.group_tools_id)
+
             return {
                 id: tool.id,
                 code: tool.code,
-                group: tool.group_tools,
+                group: groupToolsStore().groupTools.slice(refGroupTools,refGroupTools),
                 status: tool.status, 
                 active: Number(tool.active),
                 updated: tool.updated,
@@ -131,5 +133,8 @@ export const toolsStore = defineStore('toolsStore', {
                 throw error;
             }
         },
+        getData(id){
+            return this.tools.find(tool => id == tool.id)
+            }
     }
 });
