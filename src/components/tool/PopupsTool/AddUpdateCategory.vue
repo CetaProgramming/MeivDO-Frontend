@@ -1,54 +1,105 @@
 <template>
     <Popoup :titlePopUp="langs.Title" class="font-meivdo">
-        <form class="flex flex-col gap-5">
+        <form @submit.prevent="updateCategory" class="flex flex-col gap-5">
             <div
                 class="font-openSans grid grid-cols-1 items-center gap-5 md:gap-1  lg:grid-cols-1fr-auto md:justify-between ">
                 <div class="flex flex-col gap-7">
                     <InputLabelError ref="formCategoryCreateName" v-model="formCategoryCreateUpdate.name"
                         :placeholder="langs.Placeholder" msg="langs.NameError" :name="langs.Name"
                         :default="formCategoryCreateUpdate.name" />
-                    <SwitchLabel v-if="showActive"  v-model="formCategoryCreateUpdate.active" @change="changeValue"
+                    <SwitchLabel v-if="value" v-model="formCategoryCreateUpdate.active" @change="changeValue"
                         :default="Boolean(formCategoryCreateUpdate.active)  " :name="langs.Active" />
                 </div>
             </div>
             <Button :text="langs.Save"></Button>
         </form>
     </Popoup>
-    
+
 </template>
   
 <script>
 import Popoup from '../../public/Popoup.vue';
 import { langStore } from '../../../store/langStore';
+import { categoryStore } from '../../../store/categoryStore';
 import InputLabelError from '../../forms/InputLabelError.vue';
 import SwitchLabel from '../../forms/SwitchLabel.vue';
 import Button from '../../widgets/Button.vue';
+import ToastError from "../../public/Toast/ToastError.vue"
+import ToastSuccess from "../../public/Toast/ToastSuccess.vue"
+import FormValidate from "../../mixins/FormValidate";
 export default {
+    props: ['value'],
     data() {
         return {
+            categoryStore: categoryStore(),
             formCategoryCreateUpdate: {
-                name: this.name ? this.category.name : '',
-                id: this.tool ? this.tool.id : '',
-                active: this.tool ? this.tool.active : '',
+                name: this.value ? this.value.name : '',
+                id: this.value ? this.value.id : '',
+                active: this.value ? this.value.active : '',
             }
         };
     },
     computed: {
         langs() {
             return langStore().getLang.PageTool.PopupAddCategory
+        },
+        langsToast() {
+            return langStore().getLang.PopupAddUser
         }
     },
     methods: {
         changeValue() {
-            this.formToolCreateUpdate.active = Number(this.formToolCreateUpdate.active)
+            this.formCategoryCreateUpdate.active = Number(this.formCategoryCreateUpdate.active)
+        },
+        updateCategory() {
+            try {
+                if (this.validateData({
+                    name: this.formCategoryCreateUpdate.name, 
+                }, {
+                    name: this.$refs.formCategoryCreateName,
+
+                }))
+                    (async () => {
+                        try {
+                            this.value &&
+                                await this.categoryStore.update(this.value.id,
+                                    {
+                                        name: this.formCategoryCreateUpdate.name,
+                                        active: this.formCategoryCreateUpdate.active,
+                                    }
+                                );
+
+                            !this.value &&
+                                await this.categoryStore.add(
+                                    {
+                                        name: this.formCategoryCreateUpdate.name
+                                    }
+                                );
+                            this.$emit("closePopUp");
+                            this.$emit("activeToast", {
+                                msg: this.value && this.langsToast.updatedSucess || !this.value && this.langsToast.createdSucess,
+                                type: ToastSuccess
+                            });
+                        } catch (error) {
+                            this.$emit("activeToast", {
+                                msg: this.langsToast.errorCreatedUpdated,
+                                type: ToastError
+                            });
+                        }
+                    })();
+            } catch (e) {
+                console.log(e);
+            }
         },
     },
     components: {
-    Popoup,
-    InputLabelError,
-    SwitchLabel,
-    Button
-}
+        Popoup,
+        InputLabelError,
+        SwitchLabel,
+        Button
+    },
+    emits: ['activeToast'],
+    mixins: [FormValidate]
 }
 </script>
   

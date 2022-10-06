@@ -63,7 +63,6 @@ export default {
             this.formToolCreateUpdate.active = Number(this.formToolCreateUpdate.active)
         },
         updateTool() {
-            console.log(this.value)
             try {
                 if (this.validateData({
                     code: this.formToolCreateUpdate.code,

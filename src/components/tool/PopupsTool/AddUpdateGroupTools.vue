@@ -1,19 +1,19 @@
 <template>
     <Popoup :titlePopUp="langs.Title" class="font-meivdo">
-        <form class="flex flex-col gap-5">
+        <form @submit.prevent="updateGroupTool" class="flex flex-col gap-5">
             <div
                 class="font-openSans grid grid-cols-1 items-center gap-5 md:gap-1  lg:grid-cols-1fr-auto md:justify-between ">
                 <div class="flex flex-col gap-7">
                     <div class="grid lg:grid-cols-2 gap-4">
                         <div class="flex flex-col gap-4">
-                            <InputLabelError ref="formToolCreateName" v-model="formGroupToolCreateUpdate.code"
+                            <InputLabelError ref="formGroupToolCreateCode" v-model="formGroupToolCreateUpdate.code"
                                 :placeholder="langs.Placeholder" msg="langs.NameError" :name="langs.Code"
                                 :default="formGroupToolCreateUpdate.code" />
 
-                            <SelectLabelError class="w-full" ref="formTollCreateGroup" :msg="langs.CodeError"
+                            <SelectLabelError class="w-full" ref="formGroupToolCategory" :msg="langs.CodeError"
                                 :items="categories" :name="langs.Category" :default="formGroupToolCreateUpdate.id"
                                 v-model="formGroupToolCreateUpdate.category" />
-                            <SwitchLabel v-if="showActive" v-model="formGroupToolCreateUpdate.active" @change="changeValue"
+                            <SwitchLabel v-if="value" v-model="formGroupToolCreateUpdate.active" @change="changeValue"
                                 :default="Boolean(formGroupToolCreateUpdate.active)  " :name="langs.Active" />
                         </div>
                         <div>
@@ -21,9 +21,6 @@
                                 image="formUserCreateUpdate.image" :btnTitle="langs.UploadNewPicture" />
                         </div>
                     </div>
-
-
-
                     <TextAreaLabel type="textarea" background="bg-zinc-300" :name="langs.Description"
                         :placeholder="langs.PlaceholderDescription"></TextAreaLabel>
 
@@ -36,23 +33,30 @@
 </template>
 
 <script>
+import DataManipulate from "../../../helpers/DataManipulate";
 import Popoup from '../../public/Popoup.vue';
 import { langStore } from '../../../store/langStore';
+import { groupToolsStore } from '../../../store/groupToolsStore';
 import InputLabelError from '../../forms/InputLabelError.vue';
 import SelectLabelError from '../../forms/SelectLabelError.vue';
 import SwitchLabel from '../../forms/SwitchLabel.vue';
 import Button from '../../widgets/Button.vue';
 import ImgAndButton from '../../forms/ImgAndButton.vue';
 import TextAreaLabel from '../../forms/TextAreaLabel.vue';
+import ToastError from "../../public/Toast/ToastError.vue"
+import ToastSuccess from "../../public/Toast/ToastSuccess.vue"
+import FormValidate from "../../mixins/FormValidate";
 export default {
+    props: ['value'],
     data() {
         return {
+            groupToolStore: groupToolsStore(),
             formGroupToolCreateUpdate: {
-                code: this.code ? this.tool.code : '',
-                id: this.tool ? this.tool.id : '',
-                category: this.tool ? this.tool.category : '',
+                code: this.value ? this.value.code : '',
+                id: this.value ? this.value.id : '',
+                category: this.value ? this.value.category : 1,
                 // image: this.groupTool ? this.user.image : usersStore().imgProfileDefault,
-                active: this.tool ? this.tool.active : '',
+                active: this.value ? this.value.active : '',
                 selectedImage: '',
             }
         };
@@ -60,6 +64,9 @@ export default {
     computed: {
         langs() {
             return langStore().getLang.PageTool.PopupAddGroupTool
+        },
+        langsToast() {
+            return langStore().getLang.PopupAddUser
         }
     },
     methods: {
@@ -67,9 +74,69 @@ export default {
             this.$emit('activeToast', toast);
         },
         changeValue() {
-            this.formToolCreateUpdate.active = Number(this.formToolCreateUpdate.active)
+            this.formGroupToolCreateUpdate.active = Number(this.formGroupToolCreateUpdate.active)
+        },
+        selectedFile(fileImage) {
+            console.log(fileImage)
+            this.formGroupToolCreateUpdate.selectedImage = fileImage
+        },
+        updateGroupTool() {
+            try {
+                if (this.validateData({
+                    code: this.formGroupToolCreateUpdate.code,
+                    category: this.formGroupToolCreateUpdate.category,
+                }, {
+                    code: this.$refs.formGroupToolCreateCode,
+                    category: this.$refs.formGroupToolCategory,
+                }))
+                    (async () => {
+                        try {
+                            this.value &&
+                                await this.groupToolStore.update(this.value.id,
+                                    DataManipulate.formDataImage({
+                                        code: this.formGroupToolCreateUpdate.code,
+                                        category: this.formGroupToolCreateUpdate.category,
+                                        image: this.formGroupToolCreateUpdate.selectedImage,
+                                        active: this.formGroupToolCreateUpdate.active,
+                                    }, true)
+                                );
+
+                            !this.value &&
+                                await this.groupToolStore.add(
+                                    DataManipulate.formDataImage({
+                                        code: this.formGroupToolCreateUpdate.code,
+                                        category: this.formGroupToolCreateUpdate.category,
+                                        image: this.formGroupToolCreateUpdate.selectedImage,
+                                        active: this.formGroupToolCreateUpdate.active,
+                                    })
+                                );
+                            this.$emit("closePopUp");
+                            this.$emit("activeToast", {
+                                msg: this.value && this.langsToast.updatedSucess || !this.value && this.langsToast.createdSucess,
+                                type: ToastSuccess
+                            });
+                        } catch (error) {
+                            this.$emit("activeToast", {
+                                msg: this.langsToast.errorCreatedUpdated,
+                                type: ToastError
+                            });
+                        }
+                    })();
+            } catch (e) {
+                console.log(e);
+            }
         },
     },
-    components: { Popoup, InputLabelError, SelectLabelError, SwitchLabel, Button, ImgAndButton, TextAreaLabel }
+    components: {
+        Popoup,
+        InputLabelError,
+        SelectLabelError,
+        SwitchLabel,
+        Button,
+        ImgAndButton,
+        TextAreaLabel
+    },
+    emits: ['activeToast'],
+    mixins: [FormValidate]
 }
 </script>
