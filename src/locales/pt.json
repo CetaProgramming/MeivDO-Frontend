@@ -248,6 +248,13 @@
             "DeleteProjectError": "Não foi possível apagar o projeto, verifique",
             "Confirmation": "Sim"
         },
+        "PopupProjectStatus": {
+            "StatusTextFirst": "Tem a certeza que pretende alterar o estado do projeto ",
+            "StatusTextEnd": "?",
+            "StatusProjectSucess":"Estado do projeto alterado com sucesso!",
+            "StatusProjectError":"Não foi possível alterar o estado do projeto, verifique",
+            "Confirmation": "Sim"
+        },
         "ProjectFeature": {
             "View": "Ver",
             "ButtonNew": "Novo",

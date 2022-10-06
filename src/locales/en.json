@@ -296,6 +296,13 @@
             "DeleteProjectError":"Project couldn't be deleted, please verify",
             "Confirmation": "Yes"
         },
+        "PopupProjectStatus": {
+            "StatusTextFirst": "Are you sure you want to change project ",
+            "StatusTextEnd": " status?",
+            "StatusProjectSucess":"Project status changed successfully!",
+            "StatusProjectError":"Project status couldn't be changed, please verify",
+            "Confirmation": "Yes"
+        },
         "ProjectFeature": {
             "View": "View",
             "ButtonNew": "New",
