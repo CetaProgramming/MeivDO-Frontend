@@ -1,5 +1,7 @@
 import { defineStore } from "pinia";
 import axios from "axios";
+import { categoryStore } from "./categoryStore";
+import { toolsStore } from "./toolsStore";
 
 export const groupToolsStore = defineStore('groupToolsStore', {
     state: () => {
@@ -19,11 +21,13 @@ export const groupToolsStore = defineStore('groupToolsStore', {
     },
     actions: {
         createObj(groupTool) {
+            const findSameID= categoryStore().categories.findIndex(category => category.id === groupTool.category_tools_id)
+            const [refCategory] = categoryStore().categories.slice(findSameID,findSameID +1)
             return {
                 id: groupTool.id,
                 code: groupTool.code,
                 image: `${import.meta.env.VITE_API_ENDPOINT}/storage/${groupTool.image}`, 
-                category: groupTool.category_tools_id, 
+                category: refCategory, 
                 description: groupTool.description,
                 active: Number(groupTool.active),
                 user: groupTool.user_id,
@@ -35,7 +39,7 @@ export const groupToolsStore = defineStore('groupToolsStore', {
             return {
                 id: groupTool.id,
                 code: groupTool.code,
-                category: groupTool.category, 
+                category: groupTool.category.name, 
                 active: Number(groupTool.active),
                 updated: groupTool.updated,
             }
@@ -113,6 +117,8 @@ export const groupToolsStore = defineStore('groupToolsStore', {
                 );
                 this.groupTools[this.groupTools.findIndex(groupTool => groupTool.id == groupToolId)] = this.createObj(response.data)
                 this.get(this.pag.actualPage);
+                categoryStore().mount()
+                toolsStore().mount()
                 return response.data
             } catch (error) {
                 throw error

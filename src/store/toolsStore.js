@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import axios from "axios";
 import { groupToolsStore } from "./groupToolsStore";
+import { categoryStore } from "./categoryStore";
 
 export const toolsStore = defineStore('toolsStore', {
     state: () => {
@@ -18,13 +19,15 @@ export const toolsStore = defineStore('toolsStore', {
     },
     actions: {
         createObj(tool) {
-            const refGroupTools = groupToolsStore().groupTools.findIndex(groupTool => groupTool.id === tool.group_tools_id)
-            console.log(refGroupTools)
+            const findSameID= groupToolsStore().groupTools.findIndex(groupTool => groupTool.id === tool.group_tools_id)
+            const [refGroupTools] = groupToolsStore().groupTools.slice(findSameID,findSameID +1)  
+
+
             return {
                 id: tool.id,
                 code: tool.code,
                 status: tool.status_tools, 
-                group: groupToolsStore().groupTools.slice(refGroupTools,refGroupTools),
+                group: refGroupTools,
                 user: tool.user,
                 active: Number(tool.active),
                 updated: tool.updated_at,
@@ -32,12 +35,10 @@ export const toolsStore = defineStore('toolsStore', {
             }
         },
         createViewing(tool) {
-            const refGroupTools = groupToolsStore().groupTools.findIndex(groupTool => groupTool.id === tool.group_tools_id)
-
             return {
                 id: tool.id,
                 code: tool.code,
-                group: groupToolsStore().groupTools.slice(refGroupTools,refGroupTools),
+                group:  tool.group.code,
                 status: tool.status, 
                 active: Number(tool.active),
                 updated: tool.updated,
@@ -116,6 +117,8 @@ export const toolsStore = defineStore('toolsStore', {
                 );
                 this.tools[this.tools.findIndex(tool => tool.id == toolId)] = this.createObj(response.data)
                 this.get(this.pag.actualPage);
+                groupToolsStore().mount()
+                categoryStore().mount()
                 return response.data
             } catch (error) {
                 throw error

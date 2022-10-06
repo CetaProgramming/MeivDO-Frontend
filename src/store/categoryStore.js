@@ -1,5 +1,7 @@
 import { defineStore } from "pinia";
 import axios from "axios";
+import { groupToolsStore } from "./groupToolsStore";
+import { toolsStore } from "./toolsStore";
 
 export const categoryStore = defineStore('categoryStore', {
     state: () => {
@@ -109,6 +111,8 @@ export const categoryStore = defineStore('categoryStore', {
                 );
                 this.categories[this.categories.findIndex(category => category.id == categoryId)] = this.createObj(response.data)
                 this.get(this.pag.actualPage);
+                groupToolsStore().mount()
+                toolsStore().mount()
                 return response.data
             } catch (error) {
                 throw error
