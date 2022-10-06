@@ -42,7 +42,11 @@ import ViewCategory from "./PopupsTool/ViewCategory.vue";
 import ViewTools from "./PopupsTool/ViewTools.vue";
 import ViewGroupTools from "./PopupsTool/ViewGroupTools.vue";
 import AddUpdateTools from "./PopupsTool/AddUpdateTools.vue";
+import AddUpdateCategory from "./PopupsTool/AddUpdateCategory.vue";
+import AddUpdateGroupTools from "./PopupsTool/AddUpdateGroupTools.vue";
 import DeleteTools from "./PopupsTool/DeleteTools.vue";
+import DeleteGroupTools from "./PopupsTool/DeleteGroupTools.vue";
+import DeleteCategory from "./PopupsTool/DeleteCategory.vue";
 
 export default {
     data() {
@@ -131,7 +135,11 @@ export default {
         ViewTools,
         ViewGroupTools,
         AddUpdateTools,
+        AddUpdateCategory,
         DeleteTools,
+        DeleteGroupTools,
+        DeleteCategory,
+        AddUpdateGroupTools
     },
     computed: {
         getDataStore() {
