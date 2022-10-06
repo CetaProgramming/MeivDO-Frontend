@@ -76,6 +76,19 @@ export const projectStore = defineStore('projectStore', {
         pageViewing(projects) {
             return projects.map(project => this.createViewing(project));
         },
+        async changeStatus(projectId, formData){
+            try {
+                const response = await axios.put(
+                    `${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/projects/${projectId}/status`,
+                    formData
+                );
+                this.projects[this.projects.findIndex(project => project.id == projectId)] = this.createObj(response.data)
+                this.get(this.pag.actualPage);
+                return response.data
+            } catch (error) {
+                throw error
+            }
+        },
         async load(page) {
             try {
                 const response = await axios.get(
