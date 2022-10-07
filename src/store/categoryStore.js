@@ -23,7 +23,7 @@ export const categoryStore = defineStore('categoryStore', {
         createObj(category) {
             return {
                 id: category.id,
-                name: category.name, 
+                name: category.name,
                 active: Number(category.active),
                 user: category.user_id,
                 //ver esta parte
@@ -33,7 +33,7 @@ export const categoryStore = defineStore('categoryStore', {
         createViewing(category) {
             return {
                 id: category.id,
-                name: category.name, 
+                name: category.name,
                 active: Number(category.active),
                 updated: category.updated,
             }
@@ -97,12 +97,12 @@ export const categoryStore = defineStore('categoryStore', {
                 throw error
             }
         },
-        calculatePages(){
+        calculatePages() {
             const lastPage = Math.ceil(this.categories.length / this.perPage);
-            if(this.pag.lastPage !== lastPage)
+            if (this.pag.lastPage !== lastPage)
                 return this.pag.lastPage = lastPage;
         },
-        
+
         async update(categoryId, formData) {
             try {
                 const response = await axios.put(
@@ -119,7 +119,7 @@ export const categoryStore = defineStore('categoryStore', {
             }
 
         },
-        
+
         async deleteTool(categoryId) {
             try {
                 await axios.delete(`${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/tools/category/${categoryId}`);
@@ -130,8 +130,12 @@ export const categoryStore = defineStore('categoryStore', {
                 throw error;
             }
         },
-        getData(id){
-        return this.categories.find(category => id == category.id)
+        getData(id) {
+            return this.categories.find(category => id == category.id)
+        },
+        async getActiveCategories() {
+            const getData = await axios.get(`${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/tools/category/search?active=1`);
+            return getData.data.data
         }
     }
 });
