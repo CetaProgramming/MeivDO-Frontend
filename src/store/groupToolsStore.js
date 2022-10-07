@@ -21,13 +21,13 @@ export const groupToolsStore = defineStore('groupToolsStore', {
     },
     actions: {
         createObj(groupTool) {
-            const findSameID= categoryStore().categories.findIndex(category => category.id === groupTool.category_tools_id)
-            const [refCategory] = categoryStore().categories.slice(findSameID,findSameID +1)
+            const findSameID = categoryStore().categories.findIndex(category => category.id === groupTool.category_tools_id)
+            const [refCategory] = categoryStore().categories.slice(findSameID, findSameID + 1)
             return {
                 id: groupTool.id,
                 code: groupTool.code,
-                image: `${import.meta.env.VITE_API_ENDPOINT}/storage/${groupTool.image}`, 
-                category: refCategory, 
+                image: `${import.meta.env.VITE_API_ENDPOINT}/storage/${groupTool.image}`,
+                category: refCategory,
                 description: groupTool.description,
                 active: Number(groupTool.active),
                 user: groupTool.user_id,
@@ -39,7 +39,7 @@ export const groupToolsStore = defineStore('groupToolsStore', {
             return {
                 id: groupTool.id,
                 code: groupTool.code,
-                category: groupTool.category.name, 
+                category: groupTool.category.name,
                 active: Number(groupTool.active),
                 updated: groupTool.updated,
             }
@@ -103,15 +103,16 @@ export const groupToolsStore = defineStore('groupToolsStore', {
                 throw error
             }
         },
-        calculatePages(){
+        calculatePages() {
             const lastPage = Math.ceil(this.groupTools.length / this.perPage);
-            if(this.pag.lastPage !== lastPage)
+            if (this.pag.lastPage !== lastPage)
                 return this.pag.lastPage = lastPage;
         },
-        
+
         async update(groupToolId, formData) {
             try {
-                const response = await axios.put(
+                console.log(formData.getAll('code'))
+                const response = await axios.post(
                     `${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/tools/groups/${groupToolId}`,
                     formData
                 );
@@ -125,19 +126,24 @@ export const groupToolsStore = defineStore('groupToolsStore', {
             }
 
         },
-        
+
         async deleteTool(groupToolId) {
             try {
-                await axios.delete(`${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/tools/groups/${toolId}`);
+                await axios.delete(`${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/tools/groups/${groupToolId}`);
                 const GroupToolDelete = this.groupTools.findIndex(groupTool => groupTool.id === groupToolId)
-                this.grouptools.splice(GroupToolDelete, 1);
+                console.log(GroupToolDelete)
+                this.groupTools.splice(GroupToolDelete, 1);
                 this.get(this.calculatePages() ?? this.pag.actualPage);
             } catch (error) {
                 throw error;
             }
         },
-        getData(id){
+        getData(id) {
             return this.groupTools.find(groupTool => id == groupTool.id)
-            }
+        },
+        async getActiveGroupTools() {
+         const getData = await axios.get(`${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/tools/groups/search?active=1`);
+            return getData.data.data
+        }
     }
 });

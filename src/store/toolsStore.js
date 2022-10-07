@@ -19,9 +19,8 @@ export const toolsStore = defineStore('toolsStore', {
     },
     actions: {
         createObj(tool) {
-            const findSameID= groupToolsStore().groupTools.findIndex(groupTool => groupTool.id === tool.group_tools_id)
+            const findSameID= groupToolsStore().groupTools.findIndex(groupTool => groupTool.id == tool.group_tools_id)
             const [refGroupTools] = groupToolsStore().groupTools.slice(findSameID,findSameID +1)  
-
 
             return {
                 id: tool.id,
