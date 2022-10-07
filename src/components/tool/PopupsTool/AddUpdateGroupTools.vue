@@ -11,19 +11,18 @@
                                 :default="formGroupToolCreateUpdate.code" />
 
                             <SelectLabelError class="w-full" ref="formGroupToolCategory" :msg="langs.CodeError"
-                                :items="categories" :name="langs.Category" :default="formGroupToolCreateUpdate.id"
-                                v-model="formGroupToolCreateUpdate.category" />
+                                :items="activeCategories" :name="langs.Category" :default="formGroupToolCreateUpdate.category"
+                                v-model="formGroupToolCreateUpdate.category" valueOptions="name" />
                             <SwitchLabel v-if="value" v-model="formGroupToolCreateUpdate.active" @change="changeValue"
                                 :default="Boolean(formGroupToolCreateUpdate.active)  " :name="langs.Active" />
                         </div>
                         <div>
                             <ImgAndButton class="gap-3" @activeToast="activeToast" @changePicture="selectedFile"
-                                image="formUserCreateUpdate.image" :btnTitle="langs.UploadNewPicture" />
+                                :image="formGroupToolCreateUpdate.image" :btnTitle="langs.UploadNewPicture" />
                         </div>
                     </div>
-                    <TextAreaLabel type="textarea" background="bg-zinc-300" :name="langs.Description"
-                        :placeholder="langs.PlaceholderDescription"></TextAreaLabel>
-
+                    <TextAreaLabel ref="formGroupToolDescription" background="bg-zinc-300" :name="langs.Description"
+                        :placeholder="langs.PlaceholderDescription" v-model="formGroupToolCreateUpdate.description" :default="formGroupToolCreateUpdate.description"></TextAreaLabel>
                 </div>
             </div>
             <Button :text="langs.Save"></Button>
@@ -37,6 +36,7 @@ import DataManipulate from "../../../helpers/DataManipulate";
 import Popoup from '../../public/Popoup.vue';
 import { langStore } from '../../../store/langStore';
 import { groupToolsStore } from '../../../store/groupToolsStore';
+import { categoryStore } from "../../../store/categoryStore";
 import InputLabelError from '../../forms/InputLabelError.vue';
 import SelectLabelError from '../../forms/SelectLabelError.vue';
 import SwitchLabel from '../../forms/SwitchLabel.vue';
@@ -50,12 +50,15 @@ export default {
     props: ['value'],
     data() {
         return {
+            activeCategories: null,
             groupToolStore: groupToolsStore(),
+            categoryStore: categoryStore(),
             formGroupToolCreateUpdate: {
                 code: this.value ? this.value.code : '',
                 id: this.value ? this.value.id : '',
-                category: this.value ? this.value.category : 1,
-                // image: this.groupTool ? this.user.image : usersStore().imgProfileDefault,
+                category: this.value ? this.value.category.id : '',
+                description: this.value ? this.value.description : '',
+                image: this.value ? this.value.image : groupToolsStore().imgProfileDefault,
                 active: this.value ? this.value.active : '',
                 selectedImage: '',
             }
@@ -69,6 +72,9 @@ export default {
             return langStore().getLang.PopupAddUser
         }
     },
+    async mounted(){
+    this.activeCategories = await categoryStore().getActiveCategories()
+    },
     methods: {
         activeToast(toast) {
             this.$emit('activeToast', toast);
@@ -77,7 +83,6 @@ export default {
             this.formGroupToolCreateUpdate.active = Number(this.formGroupToolCreateUpdate.active)
         },
         selectedFile(fileImage) {
-            console.log(fileImage)
             this.formGroupToolCreateUpdate.selectedImage = fileImage
         },
         updateGroupTool() {
@@ -85,9 +90,11 @@ export default {
                 if (this.validateData({
                     code: this.formGroupToolCreateUpdate.code,
                     category: this.formGroupToolCreateUpdate.category,
+                    description: this.formGroupToolCreateUpdate.description
                 }, {
                     code: this.$refs.formGroupToolCreateCode,
                     category: this.$refs.formGroupToolCategory,
+                    description: this.$refs.formGroupToolDescription
                 }))
                     (async () => {
                         try {
@@ -97,6 +104,7 @@ export default {
                                         code: this.formGroupToolCreateUpdate.code,
                                         category: this.formGroupToolCreateUpdate.category,
                                         image: this.formGroupToolCreateUpdate.selectedImage,
+                                        description: this.formGroupToolCreateUpdate.description,
                                         active: this.formGroupToolCreateUpdate.active,
                                     }, true)
                                 );
@@ -107,6 +115,7 @@ export default {
                                         code: this.formGroupToolCreateUpdate.code,
                                         category: this.formGroupToolCreateUpdate.category,
                                         image: this.formGroupToolCreateUpdate.selectedImage,
+                                        description: this.formGroupToolCreateUpdate.description,
                                         active: this.formGroupToolCreateUpdate.active,
                                     })
                                 );
