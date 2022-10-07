@@ -9,15 +9,16 @@
                         :default="formToolCreateUpdate.code" />
                     <div class="flex flex-col md:flex-row gap-5 ">
                         <SelectLabelError class="w-full" ref="formToolCreateGroup" :msg="langs.CodeError"
-                            :items="groupTools" :name="langs.GroupTools" :default="formToolCreateUpdate.id"
-                            v-model="formToolCreateUpdate.groupTool" />
+                            :items="activeGroupTools" :name="langs.GroupTools" :default="formToolCreateUpdate.groupTool"
+                            v-model="formToolCreateUpdate.groupTool" valueOptions="code"  />
                         <SwitchLabel v-if="value" v-model="formToolCreateUpdate.active" @change="changeValue"
                             :default="Boolean(formToolCreateUpdate.active)" :name="langs.Active" />
                     </div>
                 </div>
             </div>
-            <Button :text="langs.Save"></Button>
+            <Button :text="langs.Save"></Button> 
         </form>
+       
     </Popoup>
 </template>
 
@@ -30,6 +31,7 @@ import SelectLabelError from '../../forms/SelectLabelError.vue';
 import SwitchLabel from '../../forms/SwitchLabel.vue';
 import Button from '../../widgets/Button.vue';
 import { toolsStore } from '../../../store/toolsStore';
+import { groupToolsStore } from "../../../store/groupToolsStore";
 import ToastError from "../../public/Toast/ToastError.vue"
 import ToastSuccess from "../../public/Toast/ToastSuccess.vue"
 import FormValidate from "../../mixins/FormValidate";
@@ -37,12 +39,13 @@ export default {
     props: ['value'],
     data() {
         return {
+            activeGroupTools: null,
             toolStore: toolsStore(),
+            groupToolsStore: groupToolsStore(),
             formToolCreateUpdate: {
                 code: this.value ? this.value.code : '',
                 id: this.value ? this.value.id : '',
-                groupTool: this.value ? this.value.group.id : 2,
-                // nao esquecer de tirar o um para vazio
+                groupTool: this.value ? this.value.group.id : '',
                 active: this.value ? this.value.active : '',
             }
         };
@@ -57,6 +60,9 @@ export default {
         isTool() {
             return Boolean(this.tool)
         }
+    },
+    async mounted(){
+    this.activeGroupTools = await groupToolsStore().getActiveGroupTools()
     },
     methods: {
         changeValue() {
