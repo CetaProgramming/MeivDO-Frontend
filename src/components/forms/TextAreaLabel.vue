@@ -1,7 +1,8 @@
 <template>
     <div class="flex flex-col gap-2 w-full">
         <Label :name="name" :msg="name"/>
-        <textarea class="p-1" v-model="message" :placeholder="placeholder"  :class="borders, background, color, height" ></textarea>
+        <textarea  class="p-1" v-model="value" @input="changeValue" :placeholder="placeholder"  :class="borders, background, color, height" ></textarea>
+        <Label v-if="isError" :name="name" class="font-openSans text-xs" color="text-red-500" :msg="msg"/>
     </div>
 </template>
 
@@ -58,7 +59,10 @@ export default {
                 return this.isError = true;
             return this.isError = false;
         },
-        
+        changeValue(event){
+            this.inputValid();
+            this.$emit("update:modelValue", event.target.value);
+        }   
     },
     components: { Label, Input }
 }
