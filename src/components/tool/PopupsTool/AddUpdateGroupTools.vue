@@ -3,7 +3,7 @@
         <form @submit.prevent="updateGroupTool" class="flex flex-col gap-5">
             <div
                 class="font-openSans grid grid-cols-1 items-center gap-5 md:gap-1  lg:grid-cols-1fr-auto md:justify-between ">
-                <div class="flex flex-col gap-7">
+                <div class="flex flex-col gap-1">
                     <div class="grid lg:grid-cols-2 gap-4">
                         <div class="flex flex-col gap-4">
                             <InputLabelError ref="formGroupToolCreateCode" v-model="formGroupToolCreateUpdate.code"
@@ -21,7 +21,7 @@
                                 :image="formGroupToolCreateUpdate.image" :btnTitle="langs.UploadNewPicture" />
                         </div>
                     </div>
-                    <TextAreaLabel ref="formGroupToolDescription" background="bg-zinc-300" :name="langs.Description"
+                    <TextAreaLabel ref="formGroupToolDescription" :name="langs.Description"
                         :placeholder="langs.PlaceholderDescription" v-model="formGroupToolCreateUpdate.description" :default="formGroupToolCreateUpdate.description"></TextAreaLabel>
                 </div>
             </div>
