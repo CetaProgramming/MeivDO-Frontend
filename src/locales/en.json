@@ -176,12 +176,20 @@
         "PopupViewTool": {
             "Title": "Tool",
             "Code": "Code",
-            "Placeholder": "Insert a name",
-            "Save": "Save",
-            "updatedSucess": "Tool info successfully updated!",
-            "createdSucess": "Rool info successfully added!",
-            "errorCreatedUpdated": "Ocurred a error when doing this task, please verify data!",
-            "NameError": "Name is required!",
+            "Active": "Active",
+            "GroupTools": "Group Tools",
+            "Status": "Status"
+        },
+        "PopupViewGroupTool": {
+            "Title": "GroupTool",
+            "Code": "Code",
+            "Active": "Active",
+            "Category": "Category",
+            "Description": "Description"
+        },
+        "PopupViewCategory": {
+            "Title": "Category",
+            "Name": "Name",
             "Active": "Active"
         },
         "PopupDeleteTool": {
@@ -190,6 +198,14 @@
             "DeleteTextEnd": "?",
             "DeleteToolSucess":"Tool deleted successfully!",
             "DeleteToolError":"Tool couldn't be deleted, please verify",
+            "Confirmation": "Yes"
+        },
+        "PopupDeleteGroupTool": {
+            "Title": "Tool",
+            "DeleteTextFirst": "Are you sure you want to delete tool ",
+            "DeleteTextEnd": "?",
+            "DeleteGroupToolSucess":"Group Tool deleted successfully!",
+            "DeleteGroupToolError":"Group Tool couldn't be deleted, please verify",
             "Confirmation": "Yes"
         },
         "ToolFeature": {

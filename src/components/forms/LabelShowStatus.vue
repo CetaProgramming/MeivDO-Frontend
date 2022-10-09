@@ -5,7 +5,7 @@
         </p>
         <div class="flex justify-center items-center gap-2">
             <circle class="rounded-xl w-3 h-3 block" :class="[background]"></circle>
-            <span class="text-center truncate dark:text-white">{{word}}</span>
+            <!-- <span class="text-center truncate dark:text-white">{{word}}</span> -->
         </div>
     </div>
 </template>
