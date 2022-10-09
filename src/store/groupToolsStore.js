@@ -111,7 +111,6 @@ export const groupToolsStore = defineStore('groupToolsStore', {
 
         async update(groupToolId, formData) {
             try {
-                console.log(formData.getAll('code'))
                 const response = await axios.post(
                     `${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/tools/groups/${groupToolId}`,
                     formData
