@@ -10,7 +10,7 @@
                     :items=store[tableOptionSelected].viewing :style="GetLenght" :selectItems="selectItems"
                     @selectOption="popUpOpen" />
             </div>
-            <Paginate @selectPage="changePage" :pag="toolStore.pag" />
+            <Paginate @selectPage="changePage" :pag="store[tableOptionSelected].pag" />
         </div>
     </div>
     <component v-if="isActivePopUp" @activeToast="showToast" @closePopUp="isActivePopUp= false"
@@ -47,6 +47,7 @@ import AddUpdateGroupTools from "./PopupsTool/AddUpdateGroupTools.vue";
 import DeleteTools from "./PopupsTool/DeleteTools.vue";
 import DeleteGroupTools from "./PopupsTool/DeleteGroupTools.vue";
 import DeleteCategory from "./PopupsTool/DeleteCategory.vue";
+import ToastError from "./../public/Toast/ToastError.vue";
 
 export default {
     data() {
@@ -177,7 +178,7 @@ export default {
         changePage(page) {
             (async () => {
                 try {
-                    await this.userStore.get(page)
+                    await this.store[this.tableOptionSelected].get(page)
                     this.$refs.header.$el.scrollIntoView({ behavior: "smooth" });
                 } catch (e) {
                     this.toast.msg = this.pages.PageNotFound;
