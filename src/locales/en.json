@@ -1,7 +1,7 @@
 {
     "Login": {
         "WelcomeMessage": "Welcome",
-        "Slogan": "Here you can manage your tools, projects, inspections and reparations, and mutch more!",
+        "Slogan": "Here you can manage your tools, projects, inspections, repairs and a lot more!",
         "EmailInput": "Email",
         "EmailError": "Email is required!",
         "PasswordInput": "Password",
@@ -40,7 +40,7 @@
         "newPasswordError": "New Password is invalid!",
         "passwordConfirmError": "Password doesn't match!",
         "changedSucess": "Password changed successfully!",
-        "changedFailed": "Password couldn't be changed, please verify",
+        "changedFailed": "Password couldn't be changed, please verify the fields",
         "SavePass": "Save"
     },
     "PopupSettings": {
@@ -87,7 +87,7 @@
         "projects": {
             "img": "src/assets/icons/projects.png",
             "title": "Projects",
-            "description": "Which projects the company made and see the details of ongoing projects.",
+            "description": "Manage and see projects the company made and see the details of ongoing projects.",
             "link": "projects"
         },
         "inspections": {

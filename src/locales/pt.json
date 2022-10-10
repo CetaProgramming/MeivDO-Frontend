@@ -1,7 +1,7 @@
 {
     "Login": {
         "WelcomeMessage": "Bem-vindo",
-        "Slogan": "Poderá efetuar a gestão das ferramentas, inspecões, reparações e muito mais!",
+        "Slogan": "Aqui poderá efetuar a gestão das ferramentas, inspecões, reparações e muito mais!",
         "EmailInput": "E-mail",
         "EmailError": "Email é obrigatório!",
         "PasswordInput": "Palavra-Passe",
@@ -89,13 +89,13 @@
         "projects": {
             "img": "src/assets/icons/projects.png",
             "title": "Projetos",
-            "description": "Quais os projectos que a empresa realizou e ver os detalhes dos projectos em curso.",
+            "description": "Aqui podemos gerir e ver quais os projectos que a empresa realizou e pode ver também os detalhes dos projectos em curso.",
             "link": "projects"
         },
         "inspections": {
             "img": "src/assets/icons/inspections.png",
             "title": "Inspeções",
-            "description": "Veja as inspecções que as ferramentas têm e os detalhes de cada inspecção.",
+            "description": "Gerir as ferramentas da empresa, ver as inspecções que as ferramentas têm e os detalhes de cada inspecção.",
             "link": "inspections"
         },
         "tools": {
