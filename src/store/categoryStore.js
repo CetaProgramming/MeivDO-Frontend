@@ -8,7 +8,6 @@ export const categoryStore = defineStore('categoryStore', {
         return {
             categories: [],
             imgProfileDefault: `${import.meta.env.VITE_API_ENDPOINT}/storage/default/default-profile.png`,
-            // roles: [],
             pag: {
                 actualPage: 1,
                 lastPage: null,
@@ -97,6 +96,10 @@ export const categoryStore = defineStore('categoryStore', {
                 throw error
             }
         },
+        getOrAdd(categoryObj){
+            const categoryIndex = this.categories.findIndex(category => category.id === categoryObj.id)
+            return categoryIndex == -1 ? this.categories[this.categories.push(categoryObj) - 1] : this.categories[categoryIndex];
+        },
         calculatePages() {
             const lastPage = Math.ceil(this.categories.length / this.perPage);
             if (this.pag.lastPage !== lastPage)
@@ -133,9 +136,9 @@ export const categoryStore = defineStore('categoryStore', {
         getData(id) {
             return this.categories.find(category => id == category.id)
         },
-        async getActiveCategories() {
-            const getData = await axios.get(`${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/tools/category/search?active=1`);
-            return getData.data.data
+        async getActiveCategories(page=1) {
+            const { data } = await axios.get(`${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/tools/category/search?active=1&page=${page}`);
+            return [data.data, data.current_page, data.last_page];
         }
     }
 });

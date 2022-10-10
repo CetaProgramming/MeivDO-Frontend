@@ -21,8 +21,7 @@ export const groupToolsStore = defineStore('groupToolsStore', {
     },
     actions: {
         createObj(groupTool) {
-            const findSameID = categoryStore().categories.findIndex(category => category.id === groupTool.category_tools_id)
-            const [refCategory] = categoryStore().categories.slice(findSameID, findSameID + 1)
+            const refCategory = categoryStore().getOrAdd(groupTool.category_tools);
             return {
                 id: groupTool.id,
                 code: groupTool.code,
@@ -31,7 +30,6 @@ export const groupToolsStore = defineStore('groupToolsStore', {
                 description: groupTool.description,
                 active: Number(groupTool.active),
                 user: groupTool.user_id,
-                //ver esta parte
                 updated: groupTool.updated_at,
             }
         },
