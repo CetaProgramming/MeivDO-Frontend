@@ -345,6 +345,7 @@
         }
     },
     "Options": {
-        "inProgress": "A decorrer"
+        "inProgress": "A decorrer",
+        "noSearchData": "Sem resultados"
     }
 }

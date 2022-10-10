@@ -160,6 +160,7 @@
             "Active": "Active",
             "UploadNewPicture": "Upload New Picture",
             "Description": "Description",
+            "OptionCategory": "Write or select category...",
             "PlaceholderDescription": "Insert a description..."
         },
         "PopupAddCategory": {
@@ -412,7 +413,8 @@
         }
     },
     "Options": {
-        "inProgress": "In Progress"
+        "inProgress": "In Progress",
+        "noSearchData": "Nothing to show"
     }
     
 }
