@@ -9,7 +9,7 @@
             </div>
         </div>
     </div>
-    <component v-if="isAddToolClicked" @closePopUp="isAddToolClicked= false" :is="componentFilter"></component>
+    <component v-if="isAddToolClicked" @closePopUp="isAddToolClicked= false" @activeToast="showToast" :is="componentFilter"></component>
 </template>
 
 <script>
@@ -41,6 +41,11 @@ export default {
             return `AddUpdate${this.popUpSelected}`
         }
     },
+    methods: {
+        showToast(data){
+            this.$emit('activeToast', data);
+        }
+    },
     components:
     {
     PageImageName,
@@ -49,6 +54,7 @@ export default {
     NavigateItemMenu,
     AddUpdateGroupTools,
     AddUpdateCategory
-}
+},
+emits: ['activeToast', 'closePopUp']
 }
 </script>
