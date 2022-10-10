@@ -3,7 +3,7 @@
         <Input ref="inputValue" @click="changeStateOption" @focusout="changeStateOption" type="text" :placeholder="placeholder" @input="changeValueWithInput" :class="borders, background, color" class="w-full" />
         <div @scroll="loadItems" ref="listItems" v-show="optionState" class="absolute w-full p-2 max-h-32 overflow-auto dark:bg-zinc-900">
             <p  v-for="item in itemsFiltered" @click="clickOptionItem(item.name)" @focusout="changeStateOption" class="p-1 cursor-pointer truncate hover:dark:bg-zinc-800">{{item.name}}</p>
-            <p v-if="!itemsFiltered.length" class="text-xs text-center text-red-500">Nothing to show</p>
+            <p v-if="!itemsFiltered.length" class="text-xs text-center text-red-500">{{lang.noSearchData}}</p>
         </div>
     </div>
 </template>
@@ -11,6 +11,7 @@
 <script>
 import Label from '../widgets/Label.vue';
 import Input from '../widgets/Input.vue';
+import {langStore} from './../../store/langStore';
 export default {
     data(){
         return {
@@ -22,6 +23,9 @@ export default {
     computed: {
         itemsFiltered(){
             return this.itemsFilter.filter(item => item.name.toLowerCase().includes(this.$refs.inputValue.value.toLowerCase()));
+        },
+        lang(){
+            return langStore().getLang.Options;
         }
     },
     props: {
