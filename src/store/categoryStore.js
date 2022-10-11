@@ -137,12 +137,15 @@ export const categoryStore = defineStore('categoryStore', {
         getData(id) {
             return this.categories.find(category => id == category.id)
         },
-        async getActiveCategories(CategoryId) {
+        async getActiveCategories(CategoryId, active = '') {
             await this.mount();
             if(this.pag.lastPage > 1)
                 for(let category = 2; category <= this.pag.lastPage; category++){
                     await this.load(category);
                 }
+            if(active){
+                return this.categories;
+            }
             const data = this.categories.filter(category => category.active);
             if(CategoryId !== -1 && !data.some(category => category.id === CategoryId))
                 data.push(this.categories[this.categories.findIndex(category => category.id === CategoryId)]);
