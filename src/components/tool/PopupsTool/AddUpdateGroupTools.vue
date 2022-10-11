@@ -9,7 +9,7 @@
                             <InputLabelError ref="formGroupToolCreateCode" v-model="formGroupToolCreateUpdate.code"
                                 :placeholder="langs.Placeholder" msg="langs.NameError" :name="langs.Code"
                                 :default="formGroupToolCreateUpdate.code" />
-                            <LabelSelectWithInputError ref="formGroupToolCategory" v-model="formGroupToolCreateUpdate.category" :default="formGroupToolCreateUpdate.category" :placeholder="langs.OptionCategory" :name="langs.Category" :items="activeCategories.data" @loadItems="getActiveCategories"/>
+                            <LabelSelectWithInputError ref="formGroupToolCategory" itemFilter="name" v-model="formGroupToolCreateUpdate.category" :default="formGroupToolCreateUpdate.category" :placeholder="langs.OptionCategory" :name="langs.Category" :items="activeCategories"/>
                             <SwitchLabel v-if="value" v-model="formGroupToolCreateUpdate.active" @change="changeValue"
                                 :default="Boolean(formGroupToolCreateUpdate.active)  " :name="langs.Active" />
                         </div>
@@ -49,11 +49,7 @@ export default {
     props: ['value'],
     data() {
         return {
-            activeCategories: {
-                data: [],
-                page: 1,
-                lastPage: 2
-            },
+            activeCategories: [],
             groupToolStore: groupToolsStore(),
             categoryStore: categoryStore(),
             formGroupToolCreateUpdate: {
@@ -80,12 +76,8 @@ export default {
     },
     methods: {
         async getActiveCategories(){
-            if(this.activeCategories.page <= this.activeCategories.lastPage){
-                const [data, page, lastPage] = await categoryStore().getActiveCategories(this.activeCategories.page);
-                data.forEach(item => this.activeCategories.data.push(item));
-                this.activeCategories.page = page + 1;
-                this.activeCategories.lastPage = lastPage;
-            }
+            const data = await categoryStore().getActiveCategories(this.formGroupToolCreateUpdate.category);
+            this.activeCategories = data;
         },
         activeToast(toast) {
             this.$emit('activeToast', toast);
