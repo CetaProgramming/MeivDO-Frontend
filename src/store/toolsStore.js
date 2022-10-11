@@ -136,9 +136,17 @@ export const toolsStore = defineStore('toolsStore', {
             } catch (error) {
                 throw error
             }
-
         },
-        
+        async getStatus() {
+            try {
+                const response = await axios.get(
+                    `${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/tools/status`
+                );
+                return response.data.data
+            } catch (error) {
+                throw error
+            }
+        },
         async deleteTool(toolId) {
             try {
                 await axios.delete(`${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/tools/${toolId}`);
