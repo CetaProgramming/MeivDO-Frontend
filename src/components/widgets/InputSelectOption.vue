@@ -19,7 +19,8 @@ export default {
         default(value){
             if(value == -1){
                 this.$refs.inputValue.value = '';
-                this.value = -1;
+                this.data = '';
+                this.optionState = false;
             }
         }
     },
