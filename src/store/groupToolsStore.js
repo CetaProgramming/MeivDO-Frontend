@@ -13,6 +13,7 @@ export const groupToolsStore = defineStore('groupToolsStore', {
                 actualPage: 1,
                 lastPage: null,
             },
+            filtered: false,
             viewing: [],
             pagesLoad: [],
             perPage: null,
@@ -42,10 +43,22 @@ export const groupToolsStore = defineStore('groupToolsStore', {
                 updated: groupTool.updated,
             }
         },
+        async doSearch({Code = '', Active = '', Category = ''}, reset = false){ 
+            if(reset && this.filtered === false || !reset && this.filtered === false && (!Code && !Active && !Category))
+                return;
+            this.filtered = reset ? false : true;
+            const response = await axios.get(
+                `${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/tools/groups/search?code=${Code}&active=${Active && Number(Active)}&category=${Category}`
+            );
+            this.refactoringViewing(response);
+        },
         async mount() {
             const response = await axios.get(
                 `${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/tools/groups`
             );
+            this.refactoringViewing(response); 
+        },
+        refactoringViewing(response){
             this.pag.actualPage = response.data.current_page;
             this.pag.lastPage = response.data.last_page;
             this.totalItems = response.data.total;
