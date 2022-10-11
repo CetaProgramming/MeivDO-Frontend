@@ -1,5 +1,4 @@
 <template>
-    
     <Popoup :titlePopUp="langs.Title" class="font-meivdo">
         <div
             class="font-openSans grid grid-cols-1 items-center gap-5 md:gap-1  lg:grid-cols-1fr-auto md:justify-between ">

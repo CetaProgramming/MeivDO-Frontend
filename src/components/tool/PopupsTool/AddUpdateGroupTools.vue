@@ -7,7 +7,7 @@
                     <div class="grid lg:grid-cols-2 gap-4">
                         <div class="flex flex-col gap-4">
                             <InputLabelError ref="formGroupToolCreateCode" v-model="formGroupToolCreateUpdate.code"
-                                :placeholder="langs.Placeholder" msg="langs.NameError" :name="langs.Code"
+                                :placeholder="langs.Placeholder" :msg="langs.CodeError" :name="langs.Code"
                                 :default="formGroupToolCreateUpdate.code" />
 
                             <SelectLabelError class="w-full" ref="formGroupToolCategory" :msg="langs.CodeError"
@@ -22,7 +22,7 @@
                         </div>
                     </div>
                     <TextAreaLabel ref="formGroupToolDescription" :name="langs.Description"
-                        :placeholder="langs.PlaceholderDescription" v-model="formGroupToolCreateUpdate.description" :default="formGroupToolCreateUpdate.description"></TextAreaLabel>
+                        :placeholder="langs.PlaceholderDescription" :msg="langs.DescriptionError" v-model="formGroupToolCreateUpdate.description" :default="formGroupToolCreateUpdate.description"></TextAreaLabel>
                 </div>
             </div>
             <Button :text="langs.Save"></Button>
@@ -69,7 +69,7 @@ export default {
             return langStore().getLang.PageTool.PopupAddGroupTool
         },
         langsToast() {
-            return langStore().getLang.PopupAddUser
+            return langStore().getLang.PageTool.PopupAddGroupTool
         }
     },
     async mounted(){

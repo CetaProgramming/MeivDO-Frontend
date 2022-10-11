@@ -4,10 +4,10 @@
             <div class="font-openSans grid grid-cols-1 items-center gap-5 md:gap-1  lg:grid-cols-1fr-auto md:justify-between ">
                 <div class="flex flex-col gap-7 lg:w-4/5">
                     <InputLabelError ref="formUserCreateName" v-model="formUserCreateUpdate.name"
-                        placeholder="Insert a name" :msg="langs.NameError" :name="langs.Name"
+                        :placeholder="langs.PlaceholderName" :msg="langs.NameError" :name="langs.Name"
                         :default="formUserCreateUpdate.name" />
                     <InputLabelError ref="formUserCreateEmail" type="email" v-model="formUserCreateUpdate.email"
-                        placeholder="Insert email" :msg="langs.EmailError" :name="langs.Email"
+                        :placeholder="langs.PlaceholderEmail" :msg="langs.EmailError" :name="langs.Email"
                         :default="formUserCreateUpdate.email" />
                     <SelectLabelError ref="formUserCreateRole" :msg="langs.RoleError" :items="roles" :name="langs.Role"
                         :default="formUserCreateUpdate.role_id" v-model="formUserCreateUpdate.role_id" />
