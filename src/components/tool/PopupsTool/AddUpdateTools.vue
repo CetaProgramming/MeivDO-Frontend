@@ -8,9 +8,9 @@
                         :placeholder="langs.Placeholder" msg="langs.NameError" :name="langs.Code"
                         :default="formToolCreateUpdate.code" />
                     <div class="flex flex-col md:flex-row gap-5 ">
-                        <SelectLabelError class="w-full" ref="formToolCreateGroup" :msg="langs.CodeError"
-                            :items="activeGroupTools" :name="langs.GroupTools" :default="formToolCreateUpdate.groupTool"
-                            v-model="formToolCreateUpdate.groupTool" valueOptions="code"  />
+                        <LabelSelectWithInputError :name="langs.GroupTools" v-model="formToolCreateUpdate.groupTool" :default="formToolCreateUpdate.groupTool"
+                            :items="activeGroupTools" itemFilter="code"
+                        />
                         <SwitchLabel v-if="value" v-model="formToolCreateUpdate.active" @change="changeValue"
                             :default="Boolean(formToolCreateUpdate.active)" :name="langs.Active" />
                     </div>
@@ -23,7 +23,6 @@
 </template>
 
 <script>
-import DataManipulate from "../../../helpers/DataManipulate";
 import Popoup from '../../public/Popoup.vue';
 import { langStore } from '../../../store/langStore';
 import InputLabelError from '../../forms/InputLabelError.vue';
@@ -35,17 +34,18 @@ import { groupToolsStore } from "../../../store/groupToolsStore";
 import ToastError from "../../public/Toast/ToastError.vue"
 import ToastSuccess from "../../public/Toast/ToastSuccess.vue"
 import FormValidate from "../../mixins/FormValidate";
+import LabelSelectWithInputError from "../../forms/LabelSelectWithInputError.vue";
 export default {
     props: ['value'],
     data() {
         return {
-            activeGroupTools: null,
+            activeGroupTools: [],
             toolStore: toolsStore(),
             groupToolsStore: groupToolsStore(),
             formToolCreateUpdate: {
                 code: this.value ? this.value.code : '',
                 id: this.value ? this.value.id : '',
-                groupTool: this.value ? this.value.group.id : '',
+                groupTool: this.value ? this.value.group.id : -1,
                 active: this.value ? this.value.active : '',
             }
         };
@@ -62,7 +62,7 @@ export default {
         }
     },
     async mounted(){
-    this.activeGroupTools = await groupToolsStore().getActiveGroupTools()
+        this.activeGroupTools = await groupToolsStore().getActiveGroupTools()
     },
     methods: {
         changeValue() {
@@ -115,12 +115,13 @@ export default {
 
     },
     components: {
-        Popoup,
-        InputLabelError,
-        SelectLabelError,
-        SwitchLabel,
-        Button
-    },
+    Popoup,
+    InputLabelError,
+    SelectLabelError,
+    SwitchLabel,
+    Button,
+    LabelSelectWithInputError
+},
     emits: ['activeToast'],
     mixins: [FormValidate]
 }
