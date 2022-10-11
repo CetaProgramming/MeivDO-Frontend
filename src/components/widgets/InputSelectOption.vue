@@ -20,7 +20,7 @@ export default {
             if(value == -1){
                 this.$refs.inputValue.value = '';
                 this.data = '';
-                optionState = false;
+                this.optionState = false;
             }
         }
     },
