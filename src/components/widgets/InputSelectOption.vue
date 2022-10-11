@@ -15,6 +15,10 @@ export default {
     watch:{
         items(){
             this.$refs.inputValue.value = this.items && this.default !== -1 ? this.items.find(item => item.id == this.default)[this.itemFilter] : ''
+        },
+        default(value){
+            if(value == -1)
+            this.$refs.inputValue.value = '';
         }
     },
     data(){
