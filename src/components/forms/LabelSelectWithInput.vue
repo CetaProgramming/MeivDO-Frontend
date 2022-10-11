@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col gap-2 w-full">
         <Label :name="name" :msg="name"/>
-        <InputSelectOption v-model="value" :items="items" :itemFilter="itemFilter" :default="default" :placeholder="placeholder"/>
+        <InputSelectOption v-model="value" :items="items" :itemFilter="itemFilter" :default="value" :placeholder="placeholder"/>
     </div>
 </template>
 
@@ -12,6 +12,11 @@ export default {
     data(){
         return {
             value: this.default,
+        }
+    },
+    methods: {
+        resetValues(){
+            this.value = -1
         }
     },
     watch:{
