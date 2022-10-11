@@ -2,6 +2,7 @@ import { defineStore } from "pinia";
 import axios from "axios";
 import { groupToolsStore } from "./groupToolsStore";
 import { categoryStore } from "./categoryStore";
+import { faThList } from "@fortawesome/free-solid-svg-icons";
 
 export const toolsStore = defineStore('toolsStore', {
     state: () => {
@@ -19,14 +20,13 @@ export const toolsStore = defineStore('toolsStore', {
     },
     actions: {
         createObj(tool) {
-            const findSameID= groupToolsStore().groupTools.findIndex(groupTool => groupTool.id == tool.group_tools_id)
-            const [refGroupTools] = groupToolsStore().groupTools.slice(findSameID,findSameID +1)  
+            const refGroupTool = groupToolsStore().getOrAdd(tool.group_tools);
 
             return {
                 id: tool.id,
                 code: tool.code,
                 status: tool.status_tools, 
-                group: refGroupTools,
+                group: refGroupTool,
                 user: tool.user,
                 active: Number(tool.active),
                 updated: tool.updated_at,
@@ -95,6 +95,7 @@ export const toolsStore = defineStore('toolsStore', {
                     formData
                 );
                 this.tools.push(this.createObj(response.data));
+                this.totalItems += 1;
                 this.calculatePages();
                 this.get(this.pag.actualPage);
                 return response.data
@@ -104,8 +105,16 @@ export const toolsStore = defineStore('toolsStore', {
         },
         calculatePages(){
             const lastPage = Math.ceil(this.tools.length / this.perPage);
-            if(this.pag.lastPage !== lastPage)
+            if(this.pag.lastPage !== lastPage){
+                this.pagesLoad.forEach((pag, index) => {
+                    if(pag > lastPage){
+                        this.pagesLoad.splice(index);
+                        return;
+                    }
+                });
                 return this.pag.lastPage = lastPage;
+            }
+
         },
         
         async update(toolId, formData) {
@@ -130,6 +139,7 @@ export const toolsStore = defineStore('toolsStore', {
                 await axios.delete(`${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/tools/${toolId}`);
                 const ToolDelete = this.tools.findIndex(tool => tool.id === toolId)
                 this.tools.splice(ToolDelete, 1);
+                this.totalItems -= 1;
                 this.get(this.calculatePages() ?? this.pag.actualPage);
             } catch (error) {
                 throw error;

@@ -127,6 +127,7 @@ export const projectStore = defineStore('projectStore', {
                     formData
                 );
                 this.projects.push(this.createObj(response.data));
+                this.totalItems += 1;
                 this.calculatePages();
                 this.get(this.pag.actualPage);
                 return response.data
@@ -136,8 +137,15 @@ export const projectStore = defineStore('projectStore', {
         },
         calculatePages(){
             const lastPage = Math.ceil(this.projects.length / this.perPage);
-            if(this.pag.lastPage !== lastPage)
+            if(this.pag.lastPage !== lastPage){
+                this.pagesLoad.forEach((pag, index) => {
+                    if(pag > lastPage){
+                        this.pagesLoad.splice(index);
+                        return;
+                    }
+                });
                 return this.pag.lastPage = lastPage;
+            }
         },
         async update(projectId, formData) {
             try {
@@ -157,6 +165,7 @@ export const projectStore = defineStore('projectStore', {
                 await axios.delete(`${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/projects/${projectId}`);
                 const projectDelete = this.projects.findIndex(project => project.id === projectId)
                 this.projects.splice(projectDelete, 1);
+                this.totalItems -= 1;
                 this.get(this.calculatePages() ?? this.pag.actualPage);
             } catch (error) {
                 throw error;
