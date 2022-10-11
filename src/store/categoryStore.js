@@ -90,6 +90,7 @@ export const categoryStore = defineStore('categoryStore', {
                     formData
                 );
                 this.categories.push(this.createObj(response.data));
+                this.totalItems += 1;
                 this.calculatePages();
                 this.get(this.pag.actualPage);
                 return response.data
@@ -103,8 +104,15 @@ export const categoryStore = defineStore('categoryStore', {
         },
         calculatePages() {
             const lastPage = Math.ceil(this.categories.length / this.perPage);
-            if (this.pag.lastPage !== lastPage)
+            if(this.pag.lastPage !== lastPage){
+                this.pagesLoad.forEach((pag, index) => {
+                    if(pag > lastPage){
+                        this.pagesLoad.splice(index);
+                        return;
+                    }
+                });
                 return this.pag.lastPage = lastPage;
+            }
         },
 
         async update(categoryId, formData) {
@@ -129,6 +137,7 @@ export const categoryStore = defineStore('categoryStore', {
                 await axios.delete(`${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/tools/category/${categoryId}`);
                 const CategoryDelete = this.categories.findIndex(category => category.id === categoryId)
                 this.categories.splice(CategoryDelete, 1);
+                this.totalItems -= 1;
                 this.get(this.calculatePages() ?? this.pag.actualPage);
             } catch (error) {
                 throw error;
