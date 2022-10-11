@@ -9,10 +9,7 @@
                             <InputLabelError ref="formGroupToolCreateCode" v-model="formGroupToolCreateUpdate.code"
                                 :placeholder="langs.Placeholder" msg="langs.NameError" :name="langs.Code"
                                 :default="formGroupToolCreateUpdate.code" />
-
-                            <SelectLabelError class="w-full" ref="formGroupToolCategory" :msg="langs.CodeError"
-                                :items="activeCategories" :name="langs.Category" :default="formGroupToolCreateUpdate.category"
-                                v-model="formGroupToolCreateUpdate.category" valueOptions="name" />
+                            <LabelSelectWithInputError ref="formGroupToolCategory" itemFilter="name" v-model="formGroupToolCreateUpdate.category" :default="formGroupToolCreateUpdate.category" :placeholder="langs.OptionCategory" :name="langs.Category" :items="activeCategories"/>
                             <SwitchLabel v-if="value" v-model="formGroupToolCreateUpdate.active" @change="changeValue"
                                 :default="Boolean(formGroupToolCreateUpdate.active)  " :name="langs.Active" />
                         </div>
@@ -46,17 +43,19 @@ import TextAreaLabel from '../../forms/TextAreaLabel.vue';
 import ToastError from "../../public/Toast/ToastError.vue"
 import ToastSuccess from "../../public/Toast/ToastSuccess.vue"
 import FormValidate from "../../mixins/FormValidate";
+import LabelSelectWithInputError from "../../forms/LabelSelectWithInputError.vue";
+
 export default {
     props: ['value'],
     data() {
         return {
-            activeCategories: null,
+            activeCategories: [],
             groupToolStore: groupToolsStore(),
             categoryStore: categoryStore(),
             formGroupToolCreateUpdate: {
                 code: this.value ? this.value.code : '',
                 id: this.value ? this.value.id : '',
-                category: this.value ? this.value.category.id : '',
+                category: this.value ? this.value.category.id : -1,
                 description: this.value ? this.value.description : '',
                 image: this.value ? this.value.image : groupToolsStore().imgProfileDefault,
                 active: this.value ? this.value.active : '',
@@ -73,9 +72,13 @@ export default {
         }
     },
     async mounted(){
-    this.activeCategories = await categoryStore().getActiveCategories()
+        await this.getActiveCategories();
     },
     methods: {
+        async getActiveCategories(){
+            const data = await categoryStore().getActiveCategories(this.formGroupToolCreateUpdate.category);
+            this.activeCategories = data;
+        },
         activeToast(toast) {
             this.$emit('activeToast', toast);
         },
@@ -87,7 +90,7 @@ export default {
         },
         updateGroupTool() {
             try {
-                if (this.validateData({
+                if (this.validateDataEqualsOrEmpty({
                     code: this.formGroupToolCreateUpdate.code,
                     category: this.formGroupToolCreateUpdate.category,
                     description: this.formGroupToolCreateUpdate.description
@@ -95,7 +98,7 @@ export default {
                     code: this.$refs.formGroupToolCreateCode,
                     category: this.$refs.formGroupToolCategory,
                     description: this.$refs.formGroupToolDescription
-                }))
+                }, -1))
                     (async () => {
                         try {
                             this.value &&
@@ -137,14 +140,15 @@ export default {
         },
     },
     components: {
-        Popoup,
-        InputLabelError,
-        SelectLabelError,
-        SwitchLabel,
-        Button,
-        ImgAndButton,
-        TextAreaLabel
-    },
+    Popoup,
+    InputLabelError,
+    SelectLabelError,
+    SwitchLabel,
+    Button,
+    ImgAndButton,
+    TextAreaLabel,
+    LabelSelectWithInputError
+},
     emits: ['activeToast'],
     mixins: [FormValidate]
 }

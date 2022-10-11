@@ -58,6 +58,7 @@ export const categoryStore = defineStore('categoryStore', {
             this.pag.lastPage = response.data.last_page;
             this.totalItems = response.data.total;
             this.perPage = response.data.per_page;
+            this.pagesLoad = [];
             this.pagesLoad.push(1);
             this.categories = response.data.data.map(category => this.createObj(category)),
                 this.viewing = this.pageViewing(this.categories)
@@ -149,9 +150,16 @@ export const categoryStore = defineStore('categoryStore', {
         getData(id) {
             return this.categories.find(category => id == category.id)
         },
-        async getActiveCategories(page=1) {
-            const { data } = await axios.get(`${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/tools/category/search?active=1&page=${page}`);
-            return [data.data, data.current_page, data.last_page];
+        async getActiveCategories(CategoryId) {
+            await this.mount();
+            if(this.pag.lastPage > 1)
+                for(let category = 2; category <= this.pag.lastPage; category++){
+                    await this.load(category);
+                }
+            const data = this.categories.filter(category => category.active);
+            if(CategoryId !== -1 && !data.some(category => category.id === CategoryId))
+                data.push(this.categories[this.categories.findIndex(category => category.id === CategoryId)]);
+            return data;
         }
     }
 });
