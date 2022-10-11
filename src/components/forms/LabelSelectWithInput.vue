@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col gap-2 w-full">
         <Label :name="name" :msg="name"/>
-        <InputSelectOption v-model="value" :items="items" :default="default" :placeholder="placeholder"/>
+        <InputSelectOption v-model="value" :items="items" :itemFilter="itemFilter" :default="default" :placeholder="placeholder"/>
     </div>
 </template>
 
@@ -33,6 +33,9 @@ export default {
         },
         items: {
             required: true
+        },
+        itemFilter: {
+            required: true
         }
     },
     emits: [
@@ -41,7 +44,3 @@ export default {
     components: { Label, InputSelectOption }
 }
 </script>
-
-<style lang="scss" scoped>
-
-</style>
