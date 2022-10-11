@@ -8,7 +8,7 @@
                         :placeholder="langs.Placeholder" msg="langs.NameError" :name="langs.Code"
                         :default="formToolCreateUpdate.code" />
                     <div class="flex flex-col md:flex-row gap-5 ">
-                        <LabelSelectWithInputError :name="langs.GroupTools" v-model="formToolCreateUpdate.groupTool" :default="formToolCreateUpdate.groupTool"
+                        <LabelSelectWithInputError ref="formToolCreateGroup" :name="langs.GroupTools" v-model="formToolCreateUpdate.groupTool" :default="formToolCreateUpdate.groupTool"
                             :items="activeGroupTools" itemFilter="code"
                         />
                         <SwitchLabel v-if="value" v-model="formToolCreateUpdate.active" @change="changeValue"
@@ -70,14 +70,14 @@ export default {
         },
         updateTool() {
             try {
-                if (this.validateData({
+                if (this.validateDataEqualsOrEmpty({
                     code: this.formToolCreateUpdate.code,
                     group: this.formToolCreateUpdate.groupTool,
                 }, {
                     code: this.$refs.formToolCreateCode,
                     group: this.$refs.formToolCreateGroup,
 
-                }))
+                }, -1))
                     (async () => {
                         try {
                             this.value &&
