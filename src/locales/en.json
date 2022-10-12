@@ -288,8 +288,9 @@
                
                    "Text": "Status",
                    "GroupTools": "Group Tools",
-                   "Category": "Category"
-                
+                   "GroupToolsPlaceholder": "Insert a group tool name",
+                   "Category": "Category",
+                   "CategoryPlaceholder": "Insert a category name"   
             }
     },
     "PageProjects": {
