@@ -1,28 +1,32 @@
 <template>
     <div class="relative bottom-0">
-        <Input ref="inputValue" @click="changeStateOption" @focusout="changeStateOption" type="text" :placeholder="placeholder" @input="changeValueWithInput" :class="borders, background, color" class="w-full" />
-        <div @scroll="loadItems" ref="listItems" v-show="optionState" class="absolute w-full p-2 max-h-32 overflow-auto dark:bg-zinc-900">
-            <p  v-for="item in itemsFiltered" @click="clickOptionItem(item.name)" @focusout="changeStateOption" class="p-1 cursor-pointer truncate hover:dark:bg-zinc-800">{{item.name}}</p>
+        <Input ref="inputValue" @click.stop.prevent="changeStateOption" type="text" v-model="data" :placeholder="placeholder" @input="changeValueWithInput" :class="borders, background, color" class="w-full" />
+        <div ref="listItems" v-show="optionState" class="z-50 absolute w-full p-2 max-h-32 overflow-auto bg-white  dark:bg-zinc-900">
+            <p v-for="item in itemsFiltered" @click="clickOptionItem(item[itemFilter])"  class="p-1 cursor-pointer truncate hover:dark:bg-zinc-800 hover:bg-zinc-300">{{item[itemFilter]}}</p>
             <p v-if="!itemsFiltered.length" class="text-xs text-center text-red-500">{{lang.noSearchData}}</p>
         </div>
     </div>
 </template>
-
 <script>
 import Label from '../widgets/Label.vue';
 import Input from '../widgets/Input.vue';
 import {langStore} from './../../store/langStore';
 export default {
+    watch:{
+        items(){
+            this.$refs.inputValue.value = this.items && this.default !== -1 ? this.items.find(item => item.id == this.default)[this.itemFilter] : ''
+        }
+    },
     data(){
         return {
-            itemsFilter: this.items,
+            data: '',
             value: this.default,
             optionState: false
         }
     },
     computed: {
         itemsFiltered(){
-            return this.itemsFilter.filter(item => item.name.toLowerCase().includes(this.$refs.inputValue.value.toLowerCase()));
+            return !this.data && this.items || this.items.filter(item => item[this.itemFilter].toLowerCase().includes(this.data.toLowerCase()));
         },
         lang(){
             return langStore().getLang.Options;
@@ -31,6 +35,7 @@ export default {
     props: {
         default: {
             type: Number,
+            default: -1
         },
         name: {
             default: "input",
@@ -51,17 +56,27 @@ export default {
         },
         items: {
             required: true
+        },
+        itemFilter: {
+            required: true
         }
     },
     methods: {
+        resetValues(){
+            this.$refs.inputValue.value = '';
+            this.data = '';
+            this.optionState = false;
+        },
         changeStateOption(event){
-            if (event.type === "click" && this.optionState || event.rangeParent && String(event.rangeParent.nodeName).includes('text')) 
+            if (event.rangeParent && String(event.rangeParent.nodeName).includes('text')) 
                 return;
             this.optionState = !this.optionState;
         },
         clickOptionItem(value){
+            console.log(value);
             this.changeIndexOnValue(value);
-            this.$refs.inputValue.value = this.itemsFilter[this.value].name;
+            this.$refs.inputValue.value = this.items[this.value][this.itemFilter];
+            this.data = this.items[this.value][this.itemFilter];
             this.optionState = false;
             this.changeValue(value, false);
         },
@@ -69,23 +84,17 @@ export default {
             this.changeValue(event.target.value);
         },
         changeIndexOnValue(value){
-            const indexValue = this.itemsFilter.findIndex(item => item.name.toLowerCase().includes(value.toLowerCase()));
+            const indexValue = this.items.findIndex(item => item[this.itemFilter].toLowerCase().includes(value.toLowerCase()));
             this.value = indexValue;
             return indexValue;
         },
         changeValue(value, isRunChangeIndexOnValue = true){
             isRunChangeIndexOnValue && this.changeIndexOnValue(value);
-            this.$emit("update:modelValue", this.$refs.inputValue.value ? this.itemsFilter[this.value]?.id ?? -1 : -1);
-        },
-        loadItems(e){
-            const { scrollTop, offsetHeight, scrollHeight } = e.target
-            if ((scrollTop + offsetHeight) >= scrollHeight) {
-                this.$emit('loadItems');
-            }
+            this.$emit("update:modelValue", this.$refs.inputValue.value ? this.items[this.value]?.id ?? -1 : -1);
         }
     },
     emits: [
-        'update:modelValue', 'loadItems'
+        'update:modelValue'
     ],
     components: { Label, Input }
 }

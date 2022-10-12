@@ -12,6 +12,7 @@ export const categoryStore = defineStore('categoryStore', {
                 actualPage: 1,
                 lastPage: null,
             },
+            filtered: false,
             viewing: [],
             pagesLoad: [],
             perPage: null,
@@ -37,17 +38,30 @@ export const categoryStore = defineStore('categoryStore', {
                 updated: category.updated,
             }
         },
+        async doSearch({Name = '', Active = ''}, reset = false){
+            if(reset && this.filtered === false || !reset && this.filtered === false && (!Name && !Active))
+                return;
+            this.filtered = reset ? false : true;
+            const response = await axios.get(
+                `${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/tools/category/search?name=${Name}&active=${Active && Number(Active)}`
+            );
+            this.refactoringViewing(response);
+        },
         async mount() {
             const response = await axios.get(
                 `${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/tools/category`
             );
+            this.refactoringViewing(response); 
+        },
+        refactoringViewing(response){
             this.pag.actualPage = response.data.current_page;
             this.pag.lastPage = response.data.last_page;
             this.totalItems = response.data.total;
             this.perPage = response.data.per_page;
+            this.pagesLoad = [];
             this.pagesLoad.push(1);
             this.categories = response.data.data.map(category => this.createObj(category)),
-                this.viewing = this.pageViewing(this.categories)
+            this.viewing = this.pageViewing(this.categories)
         },
         pageViewing(categories) {
             return categories.map(category => this.createViewing(category));
@@ -89,6 +103,7 @@ export const categoryStore = defineStore('categoryStore', {
                     formData
                 );
                 this.categories.push(this.createObj(response.data));
+                this.totalItems += 1;
                 this.calculatePages();
                 this.get(this.pag.actualPage);
                 return response.data
@@ -102,8 +117,15 @@ export const categoryStore = defineStore('categoryStore', {
         },
         calculatePages() {
             const lastPage = Math.ceil(this.categories.length / this.perPage);
-            if (this.pag.lastPage !== lastPage)
+            if(this.pag.lastPage !== lastPage){
+                this.pagesLoad.forEach((pag, index) => {
+                    if(pag > lastPage){
+                        this.pagesLoad.splice(index);
+                        return;
+                    }
+                });
                 return this.pag.lastPage = lastPage;
+            }
         },
 
         async update(categoryId, formData) {
@@ -128,6 +150,7 @@ export const categoryStore = defineStore('categoryStore', {
                 await axios.delete(`${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/tools/category/${categoryId}`);
                 const CategoryDelete = this.categories.findIndex(category => category.id === categoryId)
                 this.categories.splice(CategoryDelete, 1);
+                this.totalItems -= 1;
                 this.get(this.calculatePages() ?? this.pag.actualPage);
             } catch (error) {
                 throw error;
@@ -136,9 +159,19 @@ export const categoryStore = defineStore('categoryStore', {
         getData(id) {
             return this.categories.find(category => id == category.id)
         },
-        async getActiveCategories(page=1) {
-            const { data } = await axios.get(`${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/tools/category/search?active=1&page=${page}`);
-            return [data.data, data.current_page, data.last_page];
+        async getActiveCategories(CategoryId, active = '') {
+            await this.mount();
+            if(this.pag.lastPage > 1)
+                for(let category = 2; category <= this.pag.lastPage; category++){
+                    await this.load(category);
+                }
+            if(active){
+                return this.categories;
+            }
+            const data = this.categories.filter(category => category.active);
+            if(CategoryId !== -1 && !data.some(category => category.id === CategoryId))
+                data.push(this.categories[this.categories.findIndex(category => category.id === CategoryId)]);
+            return data;
         }
     }
 });

@@ -420,6 +420,7 @@
     },
     "Options": {
         "inProgress": "A decorrer",
-        "noSearchData": "Sem resultados"
+        "noSearchData": "Sem resultados",
+        "noDataFiltered": "Desculpe, não existe data!"
     }
 }

@@ -8,11 +8,11 @@ export const groupToolsStore = defineStore('groupToolsStore', {
         return {
             groupTools: [],
             imgProfileDefault: `${import.meta.env.VITE_API_ENDPOINT}/storage/default/default-profile.png`,
-            // roles: [],
             pag: {
                 actualPage: 1,
                 lastPage: null,
             },
+            filtered: false,
             viewing: [],
             pagesLoad: [],
             perPage: null,
@@ -42,14 +42,27 @@ export const groupToolsStore = defineStore('groupToolsStore', {
                 updated: groupTool.updated,
             }
         },
+        async doSearch({Code = '', Active = '', Category = ''}, reset = false){ 
+            if(reset && this.filtered === false || !reset && this.filtered === false && (!Code && !Active && !Category))
+                return;
+            this.filtered = reset ? false : true;
+            const response = await axios.get(
+                `${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/tools/groups/search?code=${Code}&active=${Active && Number(Active)}&category=${Category == -1 ? '': Category}`
+            );
+            this.refactoringViewing(response);
+        },
         async mount() {
             const response = await axios.get(
                 `${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/tools/groups`
             );
+            this.refactoringViewing(response); 
+        },
+        refactoringViewing(response){
             this.pag.actualPage = response.data.current_page;
             this.pag.lastPage = response.data.last_page;
             this.totalItems = response.data.total;
             this.perPage = response.data.per_page;
+            this.pagesLoad = [];
             this.pagesLoad.push(1);
             this.groupTools = response.data.data.map(groupTool => this.createObj(groupTool)),
                 this.viewing = this.pageViewing(this.groupTools)
@@ -87,6 +100,10 @@ export const groupToolsStore = defineStore('groupToolsStore', {
                 throw e;
             }
         },
+        getOrAdd(groupToolObj){
+            const categoryIndex = this.groupTools.findIndex(groupTool => groupTool.id === groupToolObj.id)
+            return categoryIndex == -1 ? this.groupTools[this.groupTools.push(groupToolObj) - 1] : this.groupTools[categoryIndex];
+        },
         async add(formData) {
             try {
                 const response = await axios.post(
@@ -95,6 +112,7 @@ export const groupToolsStore = defineStore('groupToolsStore', {
                 );
                 this.groupTools.push(this.createObj(response.data));
                 this.calculatePages();
+                this.totalItems += 1;
                 this.get(this.pag.actualPage);
                 return response.data
             } catch (error) {
@@ -103,8 +121,15 @@ export const groupToolsStore = defineStore('groupToolsStore', {
         },
         calculatePages() {
             const lastPage = Math.ceil(this.groupTools.length / this.perPage);
-            if (this.pag.lastPage !== lastPage)
+            if(this.pag.lastPage !== lastPage){
+                this.pagesLoad.forEach((pag, index) => {
+                    if(pag > lastPage){
+                        this.pagesLoad.splice(index);
+                        return;
+                    }
+                });
                 return this.pag.lastPage = lastPage;
+            }
         },
 
         async update(groupToolId, formData) {
@@ -128,8 +153,8 @@ export const groupToolsStore = defineStore('groupToolsStore', {
             try {
                 await axios.delete(`${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/tools/groups/${groupToolId}`);
                 const GroupToolDelete = this.groupTools.findIndex(groupTool => groupTool.id === groupToolId)
-                console.log(GroupToolDelete)
                 this.groupTools.splice(GroupToolDelete, 1);
+                this.totalItems -= 1;
                 this.get(this.calculatePages() ?? this.pag.actualPage);
             } catch (error) {
                 throw error;
@@ -138,9 +163,19 @@ export const groupToolsStore = defineStore('groupToolsStore', {
         getData(id) {
             return this.groupTools.find(groupTool => id == groupTool.id)
         },
-        async getActiveGroupTools() {
-         const getData = await axios.get(`${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/tools/groups/search?active=1`);
-            return getData.data.data
+        async getActiveGroupTools(groupToolId = -1, active = '') {
+            await this.mount();
+            if(this.pag.lastPage > 1)
+            for(let groupTool = 2; groupTool <= this.pag.lastPage; groupTool++){
+                await this.load(groupTool);
+            }
+            if(active){
+                return this.groupTools;
+            }
+            const data = this.groupTools.filter(groupTool => groupTool.active);
+            if(groupToolId !== -1 && !data.some(groupTool => groupTool.id === groupToolId))
+                data.push(this.groupTools[this.groupTools.findIndex(groupTool => groupTool.id === groupToolId)]);
+            return data;
         }
     }
 });

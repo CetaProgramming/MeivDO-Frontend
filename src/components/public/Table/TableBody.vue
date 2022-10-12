@@ -1,23 +1,28 @@
 <template>
-
     <div v-for="item in items"
-        class="bg-white rounded-md flex flex-col min-w-fit md:flex-row md:flex-wrap gap-2 lg:grid py-2 px-4 mt-1 items-center md:overflow-auto dark:bg-MeivMatteBlack"
-        :style="style" :key=item.id>
-        <div v-for="subitem,index in Object.keys(item)"
-            class="grid overflow-auto md:text-ellipsis lg:block w-full lg:w-auto gap-3 justify-items-start md:w-[49%] grid-cols-auto-1fr">
+            class="bg-white rounded-md flex flex-col min-w-fit md:flex-row md:flex-wrap gap-2 lg:grid py-2 px-4 mt-1 items-center md:overflow-auto dark:bg-MeivMatteBlack"
+            :style="style" :key=item.id>
+        <div v-for="subitem,index in Object.keys(item)" class="grid overflow-auto md:text-ellipsis lg:block w-full lg:w-auto gap-3 justify-items-start md:w-[49%] grid-cols-auto-1fr">
             <component :is="component[index]" v-bind="{ headerTitle: header[index], item: item[subitem] }" />
         </div>
-        <Select  :select="resetSelect" :selectItems="selectItems" @selectOption="selectItem($event, item.id)"/>
+            <Select  :select="resetSelect" :selectItems="selectItems" @selectOption="selectItem($event, item.id)"/>
     </div>
+    <p v-if="!items.length" class="p-4 text-center bg-zinc-300 rounded-md text-xs dark:bg-MeivMatteBlack text-red-500 mt-2">{{lang.noDataFiltered}}</p>
 </template>
 
 <script>
 import Select from './../Table/Select.vue'
+import { langStore } from "./../../../store/langStore";
 
 export default {
     data(){
         return{
             resetSelect: false
+        }
+    },
+    computed: {
+        lang(){
+            return langStore().getLang.Options
         }
     },
     props: ['style', 'items', 'header', 'selectItems', 'component'],

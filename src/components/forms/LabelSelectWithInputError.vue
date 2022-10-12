@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col gap-2 w-full">
         <Label :name="name" :msg="name"/>
-        <InputSelectOption v-model="value" :items="items" :default="default" :placeholder="placeholder" @loadItems="loadItems"/>
+        <InputSelectOption v-model="value" :items="items" :itemFilter="itemFilter" :default="default" :placeholder="placeholder"/>
         <Label v-if="isError" :name="name" class="font-openSans text-xs" color="text-red-500" :msg="msg"/>
     </div>
 </template>
@@ -18,7 +18,6 @@ export default {
     },
     watch:{
         value(value){
-            console.log(value);
             this.isErrorShow(value);
             this.$emit("update:modelValue", value);
         }
@@ -40,28 +39,23 @@ export default {
         },
         msg: {
             default: "error"
+        },
+        itemFilter: {
+            required: true
         }
     },
     methods: {
-        loadItems(){
-            this.$emit("loadItems");
-        },
         isErrorShow(value){
             this.isError = this.value === -1 || !value ? true : false;
         },
         validateValue(event){
-            console.log(event.target);
             this.isErrorShow(event.target.value);
             this.$emit("update:modelValue", event.target.value);
         }
     },
     emits: [
-        'update:modelValue', 'loadItems'
+        'update:modelValue'
     ],
     components: { Label, InputSelectOption }
 }
 </script>
-
-<style lang="scss" scoped>
-
-</style>

@@ -65,7 +65,7 @@ export const usersStore = defineStore('usersStore', {
             this.pagesLoad = [];
             this.pagesLoad.push(1);
             this.users = response.data.data.map(user => this.createObj(user)),
-                this.viewing = this.pageViewing(this.users)
+            this.viewing = this.pageViewing(this.users)
         },
         pageViewing(users) {
             return users.map(user => this.createViewing(user));
@@ -109,6 +109,7 @@ export const usersStore = defineStore('usersStore', {
                 this.users.push(this.createObj(response.data));
                 this.calculatePages();
                 this.get(this.pag.actualPage);
+                this.totalItems += 1;
                 return response.data
             } catch (error) {
                 throw error
@@ -116,8 +117,15 @@ export const usersStore = defineStore('usersStore', {
         },
         calculatePages(){
             const lastPage = Math.ceil(this.users.length / this.perPage);
-            if(this.pag.lastPage !== lastPage)
-                return this.pag.lastPage = lastPage;
+            if(this.pag.lastPage !== lastPage){
+                this.pagesLoad.forEach((pag, index) => {
+                    if(pag > lastPage){
+                        this.pagesLoad.splice(index);
+                        return;
+                    }
+            });
+            return this.pag.lastPage = lastPage;
+            }
         },
         async resetPassword(userId) {
             try {
@@ -158,6 +166,7 @@ export const usersStore = defineStore('usersStore', {
                 await axios.delete(`${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/users/${userId}`);
                 const userDelete = this.users.findIndex(user => user.id === userId)
                 this.users.splice(userDelete, 1);
+                this.totalItems -= 1;
                 this.get(this.calculatePages() ?? this.pag.actualPage);
             } catch (error) {
                 throw error;

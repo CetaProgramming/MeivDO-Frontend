@@ -1,11 +1,11 @@
 <template>
     <div class="bg-MeivAsh  min-h-screen font-openSans dark:bg-zinc-900">
         <div class="px-8 md:px-16 py-8 flex flex-col gap-5">
-            <HeaderTool :newOptions="tableOptionSelected" />
-            <component :is="dynamicComponent('Filter')"></component>
+            <HeaderTool @activeToast="showToast" :newOptions="tableOptionSelected" />
+            <component :is="dynamicComponent('Filter')"/>
             <TableOptions @tableChange="tableChange" />
             <div class="grid gap-1 lg:gap-0 lg:flex lg:flex-col lg:overflow-auto">
-                <TableHeader ref="header" :header=langsTool.Headers[tableOptionSelected] :style="GetLenght" />
+                <TableHeader ref="header"  :header=langsTool.Headers[tableOptionSelected] :style="GetLenght" />
                 <TableBody :header=langsTool.Headers[tableOptionSelected] :component="Components[tableOptionSelected]"
                     :items=store[tableOptionSelected].viewing :style="GetLenght" :selectItems="selectItems"
                     @selectOption="popUpOpen" />
@@ -14,7 +14,7 @@
         </div>
     </div>
     <component v-if="isActivePopUp" @activeToast="showToast" @closePopUp="isActivePopUp= false"
-        :is="dynamicComponent(selectedOption) " v-bind="propsDynamicComponent"></component>
+        :is="dynamicComponent(selectedOption)" v-bind="propsDynamicComponent"/>
     <component :is="this.toast.type" v-if="this.toast.visible" :msg="this.toast.msg"
         @closeToast="this.toast.visible = false" />
 </template>
@@ -164,7 +164,6 @@ export default {
         },
     },
     async mounted() {
-        // Object.keys(this.store).forEach(async store => await this.store[store].mount())
         Promise.all([await this.store.Category.mount(),await this.store.GroupTools.mount(),await this.store.Tools.mount()])
 
     },
@@ -196,11 +195,6 @@ export default {
             this.valueID = valueId;
             this.selectedOption = select.charAt(0).toUpperCase() + select.slice(1)
             this.isActivePopUp = true
-        },
-        showToast(data) {
-            this.toast.msg = data.msg;
-            this.toast.type = data.type;
-            this.toast.visible = true;
         }
     }
 }

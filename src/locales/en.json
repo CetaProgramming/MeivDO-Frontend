@@ -423,7 +423,8 @@
     },
     "Options": {
         "inProgress": "In Progress",
-        "noSearchData": "Nothing to show"
+        "noSearchData": "Nothing to show",
+        "noDataFiltered": "Sorry, not found data!"
     }
     
 }
