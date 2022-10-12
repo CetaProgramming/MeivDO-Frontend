@@ -61,7 +61,7 @@ export const categoryStore = defineStore('categoryStore', {
             this.pagesLoad = [];
             this.pagesLoad.push(1);
             this.categories = response.data.data.map(category => this.createObj(category)),
-                this.viewing = this.pageViewing(this.categories)
+            this.viewing = this.pageViewing(this.categories)
         },
         pageViewing(categories) {
             return categories.map(category => this.createViewing(category));

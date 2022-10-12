@@ -65,6 +65,7 @@ export const toolsStore = defineStore('toolsStore', {
             this.pag.lastPage = response.data.last_page;
             this.totalItems = response.data.total;
             this.perPage = response.data.per_page;
+            this.pagesLoad = [];
             this.pagesLoad.push(1);
             this.tools = response.data.data.map(tool => this.createObj(tool)),
                 this.viewing = this.pageViewing(this.tools)
