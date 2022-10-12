@@ -4,10 +4,10 @@
             <div class="font-openSans grid grid-cols-1 items-center gap-5 md:gap-1 md:justify-between ">
                 <div class="flex flex-col gap-7">
                     <InputLabelError ref="formProjectCreateName" v-model="formProjectCreateUpdate.name"
-                        placeholder="Insert a name" :msg="langs.NameError" :name="langs.Name"
+                        :placeholder="langs.PlaceholderName" :msg="langs.NameError" :name="langs.Name"
                         :default="formProjectCreateUpdate.name" />
                     <InputLabel v-model="formProjectCreateUpdate.address"
-                        placeholder="Insert address" :name="langs.Address"
+                        :placeholder="langs.PlaceholderAddress" :name="langs.Address"
                         :default="formProjectCreateUpdate.address" />
                         <div class="grid grid-cols-2 gap-6">
                             <SelectDate v-model="formProjectCreateUpdate.startDate" :default="formProjectCreateUpdate.startDate" :name="langs.StartDate"/>

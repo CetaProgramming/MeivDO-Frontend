@@ -12,6 +12,7 @@
     </form>
 
 </template>
+
 <script>
 import { langStore } from '../../../store/langStore';
 import { categoryStore } from '../../../store/categoryStore'

@@ -44,7 +44,7 @@ export default {
             return langStore().getLang.PageTool.PopupAddCategory
         },
         langsToast() {
-            return langStore().getLang.PopupAddUser
+            return langStore().getLang.PageTool.PopupAddCategory
         }
     },
     methods: {
