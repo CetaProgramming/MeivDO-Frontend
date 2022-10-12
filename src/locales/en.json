@@ -1,7 +1,7 @@
 {
     "Login": {
         "WelcomeMessage": "Welcome",
-        "Slogan": "Here you can manage your tools, projects, inspections and reparations, and mutch more!",
+        "Slogan": "Here you can manage your tools, projects, inspections, repairs and a lot more!",
         "EmailInput": "Email",
         "EmailError": "Email is required!",
         "PasswordInput": "Password",
@@ -40,7 +40,7 @@
         "newPasswordError": "New Password is invalid!",
         "passwordConfirmError": "Password doesn't match!",
         "changedSucess": "Password changed successfully!",
-        "changedFailed": "Password couldn't be changed, please verify",
+        "changedFailed": "Password couldn't be changed, please verify the fields",
         "SavePass": "Save"
     },
     "PopupSettings": {
@@ -87,7 +87,7 @@
         "projects": {
             "img": "src/assets/icons/projects.png",
             "title": "Projects",
-            "description": "Which projects the company made and see the details of ongoing projects.",
+            "description": "Manage and see projects the company made and see the details of ongoing projects.",
             "link": "projects"
         },
         "inspections": {
@@ -118,7 +118,9 @@
     "PopupAddUser": {
         "Title": "User",
         "Name": "Name",
+        "PlaceholderName":"Enter your name",
         "Email": "Email",
+        "PlaceholderEmail":"Enter your email",
         "Role": "Role",
         "Active": "Active",
         "Upload": "Upload new picture",
@@ -152,14 +154,15 @@
             "Code": "Code",
             "Placeholder": "Insert a code",
             "Save": "Save",
-            "updatedSucess": "Tool info successfully updated!",
-            "createdSucess": "Rool info successfully added!",
+            "updatedSucess": "GroupTool info successfully updated!",
+            "createdSucess": "GroupTool successfully added!",
             "errorCreatedUpdated": "Ocurred a error when doing this task, please verify data!",
             "CodeError": "Code is required!",
             "Category": "Categories",
             "Active": "Active",
             "UploadNewPicture": "Upload New Picture",
             "Description": "Description",
+            "DescriptionError": "Description is required!",
             "OptionCategory": "Write or select category...",
             "PlaceholderDescription": "Insert a description..."
         },
@@ -168,8 +171,8 @@
             "Name": "Name",
             "Placeholder": "Insert a name",
             "Save": "Save",
-            "updatedSucess": "Tool info successfully updated!",
-            "createdSucess": "Rool info successfully added!",
+            "updatedSucess": "Category info successfully updated!",
+            "createdSucess": "Category successfully added!",
             "errorCreatedUpdated": "Ocurred a error when doing this task, please verify data!",
             "NameError": "Name is required!",
             "Active": "Active"
@@ -259,7 +262,11 @@
         "Filters": {
                 "Keyword": {
                     "Label": "Keywords",
-                    "Input": "Type code"
+                    "Input": "Type a code"
+                },
+                "KeywordCategory": {
+                    "Label": "Keywords",
+                    "Input": "Enter a Name"
                 },
                 "Status": {
                     "Text": "Active",
@@ -297,7 +304,9 @@
         "PopupAddProject": {
             "Title": "Project",
             "Name": "Name",
+            "PlaceholderName":"Enter a Name",
             "Address": "Address",
+            "PlaceholderAddress":"Enter an Address",
             "StartDate": "Start Date",
             "EndDate" : "End Date",
             "Save": "Save",
@@ -335,7 +344,7 @@
         "Filters": {
                 "Keyword": {
                     "Label": "Keywords",
-                    "Input": "Type code"
+                    "Input": "Type a Name"
                 },
                 "Status": {
                     "Text": "Active",
@@ -365,7 +374,7 @@
         "Users": {
             "Keyword": {
                 "Label": "Keywords",
-                "Input": "Type Name or Email"
+                "Input": "Type a Name or an Email"
             },
             "Status": {
                 "Text": "Status",

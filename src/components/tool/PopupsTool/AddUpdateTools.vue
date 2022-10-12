@@ -5,7 +5,7 @@
                 class="font-openSans grid grid-cols-1 items-center gap-5 md:gap-1  lg:grid-cols-1fr-auto md:justify-between ">
                 <div class="flex flex-col gap-7">
                     <InputLabelError ref="formToolCreateCode" v-model="formToolCreateUpdate.code"
-                        :placeholder="langs.Placeholder" msg="langs.NameError" :name="langs.Code"
+                        :placeholder="langs.Placeholder" :msg="langs.CodeError" :name="langs.Code"
                         :default="formToolCreateUpdate.code" />
                     <div class="flex flex-col md:flex-row gap-5 ">
                         <LabelSelectWithInputError ref="formToolCreateGroup" :name="langs.GroupTools" v-model="formToolCreateUpdate.groupTool" :default="formToolCreateUpdate.groupTool"
@@ -55,7 +55,7 @@ export default {
             return langStore().getLang.PageTool.PopupAddTool
         },
         langsToast() {
-            return langStore().getLang.PopupAddUser
+            return langStore().getLang.PageTool.PopupAddTool
         },
         isTool() {
             return Boolean(this.tool)

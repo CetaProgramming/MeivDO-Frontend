@@ -1,7 +1,7 @@
 {
     "Login": {
         "WelcomeMessage": "Bem-vindo",
-        "Slogan": "Poderá efetuar a gestão das ferramentas, inspecões, reparações e muito mais!",
+        "Slogan": "Aqui poderá efetuar a gestão das ferramentas, inspecões, reparações e muito mais!",
         "EmailInput": "E-mail",
         "EmailError": "Email é obrigatório!",
         "PasswordInput": "Palavra-Passe",
@@ -89,13 +89,13 @@
         "projects": {
             "img": "src/assets/icons/projects.png",
             "title": "Projetos",
-            "description": "Quais os projectos que a empresa realizou e ver os detalhes dos projectos em curso.",
+            "description": "Aqui podemos gerir e ver quais os projectos que a empresa realizou e pode ver também os detalhes dos projectos em curso.",
             "link": "projects"
         },
         "inspections": {
             "img": "src/assets/icons/inspections.png",
             "title": "Inspeções",
-            "description": "Veja as inspecções que as ferramentas têm e os detalhes de cada inspecção.",
+            "description": "Gerir as ferramentas da empresa, ver as inspecções que as ferramentas têm e os detalhes de cada inspecção.",
             "link": "inspections"
         },
         "tools": {
@@ -120,7 +120,9 @@
     "PopupAddUser": {
         "Title": "Utilizador",
         "Name": "Nome",
+        "PlaceholderName":"Insira o seu nome",
         "Email": "Email",
+        "PlaceholderEmail":"Insira o seu email",
         "Role": "Cargo",
         "Active": "Ativo",
         "Upload": "Atualizar nova foto",
@@ -139,12 +141,78 @@
         "SelectOpion": "Selecione a sua opção",
         "PopupAddTool": {
             "Title": "Ferramenta",
-            "Name": "Nome",
+            "Code": "Código",
+            "Placeholder": "Digite o código",
             "Save": "Guardar",
-            "updatedSucess": "Atualizadas as informações da ferramenta",
+            "updatedSucess": "Atualizadas as informações da ferramenta com sucesso!",
             "createdSucess": "Ferramenta inserida com sucesso",
             "errorCreatedUpdated": "Ocorreu um erro ao efetuar a operação, verique os campos",
-            "NameError": "Nome é obrigatório!"
+            "CodeError": "Código é obrigatório!",
+            "GroupTools": "Grupo de ferramentas",
+            "Active": "Ativo"
+        },
+        "PopupAddGroupTool": {
+            "Title": "Grupo de Ferramentas",
+            "Code": "Código",
+            "Placeholder": "Digite o código",
+            "Save": "Guardar",
+            "updatedSucess": "Atualizadas as informações do grupo de ferramentas com sucesso!",
+            "createdSucess": "Grupo de Ferramentas inserido com sucesso!",
+            "errorCreatedUpdated": "Ocorreu um erro ao efetuar esta operação, verique os dados!",
+            "CodeError": "Código é obrigatório!",
+            "Category": "Categorias",
+            "Active": "Ativo",
+            "UploadNewPicture": "Atualizar nova foto",
+            "Description": "Descrição",
+            "DescriptionError": "Descrição é obrigatório!",
+            "OptionCategory": "Escreva ou escolha uma categoria...",
+            "PlaceholderDescription": "Insira a descrição..."
+        },
+        "PopupAddCategory": {
+            "Title": "Categoria",
+            "Name": "Nome",
+            "Placeholder": "Insira o nome",
+            "Save": "Guardar",
+            "updatedSucess": "Atualizadas as informações da categoria com sucesso!",
+            "createdSucess": "Categoria adicionada com sucesso!",
+            "errorCreatedUpdated": "Ocorreu um erro ao efetuar esta operação, verique os dados!",
+            "NameError": "Nome é obrigatório!",
+            "Active": "Ativo"
+        },
+        "PopupViewTool": {
+            "Title": "Ferramenta",
+            "Code": "Código",
+            "Active": "Ativo",
+            "GroupTools": "Grupo de ferramentas",
+            "Status": "Estado"
+        },
+        "PopupViewGroupTool": {
+            "Title": "Grupo de Ferramentas",
+            "Code": "Código",
+            "Active": "Ativo",
+            "Category": "Categoria",
+            "Description": "Descrição"
+        },
+        "PopupViewCategory": {
+            "Title": "Categoria",
+            "Name": "Nome",
+            "Active": "Ativo"
+        },
+        "PopupDeleteTool": {
+            "Title": "Ferramenta",
+            "DeleteTextFirst": "Tem a certeza que pretende apagar a ferramenta ",
+            "DeleteTextEnd": "?",
+            "DeleteToolSucess":"Ferramenta apagada com sucesso!",
+            "DeleteToolError":"Não foi possível apagar a ferramenta, por favor verifique",
+            "Confirmation": "Sim"
+        },
+        "PopupDeleteGroupTool": {
+            "Title": "Grupo de Ferramentas",
+            "DeleteTextFirst": "Tem a certeza que pretende apagar o grupo de ferramentas ",
+            "DeleteTextEnd": "?",
+            "DeleteGroupToolSucess":"Grupo de ferramentas apagado com sucesso!",
+            "DeleteGroupToolError":"Não foi possível apagar o grupo de ferramentas, por favor verifique",
+            "Confirmation": "Sim"
         },
         "ToolFeature": {
             "View": "Ver",
@@ -197,6 +265,10 @@
                 "Label": "Palavra-Chave",
                 "Input": "Insira o código"
             },
+            "KeywordCategory": {
+                "Label": "Palavra-Chave",
+                "Input": "Insira um Nome"
+            },
             "Status": {
                 "Text": "Ativo",
                 "Options": [
@@ -231,7 +303,9 @@
         "PopupAddProject": {
             "Title": "Projeto",
             "Name": "Nome",
+            "PlaceholderName":"Insira o Nome",
             "Address": "Morada",
+            "PlaceholderAddress":"Insira a Morada",
             "StartDate": "Data de Início",
             "EndDate": "Data de Fim",
             "Save": "Guardar",
@@ -270,7 +344,7 @@
         "Filters": {
             "Keyword": {
                 "Label": "Palavra-Chave",
-                "Input": "Digite um nome"
+                "Input": "Digite um Nome"
             },
             "Status": {
                 "Text": "Estado",
@@ -297,7 +371,7 @@
         "Users": {
             "Keyword": {
                 "Label": "Palavra-Chave",
-                "Input": "Nome ou E-mail"
+                "Input": "Digite um Nome ou um E-mail"
             },
             "Status": {
                 "Text": "Estado",

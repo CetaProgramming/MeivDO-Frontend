@@ -7,7 +7,7 @@
                     <div class="grid lg:grid-cols-2 gap-4">
                         <div class="flex flex-col gap-4">
                             <InputLabelError ref="formGroupToolCreateCode" v-model="formGroupToolCreateUpdate.code"
-                                :placeholder="langs.Placeholder" msg="langs.NameError" :name="langs.Code"
+                                :placeholder="langs.Placeholder" :msg="langs.CodeError" :name="langs.Code"
                                 :default="formGroupToolCreateUpdate.code" />
                             <LabelSelectWithInputError ref="formGroupToolCategory" itemFilter="name" v-model="formGroupToolCreateUpdate.category" :default="formGroupToolCreateUpdate.category" :placeholder="langs.OptionCategory" :name="langs.Category" :items="activeCategories"/>
                             <SwitchLabel v-if="value" v-model="formGroupToolCreateUpdate.active" @change="changeValue"
@@ -19,7 +19,7 @@
                         </div>
                     </div>
                     <TextAreaLabel ref="formGroupToolDescription" :name="langs.Description"
-                        :placeholder="langs.PlaceholderDescription" v-model="formGroupToolCreateUpdate.description" :default="formGroupToolCreateUpdate.description"></TextAreaLabel>
+                        :placeholder="langs.PlaceholderDescription" :msg="langs.DescriptionError" v-model="formGroupToolCreateUpdate.description" :default="formGroupToolCreateUpdate.description"></TextAreaLabel>
                 </div>
             </div>
             <Button :text="langs.Save"></Button>
@@ -68,7 +68,7 @@ export default {
             return langStore().getLang.PageTool.PopupAddGroupTool
         },
         langsToast() {
-            return langStore().getLang.PopupAddUser
+            return langStore().getLang.PageTool.PopupAddGroupTool
         }
     },
     async mounted(){

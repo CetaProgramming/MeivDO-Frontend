@@ -63,7 +63,7 @@ export default {
                 {
                     key: "update",
                     component: "",
-                    value: "Updated"
+                    value: "Update"
                 },
                 {
                     key: "resetPassword",
@@ -73,7 +73,7 @@ export default {
                 {
                     key: "deleted",
                     component: "",
-                    value: "Deleted"
+                    value: "Delete"
                 }
             ]
         }
