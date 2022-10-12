@@ -192,31 +192,10 @@
                 }
             ]
         },
-        "Filters": {
-            "Keyword": {
-                "Label": "Palavra-Chave",
-                "Input": "Insira o código"
-            },
-            "Status": {
-                "Text": "Ativo",
-                "Options": [
-                    {
-                        "name": "Ambos",
-                        "value": ""
-                    },
-                    {
-                        "name": "Ativo",
-                        "value": 1
-                    },
-                    {
-                        "name": "Inativo",
-                        "value": 0
-                    }
-                ]
-            },
-            "Text": "Status",
-            "GroupTools": "Grupo de ferramentas",
-            "Category": "Categoria"
+    "PageInspections": {
+        "InspectionFeature": {
+            "View": "Ver",
+            "ButtonNew": "Novo"
         }
     },
     "PageProjects": {
@@ -348,5 +327,6 @@
         "inProgress": "A decorrer",
         "noSearchData": "Sem resultados",
         "noDataFiltered": "Desculpe, não existe data!"
+    }
     }
 }
