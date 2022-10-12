@@ -258,7 +258,36 @@
                     "value": "Category"
                 }
             ]
+        },
+        "Filters": {
+            "Keyword": {
+                "Label": "Keywords",
+                "Input": "Type code"
+            },
+            "Status": {
+                "Text": "Active",
+                "Options": [
+                    {
+                        "name": "Both",
+                        "value": ""
+                    },
+                    {
+                        "name": "Active",
+                        "value": 1
+                    },
+                    {
+                        "name": "Inactive",
+                        "value": 0
+                    }
+                ]
+            },
+
+               "Text": "Status",
+               "GroupTools": "Group Tools",
+               "Category": "Category"
+
         }
+
     },
     "PageInspections": {
         "InspectionFeature": {
