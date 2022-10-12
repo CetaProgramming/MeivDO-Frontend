@@ -65,7 +65,7 @@ export const usersStore = defineStore('usersStore', {
             this.pagesLoad = [];
             this.pagesLoad.push(1);
             this.users = response.data.data.map(user => this.createObj(user)),
-                this.viewing = this.pageViewing(this.users)
+            this.viewing = this.pageViewing(this.users)
         },
         pageViewing(users) {
             return users.map(user => this.createViewing(user));
