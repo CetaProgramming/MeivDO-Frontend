@@ -12,6 +12,7 @@ export const toolsStore = defineStore('toolsStore', {
                 actualPage: 1,
                 lastPage: null,
             },
+            filtered: false,
             viewing: [],
             pagesLoad: [],
             perPage: null,
@@ -43,10 +44,23 @@ export const toolsStore = defineStore('toolsStore', {
                 updated: tool.updated,
             }
         },
+        async doSearch({Code = '', Active = '', GroupTools = '', Status=''}, reset = false){
+            
+            if(reset && this.filtered === false || !reset && this.filtered === false && (!Code && !Active && !GroupTools && !Status))
+                return;
+            this.filtered = reset ? false : true;
+            const response = await axios.get(
+                `${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/tools/search?code=${Code}&active=${Active && Number(Active)}&groupTools=${GroupTools == -1 ? '': GroupTools}&statusTools=${Status}`
+            );
+            this.refactoringViewing(response);
+        },
         async mount() {
             const response = await axios.get(
                 `${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/tools`
             );
+            this.refactoringViewing(response);
+        },
+        refactoringViewing(response){
             this.pag.actualPage = response.data.current_page;
             this.pag.lastPage = response.data.last_page;
             this.totalItems = response.data.total;
@@ -131,9 +145,17 @@ export const toolsStore = defineStore('toolsStore', {
             } catch (error) {
                 throw error
             }
-
         },
-        
+        async getStatus() {
+            try {
+                const response = await axios.get(
+                    `${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/tools/status`
+                );
+                return response.data.data
+            } catch (error) {
+                throw error
+            }
+        },
         async deleteTool(toolId) {
             try {
                 await axios.delete(`${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/tools/${toolId}`);
