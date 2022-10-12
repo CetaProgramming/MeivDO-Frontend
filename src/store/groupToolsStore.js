@@ -48,7 +48,7 @@ export const groupToolsStore = defineStore('groupToolsStore', {
                 return;
             this.filtered = reset ? false : true;
             const response = await axios.get(
-                `${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/tools/groups/search?code=${Code}&active=${Active && Number(Active)}&category=${Category}`
+                `${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/tools/groups/search?code=${Code}&active=${Active && Number(Active)}&category=${Category == -1 ? '': Category}`
             );
             this.refactoringViewing(response);
         },
@@ -141,7 +141,6 @@ export const groupToolsStore = defineStore('groupToolsStore', {
             try {
                 await axios.delete(`${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/tools/groups/${groupToolId}`);
                 const GroupToolDelete = this.groupTools.findIndex(groupTool => groupTool.id === groupToolId)
-                console.log(GroupToolDelete)
                 this.groupTools.splice(GroupToolDelete, 1);
                 this.get(this.calculatePages() ?? this.pag.actualPage);
             } catch (error) {

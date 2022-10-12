@@ -50,7 +50,7 @@ export const toolsStore = defineStore('toolsStore', {
                 return;
             this.filtered = reset ? false : true;
             const response = await axios.get(
-                `${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/tools/search?code=${Code}&active=${Active && Number(Active)}&groupTools=${GroupTools}&statusTools=${Status}`
+                `${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/tools/search?code=${Code}&active=${Active && Number(Active)}&groupTools=${GroupTools == -1 ? '': GroupTools}&statusTools=${Status}`
             );
             this.refactoringViewing(response);
         },
