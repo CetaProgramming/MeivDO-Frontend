@@ -288,7 +288,9 @@
             },
             "Text": "Status",
             "GroupTools": "Grupo de ferramentas",
-            "Category": "Categoria"
+            "GroupToolsPlaceholder": "Insira o nome de um grupo de ferramentas",
+            "Category": "Categoria",
+            "CategoryPlaceholder": "Insira o nome de uma categoria"
         }
     },
     "PageProjects": {

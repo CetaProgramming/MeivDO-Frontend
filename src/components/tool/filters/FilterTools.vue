@@ -4,7 +4,7 @@
     <div class="grid lg:grid-cols-2 gap-3">
          <InputSearch class="w-auto" ref="inputSearch" v-model="FilterTool.Code"  :name="langsTool.Keyword"/>
         <!-- <SelectLabel ref="selectLabelGroup" v-model="FilterTool.GroupTools"  :name="langsTool.GroupTools" items="Group Tools"/> -->
-        <LabelSelectWithInput ref="selectLabelGroup" v-model="FilterTool.GroupTools" :name="langsTool.GroupTools" :items="groupTools" itemFilter='code' :default="-1" ></LabelSelectWithInput>
+        <LabelSelectWithInput ref="selectLabelGroup" v-model="FilterTool.GroupTools" :name="langsTool.GroupTools" :placeholder="langsTool.GroupToolsPlaceholder" :items="groupTools" itemFilter='code' :default="-1" ></LabelSelectWithInput>
         <SelectLabel ref="selectLabelStatus" v-model="FilterTool.Status"  :name="langsTool.Text" :items="status" valueItem="id"/>
         <SelectLabel ref="selectLabelActive" v-model="FilterTool.Active"  :name="langsTool.Status.Text" :items="langsTool.Status.Options"/>
      </div>
