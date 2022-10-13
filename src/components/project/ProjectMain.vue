@@ -14,6 +14,7 @@
         <PopupDeleteProject v-if="isDeleteClicked" @activeToast="showToast" @closePopUp="isDeleteClicked= false" :IdProject="projectID"/>
         <AddProjectPop v-if="isUpdateClick" @activeToast="showToast" @closePopUp="isUpdateClick= false" :project="getDataProject" :showActive="true" />
         <ShowProjectPop v-if="isShowClick" @activeToast="showToast" @closePopUp="isShowClick= false" :project="getDataProject" :showActive="true" />
+        <ChangeStatusPop v-if="isStatusClick" @activeToast="showToast" @closePopUp="isStatusClick= false" :IdProject="projectID" :project="getDataProject" :showActive="true" />
 </template>
 <script>
 import { markRaw } from "vue";
@@ -27,6 +28,7 @@ import Paginate from './../public/Table/Paginate.vue';
 import PopupDeleteProject from '../../components/project/PopupsProject/PopupDeleteProject.vue';
 import AddProjectPop from './PopupsProject/AddProjectPop.vue';
 import ShowProjectPop from './PopupsProject/ShowProjectPop.vue';
+import ChangeStatusPop from "./PopupsProject/ChangeStatusPop.vue";
 import ComponentRowText from '../public/Table/ComponentsTable/ComponentRowText.vue';
 import ComponentRowStatus from '../public/Table/ComponentsTable/ComponentRowStatus.vue';
 import ComponentRowStatusWord from '../public/Table/ComponentsTable/ComponentRowStatusWord.vue';
@@ -46,13 +48,14 @@ export default {
             ],
             isShowClick: false,
             isUpdateClick : false,
+            isStatusClick : false,
+            isDeleteClicked : false,
             projectID: null,
             toast: {
                 msg: '',
                 visible: false,
                 type: ''
             },
-            isDeleteClicked : false,
             projectStore: projectStore(),
             selectItems: [
                 {
@@ -70,6 +73,11 @@ export default {
                     key: "update",
                     component: "",
                     value: "Update"
+                },
+                {
+                    key: "status",
+                    component: "",
+                    value: "Status"
                 },
                 {
                     key: "deleted",
@@ -110,6 +118,9 @@ export default {
             if(select == "update") {
                 this.isUpdateClick = true
             }
+            if(select == "status") {
+                this.isStatusClick = true
+            }
         },
         changePage(page){
             (async () => {
@@ -138,6 +149,7 @@ export default {
     PopupDeleteProject,
     AddProjectPop,
     ShowProjectPop,
+    ChangeStatusPop,
     ComponentRowText,
     ComponentRowStatus,
     ComponentRowStatusWord,

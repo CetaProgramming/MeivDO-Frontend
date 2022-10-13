@@ -4,7 +4,7 @@
         <select id="status" :value="value" @change="changeValue" 
             class="bg-zinc-300 p-3 rounded-md hover:cursor-pointer w-full dark:bg-zinc-800 ">
             <option value="" disabled hidden>Select option</option>
-            <option v-for="item in items" :value="item.value">{{item.name}}</option>
+            <option v-for="item in items" :value="item[valueItem] ">{{item.name}}</option>
         </select>
     </div>
 </template>
@@ -29,6 +29,11 @@ export default {
             required: true,
             type: Array,
         },
+        valueItem: {
+            type: String,
+            default: 'value'
+        }
+        
     },
     methods: {
         changeValue(event) {
