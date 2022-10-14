@@ -2,7 +2,6 @@ import { defineStore } from "pinia";
 import axios from "axios";
 import { groupToolsStore } from "./groupToolsStore";
 import { categoryStore } from "./categoryStore";
-import { faThList } from "@fortawesome/free-solid-svg-icons";
 
 export const toolsStore = defineStore('toolsStore', {
     state: () => {
@@ -68,7 +67,7 @@ export const toolsStore = defineStore('toolsStore', {
             this.pagesLoad = [];
             this.pagesLoad.push(1);
             this.tools = response.data.data.map(tool => this.createObj(tool)),
-                this.viewing = this.pageViewing(this.tools)
+            this.viewing = this.pageViewing(this.tools)
         },
         pageViewing(tools) {
             return tools.map(tool => this.createViewing(tool));
@@ -170,6 +169,17 @@ export const toolsStore = defineStore('toolsStore', {
         },
         getData(id){
             return this.tools.find(tool => id == tool.id)
+        },
+        async getActiveTools(active = '') {
+            await this.mount();
+            if(this.pag.lastPage > 1)
+            for(let tool = 2; tool <= this.pag.lastPage; tool++){
+                await this.load(tool);
             }
+            if(active){
+                return this.groupTools;
+            }
+            return this.tools.filter(tool => tool.active);
+        }
     }
 });
