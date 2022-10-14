@@ -332,6 +332,19 @@
             "StatusProjectError":"Não foi possível alterar o estado do projeto, verifique",
             "Confirmation": "Sim"
         },
+        "ManagementTools": {
+            "Filters": {
+                "CodeInput": {
+                    "Name": "Código",
+                    "Placeholder": "" 
+                },
+                "GroupToolsInput": {
+                    "Name": "Grupo",
+                    "Placeholder": "" 
+                }
+            }
+        },
+        "TableHeader": ["Code", "GroupTools"],
         "ProjectFeature": {
             "View": "Ver",
             "ButtonNew": "Novo",
@@ -423,19 +436,6 @@
     },
     "Options": {
         "inProgress": "A decorrer",
-        "ManagementTools": {
-            "Filters": {
-                "CodeInput": {
-                    "Name": "Código",
-                    "Placeholder": "" 
-                },
-                "GroupToolsInput": {
-                    "Name": "Grupo",
-                    "Placeholder": "" 
-                }
-            }
-        },
-        "TableHeader": ["Code", "GroupTools"],
         "noSearchData": "Sem resultados",
         "noDataFiltered": "Desculpe, não existe data!"
     }

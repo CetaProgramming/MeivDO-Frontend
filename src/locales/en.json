@@ -331,6 +331,19 @@
             "StatusProjectError":"Project status couldn't be changed, please verify",
             "Confirmation": "Yes"
         },
+        "ManagementTools": {
+            "Filters": {
+                "CodeInput": {
+                    "Name": "Code",
+                    "Placeholder": "Put code" 
+                },
+                "GroupToolsInput": {
+                    "Name": "GroupTools",
+                    "Placeholder": "" 
+                }
+            },
+            "TableHeader": ["Code", "GroupTools"]
+        },
         "ProjectFeature": {
             "View": "View",
             "ButtonNew": "New",
@@ -424,19 +437,6 @@
         }
     },
     "Options": {
-        "inProgress": "In Progress",
-        "ManagementTools": {
-            "Filters": {
-                "CodeInput": {
-                    "Name": "Code",
-                    "Placeholder": "Put code" 
-                },
-                "GroupToolsInput": {
-                    "Name": "GroupTools",
-                    "Placeholder": "" 
-                }
-            }
-        },
         "TableHeader": ["Code", "GroupTools"],
         "noSearchData": "Nothing to show",
         "noDataFiltered": "Sorry, not found data!"
