@@ -2,127 +2,150 @@
     <component :is="this.toast.type" v-if="this.toast.visible" :msg="this.toast.msg" @closeToast="this.toast.visible = false"/>
     <div class="bg-MeivAsh  min-h-screen font-openSans dark:bg-zinc-900">
         <div class="px-8 md:px-16 py-8 flex flex-col gap-5">
-            <HeaderInspection @activeToast="showToast"/>
-            <!-- <FilterInspections />
+            <HeaderInspection @activeToast="showToast" :isCompleted="this.tableOptionSelected"/>
+            <component :is="dynamicComponent('Filter')"/>
+            <TableOptions valueIncome="Completed" title="PageInspections" @tableChange="tableChange"></TableOptions>
             <div class="grid gap-1 lg:gap-0 lg:flex lg:flex-col lg:overflow-auto">
-                <TableHeader ref="header" :header=langsInspection.InspectionHeader :style="GetLenght" />
-                <TableBody :header=langsInspection.InspectionHeader :component="ComponentInspection" :items=inspectionStore.viewing :style="GetLenght" :selectItems="selectItems" @selectOption="popUpOpen" />
+                <TableHeader ref="header"  :header=langsInspection.Headers[tableOptionSelected] :style="GetLenght" />
+                <TableBody :header=langsInspection.Headers[tableOptionSelected] :component="Components[tableOptionSelected]" 
+                    :items=store[tableOptionSelected].viewing :style="GetLenght" :selectItems="selectItems" @selectOption="popUpOpen" />
             </div>
-            <Paginate @selectPage="changePage" :pag="inspectionStore.pag" /> -->
+            <Paginate @selectPage="changePage" :pag="store[tableOptionSelected].pag" /> 
         </div>
     </div>
-        <!-- <PopupDeleteInspection v-if="isDeleteClicked" @activeToast="showToast" @closePopUp="isDeleteClicked= false" :IdInspection="inspectionID"/>
-        <AddInspectionPop v-if="isUpdateClick" @activeToast="showToast" @closePopUp="isUpdateClick= false" :inspection="getDataInspection" :showActive="true" />
-        <ShowInspectionPop v-if="isShowClick" @activeToast="showToast" @closePopUp="isShowClick= false" :inspection="getDataInspection" :showActive="true" /> -->
+    <component v-if="isActivePopUp" @activeToast="showToast" @closePopUp="isActivePopUp= false"
+        :is="dynamicComponent(selectedOption)" v-bind="propsDynamicComponent"/>
+        {{selectedOption}}
+    <component :is="this.toast.type" v-if="this.toast.visible" :msg="this.toast.msg"
+        @closeToast="this.toast.visible = false" /> 
 </template>
 <script>
-// import { markRaw } from "vue";
-// import { inspectionStore } from './../../store/inspectionStore';
+import { markRaw } from "vue";
+import { inspectionCompletedStore } from './../../store/inspectionCompletedStore';
+import { inspectionMissingStore } from './../../store/inspectionMissingStore';
 import { langStore } from "../../store/langStore";
 import HeaderInspection from './HeaderInspection.vue';
-// import FilterInspections from './FilterInspections.vue';
-// import TableHeader from './../public/Table/TableHeader.vue';
-// import TableBody from './../public/Table/TableBody.vue';
-// import Paginate from './../public/Table/Paginate.vue';
-// import PopupDeleteInspection from '../../components/inspection/PopupsInspection/PopupDeleteInspection.vue';
-// import AddInspectionPop from './PopupsInspection/AddInspectionPop.vue';
-// import ShowInspectionPop from './PopupsInspection/ShowInspectionPop.vue';
-// import ComponentRowText from '../public/Table/ComponentsTable/ComponentRowText.vue';
-// import ComponentRowStatus from '../public/Table/ComponentsTable/ComponentRowStatus.vue';
-// import ComponentRowStatusWord from '../public/Table/ComponentsTable/ComponentRowStatusWord.vue';
-// import ComponentRowObject from '../public/Table/ComponentsTable/ComponentRowObject.vue';
-// import ComponentTimePassed from "../public/Table/ComponentsTable/ComponentTimePassed.vue";
+import FilterCompleted from "./filters/FilterCompleted.vue";
+import FilterMissing from "./filters/FilterMissing.vue";
+import TableOptions from "../public/Table/TableOptions.vue";
+import TableHeader from "../public/Table/TableHeader.vue";
+import TableBody from './../public/Table/TableBody.vue';
+import Paginate from './../public/Table/Paginate.vue';
+import ComponentRowText from '../public/Table/ComponentsTable/ComponentRowText.vue';
+import ComponentRowStatus from '../public/Table/ComponentsTable/ComponentRowStatus.vue';
+import ComponentRowStatusWord from '../public/Table/ComponentsTable/ComponentRowStatusWord.vue';
+import ComponentTimePassed from "../public/Table/ComponentsTable/ComponentTimePassed.vue";
+import DeleteCompleted from "./PopupsInspection/DeleteCompleted.vue";
+import AddUpdateCompleted from "./PopupsInspection/AddUpdateCompleted.vue";
+import ViewCompleted from "./PopupsInspection/ViewCompleted.vue";
+
 
 export default {
     data() {
         return {
-            // ComponentInspection: [ 
-            //     markRaw(ComponentRowText), 
-            //     markRaw(ComponentRowText),
-            //     markRaw(ComponentRowText),
-            //     markRaw(ComponentRowText),
-            //     markRaw(ComponentRowStatusWord),
-            //     markRaw(ComponentTimePassed),
-            // ],
-            // isShowClick: false,
-            // isUpdateClick : false,
-            // inspectionID: null,
+            isActivePopUp: false,
+            selectedOption: '',
+            valueID: '',
+            tableOptionSelected: "Completed",
+            // props: {
+            //     Tools: this.getDataTool
+            // },
             toast: {
                 msg: '',
                 visible: false,
                 type: ''
             },
-            // isDeleteClicked : false,
-            // inspectionStore: inspectionStore(),
-            // selectItems: [
-            //     {
-            //         key: "",
-            //         disabled: true,
-            //         component: "",
-            //         value: "Options"
-            //     },
-            //     {
-            //         key: "show",
-            //         component: "",
-            //         value: "Show"
-            //     },
-            //     {
-            //         key: "update",
-            //         component: "",
-            //         value: "Update"
-            //     },
-            //     {
-            //         key: "deleted",
-            //         component: "",
-            //         value: "Delete"
-            //     }
-            // ]
+            Components: {
+                Completed: [
+                    markRaw(ComponentRowText),
+                    markRaw(ComponentRowText),
+                    markRaw(ComponentRowStatusWord),
+                    markRaw(ComponentTimePassed),
+
+                ],
+                Missing: [
+                    markRaw(ComponentRowText),
+                    markRaw(ComponentRowText),
+                    markRaw(ComponentRowText),
+                    markRaw(ComponentTimePassed),
+                ],
+            },
+            store: {
+                Completed: inspectionCompletedStore(),
+                Missing: inspectionMissingStore(),
+            },     
+            selectItems: [
+                {
+                    key: "",
+                    disabled: true,
+                    component: "",
+                    value: "Options"
+                },
+                {
+                    key: "view",
+                    component: "",
+                    value: "View"
+                },
+                {
+                    key: "addUpdate",
+                    component: "",
+                    value: "Update"
+                },
+                {
+                    key: "delete",
+                    component: "",
+                    value: "Delete"
+                }
+            ]
         }
     },
     computed: {
-        // GetLenght() {
-        //     return  `grid-template-columns: 50px repeat(${this.langsInspection.InspectionHeader.length}, minmax(150px, 1fr));`
-        // },
-        // getDataInspection(){
-            
-        //     return this.inspectionStore.inspections.find(inspection =>  this.inspectionID == inspection.id)
-            
-        // },
+        getDataStore() {
+            return this.store[this.tableOptionSelected].getData(this.valueID)
+        },
+         GetLenght() {
+            return `grid-template-columns: 50px repeat(${this.langsInspection.Headers[this.tableOptionSelected].length}, minmax(150px, 1fr));`
+         },
+         propsDynamicComponent() {
+            if (this.selectedOption == 'View' || this.selectedOption == 'AddUpdate')
+                return { value: this.getDataStore }
+            if (this.selectedOption == 'Delete')
+                return { value: this.valueID }
+        },
         langsInspection() {
             return langStore().getLang.PageInspections.InspectionFeature
         },
-        // pages(){
-        //     return langStore().getLang.Paginate
-        // }
+        pages(){
+            return langStore().getLang.Paginate
+        }
     },
-    // async mounted(){
-    //     await this.inspectionStore.mount()
-    // },
+    async mounted() {
+        Promise.all([await this.store.Completed.mount(),await this.store.Missing.mount()])
+    },
     methods: {
-        // popUpOpen(select, inspectionId){
-        //     this.inspectionID = inspectionId;
-        //     if(select == "show"){
-        //         this.isShowClick = true;
-        //     }
-        //     if(select == "deleted"){
-        //         this.isDeleteClicked = true;
-        //     }
-        //     if(select == "update") {
-        //         this.isUpdateClick = true
-        //     }
-        // },
-        // changePage(page){
-        //     (async () => {
-        //         try {
-        //             await this.inspectionStore.get(page)
-        //             this.$refs.header.$el.scrollIntoView({ behavior: "smooth" });
-        //         } catch (e){
-        //             this.toast.msg = this.pages.PageNotFound;
-        //             this.toast.type = ToastError
-        //             this.toast.visible = true;
-        //         }
-        //         })()
-        // },
+        dynamicComponent(option) {
+            return `${option}${this.tableOptionSelected}`
+        },
+        tableChange(value) {
+            this.tableOptionSelected = value
+        },
+        popUpOpen(select, valueId) {
+            this.valueID = valueId;
+            this.selectedOption = select.charAt(0).toUpperCase() + select.slice(1)
+            this.isActivePopUp = true
+        },
+        changePage(page){
+            (async () => {
+                try {
+                    await this.store[this.tableOptionSelected].get(page)
+                    this.$refs.header.$el.scrollIntoView({ behavior: "smooth" });
+                } catch (e){
+                    this.toast.msg = this.pages.PageNotFound;
+                    this.toast.type = ToastError
+                    this.toast.visible = true;
+                }
+                })()
+        },
         showToast(data){
             this.toast.msg = data.msg;
             this.toast.type = data.type;
@@ -131,18 +154,15 @@ export default {
     },
     components: {
     HeaderInspection,
-    // FilterInspections,
-    // TableBody,
-    // Paginate,
-    // TableHeader,
-    // PopupDeleteInspection,
-    // AddInspectionPop,
-    // ShowInspectionPop,
-    // ComponentRowText,
-    // ComponentRowStatus,
-    // ComponentRowStatusWord,
-    // ComponentRowObject,
-    // ComponentTimePassed
+    FilterCompleted,
+    FilterMissing,
+    TableOptions,
+    TableHeader,
+    TableBody,
+    Paginate,
+    DeleteCompleted,
+    AddUpdateCompleted,
+    ViewCompleted
 },
     
 }
