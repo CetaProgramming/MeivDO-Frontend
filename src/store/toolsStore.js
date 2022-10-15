@@ -168,8 +168,12 @@ export const toolsStore = defineStore('toolsStore', {
                 throw error;
             }
         },
+        getOrAdd(toolObj){
+            const toolIndex = this.tools.findIndex(Tool => Tool.id === toolObj.id)
+            return toolIndex == -1 ? this.tools[this.tools.push(toolObj) - 1] : this.tools[toolIndex];
+        },
         getData(id){
             return this.tools.find(tool => id == tool.id)
-            }
+            },
     }
 });
