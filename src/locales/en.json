@@ -352,6 +352,8 @@
         },
         "AddInspectionPop": {
             "LabelText": "Status",
+            "Tools": "Tool",
+            "OptionTool": "Write or select a tool...",
             "TextButtons":["Good", "Bad"]
 ,            "Title": "Inspection",
             "Description": "Description",
@@ -363,9 +365,16 @@
         "PopupDeleteInspection": {
             "DeleteTextFirst": "Are you sure you want to delete inspection ",
             "DeleteTextEnd": "?",
-            "DeleteInspectionSucess": "Tool deleted successfully!",
-            "DeleteInspectionError": "Tool couldn't be deleted, please verify",
+            "DeleteInspectionSucess": "Inspection deleted successfully!",
+            "DeleteInspectionError": "Inspection couldn't be deleted, please verify",
             "Confirmation": "Yes"
+        },
+        "PopupViewInspection": {
+            "Title": "Inspection",
+            "Code": "Code",
+            "Active": "Active",
+            "Category": "Category",
+            "Description": "Description"
         }
     },
     "PageProjects": {
