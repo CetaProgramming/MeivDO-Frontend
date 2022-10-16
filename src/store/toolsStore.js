@@ -26,7 +26,7 @@ export const toolsStore = defineStore('toolsStore', {
             return {
                 id: tool.id,
                 code: tool.code,
-                status: tool.status_tools, 
+                status: tool.status_tools,
                 group: refGroupTool,
                 user: tool.user,
                 active: Number(tool.active),
@@ -38,19 +38,19 @@ export const toolsStore = defineStore('toolsStore', {
             return {
                 id: tool.id,
                 code: tool.code,
-                group:  tool.group.code,
-                status: tool.status, 
+                group: tool.group.code,
+                status: tool.status,
                 active: Number(tool.active),
                 updated: tool.updated,
             }
         },
-        async doSearch({Code = '', Active = '', GroupTools = '', Status=''}, reset = false){
-            
-            if(reset && this.filtered === false || !reset && this.filtered === false && (!Code && !Active && !GroupTools && !Status))
+        async doSearch({ Code = '', Active = '', GroupTools = '', Status = '' }, reset = false) {
+
+            if (reset && this.filtered === false || !reset && this.filtered === false && (!Code && !Active && !GroupTools && !Status))
                 return;
             this.filtered = reset ? false : true;
             const response = await axios.get(
-                `${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/tools/search?code=${Code}&active=${Active && Number(Active)}&groupTools=${GroupTools == -1 ? '': GroupTools}&statusTools=${Status}`
+                `${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/tools/search?code=${Code}&active=${Active && Number(Active)}&groupTools=${GroupTools == -1 ? '' : GroupTools}&statusTools=${Status}`
             );
             this.refactoringViewing(response);
         },
@@ -60,7 +60,7 @@ export const toolsStore = defineStore('toolsStore', {
             );
             this.refactoringViewing(response);
         },
-        refactoringViewing(response){
+        refactoringViewing(response) {
             this.pag.actualPage = response.data.current_page;
             this.pag.lastPage = response.data.last_page;
             this.totalItems = response.data.total;
@@ -118,11 +118,11 @@ export const toolsStore = defineStore('toolsStore', {
                 throw error
             }
         },
-        calculatePages(){
+        calculatePages() {
             const lastPage = Math.ceil(this.tools.length / this.perPage);
-            if(this.pag.lastPage !== lastPage){
+            if (this.pag.lastPage !== lastPage) {
                 this.pagesLoad.forEach((pag, index) => {
-                    if(pag > lastPage){
+                    if (pag > lastPage) {
                         this.pagesLoad.splice(index);
                         return;
                     }
@@ -131,7 +131,7 @@ export const toolsStore = defineStore('toolsStore', {
             }
 
         },
-        
+
         async update(toolId, formData) {
             try {
                 const response = await axios.put(
@@ -168,12 +168,27 @@ export const toolsStore = defineStore('toolsStore', {
                 throw error;
             }
         },
-        getOrAdd(toolObj){
+        getOrAdd(toolObj) {
             const toolIndex = this.tools.findIndex(Tool => Tool.id === toolObj.id)
             return toolIndex == -1 ? this.tools[this.tools.push(toolObj) - 1] : this.tools[toolIndex];
         },
-        getData(id){
+        getData(id) {
             return this.tools.find(tool => id == tool.id)
-            },
+        },
+        async getActiveTools(active = '') {
+            await this.mount();
+            if (this.pag.lastPage > 1)
+                for (let tool = 2; tool <= this.pag.lastPage; tool++) {
+                    await this.load(tool);
+                }
+            if (active) {
+                return this.tools;
+            }
+            return this.tools.filter(tool => tool.active);
+        },
+        async getActiveAndAvailableTools() {
+            const getActiveTool = await this.getActiveTools();
+            return getActiveTool.filter(tool => tool.status.id == 2);
+        }
     }
 });
