@@ -1,20 +1,15 @@
 <template>
-    <Popoup :titlePopUp="langs.Title" class="font-meivdo">
-        <form @submit.prevent="updateInspection" class="flex flex-col gap-5 font-openSans">
-            
-                <!-- <LabelSelectWithInputError ref="formToolCreateGroup" :name="langs.GroupTools" v-model="formToolCreateUpdate.groupTool" :default="formToolCreateUpdate.groupTool"
-                            :items="activeGroupTools" itemFilter="code"></LabelSelectWithInputError> -->
-                <TextAreaLabel ref="formInspectionDetail" :name="langs.Description"
-                    :placeholder="langs.PlaceholderDescription" :msg="langs.DescriptionError">
-                    <!-- v-model="formInspectionCreateUpdate.description" :default="formGroupToolCreateUpdate.description"> -->
-                </TextAreaLabel>
-                <LabelPickOptions v-model="formInspectionCreateUpdate.status" :name="langs.LabelText" :text="langs.TextButtons" :msg="langs.SelectButton" />
-           
+    <Popoup :titlePopUp="langs.Title" class="font-meivdo" @closePopUp="$emit('closePopUp')">
+        <form @submit.prevent="AddUpdateInspection" class="flex flex-col gap-5 font-openSans">
+            <LabelSelectWithInputError v-if="!this.value" ref="formInspectionGetTool" :name="langs.Tools" v-model="formInspectionCreateUpdate.tool" :default="formInspectionCreateUpdate.tool"
+            :items="activeTools" itemFilter="code" :placeholder="langs.OptionTool" />
 
-            <!-- <div class="flex gap-10 justify-around">
-                <ButtonIcon class="flex flex-col items-center active:bg-blue-600  hover:bg-blue-600"  bg="bg-zinc-400"  text="Good" icon="fa-solid fa-thumbs-up"></ButtonIcon>
-                <ButtonIcon class="flex flex-col items-center active:bg-blue-600  hover:bg-blue-600"  bg="bg-zinc-400"  text="Bad" icon="fa-solid fa-thumbs-down"></ButtonIcon>
-            </div> -->
+            <div v-else>dasdsa</div>
+
+               <TextAreaLabel ref="formInspectionDetail" :name="langs.Description"
+                    :placeholder="langs.PlaceholderDescription" :msg="langs.DescriptionError" v-model="formInspectionCreateUpdate.description" :default="formInspectionCreateUpdate.description">  
+                </TextAreaLabel>
+               <LabelPickOptions ref="formInspectionStatus" v-model="formInspectionCreateUpdate.status" :name="langs.LabelText" :text="langs.TextButtons" :msg="langs.SelectButton" /> 
             <Button :text="langs.Save"></Button>
         </form>
     </Popoup>
@@ -23,18 +18,25 @@
 <script>
 import Popoup from '../../public/Popoup.vue';
 import { langStore } from '../../../store/langStore'
+import {inspectionCompletedStore} from '../../../store/inspectionCompletedStore'
+import {toolsStore} from '../../../store/toolsStore'
 import LabelSelectWithInputError from '../../forms/LabelSelectWithInputError.vue';
 import TextAreaLabel from '../../forms/TextAreaLabel.vue';
 import ButtonIcon from '../../widgets/ButtonIcon.vue';
 import Button from '../../widgets/Button.vue';
 import LabelPickOptions from '../../forms/LabelPickOptions.vue';
+import ToastError from "../../public/Toast/ToastError.vue"
+import ToastSuccess from "../../public/Toast/ToastSuccess.vue"
+import FormValidate from "../../mixins/FormValidate";
 export default {
+    props: ['value'],
     data() {
         return {
+            activeTools: [],
             formInspectionCreateUpdate: {
-                tool: this.value ? this.value.code : '',
-                description: 1,
-                status: this.value ? this.value.category.id : -1,
+                tool: this.value ? this.value.tool.code : -1,
+                description: this.value ? this.value.description : '',
+                status: this.value ? this.value.status : -1,
             }
         };
     },
@@ -42,8 +44,72 @@ export default {
         langs() {
             return langStore().getLang.PageInspections.AddInspectionPop
         },
+        langsToast() {
+            return langStore().getLang.PageTool.PopupAddGroupTool
+        }
     },
-    components: { Popoup, LabelSelectWithInputError, TextAreaLabel, ButtonIcon, Button, LabelPickOptions }
+    async mounted(){
+        await this.getActiveTools();
+    },
+    methods: {
+        async getActiveTools(){
+            const data = await toolsStore().getActiveAndAvailableTools(this.formInspectionCreateUpdate.tool);
+            this.activeTools = data;
+        },
+        activeToast(toast) {
+            this.$emit('activeToast', toast);
+        },
+        AddUpdateInspection() {
+            try {
+                if (this.validateDataEqualsOrEmpty({
+                    tool: this.formInspectionCreateUpdate.tool,
+                    status: Number(this.formInspectionCreateUpdate.status),
+                    description: this.formInspectionCreateUpdate.description
+                }, {
+                    tool: this.$refs.formInspectionGetTool,
+                    status: this.$refs.formInspectionStatus,
+                    description: this.$refs.formInspectionDetail
+                }, -1))
+                    (async () => {
+                        try {
+                            this.value &&
+                                await inspectionCompletedStore().update(this.value.id,
+                                  {
+                                        tool_id: this.formInspectionCreateUpdate.tool,
+                                        status: this.formInspectionCreateUpdate.status,
+                                        additionalDescription: this.formInspectionCreateUpdate.description,
+                                    }
+                                );
+                            !this.value &&
+                                await inspectionCompletedStore().add(
+                                    {
+                                        tool_id: this.formInspectionCreateUpdate.tool,
+                                        status: this.formInspectionCreateUpdate.status,
+                                        additionalDescription: this.formInspectionCreateUpdate.description,
+                                    }
+                                );
+                            this.$emit("closePopUp");
+                            this.$emit("activeToast", {
+                                msg: this.value && this.langsToast.updatedSucess || !this.value && this.langsToast.createdSucess,
+                                type: ToastSuccess
+                            });
+                        } catch (error) {
+                            console.error(error);
+                            this.$emit("activeToast", {
+                                msg: this.langsToast.errorCreatedUpdated,
+                                type: ToastError
+                            });
+                        }
+                    })();
+            } catch (e) {
+                console.log(e);
+            }
+        }
+
+    },
+    components: { Popoup, LabelSelectWithInputError, TextAreaLabel, ButtonIcon, Button, LabelPickOptions },
+    emits: ['activeToast','closePopUp'],
+    mixins: [FormValidate]
 }
 </script>
 
