@@ -11,7 +11,7 @@
         </div>
     </div>
     <AddUpdateInspection v-if="isAddInspectionClicked " @activeToast="activeToast"
-        @closePopUp="isAddInspectionClicked= false" :showActive="false" />
+        @closePopUp="closingteste" :showActive="false" />
 </template>
 
 <script>
@@ -40,6 +40,9 @@ export default {
     methods: {
         activeToast(toast) {
             this.$emit('activeToast', toast);
+        },
+        closingteste(){
+            this.isAddInspectionClicked = false
         }
     },
     emits: ['activeToast'],

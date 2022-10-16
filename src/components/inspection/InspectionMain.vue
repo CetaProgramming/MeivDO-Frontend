@@ -15,7 +15,6 @@
     </div>
     <component v-if="isActivePopUp" @activeToast="showToast" @closePopUp="isActivePopUp= false"
         :is="dynamicComponent(selectedOption)" v-bind="propsDynamicComponent"/>
-        {{selectedOption}}
     <component :is="this.toast.type" v-if="this.toast.visible" :msg="this.toast.msg"
         @closeToast="this.toast.visible = false" /> 
 </template>
