@@ -177,7 +177,7 @@ export const toolsStore = defineStore('toolsStore', {
                 await this.load(tool);
             }
             if(active){
-                return this.groupTools;
+                return this.tools;
             }
             return this.tools.filter(tool => tool.active);
         }
