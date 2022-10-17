@@ -53,7 +53,7 @@ export default {
                 address: this.project ? this.project.address : '',
                 startDate: this.project ? DataManipulate.formInputDate(this.project.startDate) : '',
                 endDate: this.project ? DataManipulate.formInputDate(this.project.endDate) : '',
-                tools: this.project ? this.project.project_tools.map(tool => tool.id) : []
+                tools: this.project ? this.project.project_tools.map(tool => tool.tool_id) : []
             }
         }
     },
@@ -65,7 +65,6 @@ export default {
     methods: {
         toogleTool(value){
             const posValue = this.formProjectCreateUpdate.tools.findIndex(item => item === value);
-            console.log(posValue);
             posValue == -1 ? this.formProjectCreateUpdate.tools.push(value) : this.formProjectCreateUpdate.tools.splice(posValue, 1);
         },
         isShowToolsManagament(value){
