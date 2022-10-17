@@ -1,4 +1,3 @@
-
 <template>
     <div class="flex flex-col gap-1 max-h-60 overflow-auto">
         <div class="text-center gap-1 bg-white rounded p-2 grid lg:grid-cols-auto-1fr-1fr text-black dark:bg-zinc-800" v-for="item in items" :key="item.id">
@@ -25,6 +24,7 @@ import { langStore } from './../../../store/langStore';
             lang(){
                 return langStore().getLang.Options
             }
+
         },
         props: {
             items: {
