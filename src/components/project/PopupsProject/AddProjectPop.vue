@@ -14,7 +14,7 @@
                             <SelectDate v-model="formProjectCreateUpdate.endDate" :default="formProjectCreateUpdate.endDate" :name="langs.EndDate"/>
                         </div>
                         <InputCheckbox v-if="this.project?.status || !this.project" v-model="showTools" @update:model-value="isShowToolsManagament" :name="langs.addTools" />
-                        <ManagementTools v-if="showTools" />
+                        <ManagementTools v-if="showTools" :itemsSelect="formProjectCreateUpdate.tools" @toogleTool="toogleTool"/>
                 </div>
             </div>
             <Button :text="langs.Save" />
@@ -53,6 +53,7 @@ export default {
                 address: this.project ? this.project.address : '',
                 startDate: this.project ? DataManipulate.formInputDate(this.project.startDate) : '',
                 endDate: this.project ? DataManipulate.formInputDate(this.project.endDate) : '',
+                tools: this.project ? this.project.project_tools.map(tool => tool.id) : []
             }
         }
     },
@@ -62,6 +63,11 @@ export default {
         }
     },
     methods: {
+        toogleTool(value){
+            const posValue = this.formProjectCreateUpdate.tools.findIndex(item => item === value);
+            console.log(posValue);
+            posValue == -1 ? this.formProjectCreateUpdate.tools.push(value) : this.formProjectCreateUpdate.tools.splice(posValue, 1);
+        },
         isShowToolsManagament(value){
             this.showTools = value;
         },

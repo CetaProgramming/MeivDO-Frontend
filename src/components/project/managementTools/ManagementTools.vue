@@ -1,27 +1,9 @@
 <template>
     <div class=" flex flex-col gap-3 bg-MeivGray p-5  rounded dark:bg-MeivDarkGray">
-        <div class="flex gap-5">
-            <!-- <LabelSelectWithInputError ref="formToolCreateGroup" :name="langs.GroupTools" v-model="formToolCreateUpdate.groupTool" :default="formToolCreateUpdate.groupTool"
-                            :items="activeGroupTools" itemFilter="code"
-                        /> -->
-
-            <!-- <LabelSelectWithInput :name="langs.Filters.CodeInput.Name" v-model="formFilterToolsAvailability.tool"/> -->
-            <LabelSelectWithInput   :name="langs.Filters.GroupToolsInput.Name" 
-                                    v-model="formFilterToolsAvailability.tool" 
-                                    :placeholder="langs.Filters.GroupToolsInput.Placeholder" 
-                                    :default="formFilterToolsAvailability.tool" 
-                                    :items="activeGroupTools" 
-                                    itemFilter="code"/>
-            <!-- <InputLabel :name="langs.Filters.CodeInput.Name" :placeholder="langs.Filters.CodeInput.Placeholder" /> -->
-            <!-- <SelectLabel :name="langs.Filters.GroupToolsInput.Name" :placeholder="langs.Filters.GroupToolsInput.Placeholder" pad="p-3" /> -->
-            <div class="flex gap-4 justify-end">
-                <ButtonIcon icon="fa-solid fa-magnifying-glass" text="" pad="p-3" bg="bg-blue-600" space="normal" />
-                <ButtonIcon icon="fa-solid fa-trash" @click.stop.prevent="resetValues" text=""  pad="p-3"  space="normal" />
-            </div>            
-        </div>
+        <FilterTools v-if="getActiveAndAvailableTools.length" :items="[getActiveAndAvailableTools, activeGroupTools]" @searchData="searchData" @resetSearch="resetSearch"/>
         <div>
-            <TableHeader :header=langs.TableHeader  class="grid-cols-2 text-md p-2"/>
-            <!-- <TableBody :header=langs.TableHeader /> -->
+            <TableHeader v-if="getActiveAndAvailableTools.length" :header=langs.TableHeader  class="grid-cols-2 text-md p-2"/>
+            <ListTools :header=langs.TableHeader :items="itemsFiltered ?? getCodeAndGroupToolActive" @toogleTool="$emit('toogleTool', $event)" :selectItems="itemsSelect"/>
         </div>
     </div>
 </template>
@@ -35,25 +17,60 @@ import TableHeader from '../../public/Table/TableHeader.vue';
 import TableBody from '../../public/Table/TableBody.vue';
 import LabelSelectWithInput from '../../forms/LabelSelectWithInput.vue';
 import {groupToolsStore} from './../../../store/groupToolsStore';
+import {toolsStore} from './../../../store/toolsStore';
+import ListTools from './ListTools.vue';
+import FilterTools from './FilterTools.vue';
 
     export default {
         async mounted(){
             this.activeGroupTools = await groupToolsStore().getActiveGroupTools(1, 'all');
+            this.activeTools = await toolsStore().getActiveTools();
         },
         data(){
             return {
                 activeGroupTools: [],
-                formFilterToolsAvailability: {
-                    tool: -1,
-                    groupTool: -1
-                }
+                activeTools: [],
+                itemsFiltered: null
             }
         },
         computed: {
             langs(){
                 return langStore().getLang.PageProjects.ManagementTools;
+            },
+            getCodeAndGroupToolActive(){
+                return this.activeTools.length && this.filterToolGroup(this.getActiveAndAvailableTools);
+            },
+            getActiveAndAvailableTools(){
+                return this.activeTools.length && this.activeTools.filter(item => item.status.id == 2);
             }
         },
-        components: { InputLabel, ButtonIcon, SelectLabel, TableHeader, TableBody, LabelSelectWithInput }
+        props: {
+            itemsSelect: {
+                type: Array,
+                default: []
+            }
+        },
+        methods: {
+            searchData(form){
+                this.itemsFiltered =  this.filterToolGroup(this.activeTools.filter(tool =>  
+                    (form.tool == -1 || (form.tool && tool.id === form.tool)) 
+                    && 
+                    (form.groupTool == -1 || (form.groupTool && tool.group.id === form.groupTool))
+                ));
+            },
+            resetSearch(){
+                this.itemsFiltered = null;
+            },
+            filterToolGroup(variavel){
+                return variavel.map(tool => {
+                    return {
+                        id: tool.id,
+                        tool: tool.code,
+                        groupTool: tool.group.code
+                    }
+                })
+            }
+        },
+        components: { InputLabel, ButtonIcon, SelectLabel, TableHeader, TableBody, LabelSelectWithInput, ListTools, FilterTools }
 }
 </script>
