@@ -121,7 +121,6 @@ export const projectStore = defineStore('projectStore', {
         },
         async add(formData) {
             try {
-                console.log(formData);
                 const response = await axios.post(
                     `${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/projects`,
                     formData
