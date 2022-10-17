@@ -1,6 +1,6 @@
 <template>
     <div class=" flex flex-col gap-3 bg-MeivGray p-5  rounded dark:bg-MeivDarkGray">
-        <FilterTools v-if="getActiveAndAvailableTools.length" :items="[getActiveAndAvailableTools, activeGroupTools]" @searchData="searchData" @resetSearch="resetSearch"/>
+        <FilterTools v-if="getActiveAndAvailableTools.length" :items="[getActiveAndAvailableTools, getActiveAndAvailableGroupTools]" @searchData="searchData" @resetSearch="resetSearch"/>
         <div>
             <TableHeader v-if="getActiveAndAvailableTools.length" :header=langs.TableHeader  class="grid-cols-2 text-md p-2"/>
             <ListTools :header=langs.TableHeader :items="itemsFiltered ?? getCodeAndGroupToolActive" @toogleTool="$emit('toogleTool', $event)" :selectItems="itemsSelect"/>
@@ -28,8 +28,9 @@ import FilterTools from './FilterTools.vue';
         },
         data(){
             return {
-                activeGroupTools: [],
+                activeGroupTools: this.getActiveAndAvailableGroupTools,
                 activeTools: [],
+                toolsProject: this.itemsSelect.map(item => item),
                 itemsFiltered: null
             }
         },
@@ -41,7 +42,10 @@ import FilterTools from './FilterTools.vue';
                 return this.activeTools.length && this.filterToolGroup(this.getActiveAndAvailableTools);
             },
             getActiveAndAvailableTools(){
-                return this.activeTools.length && this.activeTools.filter(item => item.status.id == 2);
+                return this.activeTools.length && this.activeTools.filter(item => item.status.id == 2 || this.toolsProject.includes(item.id));
+            },
+            getActiveAndAvailableGroupTools(){
+                return this.getActiveAndAvailableTools.length && [...new Set(this.getActiveAndAvailableTools.map(item => item.group))];
             }
         },
         props: {
