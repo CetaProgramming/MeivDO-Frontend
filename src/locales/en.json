@@ -314,7 +314,8 @@
             "updatedSucess": "Project info successfully updated!",
             "createdSucess": "Project info successfully added!",
             "errorCreatedUpdated": "Ocurred a error when doing this task, please verify data!",
-            "NameError": "Name is required!"
+            "NameError": "Name is required!",
+            "addTools": "Management tools associated of the project"
         },
         "PopupProjectDelete": {
             "DeleteTextFirst": "Are you sure you want to delete project ",
@@ -329,6 +330,19 @@
             "StatusProjectSucess":"Project status changed successfully!",
             "StatusProjectError":"Project status couldn't be changed, please verify",
             "Confirmation": "Yes"
+        },
+        "ManagementTools": {
+            "Filters": {
+                "CodeInput": {
+                    "Name": "Code",
+                    "Placeholder": "Put code" 
+                },
+                "GroupToolsInput": {
+                    "Name": "GroupTools",
+                    "Placeholder": "Put GroupTools" 
+                }
+            },
+            "TableHeader": ["Code", "GroupTools"]
         },
         "ProjectFeature": {
             "View": "View",
@@ -423,7 +437,7 @@
         }
     },
     "Options": {
-        "inProgress": "In Progress",
+        "TableHeader": ["Code", "GroupTools"],
         "noSearchData": "Nothing to show",
         "noDataFiltered": "Sorry, not found data!"
     }

@@ -314,7 +314,8 @@
             "updatedSucess": "Atualizadas as informações do projeto",
             "createdSucess": "Projeto inserido com sucesso",
             "errorCreatedUpdated": "Ocorreu um erro ao efetuar a operação, verique os campos",
-            "NameError": "Nome é obrigatório!"
+            "NameError": "Nome é obrigatório!",
+            "addTools": "Gestão de tools associadas ao projeto!"
         },
         "PopupProjectDelete": {
             "ProjectID": "Projeto ",
@@ -331,6 +332,19 @@
             "StatusProjectError":"Não foi possível alterar o estado do projeto, verifique",
             "Confirmation": "Sim"
         },
+        "ManagementTools": {
+            "Filters": {
+                "CodeInput": {
+                    "Name": "Código",
+                    "Placeholder": "" 
+                },
+                "GroupToolsInput": {
+                    "Name": "Grupo",
+                    "Placeholder": "" 
+                }
+            }
+        },
+        "TableHeader": ["Code", "GroupTools"],
         "ProjectFeature": {
             "View": "Ver",
             "ButtonNew": "Novo",
