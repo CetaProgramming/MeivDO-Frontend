@@ -22,8 +22,7 @@
 <script>
     import { langStore } from './../../../store/langStore';
     import LabelSelectWithInput from '../../forms/LabelSelectWithInput.vue';
-import ButtonIcon from '../../widgets/ButtonIcon.vue';
-import formLoginVue from '../../login/formLogin.vue';
+    import ButtonIcon from '../../widgets/ButtonIcon.vue';
 
     export default {
     data() {
