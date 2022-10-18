@@ -171,5 +171,18 @@ export const projectStore = defineStore('projectStore', {
                 throw error;
             }
         },
+        getOrAdd(projectObj) {
+            const projectIndex = this.projects.findIndex(Inspection => Inspection.id === projectObj.id)
+            return projectIndex == -1 ? this.projects[this.projects.push(projectObj) - 1] : this.projects[projectIndex];
+        },
+        async getClosedProjects() {
+            await this.mount();
+            if (this.pag.lastPage > 1)
+                for (let project = 2; project <= this.pag.lastPage; project++) {
+                    await this.load(project);
+                }
+            
+            return this.projects.filter(project => project.status == 1);
+        },
     }
 });
