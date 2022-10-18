@@ -4,8 +4,8 @@
             <div class="flex flex-col gap-2 lg:w-4/5">
                 <LabelShowInfoVue :header="langs.Name" :info="this.project.name"/>
                 <LabelShowInfoVue :header="langs.Address" :info="this.project.address"/>
-                <LabelShowInfoVue :header="langs.StartDate" :info="this.project.startDate"/>
-                <LabelShowInfoVue :header="langs.EndDate" :info=" this.project.endDate"/>
+                <LabelShowInfoVue :header="langs.StartDate" :info="formatDate(this.project.startDate)"/>
+                <LabelShowInfoVue :header="langs.EndDate" :info="formatDate(this.project.endDate)"/>
                 <LabelShowStatus :header="langs.Status" :info="this.project.status"/>
             </div>
         </div>
@@ -18,6 +18,7 @@ import Popoup from '../../public/Popoup.vue';
 import { langStore } from '../../../store/langStore';
 import LabelShowInfoVue from '../../forms/LabelShowInfo.vue';
 import LabelShowStatus from '../../forms/LabelShowStatus.vue';
+import DataManipulate from '../../../helpers/DataManipulate'
 
 
 export default {
@@ -25,6 +26,11 @@ export default {
     computed: {
         langs() {
             return langStore().getLang.PageProjects.PopupShowProject
+        }
+    },
+    methods: {
+        formatDate(dateProject){
+            return dateProject? DataManipulate.formDate(dateProject) : '' 
         }
     },
     components: {
