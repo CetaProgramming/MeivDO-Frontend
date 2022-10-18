@@ -7,7 +7,7 @@
             <TableOptions valueIncome="Completed" title="PageInspections" @tableChange="tableChange"></TableOptions>
             <div class="grid gap-1 lg:gap-0 lg:flex lg:flex-col lg:overflow-auto">
                 <TableHeader ref="header"  :header=langsInspection.Headers[tableOptionSelected] :style="GetLenght" />
-                <TableBody :header=langsInspection.Headers[tableOptionSelected] :component="Components[tableOptionSelected]" 
+                <TableBody :showSelect="tableOptionSelected == 'Missing' ? false: true" :header=langsInspection.Headers[tableOptionSelected] :component="Components[tableOptionSelected]" 
                     :items=store[tableOptionSelected].viewing :style="GetLenght" :selectItems="selectItems" @selectOption="popUpOpen" />
             </div>
             <Paginate @selectPage="changePage" :pag="store[tableOptionSelected].pag" /> 
@@ -37,6 +37,7 @@ import ComponentTimePassed from "../public/Table/ComponentsTable/ComponentTimePa
 import DeleteCompleted from "./PopupsInspection/DeleteCompleted.vue";
 import AddUpdateCompleted from "./PopupsInspection/AddUpdateCompleted.vue";
 import ViewCompleted from "./PopupsInspection/ViewCompleted.vue";
+import AddUpdateMissing from "./PopupsInspection/AddUpdateMissing.vue";
 
 
 export default {
@@ -161,7 +162,8 @@ export default {
     Paginate,
     DeleteCompleted,
     AddUpdateCompleted,
-    ViewCompleted
+    ViewCompleted,
+    AddUpdateMissing
 },
     
 }
