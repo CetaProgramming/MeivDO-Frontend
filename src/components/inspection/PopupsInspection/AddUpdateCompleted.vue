@@ -4,15 +4,17 @@
             <LabelSelectWithInputError v-if="!this.value" ref="formInspectionGetTool" :name="langs.Tools" v-model="formInspectionCreateUpdate.tool" :default="formInspectionCreateUpdate.tool"
             :items="activeTools" itemFilter="code" :placeholder="langs.OptionTool" />
 
-            <div v-else>dasdsa</div>
+                <div v-else> <LabelShowInfo :header="langs.Tools" :info="formInspectionCreateUpdate.tool"></LabelShowInfo></div>
 
                <TextAreaLabel ref="formInspectionDetail" :name="langs.Description"
                     :placeholder="langs.PlaceholderDescription" :msg="langs.DescriptionError" v-model="formInspectionCreateUpdate.description" :default="formInspectionCreateUpdate.description">  
                 </TextAreaLabel>
-               <LabelPickOptions ref="formInspectionStatus" v-model="formInspectionCreateUpdate.status" :name="langs.LabelText" :text="langs.TextButtons" :msg="langs.SelectButton" /> 
+               <LabelPickOptions ref="formInspectionStatus" :default="formInspectionCreateUpdate.status" v-model="formInspectionCreateUpdate.status" :name="langs.LabelText" :text="langs.TextButtons" :msg="langs.SelectButton" /> 
             <Button :text="langs.Save"></Button>
         </form>
+        
     </Popoup>
+    
 </template>
 
 <script>
@@ -28,6 +30,7 @@ import LabelPickOptions from '../../forms/LabelPickOptions.vue';
 import ToastError from "../../public/Toast/ToastError.vue"
 import ToastSuccess from "../../public/Toast/ToastSuccess.vue"
 import FormValidate from "../../mixins/FormValidate";
+import LabelShowInfo from '../../forms/LabelShowInfo.vue';
 export default {
     props: ['value'],
     data() {
@@ -75,7 +78,6 @@ export default {
                             this.value &&
                                 await inspectionCompletedStore().update(this.value.id,
                                   {
-                                        tool_id: this.formInspectionCreateUpdate.tool,
                                         status: this.formInspectionCreateUpdate.status,
                                         additionalDescription: this.formInspectionCreateUpdate.description,
                                     }
@@ -107,7 +109,7 @@ export default {
         }
 
     },
-    components: { Popoup, LabelSelectWithInputError, TextAreaLabel, ButtonIcon, Button, LabelPickOptions },
+    components: { Popoup, LabelSelectWithInputError, TextAreaLabel, ButtonIcon, Button, LabelPickOptions, LabelShowInfo },
     emits: ['activeToast','closePopUp'],
     mixins: [FormValidate]
 }
