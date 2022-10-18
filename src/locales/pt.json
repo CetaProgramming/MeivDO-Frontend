@@ -383,6 +383,42 @@
             "EndDate": "Data de Fim"
         }
     },
+    "PageRepairs": {
+        "RepairFeature": {
+            "View": "Ver",
+            "ButtonNew": "Novo"
+        },
+        "Filters": {
+            "Keyword": {
+                "Label": "Palavra-Chave",
+                "Input": "Insira o código"
+            },
+            "KeywordCategory": {
+                "Label": "Palavra-Chave",
+                "Input": "Insira um Nome"
+            },
+            "Status": {
+                "Text": "Ativo",
+                "Options": [
+                    {
+                        "name": "Ambos",
+                        "value": ""
+                    },
+                    {
+                        "name": "Ativo",
+                        "value": 1
+                    },
+                    {
+                        "name": "Inativo",
+                        "value": 0
+                    }
+                ]
+            },
+            "Text": "Status",
+            "GroupTools": "Grupo de ferramentas",
+            "Category": "Categoria"
+        }
+    },
     "Filters": {
         "Users": {
             "Keyword": {
