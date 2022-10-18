@@ -410,6 +410,98 @@
             }
         }
     },
+    "PageRepairs": {
+        "RepairFeature": {
+            "View": "View",
+            "ButtonNew": "New",
+            "Headers": {
+                "Completed": [
+                    "ID",
+                    "Tool",
+                    "Status",
+                    "Updated"
+                ],
+                "Missing": [
+                    "ID",
+                    "Tool",
+                    "Project",
+                    "Updated"
+                ]
+            }
+        },
+        "TableOptions": {
+            "name": "Tables",
+            "items": [
+                {
+                    "name": "Completed",
+                    "value": "Completed"
+                },
+                {
+                    "name": "Missing",
+                    "value": "Missing"
+                }
+            ]
+        },
+        "Filters": {
+            "Keyword": {
+                "Label": "Keywords",
+                "Input": "Type a code"
+            },
+            "KeywordCategory": {
+                "Label": "Keywords",
+                "Input": "Enter a Name"
+            },
+            "Status": {
+                "Text": "Status",
+                "Options": [
+                    {
+                        "name": "Both",
+                        "value": ""
+                    },
+                    {
+                        "name": "Good",
+                        "value": 1
+                    },
+                    {
+                        "name": "Bad",
+                        "value": 0
+                    }
+                ]
+            },
+            "Text": "Status",
+            "Tools": "Tools",
+            "Project": "Project",
+            "PlaceHolder": "Select Tool",
+            "PlaceHolderProject": "Select Tool",
+            "Category": "Category"
+        },
+        "AddRepairPop": {
+            "LabelText": "Status",
+            "Tools": "Tool",
+            "OptionTool": "Write or select a tool...",
+            "TextButtons":["Good", "Bad"]
+,            "Title": "Inspection",
+            "Description": "Description",
+            "PlaceholderDescription": "Insert Description",
+            "Save": "Save",
+            "DescriptionError": "Description is required!",
+            "SelectButton": "Status is required"
+        },
+        "PopupDeleteRepair": {
+            "DeleteTextFirst": "Are you sure you want to delete inspection ",
+            "DeleteTextEnd": "?",
+            "DeleteInspectionSucess": "Inspection deleted successfully!",
+            "DeleteInspectionError": "Inspection couldn't be deleted, please verify",
+            "Confirmation": "Yes"
+        },
+        "PopupViewRepair": {
+            "Title": "Inspection",
+            "Code": "Code",
+            "Active": "Active",
+            "Category": "Category",
+            "Description": "Description"
+        }
+    },
     "HoursComponents": {
         "SEC": {
             "sing": "second",
