@@ -3,10 +3,10 @@
         @submit.prevent="doSearch">
         <div class="grid lg:grid-cols-2 gap-3">
             <LabelSelectWithInput ref="selectLabelTool" v-model="FilterInspection.Tool" :name="langsInspection.Tools"
-                items="tools" itemFilter='code' :default="-1" :placeholder="langsInspection.PlaceHolder">
+                :items="tools" itemFilter='code' :default="-1" :placeholder="langsInspection.PlaceHolder">
             </LabelSelectWithInput>
             <LabelSelectWithInput ref="selectLabelProject" v-model="FilterInspection.Project" :name="langsInspection.Project"
-                items="tools" itemFilter='code' :default="-1" :placeholder="langsInspection.PlaceHolderProject">
+                :items="projects" itemFilter='code' :default="-1" :placeholder="langsInspection.PlaceHolderProject">
             </LabelSelectWithInput>
 
         </div>
@@ -23,9 +23,13 @@ import LabelSelectWithInput from '../../forms/LabelSelectWithInput.vue';
 import ButtonIcon from '../../widgets/ButtonIcon.vue';
 import { langStore } from '../../../store/langStore'
 import SelectLabel from '../../forms/SelectLabel.vue';
+import {toolsStore} from '../../../store/toolsStore'
+import {projectStore} from '../../../store/projectStore'
+import {inspectionMissingStore} from '../../../store/inspectionMissingStore'
 export default {
     data() {
         return {
+            projects:[],
             tools: [],
             FilterInspection: {
                 Tool: '',
@@ -39,13 +43,23 @@ export default {
             return langStore().getLang.PageInspections.Filters
         },
     },
+    async mounted(){
+         const data = await toolsStore().getActiveTools("all");
+            this.tools = data;
+            const dataProject = await projectStore().getClosedProjects()
+            this.projects = dataProject;
+
+    },
     methods:{
+        async doSearch() {
+            await inspectionMissingStore().doSearch(this.FilterInspection);
+        },
         async resetValues(){
             this.FilterInspection.Tool = "";
             this.FilterInspection.Project = "";
             this.$refs['selectLabelTool'].resetValues();
             this.$refs['selectLabelProject'].resetValues();
-            // await toolsStore().doSearch(this.FilterTool, true);
+            await inspectionMissingStore().doSearch(this.FilterInspection, true);
         }
     },
     components: {
