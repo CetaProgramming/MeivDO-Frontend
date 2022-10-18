@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import axios from "axios";
 import { toolsStore } from "./toolsStore";
+import { inspectionMissingStore } from "./inspectionMissingStore";
 
 
 export const inspectionCompletedStore = defineStore('inspectionCompletedStore', {
@@ -37,16 +38,16 @@ export const inspectionCompletedStore = defineStore('inspectionCompletedStore', 
                 updated: inspection.updated,
             }
         },
-        // async doSearch({Code = '', Active = '', GroupTools = '', Status=''}, reset = false){
+        async doSearch({Tool = '', Status = ''}, reset = false){
             
-        //     if(reset && this.filtered === false || !reset && this.filtered === false && (!Code && !Active && !GroupTools && !Status))
-        //         return;
-        //     this.filtered = reset ? false : true;
-        //     const response = await axios.get(
-        //         `${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/tools/search?code=${Code}&active=${Active && Number(Active)}&groupTools=${GroupTools == -1 ? '': GroupTools}&statusTools=${Status}`
-        //     );
-        //     this.refactoringViewing(response);
-        // },
+            if(reset && this.filtered === false || !reset && this.filtered === false && (!Tool && !Status))
+                return;
+            this.filtered = reset ? false : true;
+            const response = await axios.get(
+                `${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/inspections/search?tool_id=${Tool}&status=${Status}`
+            );
+            this.refactoringViewing(response);
+        },
         async mount() {
             const response = await axios.get(
                 `${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/inspections`
@@ -155,6 +156,7 @@ export const inspectionCompletedStore = defineStore('inspectionCompletedStore', 
                 this.inspections.splice(InspectionDelete, 1);
                 this.totalItems -= 1;
                 this.get(this.calculatePages() ?? this.pag.actualPage);
+                inspectionMissingStore().mount()
             } catch (error) {
                 throw error;
             }
