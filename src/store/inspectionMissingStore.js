@@ -1,7 +1,8 @@
 import { defineStore } from "pinia";
 import axios from "axios";
-import { groupToolsStore } from "./groupToolsStore";
-import { categoryStore } from "./categoryStore";
+import {inspectionCompletedStore} from './inspectionCompletedStore'
+import { toolsStore } from "./toolsStore";
+import { projectStore } from "./projectStore";
 
 
 export const inspectionMissingStore = defineStore('inspectionMissingStore', {
@@ -21,32 +22,34 @@ export const inspectionMissingStore = defineStore('inspectionMissingStore', {
     },
     actions: {
         createObj(inspectionMissing) {
+            const refTools = toolsStore().getOrAdd(inspectionMissing.tool);
+            const refProjects = projectStore().getOrAdd(inspectionMissing.project);
             return {
                 id: inspectionMissing.id,
                 inspectionId: inspectionMissing.inspection_id,
-                // projectToolsId: inspectionMissing.project_tools_id, 
+                project:refProjects, 
                 updated: inspectionMissing.updated_at,
-                //tool?
+                tool:refTools
             }
         },
         createViewing(inspectionMissing) {
             return {
                 id: inspectionMissing.id,
-                 //tool?
-                //  projectToolsId: inspectionMissing.project_tools_id, 
+                tool:inspectionMissing.tool.code,
+                project: inspectionMissing.project.name,
                 updated: inspectionMissing.updated,
             }
         },
-        // async doSearch({Code = '', Active = '', GroupTools = '', Status=''}, reset = false){
+        async doSearch({Tool = '', Inspection = ''}, reset = false){
             
-        //     if(reset && this.filtered === false || !reset && this.filtered === false && (!Code && !Active && !GroupTools && !Status))
-        //         return;
-        //     this.filtered = reset ? false : true;
-        //     const response = await axios.get(
-        //         `${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/tools/search?code=${Code}&active=${Active && Number(Active)}&groupTools=${GroupTools == -1 ? '': GroupTools}&statusTools=${Status}`
-        //     );
-        //     this.refactoringViewing(response);
-        // },
+            if(reset && this.filtered === false || !reset && this.filtered === false && (!Tool && !Inspection))
+                return;
+            this.filtered = reset ? false : true;
+            const response = await axios.get(
+                `${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/inspections/projecttool/missing/search?tool_id=${Tool}&project_id=${Inspection}`
+            );
+            this.refactoringViewing(response);
+        },
         async mount() {
             const response = await axios.get(
                 `${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/inspections/projecttool/missing`
@@ -97,21 +100,7 @@ export const inspectionMissingStore = defineStore('inspectionMissingStore', {
                 throw e;
             }
         },
-        async add(formData) {
-            try {
-                const response = await axios.post(
-                    `${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/inspections/projecttool`,
-                    formData
-                );
-                this.inspectionsMissing.push(this.createObj(response.data));
-                this.totalItems += 1;
-                this.calculatePages();
-                this.get(this.pag.actualPage);
-                return response.data
-            } catch (error) {
-                throw error
-            }
-        },
+       
         calculatePages(){
             const lastPage = Math.ceil(this.inspectionsMissing.length / this.perPage);
             if(this.pag.lastPage !== lastPage){
@@ -126,29 +115,21 @@ export const inspectionMissingStore = defineStore('inspectionMissingStore', {
 
         },
         
-        // async update(inspectionMissingId, formData) {
-        //     try {
-        //         const response = await axios.put(
-        //             `${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/inspections/${inspectionMissingId}`,
-        //             formData
-        //         );
-        //         this.inspections[this.inspections.findIndex(inspection => inspection.id == inspectionId)] = this.createObj(response.data)
-        //         this.get(this.pag.actualPage);
-        //         return response.data
-        //     } catch (error) {
-        //         throw error
-        //     }
-        // },
-        // async getStatus() {
-        //     try {
-        //         const response = await axios.get(
-        //             `${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/tools/status`
-        //         );
-        //         return response.data.data
-        //     } catch (error) {
-        //         throw error
-        //     }
-        // },
+        async update(inspectionMissingId, formData) {
+            try {
+                const response = await axios.post(
+                    `${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/inspections/projecttool`,
+                    formData
+                );
+                this.inspectionsMissing.splice(this.inspectionsMissing.findIndex(inspection => inspection.id == inspectionMissingId), 1) 
+                this.get(this.pag.actualPage);
+                inspectionCompletedStore().mount()
+                return response.data
+            } catch (error) {
+                throw error
+            }
+        },
+   
         // async deleteTool(inspectionId) {
         //     try {
         //         await axios.delete(`${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/inspections/${inspectionId}`);
