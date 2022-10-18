@@ -16,7 +16,7 @@ class DataManipulate{
         let dataForm = data;
         if(typeof Date !== dataForm)
             dataForm = new Date(data);
-        return new Intl.DateTimeFormat(Navigator.language).format(dataForm) 
+        return new Intl.DateTimeFormat(window.navigator.language).format(dataForm) 
     }
 
     static formInputDate(data){
