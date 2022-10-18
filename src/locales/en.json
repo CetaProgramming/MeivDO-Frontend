@@ -362,6 +362,19 @@
             "DescriptionError": "Description is required!",
             "SelectButton": "Status is required"
         },
+        "UpdateInspectionMissing": {
+            "LabelText": "Status",
+            "Tools": "Tool",
+            "Projects": "Project",
+            "OptionTool": "Write or select a tool...",
+            "TextButtons":["Good", "Bad"]
+,            "Title": "Inspection",
+            "Description": "Description",
+            "PlaceholderDescription": "Insert Description",
+            "Save": "Save",
+            "DescriptionError": "Description is required!",
+            "SelectButton": "Status is required"
+        },
         "PopupDeleteInspection": {
             "DeleteTextFirst": "Are you sure you want to delete inspection ",
             "DeleteTextEnd": "?",
