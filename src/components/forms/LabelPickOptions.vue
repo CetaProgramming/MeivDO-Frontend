@@ -16,11 +16,12 @@
 import Label from '../widgets/Label.vue';
 import ButtonIcon from '../widgets/ButtonIcon.vue';
 export default {
-    props:['name', 'text', 'msg'],
+    props:['name', 'text', 'msg', 'default'],
     data() {
         return {
             isError: false,
-            value: null
+            value: this.default
+
         };
     },
     computed:{
