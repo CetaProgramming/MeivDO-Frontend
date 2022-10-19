@@ -1,8 +1,8 @@
 <template>
     <Popoup :titlePopUp="langs.Title" class="font-meivdo" @closePopUp="$emit('closePopUp')">
         <form @submit.prevent="AddUpdateInspection" class="flex flex-col gap-5 font-openSans">
-            <LabelShowInfo :header="langs.Tools" :info="this.value.tool.code"></LabelShowInfo>
-            <LabelShowInfo :header="langs.Projects" :info="this.value.project.name"></LabelShowInfo>
+            <LabelShowInfo :header="langs.Tools" :info="this.value && this.value.tool.code"></LabelShowInfo>
+            <LabelShowInfo :header="langs.Projects" :info="this.value && this.value.project.name"></LabelShowInfo>
             <TextAreaLabel ref="formInspectionDescription" :name="langs.Description"
                 :placeholder="langs.PlaceholderDescription" :msg="langs.DescriptionError"
                 v-model="formUpdateInspection.description" :default="formUpdateInspection.description">
