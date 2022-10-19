@@ -186,6 +186,10 @@ export const toolsStore = defineStore('toolsStore', {
             }
             return this.tools.filter(tool => tool.active);
         },
+        async getToolsInStatus(statusId){
+            const tools = await this.getActiveTools('all');
+            return tools.filter(tool => tool.status.id == statusId);
+        },
         async getActiveAndAvailableTools() {
             const getActiveTool = await this.getActiveTools();
             return getActiveTool.filter(tool => tool.status.id == 2);
