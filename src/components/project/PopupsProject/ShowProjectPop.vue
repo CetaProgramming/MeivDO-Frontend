@@ -7,6 +7,7 @@
                 <LabelShowInfoVue :header="langs.StartDate" :info="formatDate(this.project.startDate)"/>
                 <LabelShowInfoVue :header="langs.EndDate" :info="formatDate(this.project.endDate)"/>
                 <LabelShowStatus :header="langs.Status" :info="this.project.status"/>
+                <LabelShowInfoVue :header="langs.Tools" :info="projectTools"/>
             </div>
         </div>
     </Popoup>
@@ -26,6 +27,9 @@ export default {
     computed: {
         langs() {
             return langStore().getLang.PageProjects.PopupShowProject
+        },
+        projectTools(){
+            return this.project.project_tools.map(project=>project.tool.code).join(', ')
         }
     },
     methods: {
