@@ -74,7 +74,6 @@ export const inspectionMissingStore = defineStore('inspectionMissingStore', {
                 const response = await axios.get(
                     `${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/inspections/projecttool/missing?page=${page}`
                 );
-                //existe??
                 await response.data.data.forEach(inspectionMissing => !this.inspectionsMissing.some(inspectionMissingVer => inspectionMissingVer.id === inspectionMissing.id) && this.inspectionsMissing.push(this.createObj(inspectionMissing)));
                 this.inspectionsMissing.sort((inspectionMissing1, inspectionMissing2) => inspectionMissing1.id.value - inspectionMissing2.id.value);
                 this.pagesLoad.push(page);
@@ -129,20 +128,18 @@ export const inspectionMissingStore = defineStore('inspectionMissingStore', {
                 throw error
             }
         },
-   
-        // async deleteTool(inspectionId) {
-        //     try {
-        //         await axios.delete(`${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/inspections/${inspectionId}`);
-        //         const InspectionDelete = this.inspections.findIndex(inspection => inspection.id === inspectionId)
-        //         this.inspections.splice(InspectionDelete, 1);
-        //         this.totalItems -= 1;
-        //         this.get(this.calculatePages() ?? this.pag.actualPage);
-        //     } catch (error) {
-        //         throw error;
-        //     }
-        // },
+
         getData(id){
             return this.inspectionsMissing.find(inspectionMissing => id == inspectionMissing.id)
-            }
+        },
+        
+        async getToolsAndProjects(){
+            await this.mount();
+            if (this.pag.lastPage > 1)
+                for (let inspectionMissing = 2; inspectionMissing <= this.pag.lastPage; inspectionMissing++) {
+                    await this.load(inspectionMissing);
+                }
+            return [this.inspectionsMissing.map(inspection => inspection.tool), [...new Set(this.inspectionsMissing.map(inspection => inspection.project))]];
+        }
     }
 });
