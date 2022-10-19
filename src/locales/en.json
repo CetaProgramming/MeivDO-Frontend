@@ -118,9 +118,9 @@
     "PopupAddUser": {
         "Title": "User",
         "Name": "Name",
-        "PlaceholderName":"Enter your name",
+        "PlaceholderName": "Enter your name",
         "Email": "Email",
-        "PlaceholderEmail":"Enter your email",
+        "PlaceholderEmail": "Enter your email",
         "Role": "Role",
         "Active": "Active",
         "Upload": "Upload new picture",
@@ -200,16 +200,16 @@
             "Title": "Tool",
             "DeleteTextFirst": "Are you sure you want to delete tool ",
             "DeleteTextEnd": "?",
-            "DeleteToolSucess":"Tool deleted successfully!",
-            "DeleteToolError":"Tool couldn't be deleted, please verify",
+            "DeleteToolSucess": "Tool deleted successfully!",
+            "DeleteToolError": "Tool couldn't be deleted, please verify",
             "Confirmation": "Yes"
         },
         "PopupDeleteGroupTool": {
             "Title": "Tool",
             "DeleteTextFirst": "Are you sure you want to delete tool ",
             "DeleteTextEnd": "?",
-            "DeleteGroupToolSucess":"Group Tool deleted successfully!",
-            "DeleteGroupToolError":"Group Tool couldn't be deleted, please verify",
+            "DeleteGroupToolSucess": "Group Tool deleted successfully!",
+            "DeleteGroupToolError": "Group Tool couldn't be deleted, please verify",
             "Confirmation": "Yes"
         },
         "ToolFeature": {
@@ -217,7 +217,7 @@
             "ButtonNew": "New",
             "Active": "Ativo",
             "Inactive": "Inativo",
-            "Headers":{
+            "Headers": {
                 "Tools": [
                     "ID",
                     "Code",
@@ -238,12 +238,11 @@
                     "Name",
                     "Active",
                     "Updated"
-                    
                 ]
             }
         },
         "TableOptions": {
-            "name":"Tables",
+            "name": "Tables",
             "items": [
                 {
                     "name": "Tools",
@@ -260,6 +259,49 @@
             ]
         },
         "Filters": {
+            "Keyword": {
+                "Label": "Keywords",
+                "Input": "Type code"
+            },
+            "Status": {
+                "Text": "Active",
+                "Options": [
+                    {
+                        "name": "Both",
+                        "value": ""
+                    },
+                    {
+                        "name": "Active",
+                        "value": 1
+                    },
+                    {
+                        "name": "Inactive",
+                        "value": 0
+                    }
+                ]
+            },
+            "Text": "Status",
+            "GroupTools": "Group Tools",
+            "Category": "Category"
+        }
+    },
+    "PageInspections": {
+        "InspectionFeature": {
+            "View": "View",
+            "ButtonNew": "New",
+            "Headers": {
+                "Completed": [
+                    "ID",
+                    "Tool",
+                    "Status",
+                    "Updated"
+                ],
+                "Missing": [
+                    "ID",
+                    "Tool",
+                    "Project",
+                    "Updated"
+                ]
                 "Keyword": {
                     "Label": "Keywords",
                     "Input": "Type a code"
@@ -292,24 +334,110 @@
                    "Category": "Category",
                    "CategoryPlaceholder": "Insert a category name"   
             }
+        },
+        "TableOptions": {
+            "name": "Tables",
+            "items": [
+                {
+                    "name": "Completed",
+                    "value": "Completed"
+                },
+                {
+                    "name": "Missing",
+                    "value": "Missing"
+                }
+            ]
+        },
+        "Filters": {
+            "Keyword": {
+                "Label": "Keywords",
+                "Input": "Type a code"
+            },
+            "KeywordCategory": {
+                "Label": "Keywords",
+                "Input": "Enter a Name"
+            },
+            "Status": {
+                "Text": "Status",
+                "Options": [
+                    {
+                        "name": "Both",
+                        "value": ""
+                    },
+                    {
+                        "name": "Good",
+                        "value": 1
+                    },
+                    {
+                        "name": "Bad",
+                        "value": 0
+                    }
+                ]
+            },
+            "Text": "Status",
+            "Tools": "Tools",
+            "Project": "Project",
+            "PlaceHolder": "Select Tool",
+            "PlaceHolderProject": "Select Tool",
+            "Category": "Category"
+        },
+        "AddInspectionPop": {
+            "LabelText": "Status",
+            "Tools": "Tool",
+            "OptionTool": "Write or select a tool...",
+            "TextButtons":["Good", "Bad"]
+,            "Title": "Inspection",
+            "Description": "Description",
+            "PlaceholderDescription": "Insert Description",
+            "Save": "Save",
+            "DescriptionError": "Description is required!",
+            "SelectButton": "Status is required"
+        },
+        "UpdateInspectionMissing": {
+            "LabelText": "Status",
+            "Tools": "Tool",
+            "Projects": "Project",
+            "OptionTool": "Write or select a tool...",
+            "TextButtons":["Good", "Bad"]
+,            "Title": "Inspection",
+            "Description": "Description",
+            "PlaceholderDescription": "Insert Description",
+            "Save": "Save",
+            "DescriptionError": "Description is required!",
+            "SelectButton": "Status is required"
+        },
+        "PopupDeleteInspection": {
+            "DeleteTextFirst": "Are you sure you want to delete inspection ",
+            "DeleteTextEnd": "?",
+            "DeleteInspectionSucess": "Inspection deleted successfully!",
+            "DeleteInspectionError": "Inspection couldn't be deleted, please verify",
+            "Confirmation": "Yes"
+        },
+        "PopupViewInspection": {
+            "Title": "Inspection",
+            "Code": "Code",
+            "Active": "Active",
+            "Category": "Category",
+            "Description": "Description"
+        }
     },
     "PageProjects": {
         "PopupShowProject": {
             "Title": "Project",
-            "Name" : "Name",
+            "Name": "Name",
             "Address": "Address",
-            "StartDate" : "Start Date",
-            "EndDate" : "End Date",
-            "Status" : "Status"
+            "StartDate": "Start Date",
+            "EndDate": "End Date",
+            "Status": "Status"
         },
         "PopupAddProject": {
             "Title": "Project",
             "Name": "Name",
-            "PlaceholderName":"Enter a Name",
+            "PlaceholderName": "Enter a Name",
             "Address": "Address",
-            "PlaceholderAddress":"Enter an Address",
+            "PlaceholderAddress": "Enter an Address",
             "StartDate": "Start Date",
-            "EndDate" : "End Date",
+            "EndDate": "End Date",
             "Save": "Save",
             "updatedSucess": "Project info successfully updated!",
             "createdSucess": "Project info successfully added!",
@@ -320,15 +448,15 @@
         "PopupProjectDelete": {
             "DeleteTextFirst": "Are you sure you want to delete project ",
             "DeleteTextEnd": "?",
-            "DeleteProjectSucess":"Project deleted successfully!",
-            "DeleteProjectError":"Project couldn't be deleted, please verify",
+            "DeleteProjectSucess": "Project deleted successfully!",
+            "DeleteProjectError": "Project couldn't be deleted, please verify",
             "Confirmation": "Yes"
         },
         "PopupProjectStatus": {
             "StatusTextFirst": "Are you sure you want to change project ",
             "StatusTextEnd": " status?",
-            "StatusProjectSucess":"Project status changed successfully!",
-            "StatusProjectError":"Project status couldn't be changed, please verify",
+            "StatusProjectSucess": "Project status changed successfully!",
+            "StatusProjectError": "Project status couldn't be changed, please verify",
             "Confirmation": "Yes"
         },
         "ManagementTools": {
@@ -357,33 +485,33 @@
             ]
         },
         "Filters": {
-                "Keyword": {
-                    "Label": "Keywords",
-                    "Input": "Type a Name"
-                },
-                "Status": {
-                    "Text": "Active",
-                    "Options": [
-                        {
-                            "name": "Both",
-                            "value": ""
-                        },
-                        {
-                            "name": "Open",
-                            "value": 1
-                        },
-                        {
-                            "name": "Close",
-                            "value": 0
-                        }
-                    ]
-                },              
-                   "Text": "Status",
-                   "GroupTools": "Group Tools",
-                   "Category": "Category",
-                   "StartDate": "Start Date",
-                "EndDate": "End Date"  
-            }
+            "Keyword": {
+                "Label": "Keywords",
+                "Input": "Type a Name"
+            },
+            "Status": {
+                "Text": "Active",
+                "Options": [
+                    {
+                        "name": "Both",
+                        "value": ""
+                    },
+                    {
+                        "name": "Open",
+                        "value": 1
+                    },
+                    {
+                        "name": "Close",
+                        "value": 0
+                    }
+                ]
+            },
+            "Text": "Status",
+            "GroupTools": "Group Tools",
+            "Category": "Category",
+            "StartDate": "Start Date",
+            "EndDate": "End Date"
+        }
     },
     "Filters": {
         "Users": {
@@ -533,5 +661,4 @@
         "noSearchData": "Nothing to show",
         "noDataFiltered": "Sorry, not found data!"
     }
-    
 }
