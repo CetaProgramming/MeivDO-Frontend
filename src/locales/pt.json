@@ -334,7 +334,8 @@
             "Address": "Morada",
             "StartDate" : "Data de Início",
             "EndDate" : "Data de Fim",
-            "Status" : "Estado"
+            "Status" : "Estado",
+            "Tools": "Ferramentas"
         },
         "PopupAddProject": {
             "Title": "Projeto",

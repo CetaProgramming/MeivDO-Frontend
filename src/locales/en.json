@@ -426,9 +426,10 @@
             "Title": "Project",
             "Name": "Name",
             "Address": "Address",
-            "StartDate": "Start Date",
-            "EndDate": "End Date",
-            "Status": "Status"
+            "StartDate" : "Start Date",
+            "EndDate" : "End Date",
+            "Status" : "Status",
+            "Tools": "Tools"
         },
         "PopupAddProject": {
             "Title": "Project",

@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia';
 import axios from 'axios';
 import DataManipulate from '../helpers/DataManipulate';
+import { toolsStore } from './toolsStore';
 
 export const projectStore = defineStore('projectStore', {
     state: () => {
