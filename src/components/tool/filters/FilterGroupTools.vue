@@ -5,7 +5,7 @@
             <InputSearch class="w-auto" ref="inputSearch" v-model="FilterGroupTool.Code" :name="langsTool.Keyword" />
             <div class="lg:flex gap-4">
                 <!-- <SelectLabel class="lg:w-2/4" ref="selectLabel" v-model="FilterGroupTool.Category" :name="langsTool.Category" :items="['Group', 'Tools']" /> -->
-                <LabelSelectWithInput :name="langsTool.Category" ref="selectLabel" v-model="FilterGroupTool.Category" :items="categories" itemFilter='name' :default="-1" ></LabelSelectWithInput>
+                <LabelSelectWithInput :name="langsTool.Category" :placeholder="langsTool.CategoryPlaceholder" ref="selectLabel" v-model="FilterGroupTool.Category" :items="categories" itemFilter='name' :default="-1" ></LabelSelectWithInput>
                 <SelectLabel class="lg:w-2/4" ref="selectLabelActive"  v-model="FilterGroupTool.Active" :name="langsTool.Status.Text" :items="langsTool.Status.Options" />
             </div>
         </div>

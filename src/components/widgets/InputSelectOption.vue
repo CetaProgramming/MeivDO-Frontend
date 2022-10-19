@@ -1,6 +1,6 @@
 <template>
     <div class="relative bottom-0">
-        <Input ref="inputValue" @click.stop.prevent="changeStateOption" type="text" v-model="data" :placeholder="placeholder" @input="changeValueWithInput" :class="borders, background, color" class="w-full" />
+        <Input ref="inputValue" @click.stop.prevent="changeStateOption" type="text" v-model="data" :placeholder="placeholder" @input="changeValueWithInput" :class="borders, background, color, pad" class="w-full" />
         <div ref="listItems" v-show="optionState" class="z-50 absolute w-full p-2 max-h-32 overflow-auto bg-white  dark:bg-zinc-900">
             <p v-for="item in itemsFiltered" @click="clickOptionItem(item[itemFilter])"  class="p-1 cursor-pointer truncate hover:dark:bg-zinc-800 hover:bg-zinc-300">{{item[itemFilter]}}</p>
             <p v-if="!itemsFiltered.length" class="text-xs text-center text-red-500">{{lang.noSearchData}}</p>
@@ -52,6 +52,10 @@ export default {
             type: String,
         },
         color: {
+            type: String,
+        },
+        pad:{
+            default: "p-2",
             type: String,
         },
         items: {

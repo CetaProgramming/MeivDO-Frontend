@@ -11,7 +11,6 @@
         },
         props: {
             default: {
-                type: String,
                 default: "",
             },
             type: {

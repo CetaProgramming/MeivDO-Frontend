@@ -302,6 +302,37 @@
                     "Project",
                     "Updated"
                 ]
+                "Keyword": {
+                    "Label": "Keywords",
+                    "Input": "Type a code"
+                },
+                "KeywordCategory": {
+                    "Label": "Keywords",
+                    "Input": "Enter a Name"
+                },
+                "Status": {
+                    "Text": "Active",
+                    "Options": [
+                        {
+                            "name": "Both",
+                            "value": ""
+                        },
+                        {
+                            "name": "Active",
+                            "value": 1
+                        },
+                        {
+                            "name": "Inactive",
+                            "value": 0
+                        }
+                    ]
+                },
+               
+                   "Text": "Status",
+                   "GroupTools": "Group Tools",
+                   "GroupToolsPlaceholder": "Insert a group tool name",
+                   "Category": "Category",
+                   "CategoryPlaceholder": "Insert a category name"   
             }
         },
         "TableOptions": {
@@ -411,7 +442,8 @@
             "updatedSucess": "Project info successfully updated!",
             "createdSucess": "Project info successfully added!",
             "errorCreatedUpdated": "Ocurred a error when doing this task, please verify data!",
-            "NameError": "Name is required!"
+            "NameError": "Name is required!",
+            "addTools": "Management tools associated of the project"
         },
         "PopupProjectDelete": {
             "DeleteTextFirst": "Are you sure you want to delete project ",
@@ -426,6 +458,19 @@
             "StatusProjectSucess": "Project status changed successfully!",
             "StatusProjectError": "Project status couldn't be changed, please verify",
             "Confirmation": "Yes"
+        },
+        "ManagementTools": {
+            "Filters": {
+                "CodeInput": {
+                    "Name": "Code",
+                    "Placeholder": "Put code" 
+                },
+                "GroupToolsInput": {
+                    "Name": "GroupTools",
+                    "Placeholder": "Put GroupTools" 
+                }
+            },
+            "TableHeader": ["Code", "GroupTools"]
         },
         "ProjectFeature": {
             "View": "View",
@@ -493,6 +538,98 @@
             }
         }
     },
+    "PageRepairs": {
+        "RepairFeature": {
+            "View": "View",
+            "ButtonNew": "New",
+            "Headers": {
+                "Completed": [
+                    "ID",
+                    "Tool",
+                    "Status",
+                    "Updated"
+                ],
+                "Missing": [
+                    "ID",
+                    "Tool",
+                    "Project",
+                    "Updated"
+                ]
+            }
+        },
+        "TableOptions": {
+            "name": "Tables",
+            "items": [
+                {
+                    "name": "Completed",
+                    "value": "Completed"
+                },
+                {
+                    "name": "Missing",
+                    "value": "Missing"
+                }
+            ]
+        },
+        "Filters": {
+            "Keyword": {
+                "Label": "Keywords",
+                "Input": "Type a code"
+            },
+            "KeywordCategory": {
+                "Label": "Keywords",
+                "Input": "Enter a Name"
+            },
+            "Status": {
+                "Text": "Status",
+                "Options": [
+                    {
+                        "name": "Both",
+                        "value": ""
+                    },
+                    {
+                        "name": "Good",
+                        "value": 1
+                    },
+                    {
+                        "name": "Bad",
+                        "value": 0
+                    }
+                ]
+            },
+            "Text": "Status",
+            "Tools": "Tools",
+            "Project": "Project",
+            "PlaceHolder": "Select Tool",
+            "PlaceHolderProject": "Select Tool",
+            "Category": "Category"
+        },
+        "AddRepairPop": {
+            "LabelText": "Status",
+            "Tools": "Tool",
+            "OptionTool": "Write or select a tool...",
+            "TextButtons":["Good", "Bad"]
+,            "Title": "Inspection",
+            "Description": "Description",
+            "PlaceholderDescription": "Insert Description",
+            "Save": "Save",
+            "DescriptionError": "Description is required!",
+            "SelectButton": "Status is required"
+        },
+        "PopupDeleteRepair": {
+            "DeleteTextFirst": "Are you sure you want to delete inspection ",
+            "DeleteTextEnd": "?",
+            "DeleteInspectionSucess": "Inspection deleted successfully!",
+            "DeleteInspectionError": "Inspection couldn't be deleted, please verify",
+            "Confirmation": "Yes"
+        },
+        "PopupViewRepair": {
+            "Title": "Inspection",
+            "Code": "Code",
+            "Active": "Active",
+            "Category": "Category",
+            "Description": "Description"
+        }
+    },
     "HoursComponents": {
         "SEC": {
             "sing": "second",
@@ -520,7 +657,7 @@
         }
     },
     "Options": {
-        "inProgress": "In Progress",
+        "TableHeader": ["Code", "GroupTools"],
         "noSearchData": "Nothing to show",
         "noDataFiltered": "Sorry, not found data!"
     }

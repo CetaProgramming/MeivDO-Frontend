@@ -13,6 +13,8 @@
                             <SelectDate v-model="formProjectCreateUpdate.startDate" :default="formProjectCreateUpdate.startDate" :name="langs.StartDate"/>
                             <SelectDate v-model="formProjectCreateUpdate.endDate" :default="formProjectCreateUpdate.endDate" :name="langs.EndDate"/>
                         </div>
+                        <InputCheckbox v-if="this.project?.status || !this.project" v-model="showTools" @update:model-value="isShowToolsManagament" :name="langs.addTools" />
+                        <ManagementTools v-if="showTools" :itemsSelect="formProjectCreateUpdate.tools" @toogleTool="toogleTool"/>
                 </div>
             </div>
             <Button :text="langs.Save" />
@@ -37,17 +39,21 @@ import ToastSuccess from "../../public/Toast/ToastSuccess.vue"
 import FormValidate from "../../mixins/FormValidate";
 import SelectDate from '../../forms/SelectDate.vue';
 import DataManipulate from '../../../helpers/DataManipulate';
+import InputCheckbox from '../../forms/InputCheckbox.vue';
+import ManagementTools from '../managementTools/ManagementTools.vue';
 
 export default {
     props: ['status', 'project', 'showStatus'],
     data() {
         return {
+            showTools: false,
             projectStore: projectStore(),
             formProjectCreateUpdate: {
                 name: this.project ? this.project.name : '',
                 address: this.project ? this.project.address : '',
                 startDate: this.project ? DataManipulate.formInputDate(this.project.startDate) : '',
                 endDate: this.project ? DataManipulate.formInputDate(this.project.endDate) : '',
+                tools: this.project ? this.project.project_tools.map(tool => tool.tool_id) : []
             }
         }
     },
@@ -57,6 +63,13 @@ export default {
         }
     },
     methods: {
+        toogleTool(value){
+            const posValue = this.formProjectCreateUpdate.tools.findIndex(item => item === value);
+            posValue == -1 ? this.formProjectCreateUpdate.tools.push(value) : this.formProjectCreateUpdate.tools.splice(posValue, 1);
+        },
+        isShowToolsManagament(value){
+            this.showTools = value;
+        },
         activeToast(toast) {
             this.$emit('activeToast', toast);
         },
@@ -103,7 +116,9 @@ export default {
     InputLabel,
     SelectLabel,
     SwitchLabel,
-    SelectDate
+    SelectDate,
+    InputCheckbox,
+    ManagementTools
 },
     emits: ['activeToast'],
     mixins: [FormValidate]

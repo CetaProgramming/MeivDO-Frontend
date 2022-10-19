@@ -24,8 +24,8 @@ export const projectStore = defineStore('projectStore', {
                 name: project.name,
                 address: project.address,
                 status: Number(project.status),
-                startDate: DataManipulate.formDate(project.startDate),
-                endDate: DataManipulate.formDate(project.endDate),
+                startDate: project.startDate? new Date(project.startDate) : '',
+                endDate: project.endDate? new Date(project.endDate) : '' ,
                 userId: project.user_id,
                 updated : project.updated_at,
                 project_tools: project.project_tools
@@ -35,8 +35,8 @@ export const projectStore = defineStore('projectStore', {
             return {
                 id: project.id,
                 name: project.name,
-                startDate: DataManipulate.formDate(project.startDate),
-                endDate: DataManipulate.formDate(project.endDate),
+                startDate: project.startDate? DataManipulate.formDate(project.startDate) : '',
+                endDate: project.endDate? DataManipulate.formDate(project.endDate) : '',
                 status: project.status,
                 updated: project.updated,
             }
@@ -121,7 +121,6 @@ export const projectStore = defineStore('projectStore', {
         },
         async add(formData) {
             try {
-                console.log(formData);
                 const response = await axios.post(
                     `${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/projects`,
                     formData
