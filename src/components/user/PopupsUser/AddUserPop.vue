@@ -58,7 +58,7 @@ export default {
     },
     computed: {
         langs() {
-            return langStore().getLang.PopupAddUser
+            return langStore().getLang.PageUsers.PopupAddUser
         }
     },
     async mounted() {

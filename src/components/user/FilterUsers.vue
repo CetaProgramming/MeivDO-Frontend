@@ -28,7 +28,7 @@ export default {
     },
     computed: {
         langs(){
-            return langStore().getLang.Filters.Users;
+            return langStore().getLang.PageUsers.Filters.Users;
         }
     },
     methods: {

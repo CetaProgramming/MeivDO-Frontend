@@ -49,38 +49,83 @@
         "Zoom": "Zoom",
         "Language": "Language"
     },
-    "PopupUserReset": {
-        "ResetTextFirst": "Are you sure you want to reset user ",
-        "ResetTextEnd": " password?",
-        "ResetPasswordSucess": "Password successfully reset!",
-        "ResetPasswordError": "Password couldn't be reset, please verify",
-        "Confirmation": "Yes"
-    },
-    "PopupUserDelete": {
-        "DeleteTextFirst": "Are you sure you want to delete user ",
-        "DeleteTextEnd": "?",
-        "DeleteUserSucess": "User deleted successfully!",
-        "DeleteUserError": "User couldn't be deleted, please verify",
-        "Confirmation": "Yes"
-    },
-    "UserFeature": {
-        "View": "View",
-        "ButtonNew": "New",
-        "UserHeader": [
-            "NO.",
-            "Name",
-            "Email",
-            "Role",
-            "Status",
-            "Updated"
-        ],
-        "Active": "Active",
-        "Inactive": "Inactive"
-    },
     "Paginate": {
         "Page": "Page",
         "BtnGo": "Go",
         "PageNotFound": "Sorry, but the page you try access is not available"
+    },
+    "PageUsers":{
+        "UserFeature": {
+            "View": "View",
+            "ButtonNew": "New",
+            "UserHeader": [
+                "NO.",
+                "Name",
+                "Email",
+                "Role",
+                "Status",
+                "Updated"
+            ],
+            "Active": "Active",
+            "Inactive": "Inactive"
+        },
+        "PopupAddUser": {
+            "Title": "User",
+            "Name": "Name",
+            "PlaceholderName":"Enter your name",
+            "Email": "Email",
+            "PlaceholderEmail":"Enter your email",
+            "Role": "Role",
+            "Active": "Active",
+            "Upload": "Upload new picture",
+            "Save": "Save",
+            "SelectOption": "Select your option",
+            "updatedSucess": "User info successfully updated!",
+            "createdSucess": "User info successfully added!",
+            "errorCreatedUpdated": "Ocurred a error when doing this task, please verify data!",
+            "EmailError": "Email is required!",
+            "NameError": "Name is required!",
+            "RoleError": "Role is required!"
+        },
+        "PopupUserDelete": {
+            "DeleteTextFirst": "Are you sure you want to delete user ",
+            "DeleteTextEnd": "?",
+            "DeleteUserSucess": "User deleted successfully!",
+            "DeleteUserError": "User couldn't be deleted, please verify",
+            "Confirmation": "Yes"
+        },
+        "PopupUserReset": {
+            "ResetTextFirst": "Are you sure you want to reset user ",
+            "ResetTextEnd": " password?",
+            "ResetPasswordSucess": "Password successfully reset!",
+            "ResetPasswordError": "Password couldn't be reset, please verify",
+            "Confirmation": "Yes"
+        },
+        "Filters": {
+            "Users": {
+                "Keyword": {
+                    "Label": "Keywords",
+                    "Input": "Type a Name or an Email"
+                },
+                "Status": {
+                    "Text": "Status",
+                    "Options": [
+                        {
+                            "name": "Both",
+                            "value": ""
+                        },
+                        {
+                            "name": "Active",
+                            "value": 1
+                        },
+                        {
+                            "name": "Inactive",
+                            "value": 0
+                        }
+                    ]
+                }
+            }
+        }
     },
     "ItemMenu": {
         "noItemFound": "No feature available with",
@@ -114,24 +159,6 @@
             "description": "View the list of users of the company.",
             "link": "users"
         }
-    },
-    "PopupAddUser": {
-        "Title": "User",
-        "Name": "Name",
-        "PlaceholderName":"Enter your name",
-        "Email": "Email",
-        "PlaceholderEmail":"Enter your email",
-        "Role": "Role",
-        "Active": "Active",
-        "Upload": "Upload new picture",
-        "Save": "Save",
-        "SelectOption": "Select your option",
-        "updatedSucess": "User info successfully updated!",
-        "createdSucess": "User info successfully added!",
-        "errorCreatedUpdated": "Ocurred a error when doing this task, please verify data!",
-        "EmailError": "Email is required!",
-        "NameError": "Name is required!",
-        "RoleError": "Role is required!"
     },
     "PageTool": {
         "Keywords": "Palavras chave",
@@ -385,31 +412,6 @@
                    "StartDate": "Start Date",
                 "EndDate": "End Date"  
             }
-    },
-    "Filters": {
-        "Users": {
-            "Keyword": {
-                "Label": "Keywords",
-                "Input": "Type a Name or an Email"
-            },
-            "Status": {
-                "Text": "Status",
-                "Options": [
-                    {
-                        "name": "Both",
-                        "value": ""
-                    },
-                    {
-                        "name": "Active",
-                        "value": 1
-                    },
-                    {
-                        "name": "Inactive",
-                        "value": 0
-                    }
-                ]
-            }
-        }
     },
     "PageRepairs": {
         "RepairFeature": {
