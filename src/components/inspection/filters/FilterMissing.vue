@@ -6,7 +6,7 @@
                 :items="tools" itemFilter='code' :default="-1" :placeholder="langsInspection.PlaceHolder">
             </LabelSelectWithInput>
             <LabelSelectWithInput ref="selectLabelProject" v-model="FilterInspection.Project" :name="langsInspection.Project"
-                :items="projects" itemFilter='code' :default="-1" :placeholder="langsInspection.PlaceHolderProject">
+                :items="projects" itemFilter='name' :default="-1" :placeholder="langsInspection.PlaceHolderProject">
             </LabelSelectWithInput>
 
         </div>
@@ -23,8 +23,6 @@ import LabelSelectWithInput from '../../forms/LabelSelectWithInput.vue';
 import ButtonIcon from '../../widgets/ButtonIcon.vue';
 import { langStore } from '../../../store/langStore'
 import SelectLabel from '../../forms/SelectLabel.vue';
-import {toolsStore} from '../../../store/toolsStore'
-import {projectStore} from '../../../store/projectStore'
 import {inspectionMissingStore} from '../../../store/inspectionMissingStore'
 export default {
     data() {
@@ -44,13 +42,14 @@ export default {
         },
     },
     async mounted(){
-         const data = await toolsStore().getActiveTools("all");
-            this.tools = data;
-            const dataProject = await projectStore().getClosedProjects()
-            this.projects = dataProject;
-
+        await this.getToolsAndProject();
     },
     methods:{
+        async getToolsAndProject(){
+            const [tools, projects] = await inspectionMissingStore().getToolsAndProjects();
+            this.tools = tools;
+            this.projects = projects;
+        },
         async doSearch() {
             await inspectionMissingStore().doSearch(this.FilterInspection);
         },
