@@ -40,13 +40,13 @@ export const inspectionMissingStore = defineStore('inspectionMissingStore', {
                 updated: inspectionMissing.updated,
             }
         },
-        async doSearch({Tool = '', Inspection = ''}, reset = false){
+        async doSearch({Tool = '', Project = ''}, reset = false){
             
-            if(reset && this.filtered === false || !reset && this.filtered === false && (!Tool && !Inspection))
+            if(reset && this.filtered === false || !reset && this.filtered === false && (!Tool && !Project))
                 return;
             this.filtered = reset ? false : true;
             const response = await axios.get(
-                `${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/inspections/projecttool/missing/search?tool_id=${Tool}&project_id=${Inspection}`
+                `${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/inspections/projecttool/missing/search?tool_id=${Tool}&project_id=${Project}`
             );
             this.refactoringViewing(response);
         },
