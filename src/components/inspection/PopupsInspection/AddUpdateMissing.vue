@@ -1,11 +1,8 @@
 <template>
     <Popoup :titlePopUp="langs.Title" class="font-meivdo" @closePopUp="$emit('closePopUp')">
         <form @submit.prevent="AddUpdateInspection" class="flex flex-col gap-5 font-openSans">
-
-           
             <LabelShowInfo :header="langs.Tools" :info="this.value.tool.code"></LabelShowInfo>
             <LabelShowInfo :header="langs.Projects" :info="this.value.project.name"></LabelShowInfo>
-
             <TextAreaLabel ref="formInspectionDescription" :name="langs.Description"
                 :placeholder="langs.PlaceholderDescription" :msg="langs.DescriptionError"
                 v-model="formUpdateInspection.description" :default="formUpdateInspection.description">
@@ -36,11 +33,10 @@ export default {
     props: ['value'],
     data() {
         return {
-            activeTools: [],
-         
+            activeTools: [],        
             formUpdateInspection: {
-                description: this.value ? this.value.description : '',
-                status: this.value ? this.value.status : -1,
+                description: '',
+                status: -1,
             }
         };
     },
@@ -59,7 +55,6 @@ export default {
         },
         AddUpdateInspection() {
             try {
-                console.log(this.formUpdateInspection)
                 if (this.validateDataEqualsOrEmpty({
                     status: Number(this.formUpdateInspection.status),
                     description: this.formUpdateInspection.description
@@ -74,7 +69,7 @@ export default {
                                     {
                                         status: this.formUpdateInspection.status,
                                         additionalDescription: this.formUpdateInspection.description,
-                                        inspection_projecttool_id: 2
+                                        inspection_projecttool_id: this.value.id
                                     }
                                 );
                             this.$emit("closePopUp");
