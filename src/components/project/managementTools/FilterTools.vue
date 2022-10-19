@@ -1,5 +1,5 @@
 <template>
-     <form class="flex gap-5" @submit.prevent="searchData">
+     <form class="grid md:flex gap-5" @submit.prevent="searchData">
         <LabelSelectWithInput   ref="formFilterToolsAvailabilityTool" 
                                 :name="langs.Filters.CodeInput.Name" 
                                 v-model="formFilterToolsAvailability.tool"

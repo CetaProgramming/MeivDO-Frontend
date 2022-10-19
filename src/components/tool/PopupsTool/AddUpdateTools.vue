@@ -8,7 +8,7 @@
                         :placeholder="langs.Placeholder" :msg="langs.CodeError" :name="langs.Code"
                         :default="formToolCreateUpdate.code" />
                     <div class="flex flex-col md:flex-row gap-5 ">
-                        <LabelSelectWithInputError ref="formToolCreateGroup" :name="langs.GroupTools" v-model="formToolCreateUpdate.groupTool" :default="formToolCreateUpdate.groupTool"
+                        <LabelSelectWithInputError ref="formToolCreateGroup" :name="langs.GroupTools" :placeholder="langs.GroupToolsPlaceholder" v-model="formToolCreateUpdate.groupTool" :default="formToolCreateUpdate.groupTool"
                             :items="activeGroupTools" itemFilter="code"
                         />
                         <SwitchLabel v-if="value" v-model="formToolCreateUpdate.active" @change="changeValue"
@@ -54,9 +54,6 @@ export default {
         langs() {
             return langStore().getLang.PageTool.PopupAddTool
         },
-        langsToast() {
-            return langStore().getLang.PageTool.PopupAddTool
-        },
         isTool() {
             return Boolean(this.tool)
         }
@@ -98,12 +95,12 @@ export default {
                                 );
                             this.$emit("closePopUp");
                             this.$emit("activeToast", {
-                                msg: this.value && this.langsToast.updatedSucess || !this.value && this.langsToast.createdSucess,
+                                msg: this.value && this.langs.updatedSucess || !this.value && this.langs.createdSucess,
                                 type: ToastSuccess
                             });
                         } catch (error) {
                             this.$emit("activeToast", {
-                                msg: this.langsToast.errorCreatedUpdated,
+                                msg: this.langs.errorCreatedUpdated,
                                 type: ToastError
                             });
                         }

@@ -43,9 +43,6 @@ export default {
         langs() {
             return langStore().getLang.PageTool.PopupAddCategory
         },
-        langsToast() {
-            return langStore().getLang.PageTool.PopupAddCategory
-        }
     },
     methods: {
         changeValue() {
@@ -77,12 +74,12 @@ export default {
                                 );
                             this.$emit("closePopUp");
                             this.$emit("activeToast", {
-                                msg: this.value && this.langsToast.updatedSucess || !this.value && this.langsToast.createdSucess,
+                                msg: this.value && this.langs.updatedSucess || !this.value && this.langs.createdSucess,
                                 type: ToastSuccess
                             });
                         } catch (error) {
                             this.$emit("activeToast", {
-                                msg: this.langsToast.errorCreatedUpdated,
+                                msg: this.langs.errorCreatedUpdated,
                                 type: ToastError
                             });
                         }
