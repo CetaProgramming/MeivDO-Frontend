@@ -49,40 +49,85 @@
         "Zoom": "Zoom",
         "Language": "Lingua"
     },
-    "PopupUserReset": {
-        "UserID": "Utilizador ",
-        "ResetTextFirst": "Tem a certeza que pretende redefinir a palavra-passe do utilizador ",
-        "ResetTextEnd": "?",
-        "ResetPasswordSucess": "Password redefinida com sucesso!",
-        "ResetPasswordError": "Não foi possível redefinir password, verifique",
-        "Confirmation": "Sim"
-    },
-    "PopupUserDelete": {
-        "UserID": "Utilizador ",
-        "DeleteTextFirst": "Tem a certeza que pretende apagar o utilizador ",
-        "DeleteTextEnd": "?",
-        "DeleteUserSucess": "Utilizador apagado com sucesso!",
-        "DeleteUserError": "Não foi possível apagar o utilizador, verifique",
-        "Confirmation": "Sim"
-    },
-    "UserFeature": {
-        "View": "Ver",
-        "ButtonNew": "Novo",
-        "UserHeader": [
-            "Nr.",
-            "Nome",
-            "Email",
-            "Cargo",
-            "Estado",
-            "Atualizado"
-        ],
-        "Active": "Ativo",
-        "Inactive": "Inativo"
-    },
     "Paginate": {
         "Page": "Página",
         "BtnGo": "Ir",
         "PageNotFound": "Desculpe, mas a página que está a tentar aceder não está disponível"
+    },
+    "PageUsers": {
+        "UserFeature": {
+            "View": "Ver",
+            "ButtonNew": "Novo",
+            "UserHeader": [
+                "Nr.",
+                "Nome",
+                "Email",
+                "Cargo",
+                "Estado",
+                "Atualizado"
+            ],
+            "Active": "Ativo",
+            "Inactive": "Inativo"
+        },
+        "PopupAddUser": {
+            "Title": "Utilizador",
+            "Name": "Nome",
+            "PlaceholderName":"Insira o seu nome",
+            "Email": "Email",
+            "PlaceholderEmail":"Insira o seu email",
+            "Role": "Cargo",
+            "Active": "Ativo",
+            "Upload": "Atualizar nova foto",
+            "Save": "Guardar",
+            "SelectOption": "Seleciona uma opção",
+            "updatedSucess": "Atualizadas as informações do utilizador",
+            "createdSucess": "Utilizador inserido com sucesso",
+            "errorCreatedUpdated": "Ocorreu um erro ao efetuar a operação, verique os campos",
+            "EmailError": "Email é obrigatório!",
+            "NameError": "Nome é obrigatório!",
+            "RoleError": "Cargo é obrigatório!"
+        },
+        "PopupUserDelete": {
+            "UserID": "Utilizador ",
+            "DeleteTextFirst": "Tem a certeza que pretende apagar o utilizador ",
+            "DeleteTextEnd": "?",
+            "DeleteUserSucess": "Utilizador apagado com sucesso!",
+            "DeleteUserError": "Não foi possível apagar o utilizador, verifique",
+            "Confirmation": "Sim"
+        },
+        "PopupUserReset": {
+            "UserID": "Utilizador ",
+            "ResetTextFirst": "Tem a certeza que pretende redefinir a palavra-passe do utilizador ",
+            "ResetTextEnd": "?",
+            "ResetPasswordSucess": "Password redefinida com sucesso!",
+            "ResetPasswordError": "Não foi possível redefinir password, verifique",
+            "Confirmation": "Sim"
+        },
+        "Filters": {
+            "Users": {
+                "Keyword": {
+                    "Label": "Palavra-Chave",
+                    "Input": "Digite um Nome ou um E-mail"
+                },
+                "Status": {
+                    "Text": "Estado",
+                    "Options": [
+                        {
+                            "name": "Ambos",
+                            "value": ""
+                        },
+                        {
+                            "name": "Ativo",
+                            "value": 1
+                        },
+                        {
+                            "name": "Inativo",
+                            "value": 0
+                        }
+                    ]
+                }
+            }
+        }   
     },
     "ItemMenu": {
         "noItemFound": "Não existe a funcionalidade com o nome ",
@@ -116,24 +161,6 @@
             "description": "Ver a lista de utilizadores da empresa.",
             "link": "users"
         }
-    },
-    "PopupAddUser": {
-        "Title": "Utilizador",
-        "Name": "Nome",
-        "PlaceholderName":"Insira o seu nome",
-        "Email": "Email",
-        "PlaceholderEmail":"Insira o seu email",
-        "Role": "Cargo",
-        "Active": "Ativo",
-        "Upload": "Atualizar nova foto",
-        "Save": "Guardar",
-        "SelectOption": "Seleciona uma opção",
-        "updatedSucess": "Atualizadas as informações do utilizador",
-        "createdSucess": "Utilizador inserido com sucesso",
-        "errorCreatedUpdated": "Ocorreu um erro ao efetuar a operação, verique os campos",
-        "EmailError": "Email é obrigatório!",
-        "NameError": "Nome é obrigatório!",
-        "RoleError": "Cargo é obrigatório!"
     },
     "PageTool": {
         "Keywords": "Palavras chave",
@@ -452,31 +479,6 @@
             "Text": "Status",
             "GroupTools": "Grupo de ferramentas",
             "Category": "Categoria"
-        }
-    },
-    "Filters": {
-        "Users": {
-            "Keyword": {
-                "Label": "Palavra-Chave",
-                "Input": "Digite um Nome ou um E-mail"
-            },
-            "Status": {
-                "Text": "Estado",
-                "Options": [
-                    {
-                        "name": "Ambos",
-                        "value": ""
-                    },
-                    {
-                        "name": "Ativo",
-                        "value": 1
-                    },
-                    {
-                        "name": "Inativo",
-                        "value": 0
-                    }
-                ]
-            }
         }
     },
     "HoursComponents": {

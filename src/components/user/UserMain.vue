@@ -88,7 +88,7 @@ export default {
             
         },
         langsUser() {
-            return langStore().getLang.UserFeature
+            return langStore().getLang.PageUsers.UserFeature
         },
         pages(){
             return langStore().getLang.Paginate

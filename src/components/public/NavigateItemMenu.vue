@@ -27,7 +27,7 @@ export default {
             return langStore().getLang.ItemMenu
         },
         langsUser(){
-            return langStore().getLang.UserFeature
+            return langStore().getLang.PageUsers.UserFeature
         }
     },
     methods: {
