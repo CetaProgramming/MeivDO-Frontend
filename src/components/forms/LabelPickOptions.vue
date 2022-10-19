@@ -1,12 +1,15 @@
 <template>
     <div class="flex flex-col gap-2">
         <Label :name="name" :msg="name"/>
-        <div class="flex gap-10 justify-around">
-            <ButtonIcon @click.stop.prevent="changeValue(1, $event)" class="flex flex-col items-center  hover:bg-blue-600" :bg="this.value == 1 ? 'bg-blue-600' : 'bg-zinc-300' "
+        <div class="flex flex-col gap-3 justify-around">
+            <div class="flex gap-10">
+                <ButtonIcon @click.stop.prevent="changeValue(1, $event)" class="flex flex-col items-center  hover:bg-blue-600" :bg="this.value == 1 ? 'bg-blue-600' : 'bg-zinc-300' "
                 :text="text[0]" icon="fa-solid fa-thumbs-up"></ButtonIcon>
-            <ButtonIcon @click.stop.prevent="changeValue(0, $event)" class="flex flex-col items-center   hover:bg-MeivRed"  :bg="this.value == 0 ? 'bg-MeivRed' : 'bg-zinc-300' "
+                <ButtonIcon @click.stop.prevent="changeValue(0, $event)" class="flex flex-col items-center   hover:bg-MeivRed"  :bg="this.value == 0 ? 'bg-MeivRed' : 'bg-zinc-300' "
                 :text="text[1]" icon="fa-solid fa-thumbs-down"></ButtonIcon>
-                <Label v-if="isError" :name="name" class="font-openSans text-xs" color="text-red-500" :msg="msg"/> 
+            </div>
+            
+            <Label v-if="isError" :name="name" class="font-openSans text-xs" color="text-red-500" :msg="msg"/> 
         </div>
     </div>
 
@@ -21,7 +24,6 @@ export default {
         return {
             isError: false,
             value: this.default
-
         };
     },
     computed:{
@@ -30,9 +32,9 @@ export default {
         }
     },
     methods:{
-        changeValue(value, e ){
-            // e.stopPropagation()
-            console.log(value)
+        changeValue(value){
+            if(this.isError)
+                this.isError = false;
             this.value = value
             this.$emit('update:modelValue', value)
         },
