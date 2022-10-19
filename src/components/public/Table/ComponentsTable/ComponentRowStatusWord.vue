@@ -17,7 +17,8 @@
             return value && 'bg-green-400' || !value && 'bg-red-400';
         },
         pageLocales(){
-            return `PageProjects`
+            const getRoute = this.$route.name
+            return `Page${getRoute.at(0).toUpperCase()}${getRoute.slice(1)}`
         },
         word(){
             const value = Number(this.item)
