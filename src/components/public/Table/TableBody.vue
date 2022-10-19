@@ -7,7 +7,7 @@
             <component :is="component[index]" v-bind="{ headerTitle: header[index], item: item[subitem] }" />
         </div>
         <Select v-if="showSelect" :select="resetSelect" :selectItems="selectItems" @selectOption="selectItem($event, item.id)" />
-        <Button v-else @click="selectItem('AddUpdate',item.id)" ></Button>
+        <Button v-else @click="selectItem('AddUpdate',item.id)" :text="selectItems[0].value" space="normal" pad="p-1" fontSize="text-md"></Button>
     </div>
     <p v-if="!items.length"
         class="p-4 text-center bg-zinc-300 rounded-md text-xs dark:bg-MeivMatteBlack text-red-500 mt-2">
