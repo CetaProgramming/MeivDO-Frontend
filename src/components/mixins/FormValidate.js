@@ -17,7 +17,7 @@ export default{
             const error = ref(true);
             const dataForm = JSON.parse(JSON.stringify(data));
             Object.entries(dataForm).forEach(([key, value]) => {
-                if(!value || this.equalData(value, valueCompare)){
+                if(!String(value).length || this.equalData(value, valueCompare)){
                     refs[key].isError = true;
                     error.value = false;
                 }
