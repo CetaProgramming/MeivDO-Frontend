@@ -8,7 +8,7 @@
             <div class="grid gap-1 lg:gap-0 lg:flex lg:flex-col lg:overflow-auto">
                 <TableHeader ref="header"  :header=langsInspection.Headers[tableOptionSelected] :style="GetLenght" />
                 <TableBody :showSelect="tableOptionSelected == 'Missing' ? false: true" :header=langsInspection.Headers[tableOptionSelected] :component="Components[tableOptionSelected]" 
-                    :items=store[tableOptionSelected].viewing :style="GetLenght" :selectItems="selectItems" @selectOption="popUpOpen" />
+                    :items=store[tableOptionSelected].viewing :style="GetLenght" :selectItems="selectItems[tableOptionSelected]" @selectOption="popUpOpen" />
             </div>
             <Paginate @selectPage="changePage" :pag="store[tableOptionSelected].pag" /> 
         </div>
@@ -31,7 +31,6 @@ import TableHeader from "../public/Table/TableHeader.vue";
 import TableBody from './../public/Table/TableBody.vue';
 import Paginate from './../public/Table/Paginate.vue';
 import ComponentRowText from '../public/Table/ComponentsTable/ComponentRowText.vue';
-import ComponentRowStatus from '../public/Table/ComponentsTable/ComponentRowStatus.vue';
 import ComponentRowStatusWord from '../public/Table/ComponentsTable/ComponentRowStatusWord.vue';
 import ComponentTimePassed from "../public/Table/ComponentsTable/ComponentTimePassed.vue";
 import DeleteCompleted from "./PopupsInspection/DeleteCompleted.vue";
@@ -47,9 +46,6 @@ export default {
             selectedOption: '',
             valueID: '',
             tableOptionSelected: "Completed",
-            // props: {
-            //     Tools: this.getDataTool
-            // },
             toast: {
                 msg: '',
                 visible: false,
@@ -74,29 +70,37 @@ export default {
                 Completed: inspectionCompletedStore(),
                 Missing: inspectionMissingStore(),
             },     
-            selectItems: [
-                {
-                    key: "",
-                    disabled: true,
-                    component: "",
-                    value: "Options"
-                },
-                {
-                    key: "view",
-                    component: "",
-                    value: "View"
-                },
-                {
-                    key: "addUpdate",
-                    component: "",
-                    value: "Update"
-                },
-                {
-                    key: "delete",
-                    component: "",
-                    value: "Delete"
-                }
-            ]
+            selectItems: {
+                Completed: [
+                        {
+                            key: "",
+                            disabled: true,
+                            component: "",
+                            value: "Options"
+                        },
+                        {
+                            key: "view",
+                            component: "",
+                            value: "View"
+                        },
+                        {
+                            key: "addUpdate",
+                            component: "",
+                            value: "Update"
+                        },
+                        {
+                            key: "delete",
+                            component: "",
+                            value: "Delete"
+                        }
+                ],
+                Missing: [
+                        {
+                            value: "Create"
+                        }
+                ],
+
+            }
         }
     },
     computed: {
