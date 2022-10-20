@@ -124,8 +124,8 @@ export const usersStore = defineStore('usersStore', {
                         return;
                     }
             });
-            return this.pag.lastPage = lastPage;
-            }
+            return this.pag.lastPage = lastPage ? lastPage : 1;
+        }
         },
         async resetPassword(userId) {
             try {

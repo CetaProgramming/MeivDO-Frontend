@@ -61,8 +61,8 @@ export const inspectionCompletedStore = defineStore('inspectionCompletedStore', 
             this.perPage = response.data.per_page;
             this.pagesLoad = [];
             this.pagesLoad.push(1);
-            this.inspections = response.data.data.map(inspection => this.createObj(inspection)),
-                this.viewing = this.pageViewing(this.inspections)
+            this.inspections = response.data.data ? response.data.data.map(inspection => this.createObj(inspection)) : [],
+            this.viewing = this.pageViewing(this.inspections)
         },
         pageViewing(inspections) {
             return inspections.map(inspection => this.createViewing(inspection));
@@ -121,7 +121,7 @@ export const inspectionCompletedStore = defineStore('inspectionCompletedStore', 
                         return;
                     }
                 });
-                return this.pag.lastPage = lastPage;
+                return this.pag.lastPage = lastPage ? lastPage : 1;
             }
 
         },

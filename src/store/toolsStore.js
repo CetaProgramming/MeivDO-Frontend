@@ -126,7 +126,7 @@ export const toolsStore = defineStore('toolsStore', {
                         return;
                     }
                 });
-                return this.pag.lastPage = lastPage;
+                return this.pag.lastPage = lastPage ? lastPage : 1;
             }
 
         },

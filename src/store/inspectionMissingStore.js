@@ -63,7 +63,7 @@ export const inspectionMissingStore = defineStore('inspectionMissingStore', {
             this.perPage = response.data.per_page;
             this.pagesLoad = [];
             this.pagesLoad.push(1);
-            this.inspectionsMissing = response.data.data.map(inspectionMissing => this.createObj(inspectionMissing)),
+            this.inspectionsMissing = response.data.data ? response.data.data.map(inspectionMissing => this.createObj(inspectionMissing)) : [],
                 this.viewing = this.pageViewing(this.inspectionsMissing)
         },
         pageViewing(inspectionsMissing) {
