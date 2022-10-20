@@ -5,7 +5,7 @@
                 class="font-openSans grid grid-cols-1 items-center gap-5 md:gap-1  lg:grid-cols-1fr-auto md:justify-between ">
                 <div class="flex flex-col gap-7">
                     <InputLabelError ref="formCategoryCreateName" v-model="formCategoryCreateUpdate.name"
-                        :placeholder="langs.Placeholder" msg="langs.NameError" :name="langs.Name"
+                        :placeholder="langs.Placeholder" :msg="langs.NameError" :name="langs.Name"
                         :default="formCategoryCreateUpdate.name" />
                     <SwitchLabel v-if="value" v-model="formCategoryCreateUpdate.active" @change="changeValue"
                         :default="Boolean(formCategoryCreateUpdate.active)  " :name="langs.Active" />

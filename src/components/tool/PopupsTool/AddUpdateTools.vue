@@ -8,7 +8,7 @@
                         :placeholder="langs.Placeholder" :msg="langs.CodeError" :name="langs.Code"
                         :default="formToolCreateUpdate.code" />
                     <div class="flex flex-col md:flex-row gap-5 ">
-                        <LabelSelectWithInputError ref="formToolCreateGroup" :name="langs.GroupTools" :placeholder="langs.GroupToolsPlaceholder" v-model="formToolCreateUpdate.groupTool" :default="formToolCreateUpdate.groupTool"
+                        <LabelSelectWithInputError ref="formToolCreateGroup" :msg="langs.GroupToolsError" :name="langs.GroupTools" :placeholder="langs.GroupToolsPlaceholder" v-model="formToolCreateUpdate.groupTool" :default="formToolCreateUpdate.groupTool"
                             :items="activeGroupTools" itemFilter="code"
                         />
                         <SwitchLabel v-if="value" v-model="formToolCreateUpdate.active" @change="changeValue"
