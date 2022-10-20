@@ -1,15 +1,23 @@
-<!-- <template>
+<template>
     <Popoup :titlePopUp="langs.Title" class="font-meivdo" @closePopUp="$emit('closePopUp')">
         <form @submit.prevent="AddUpdateRepair" class="flex flex-col gap-5 font-openSans">
-            <LabelSelectWithInputError v-if="!this.value" ref="formRepairGetTool" :name="langs.Tools" v-model="formRepairCreateUpdate.tool" :default="formRepairCreateUpdate.tool"
-            :items="activeTools" itemFilter="code" :placeholder="langs.OptionTool" />
+          
+              <LabelShowInfo :header="langs.Tools" :info="this.value && this.value.tool.code"></LabelShowInfo>
+            <LabelShowInfo :header="langs.Projects" :info="this.value && this.value.inspection.id"></LabelShowInfo> 
 
-            <div v-else>dasdsa</div>
-
-               <TextAreaLabel ref="formRepairDetail" :name="langs.Description"
-                    :placeholder="langs.PlaceholderDescription" :msg="langs.DescriptionError" v-model="formRepairCreateUpdate.description" :default="formRepairCreateUpdate.description">  
-                </TextAreaLabel>
-               <LabelPickOptions ref="formRepairStatus" v-model="formRepairCreateUpdate.status" :name="langs.LabelText" :text="langs.TextButtons" :msg="langs.SelectButton" /> 
+            <TextAreaLabel ref="formRepairReason" :name="langs.Reason"
+            :placeholder="langs.PlaceholderReason" :msg="langs.ReasonError"
+            v-model="formUpdateRepair.reason" :default="formUpdateRepair.reason">
+        </TextAreaLabel> 
+        <TextAreaLabel ref="formRepairSolution" :name="langs.Solution"
+        :placeholder="langs.PlaceholderSolution" :msg="langs.SolutionError"
+        v-model="formUpdateRepair.solution" :default="formUpdateRepair.solution">
+    </TextAreaLabel> 
+    <TextAreaLabel ref="formRepairDescription" :name="langs.Description"
+        :placeholder="langs.PlaceholderDescription" :msg="langs.DescriptionError"
+        v-model="formUpdateRepair.description" :default="formUpdateRepair.description">
+    </TextAreaLabel> 
+           
             <Button :text="langs.Save"></Button>
         </form>
     </Popoup>
@@ -18,8 +26,7 @@
 <script>
 import Popoup from '../../public/Popoup.vue';
 import { langStore } from '../../../store/langStore'
-import {repairCompletedStore} from '../../../store/repairCompletedStore'
-import {toolsStore} from '../../../store/toolsStore'
+import { repairCompletedStore } from '../../../store/repairCompletedStore'
 import LabelSelectWithInputError from '../../forms/LabelSelectWithInputError.vue';
 import TextAreaLabel from '../../forms/TextAreaLabel.vue';
 import ButtonIcon from '../../widgets/ButtonIcon.vue';
@@ -28,64 +35,49 @@ import LabelPickOptions from '../../forms/LabelPickOptions.vue';
 import ToastError from "../../public/Toast/ToastError.vue"
 import ToastSuccess from "../../public/Toast/ToastSuccess.vue"
 import FormValidate from "../../mixins/FormValidate";
+import LabelShowInfo from '../../forms/LabelShowInfo.vue';
 export default {
     props: ['value'],
     data() {
         return {
-            activeTools: [],
-            formRepairCreateUpdate: {
-                tool: this.value ? this.value.tool.code : -1,
-                description: this.value ? this.value.description : '',
-                status: this.value ? this.value.status : -1,
+            activeTools: [],        
+            formUpdateRepair: {
+                description:this.value.description ? this.value.description:  '',
+                reason: this.value.reason ? this.value.reason:  '',
+                solution:this.value.solution ? this.value.solution:  '',
             }
         };
     },
     computed: {
         langs() {
-            return langStore().getLang.PageRepairs.AddRepairPop
+            return langStore().getLang.PageRepairs.UpdateRepairMissing
         },
         langsToast() {
             return langStore().getLang.PageTool.PopupAddGroupTool
         }
     },
-    async mounted(){
-        await this.getActiveTools();
-    },
     methods: {
-        async getActiveTools(){
-            const data = await toolsStore().getActiveAndAvailableTools(this.formRepairCreateUpdate.tool);
-            this.activeTools = data;
-        },
+        
         activeToast(toast) {
             this.$emit('activeToast', toast);
         },
         AddUpdateRepair() {
             try {
                 if (this.validateDataEqualsOrEmpty({
-                    tool: this.formRepairCreateUpdate.tool,
-                    status: Number(this.formRepairCreateUpdate.status),
-                    description: this.formRepairCreateUpdate.description
+                    solution: this.formUpdateRepair.solution,
+                    reason: this.formUpdateRepair.reason,
                 }, {
-                    tool: this.$refs.formRepairGetTool,
-                    status: this.$refs.formRepairStatus,
-                    description: this.$refs.formRepairDetail
+                    solution: this.$refs.formRepairSolution,
+                    reason: this.$refs.formRepairReason,
                 }, -1))
                     (async () => {
                         try {
                             this.value &&
                                 await repairCompletedStore().update(this.value.id,
-                                  {
-                                        tool_id: this.formRepairCreateUpdate.tool,
-                                        status: this.formRepairCreateUpdate.status,
-                                        additionalDescription: this.formRepairCreateUpdate.description,
-                                    }
-                                );
-                            !this.value &&
-                                await repairCompletedStore().add(
                                     {
-                                        tool_id: this.formRepairCreateUpdate.tool,
-                                        status: this.formRepairCreateUpdate.status,
-                                        additionalDescription: this.formRepairCreateUpdate.description,
+                                        solution: this.formUpdateRepair.solution,
+                                        reason: this.formUpdateRepair.reason,
+                                        additionalDescription: this.formUpdateRepair.description,
                                     }
                                 );
                             this.$emit("closePopUp");
@@ -107,8 +99,12 @@ export default {
         }
 
     },
-    components: { Popoup, LabelSelectWithInputError, TextAreaLabel, ButtonIcon, Button, LabelPickOptions },
-    emits: ['activeToast','closePopUp'],
+    components: { Popoup, LabelSelectWithInputError, TextAreaLabel, ButtonIcon, Button, LabelPickOptions, LabelShowInfo },
+    emits: ['activeToast', 'closePopUp'],
     mixins: [FormValidate]
 }
-</script> -->
+</script>
+
+<style lang="scss" scoped>
+
+</style>
