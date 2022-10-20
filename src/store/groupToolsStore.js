@@ -128,7 +128,7 @@ export const groupToolsStore = defineStore('groupToolsStore', {
                         return;
                     }
                 });
-                return this.pag.lastPage = lastPage;
+                return this.pag.lastPage = lastPage ? lastPage : 1;
             }
         },
 

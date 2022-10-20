@@ -144,7 +144,7 @@ export const projectStore = defineStore('projectStore', {
                         return;
                     }
                 });
-                return this.pag.lastPage = lastPage;
+                return this.pag.lastPage = lastPage ? lastPage : 1;
             }
         },
         async update(projectId, formData) {

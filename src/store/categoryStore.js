@@ -124,7 +124,7 @@ export const categoryStore = defineStore('categoryStore', {
                         return;
                     }
                 });
-                return this.pag.lastPage = lastPage;
+                return this.pag.lastPage = lastPage ? lastPage : 1;
             }
         },
 
