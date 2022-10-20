@@ -16,6 +16,7 @@ export default {
     },
     methods: {
         resetValues(){
+            this.value=-1
             this.$refs.inputSelectionOption.resetValues();
         }
     },
