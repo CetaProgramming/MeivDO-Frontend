@@ -3,21 +3,20 @@
         <form @submit.prevent="AddUpdateRepair" class="flex flex-col gap-5 font-openSans">
           
               <LabelShowInfo :header="langs.Tools" :info="this.value && this.value.tool.code"></LabelShowInfo>
-            <LabelShowInfo :header="langs.Projects" :info="this.value && this.value.inspection.id"></LabelShowInfo> 
+            <LabelShowInfo :header="langs.Projects" :info="this.value && this.value.inspection"></LabelShowInfo> 
 
             <TextAreaLabel ref="formRepairReason" :name="langs.Reason"
-            :placeholder="langs.PlaceholderReason" :msg="langs.ReasonError"
-            v-model="formUpdateRepair.reason" :default="formUpdateRepair.reason">
-        </TextAreaLabel> 
-        <TextAreaLabel ref="formRepairSolution" :name="langs.Solution"
-        :placeholder="langs.PlaceholderSolution" :msg="langs.SolutionError"
-        v-model="formUpdateRepair.solution" :default="formUpdateRepair.solution">
-    </TextAreaLabel> 
-    <TextAreaLabel ref="formRepairDescription" :name="langs.Description"
-        :placeholder="langs.PlaceholderDescription" :msg="langs.DescriptionError"
-        v-model="formUpdateRepair.description" :default="formUpdateRepair.description">
-    </TextAreaLabel> 
-           
+                :placeholder="langs.PlaceholderReason" :msg="langs.ReasonError"
+                v-model="formUpdateRepair.reason" :default="formUpdateRepair.reason">
+            </TextAreaLabel> 
+            <TextAreaLabel ref="formRepairSolution" :name="langs.Solution"
+                :placeholder="langs.PlaceholderSolution" :msg="langs.SolutionError"
+                v-model="formUpdateRepair.solution" :default="formUpdateRepair.solution">
+            </TextAreaLabel> 
+            <TextAreaLabel ref="formRepairDescription" :name="langs.Description"
+                :placeholder="langs.PlaceholderDescription" 
+                v-model="formUpdateRepair.description" :default="formUpdateRepair.description">
+            </TextAreaLabel>        
             <Button :text="langs.Save"></Button>
         </form>
     </Popoup>
@@ -26,7 +25,7 @@
 <script>
 import Popoup from '../../public/Popoup.vue';
 import { langStore } from '../../../store/langStore'
-import { repairCompletedStore } from '../../../store/repairCompletedStore'
+import { repairMissingStore } from '../../../store/repairMissingStore'
 import LabelSelectWithInputError from '../../forms/LabelSelectWithInputError.vue';
 import TextAreaLabel from '../../forms/TextAreaLabel.vue';
 import ButtonIcon from '../../widgets/ButtonIcon.vue';
@@ -42,9 +41,9 @@ export default {
         return {
             activeTools: [],        
             formUpdateRepair: {
-                description:this.value.description ? this.value.description:  '',
-                reason: this.value.reason ? this.value.reason:  '',
-                solution:this.value.solution ? this.value.solution:  '',
+                description: '',
+                reason: '',
+                solution:''
             }
         };
     },
@@ -65,7 +64,7 @@ export default {
             try {
                 if (this.validateDataEqualsOrEmpty({
                     solution: this.formUpdateRepair.solution,
-                    reason: this.formUpdateRepair.reason,
+                    reason: this.formUpdateRepair.reason, 
                 }, {
                     solution: this.$refs.formRepairSolution,
                     reason: this.$refs.formRepairReason,
@@ -73,7 +72,7 @@ export default {
                     (async () => {
                         try {
                             this.value &&
-                                await repairCompletedStore().update(this.value.id,
+                                await repairMissingStore().update(this.value.id,
                                     {
                                         solution: this.formUpdateRepair.solution,
                                         reason: this.formUpdateRepair.reason,

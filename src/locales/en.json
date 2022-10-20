@@ -584,20 +584,12 @@
         "RepairFeature": {
             "View": "View",
             "ButtonNew": "New",
-            "Headers": {
-                "Completed": [
-                    "ID",
-                    "Tool",
-                    "Status",
-                    "Updated"
-                ],
-                "Missing": [
-                    "ID",
-                    "Tool",
-                    "Project",
-                    "Updated"
-                ]
-            }
+            "RepairHeader": [
+                "ID",
+                "Tool",
+                "Inspection",
+                "Updated"
+            ]
         },
         "TableOptions": {
             "name": "Tables",
@@ -617,9 +609,9 @@
                 "Label": "Keywords",
                 "Input": "Type a code"
             },
-            "KeywordCategory": {
-                "Label": "Keywords",
-                "Input": "Enter a Name"
+            "KeywordInspection": {
+                "Label": "Inspection",
+                "Input": "Enter ID inspection"
             },
             "Status": {
                 "Text": "Status",
@@ -658,18 +650,39 @@
             "SelectButton": "Status is required"
         },
         "PopupDeleteRepair": {
-            "DeleteTextFirst": "Are you sure you want to delete inspection ",
+            "DeleteTextFirst": "Are you sure you want to delete repair ",
             "DeleteTextEnd": "?",
-            "DeleteInspectionSucess": "Inspection deleted successfully!",
-            "DeleteInspectionError": "Inspection couldn't be deleted, please verify",
+            "DeleteRepairSucess": "Repair deleted successfully!",
+            "DeleteRepairError": "Repair couldn't be deleted, please verify",
             "Confirmation": "Yes"
         },
         "PopupViewRepair": {
-            "Title": "Inspection",
-            "Code": "Code",
-            "Active": "Active",
-            "Category": "Category",
+            "Title": "Repair",
+            "Tool": "Tool",
+            "Inspection": "Inspection",
+            "Reason": "Reason",
+            "Solution": "Solution",
             "Description": "Description"
+            
+        },
+        "UpdateRepairMissing": {
+            "LabelText": "Status",
+            "Tools": "Tool",
+            "Projects": "Project",
+            "OptionTool": "Write or select a tool...",
+            "TextButtons":["Good", "Bad"],           
+            "Title": "Repair",
+            "Description": "Description",
+            "PlaceholderDescription": "Insert Description",
+            "Solution": "Solution",
+            "PlaceholderSolution": "Insert a solution",
+            "Reason": "Reason",
+            "PlaceholderReason": "Insert a reson",
+            "Save": "Save",
+            "DescriptionError": "Description is required!",
+            "ReasonError": "Reason is required!",
+            "SolutionError": "Solution is required!",
+            "SelectButton": "Status is required"
         }
     },
     "HoursComponents": {
