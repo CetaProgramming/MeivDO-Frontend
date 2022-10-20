@@ -1,6 +1,6 @@
-<!-- <template>
+<template>
     <Popoup>
-        <form class="flex flex-col gap-5" @submit.prevent="deleteTool">
+        <form class="flex flex-col gap-5" @submit.prevent="deleteRepair">
             <div class="font-openSans grid grid-cols-1  md:justify-between  md:flex-row gap-6 ">
                 <div class="grid gap-6 text-center text-3xl">
                     {{langs.DeleteTextFirst}}{{value}}{{langs.DeleteTextEnd}}
@@ -36,7 +36,7 @@ export default {
         }
     },
     methods: {
-        async deleteTool() {
+        async deleteRepair() {
             try {
                 await repairCompletedStore().deleteRepair(this.value)
                 this.$emit("closePopUp");
@@ -59,4 +59,4 @@ export default {
         Button
     }
 }
-</script> -->
+</script>
