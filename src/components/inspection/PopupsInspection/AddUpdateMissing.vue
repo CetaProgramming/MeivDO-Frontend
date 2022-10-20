@@ -45,7 +45,7 @@ export default {
             return langStore().getLang.PageInspections.UpdateInspectionMissing
         },
         langsToast() {
-            return langStore().getLang.PageTool.PopupAddGroupTool
+            return langStore().getLang.PageInspections.AddInspectionPop
         }
     },
     methods: {

@@ -174,6 +174,8 @@
             "errorCreatedUpdated": "Ocurred a error when doing this task, please verify data!",
             "CodeError": "Code is required!",
             "GroupTools": "Group Tools",
+            "GroupToolsError": "Please type or select a group tool!",
+            "GroupToolsPlaceholder": "Type or Select a GroupTool",
             "Active": "Active"
         },
         "PopupAddGroupTool": {
@@ -186,6 +188,7 @@
             "errorCreatedUpdated": "Ocurred a error when doing this task, please verify data!",
             "CodeError": "Code is required!",
             "Category": "Categories",
+            "CategoryError": "Please type or select a category!",
             "Active": "Active",
             "UploadNewPicture": "Upload New Picture",
             "Description": "Description",
@@ -288,7 +291,7 @@
         "Filters": {
             "Keyword": {
                 "Label": "Keywords",
-                "Input": "Type code"
+                "Input": "Type a code"
             },
             "Status": {
                 "Text": "Active",
@@ -309,7 +312,9 @@
             },
             "Text": "Status",
             "GroupTools": "Group Tools",
-            "Category": "Category"
+            "Category": "Category",
+            "GroupToolsPlaceholder": "Type or Select a GroupTool",
+            "CategoryPlaceholder": "Type or Select a Category"
         }
     },
     "PageInspections": {
@@ -360,6 +365,36 @@
                    "GroupToolsPlaceholder": "Insert a group tool name",
                    "Category": "Category",
                    "CategoryPlaceholder": "Insert a category name"   
+            },
+            "Options": {
+                "Completed": [
+                    {
+                        "key": "",
+                        "disabled": true,
+                        "component": "",
+                        "value": "Options"
+                    },
+                    {
+                        "key": "view",
+                        "component": "",
+                        "value": "View"
+                    },
+                    {
+                        "key": "addUpdate",
+                        "component": "",
+                        "value": "Update"
+                    },
+                    {
+                        "key": "delete",
+                        "component": "",
+                        "value": "Delete"
+                    }
+            ],
+                "Missing": [
+                    {
+                        "value": "Create"
+                    }
+                ]
             }
         },
         "TableOptions": {
@@ -404,21 +439,25 @@
             "Text": "Status",
             "Tools": "Tools",
             "Project": "Project",
-            "PlaceHolder": "Select Tool",
-            "PlaceHolderProject": "Select Tool",
+            "PlaceHolder": "Select a Tool",
+            "PlaceHolderProject": "Select a project",
             "Category": "Category"
         },
         "AddInspectionPop": {
             "LabelText": "Status",
             "Tools": "Tool",
-            "OptionTool": "Write or select a tool...",
+            "OptionTool": "Write or select a tool",
+            "ToolsError": "Tool is required!",
             "TextButtons":["Good", "Bad"]
-,            "Title": "Inspection",
+,           "Title": "Inspection",
             "Description": "Description",
-            "PlaceholderDescription": "Insert Description",
+            "PlaceholderDescription": "Insert a Description",
             "Save": "Save",
             "DescriptionError": "Description is required!",
-            "SelectButton": "Status is required"
+            "SelectButton": "Status is required!",
+            "updatedSucess": "Inspection info successfully updated!",
+            "createdSucess": "Inspection successfully added!",
+            "errorCreatedUpdated": "Ocurred a error when doing this task, please verify data!"
         },
         "UpdateInspectionMissing": {
             "LabelText": "Status",
@@ -428,10 +467,10 @@
             "TextButtons":["Good", "Bad"]
 ,            "Title": "Inspection",
             "Description": "Description",
-            "PlaceholderDescription": "Insert Description",
+            "PlaceholderDescription": "Insert a Description",
             "Save": "Save",
             "DescriptionError": "Description is required!",
-            "SelectButton": "Status is required"
+            "SelectButton": "Status is required!"
         },
         "PopupDeleteInspection": {
             "DeleteTextFirst": "Are you sure you want to delete inspection ",
@@ -471,7 +510,7 @@
             "createdSucess": "Project info successfully added!",
             "errorCreatedUpdated": "Ocurred a error when doing this task, please verify data!",
             "NameError": "Name is required!",
-            "addTools": "Management tools associated of the project"
+            "addTools": "Manage Tools"
         },
         "PopupProjectDelete": {
             "DeleteTextFirst": "Are you sure you want to delete project ",
@@ -491,11 +530,11 @@
             "Filters": {
                 "CodeInput": {
                     "Name": "Code",
-                    "Placeholder": "Put code" 
+                    "Placeholder": "Insert a code" 
                 },
                 "GroupToolsInput": {
                     "Name": "GroupTools",
-                    "Placeholder": "Put GroupTools" 
+                    "Placeholder": "Insert a GroupTools" 
                 }
             },
             "TableHeader": ["Code", "GroupTools"]

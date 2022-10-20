@@ -6,7 +6,7 @@
             <div class="flex flex-col gap-2 lg:w-4/5">
                 <LabelShowInfo :header="langs.Code" :info="formGroupToolShow.code"></LabelShowInfo>
                  <LabelShowInfo :header="langs.Category" :info="formGroupToolShow.category"></LabelShowInfo>
-                <LabelShowStatus :header="langs.Code" :info="formGroupToolShow.active" ></LabelShowStatus>
+                <LabelShowStatus :header="langs.Active" :info="formGroupToolShow.active" ></LabelShowStatus>
                 <LabelShowInfo :header="langs.Description" :info="formGroupToolShow.description"></LabelShowInfo>
                 
             </div>

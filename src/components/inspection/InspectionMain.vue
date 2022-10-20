@@ -8,7 +8,7 @@
             <div class="grid gap-1 lg:gap-0 lg:flex lg:flex-col lg:overflow-auto">
                 <TableHeader ref="header"  :header=langsInspection.Headers[tableOptionSelected] :style="GetLenght" />
                 <TableBody :showSelect="tableOptionSelected == 'Missing' ? false: true" :header=langsInspection.Headers[tableOptionSelected] :component="Components[tableOptionSelected]" 
-                    :items=store[tableOptionSelected].viewing :style="GetLenght" :selectItems="selectItems[tableOptionSelected]" @selectOption="popUpOpen" />
+                    :items=store[tableOptionSelected].viewing :style="GetLenght" :selectItems="langsInspection.Options[tableOptionSelected]" @selectOption="popUpOpen" />
             </div>
             <Paginate @selectPage="changePage" :pag="store[tableOptionSelected].pag" /> 
         </div>
@@ -71,35 +71,7 @@ export default {
                 Missing: inspectionMissingStore(),
             },     
             selectItems: {
-                Completed: [
-                        {
-                            key: "",
-                            disabled: true,
-                            component: "",
-                            value: "Options"
-                        },
-                        {
-                            key: "view",
-                            component: "",
-                            value: "View"
-                        },
-                        {
-                            key: "addUpdate",
-                            component: "",
-                            value: "Update"
-                        },
-                        {
-                            key: "delete",
-                            component: "",
-                            value: "Delete"
-                        }
-                ],
-                Missing: [
-                        {
-                            value: "Create"
-                        }
-                ],
-
+                
             }
         }
     },

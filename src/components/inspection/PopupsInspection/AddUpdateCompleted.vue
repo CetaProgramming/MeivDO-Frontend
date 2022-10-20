@@ -1,7 +1,7 @@
 <template>
     <Popoup :titlePopUp="langs.Title" class="font-meivdo" @closePopUp="$emit('closePopUp')">
         <form @submit.prevent="AddUpdateInspection" class="flex flex-col gap-5 font-openSans">
-            <LabelSelectWithInputError v-if="!this.value" ref="formInspectionGetTool" :name="langs.Tools" v-model="formInspectionCreateUpdate.tool" :default="formInspectionCreateUpdate.tool"
+            <LabelSelectWithInputError v-if="!this.value" ref="formInspectionGetTool" :name="langs.Tools" :msg="langs.ToolsError" v-model="formInspectionCreateUpdate.tool" :default="formInspectionCreateUpdate.tool"
             :items="activeTools" itemFilter="code" :placeholder="langs.OptionTool" />
 
                 <div v-else> <LabelShowInfo :header="langs.Tools" :info="formInspectionCreateUpdate.tool"></LabelShowInfo></div>
@@ -47,9 +47,6 @@ export default {
         langs() {
             return langStore().getLang.PageInspections.AddInspectionPop
         },
-        langsToast() {
-            return langStore().getLang.PageTool.PopupAddGroupTool
-        }
     },
     async mounted(){
         await this.getActiveTools();
@@ -92,13 +89,13 @@ export default {
                                 );
                             this.$emit("closePopUp");
                             this.$emit("activeToast", {
-                                msg: this.value && this.langsToast.updatedSucess || !this.value && this.langsToast.createdSucess,
+                                msg: this.value && this.langs.updatedSucess || !this.value && this.langs.createdSucess,
                                 type: ToastSuccess
                             });
                         } catch (error) {
                             console.error(error);
                             this.$emit("activeToast", {
-                                msg: this.langsToast.errorCreatedUpdated,
+                                msg: this.langs.errorCreatedUpdated,
                                 type: ToastError
                             });
                         }

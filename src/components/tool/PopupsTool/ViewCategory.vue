@@ -5,7 +5,7 @@
             class="font-openSans grid grid-cols-1 items-center gap-5 md:gap-1  lg:grid-cols-1fr-auto md:justify-between ">
             <div class="flex flex-col gap-2 lg:w-4/5">
                 <LabelShowInfo :header="langs.Code" :info="formCategoryShow.name"></LabelShowInfo>
-                <LabelShowStatus :header="langs.Code" :info="formCategoryShow.active.active" ></LabelShowStatus>
+                <LabelShowStatus :header="langs.Active" :info="formCategoryShow.active.active" ></LabelShowStatus>
                 <!-- {{formCategoryShow.active.active}} -->
             </div>
         </div>

@@ -176,6 +176,8 @@
             "errorCreatedUpdated": "Ocorreu um erro ao efetuar a operação, verique os campos",
             "CodeError": "Código é obrigatório!",
             "GroupTools": "Grupo de ferramentas",
+            "GroupToolsError": "Por favor digite ou escolha um grupo de ferramentas!",
+            "GroupToolsPlaceholder": "Digite ou Selecione um Grupo de Ferramentas",
             "Active": "Ativo"
         },
         "PopupAddGroupTool": {
@@ -188,6 +190,7 @@
             "errorCreatedUpdated": "Ocorreu um erro ao efetuar esta operação, verique os dados!",
             "CodeError": "Código é obrigatório!",
             "Category": "Categorias",
+            "CategoryError": "Por favor digite ou escolha uma categoria!",
             "Active": "Ativo",
             "UploadNewPicture": "Atualizar nova foto",
             "Description": "Descrição",
@@ -289,37 +292,125 @@
         },
         "Filters": {
             "Keyword": {
-                "Label": "Keywords",
-                "Input": "Type code"
+                "Label": "Palavra-Chave",
+                "Input": "Digite um código"
             },
             "Status": {
-                "Text": "Active",
+                "Text": "Ativo",
                 "Options": [
                     {
-                        "name": "Both",
+                        "name": "Ambos",
                         "value": ""
                     },
                     {
-                        "name": "Active",
+                        "name": "Ativo",
                         "value": 1
                     },
                     {
-                        "name": "Inactive",
+                        "name": "Inativo",
                         "value": 0
                     }
                 ]
             },
-
-               "Text": "Status",
-               "GroupTools": "Group Tools",
-               "Category": "Category"
-
+            "Text": "Estado",
+            "GroupTools": "Grupo de Ferramentas",
+            "Category": "Categoria",
+            "GroupToolsPlaceholder": "Digite ou Selecione um Grupo de Ferramentas",
+            "CategoryPlaceholder": "Digite ou Selecione uma Categoria"
         }
     },
     "PageInspections": {
         "InspectionFeature": {
             "View": "Ver",
-            "ButtonNew": "Novo"
+            "ButtonNew": "Novo",
+            "Headers": {
+                "Completed": [
+                    "ID",
+                    "Ferramenta",
+                    "Estado",
+                    "Atualizado"
+                ],
+                "Missing": [
+                    "ID",
+                    "Ferramenta",
+                    "Projeto",
+                    "Atualizado"
+                ],
+                "Keyword": {
+                    "Label": "Palavra-Chave",
+                    "Input": "Digite um código"
+                },
+                "KeywordCategory": {
+                    "Label": "Palavra-Chave",
+                    "Input": "Insira um Nome"
+                },
+                "Status": {
+                    "Text": "Ativo",
+                    "Options": [
+                        {
+                            "name": "Ambos",
+                            "value": ""
+                        },
+                        {
+                            "name": "Ativo",
+                            "value": 1
+                        },
+                        {
+                            "name": "Inativo",
+                            "value": 0
+                        }
+                    ]
+                },
+               
+                   "Text": "Estado",
+                   "GroupTools": "Grupo de Ferramentas",
+                   "GroupToolsPlaceholder": "Insira o nome de um grupo de ferramentas",
+                   "Category": "Categoria",
+                   "CategoryPlaceholder": "Insira o nome de uma categoria"   
+            },
+            "Options": {
+                "Completed": [
+                    {
+                        "key": "",
+                        "disabled": true,
+                        "component": "",
+                        "value": "Options"
+                    },
+                    {
+                        "key": "view",
+                        "component": "",
+                        "value": "View"
+                    },
+                    {
+                        "key": "addUpdate",
+                        "component": "",
+                        "value": "Update"
+                    },
+                    {
+                        "key": "delete",
+                        "component": "",
+                        "value": "Delete"
+                    }
+            ],
+                "Missing": [
+                    {
+                        "value": "Criar"
+                    }
+                ]
+            }
+        },
+        "TableOptions": {
+            "name": "Tabelas",
+            "items": [
+                {
+                    "name": "Completas",
+                    "value": "Completed"
+                },
+                {
+                    "name": "Em Falta",
+                    "value": "Missing"
+                }
+            ]
         },
         "Filters": {
             "Keyword": {
@@ -347,11 +438,55 @@
                     }
                 ]
             },
-            "Text": "Status",
-            "GroupTools": "Grupo de ferramentas",
-            "GroupToolsPlaceholder": "Insira o nome de um grupo de ferramentas",
+            "Text": "Estado",
+            "Tools": "Ferramentas",
+            "Project": "Projeto",
+            "PlaceHolder": "Selecione uma ferramenta",
+            "PlaceHolderProject": "Selecione um projeto",
+            "Category": "Categoria"
+        },
+        "AddInspectionPop": {
+            "LabelText": "Estado",
+            "Tools": "Ferramenta",
+            "OptionTool": "Digite ou escolha uma ferramenta",
+            "ToolsError": "Ferramenta é obrigatório!",
+            "TextButtons":["Bom", "Mau"]
+,           "Title": "Inspeção",
+            "Description": "Descrição",
+            "PlaceholderDescription": "Insira uma Descrição",
+            "Save": "Guardar",
+            "DescriptionError": "Descrição é obrigatório!",
+            "SelectButton": "Estado é obrigatório!",
+            "updatedSucess": "Atualizadas as informações da inspeção com sucesso!",
+            "createdSucess": "Inspeção inserida com sucesso!",
+            "errorCreatedUpdated": "Ocorreu um erro ao efetuar esta operação, verique os dados!"
+        },
+        "UpdateInspectionMissing": {
+            "LabelText": "Estado",
+            "Tools": "Ferramenta",
+            "Projects": "Projeto",
+            "OptionTool": "Digite ou escolha uma ferramenta",
+            "TextButtons":["Bom", "Mau"]
+,            "Title": "Inspeção",
+            "Description": "Descrição",
+            "PlaceholderDescription": "Insira uma Descrição",
+            "Save": "Guardar",
+            "DescriptionError": "Descrição é obrigatório!",
+            "SelectButton": "Estado é obrigatório!"
+        },
+        "PopupDeleteInspection": {
+            "DeleteTextFirst": "Tem a certeza que pretende apagar a inspeção ",
+            "DeleteTextEnd": "?",
+            "DeleteInspectionSucess": "Inspeção apagada com sucesso!",
+            "DeleteInspectionError": "Não foi possível apagar a inspeção, por favor verifique",
+            "Confirmation": "Sim"
+        },
+        "PopupViewInspection": {
+            "Title": "Inspeção",
+            "Code": "Código",
+            "Active": "Ativo",
             "Category": "Categoria",
-            "CategoryPlaceholder": "Insira o nome de uma categoria"
+            "Description": "Descrição"
         }
     },
     "PageProjects": {
@@ -377,7 +512,7 @@
             "createdSucess": "Projeto inserido com sucesso",
             "errorCreatedUpdated": "Ocorreu um erro ao efetuar a operação, verique os campos",
             "NameError": "Nome é obrigatório!",
-            "addTools": "Gestão de tools associadas ao projeto!"
+            "addTools": "Gestão de Ferramentas"
         },
         "PopupProjectDelete": {
             "ProjectID": "Projeto ",
@@ -398,13 +533,14 @@
             "Filters": {
                 "CodeInput": {
                     "Name": "Código",
-                    "Placeholder": "" 
+                    "Placeholder": "Insira um código" 
                 },
                 "GroupToolsInput": {
-                    "Name": "Grupo",
-                    "Placeholder": "" 
+                    "Name": "Grupo de Ferramentas",
+                    "Placeholder": "Insira um Grupo de Ferramentas" 
                 }
-            }
+            },
+            "TableHeader": ["Código", "Grupo de Ferramentas"]
         },
         "TableHeader": ["Code", "GroupTools"],
         "ProjectFeature": {

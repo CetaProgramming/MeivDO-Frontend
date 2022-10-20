@@ -9,7 +9,7 @@
                             <InputLabelError ref="formGroupToolCreateCode" v-model="formGroupToolCreateUpdate.code"
                                 :placeholder="langs.Placeholder" :msg="langs.CodeError" :name="langs.Code"
                                 :default="formGroupToolCreateUpdate.code" />
-                            <LabelSelectWithInputError ref="formGroupToolCategory" itemFilter="name" v-model="formGroupToolCreateUpdate.category" :default="formGroupToolCreateUpdate.category" :placeholder="langs.OptionCategory" :name="langs.Category" :items="activeCategories"/>
+                            <LabelSelectWithInputError ref="formGroupToolCategory" itemFilter="name" v-model="formGroupToolCreateUpdate.category" :default="formGroupToolCreateUpdate.category" :placeholder="langs.OptionCategory" :name="langs.Category" :msg="langs.CategoryError" :items="activeCategories"/>
                             <SwitchLabel v-if="value" v-model="formGroupToolCreateUpdate.active" @change="changeValue"
                                 :default="Boolean(formGroupToolCreateUpdate.active)  " :name="langs.Active" />
                         </div>
@@ -67,9 +67,6 @@ export default {
         langs() {
             return langStore().getLang.PageTool.PopupAddGroupTool
         },
-        langsToast() {
-            return langStore().getLang.PageTool.PopupAddGroupTool
-        }
     },
     async mounted(){
         await this.getActiveCategories();
@@ -124,12 +121,12 @@ export default {
                                 );
                             this.$emit("closePopUp");
                             this.$emit("activeToast", {
-                                msg: this.value && this.langsToast.updatedSucess || !this.value && this.langsToast.createdSucess,
+                                msg: this.value && this.langs.updatedSucess || !this.value && this.langs.createdSucess,
                                 type: ToastSuccess
                             });
                         } catch (error) {
                             this.$emit("activeToast", {
-                                msg: this.langsToast.errorCreatedUpdated,
+                                msg: this.langs.errorCreatedUpdated,
                                 type: ToastError
                             });
                         }
