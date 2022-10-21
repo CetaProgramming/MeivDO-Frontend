@@ -21,7 +21,7 @@ export const inspectionMissingStore = defineStore('inspectionMissingStore', {
         }
     },
     getters: {
-        getToolsInInspections(state){
+        getToolsAndProjectsInInspections(state){
             return [state.inspectionsMissing.map(inspection => inspection.tool), [...new Set(state.inspectionsMissing.map(inspection => inspection.project))]];
         }
     },

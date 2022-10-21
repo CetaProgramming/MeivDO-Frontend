@@ -3,12 +3,11 @@
         @submit.prevent="doSearch">
         <div class="grid lg:grid-cols-2 gap-3">
             <LabelSelectWithInput ref="selectLabelTool" v-model="FilterInspection.Tool" :name="langsInspection.Tools"
-                :items="getToolsAndProjctsInInspections[0]" itemFilter='code' :default="-1" :placeholder="langsInspection.PlaceHolder">
+                :items="getToolsAndProjectsInInspections[0]" itemFilter='code' :default="-1" :placeholder="langsInspection.PlaceHolder">
             </LabelSelectWithInput>
             <LabelSelectWithInput ref="selectLabelProject" v-model="FilterInspection.Project" :name="langsInspection.Project"
-                :items="getToolsAndProjctsInInspections[1]" itemFilter='name' :default="-1" :placeholder="langsInspection.PlaceHolderProject">
+                :items="getToolsAndProjectsInInspections[1]" itemFilter='name' :default="-1" :placeholder="langsInspection.PlaceHolderProject">
             </LabelSelectWithInput>
-
         </div>
         <div class="flex gap-3">
             <ButtonIcon icon="fa-solid fa-magnifying-glass" text="" pad="p-3" bg="bg-blue-600" space="normal" />
@@ -38,7 +37,7 @@ export default {
         };
     },
     computed: {
-        ...mapState(inspectionMissingStore, ['getToolsAndProjctsInInspections']),
+        ...mapState(inspectionMissingStore, ['getToolsAndProjectsInInspections']),
         langsInspection() {
             return langStore().getLang.PageInspections.Filters
         },
