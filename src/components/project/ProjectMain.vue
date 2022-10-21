@@ -8,7 +8,7 @@
             <FilterProjects />
             <div class="grid gap-1 lg:gap-0 lg:flex lg:flex-col lg:overflow-auto">
                 <TableHeader ref="header" :header=langsProject.ProjectHeader :style="GetLenght" />
-                <TableBody :header=langsProject.ProjectHeader :component="ComponentProject" :items=projectStore.viewing :style="GetLenght" :selectItems="selectItems" @selectOption="popUpOpen" />
+                <TableBody :header=langsProject.ProjectHeader :component="ComponentProject" :items=projectStore.viewing :style="GetLenght" :selectItems="langsProject.Options" @selectOption="popUpOpen" />
             </div>
             <Paginate @selectPage="changePage" :pag="projectStore.pag" />
         </div>
@@ -68,32 +68,7 @@ export default {
             },
             projectStore: projectStore(),
             selectItems: [
-                {
-                    key: "",
-                    disabled: true,
-                    component: "",
-                    value: "Options"
-                },
-                {
-                    key: "show",
-                    component: "",
-                    value: "Show"
-                },
-                {
-                    key: "update",
-                    component: "",
-                    value: "Update"
-                },
-                {
-                    key: "status",
-                    component: "",
-                    value: "Status"
-                },
-                {
-                    key: "deleted",
-                    component: "",
-                    value: "Delete"
-                }
+
             ]
         }
     },

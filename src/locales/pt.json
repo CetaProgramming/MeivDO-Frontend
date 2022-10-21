@@ -67,7 +67,30 @@
                 "Atualizado"
             ],
             "Active": "Ativo",
-            "Inactive": "Inativo"
+            "Inactive": "Inativo",
+            "Options": [
+                {
+                    "key": "",
+                    "disabled": true,
+                    "component": "",
+                    "value": "Opções"
+                },
+                {
+                    "key": "update",
+                    "component": "",
+                    "value": "Atualizar"
+                },
+                {
+                    "key": "resetPassword",
+                    "component": "",
+                    "value": "Repor Palavra-passe"
+                },
+                {
+                    "key": "deleted",
+                    "component": "",
+                    "value": "Apagar"
+                }
+            ]
         },
         "PopupAddUser": {
             "Title": "Utilizador",
@@ -127,7 +150,7 @@
                     ]
                 }
             }
-        }   
+        }
     },
     "ItemMenu": {
         "noItemFound": "Não existe a funcionalidade com o nome ",
@@ -271,7 +294,30 @@
                     "Ativo",
                     "Atualizado"
                 ]
-            }
+            },
+            "Options": [
+                {
+                    "key": "",
+                    "disabled": true,
+                    "component": "",
+                    "value": "Opções"
+                },
+                {
+                    "key": "view",
+                    "component": "",
+                    "value": "Ver"
+                },
+                {
+                    "key": "addUpdate",
+                    "component": "",
+                    "value": "Atualizar"
+                },
+                {
+                    "key": "delete",
+                    "component": "",
+                    "value": "Apagar"
+                }
+            ]
         },
         "TableOptions": {
             "name": "Tabelas",
@@ -345,18 +391,18 @@
                     "Input": "Insira um Nome"
                 },
                 "Status": {
-                    "Text": "Ativo",
+                    "Text": "Estado",
                     "Options": [
                         {
                             "name": "Ambos",
                             "value": ""
                         },
                         {
-                            "name": "Ativo",
+                            "name": "Bom",
                             "value": 1
                         },
                         {
-                            "name": "Inativo",
+                            "name": "Mau",
                             "value": 0
                         }
                     ]
@@ -374,22 +420,22 @@
                         "key": "",
                         "disabled": true,
                         "component": "",
-                        "value": "Options"
+                        "value": "Opções"
                     },
                     {
                         "key": "view",
                         "component": "",
-                        "value": "View"
+                        "value": "Ver"
                     },
                     {
                         "key": "addUpdate",
                         "component": "",
-                        "value": "Update"
+                        "value": "Atualizar"
                     },
                     {
                         "key": "delete",
                         "component": "",
-                        "value": "Delete"
+                        "value": "Apagar"
                     }
             ],
                 "Missing": [
@@ -422,18 +468,18 @@
                 "Input": "Insira um Nome"
             },
             "Status": {
-                "Text": "Ativo",
+                "Text": "Estado",
                 "Options": [
                     {
                         "name": "Ambos",
                         "value": ""
                     },
                     {
-                        "name": "Ativo",
+                        "name": "Bom",
                         "value": 1
                     },
                     {
-                        "name": "Inativo",
+                        "name": "Mau",
                         "value": 0
                     }
                 ]
@@ -553,6 +599,34 @@
                 "Data de Fim",
                 "Estado",
                 "Atualizado"
+            ],
+            "Options": [
+                {
+                    "key": "",
+                    "disabled": true,
+                    "component": "",
+                    "value": "Opções"
+                },
+                {
+                    "key": "show",
+                    "component": "",
+                    "value": "Ver"
+                },
+                {
+                    "key": "update",
+                    "component": "",
+                    "value": "Atualizar"
+                },
+                {
+                    "key": "status",
+                    "component": "",
+                    "value": "Alterar Estado"
+                },
+                {
+                    "key": "deleted",
+                    "component": "",
+                    "value": "Apagar"
+                }
             ]
         },
         "Filters": {
@@ -718,6 +792,7 @@
     "Options": {
         "inProgress": "A decorrer",
         "noSearchData": "Sem resultados",
-        "noDataFiltered": "Desculpe, não existe data!"
+        "noDataFiltered": "Desculpe, não existe data!",
+        "selectOption": "Escolha uma opção"
     }
 }
