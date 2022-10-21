@@ -14,7 +14,7 @@
           type: String
         },
         bg: {
-          default: "bg-green-700",
+          default: "bg-green-800",
           type: String
         },
         color: {

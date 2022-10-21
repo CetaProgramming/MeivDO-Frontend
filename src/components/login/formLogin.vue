@@ -4,7 +4,7 @@
   <form id="form" class="mx-10 z-10 flex flex-col items-center gap-5 lg:w-64 lg:mx-0" @submit.prevent="formValid">
     <InputLabelError ref="formLoginEmail" type="email" v-model="formLogin.email" placeholder="example@email.com" :msg="langs.EmailError" :name="langs.EmailInput" />
     <InputLabelError ref="formLoginPassword" type="password" v-model="formLogin.password" placeholder="*********" :msg="langs.PasswordError" :name="langs.PasswordInput" />
-    <Button :text="langs.LoginButton" />
+    <Button bg="bg-MeivRed" :text="langs.LoginButton" />
   </form>
 </template>
 

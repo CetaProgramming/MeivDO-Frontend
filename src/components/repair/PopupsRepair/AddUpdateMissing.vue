@@ -81,13 +81,13 @@ export default {
                                 );
                             this.$emit("closePopUp");
                             this.$emit("activeToast", {
-                                msg: this.value && this.langsToast.updatedSucess || !this.value && this.langsToast.createdSucess,
+                                msg: this.value && this.langs.updatedSucess || !this.value && this.langs.createdSucess,
                                 type: ToastSuccess
                             });
                         } catch (error) {
                             console.error(error);
                             this.$emit("activeToast", {
-                                msg: this.langsToast.errorCreatedUpdated,
+                                msg: this.langs.errorCreatedUpdated,
                                 type: ToastError
                             });
                         }

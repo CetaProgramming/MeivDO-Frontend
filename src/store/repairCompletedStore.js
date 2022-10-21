@@ -44,7 +44,7 @@ export const repairCompletedStore = defineStore('repairCompletedStore', {
             }
         },
         async doSearch({Tool = '', Inspection = ''}, reset = false){
-            if(reset && this.filtered === false || !reset && this.filtered === false && (!Tool && !Inspection) || !reset && (Tool==-1 || Inspection<1))
+            if(reset && this.filtered === false || !reset && this.filtered === false && (!Tool && !Inspection) || !reset && (Tool==-1 || Inspection && Inspection<1))
             return;
    
             this.filtered = reset ? false : true;

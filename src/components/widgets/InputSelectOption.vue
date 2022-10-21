@@ -77,7 +77,6 @@ export default {
             this.optionState = !this.optionState;
         },
         clickOptionItem(value){
-            console.log(value);
             this.changeIndexOnValue(value);
             this.$refs.inputValue.value = this.items[this.value][this.itemFilter];
             this.data = this.items[this.value][this.itemFilter];
