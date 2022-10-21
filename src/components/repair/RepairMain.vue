@@ -10,7 +10,7 @@
                 <TableHeader ref="header" :header=langsRepair.RepairHeader :style="GetLenght" />
                 <TableBody :showSelect="tableOptionSelected == 'Missing' ? false: true" :header=langsRepair.RepairHeader
                     :component="Components[tableOptionSelected]" :items=store[tableOptionSelected].viewing
-                    :style="GetLenght" :selectItems="selectItems[tableOptionSelected]" @selectOption="popUpOpen" />
+                    :style="GetLenght" :selectItems="langsInspection.Options[tableOptionSelected]" @selectOption="popUpOpen" />
             </div>
 
             <Paginate @selectPage="changePage" :pag="store[tableOptionSelected].pag" />
@@ -117,6 +117,9 @@ export default {
                 return { value: this.getDataStore }
             if (this.selectedOption == 'Delete')
                 return { value: this.valueID }
+        },
+        langsInspection() {
+            return langStore().getLang.PageInspections.InspectionFeature
         },
         langsRepair() {
             return langStore().getLang.PageRepairs.RepairFeature
