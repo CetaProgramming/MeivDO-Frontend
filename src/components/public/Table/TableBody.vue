@@ -1,14 +1,16 @@
 <template>
+    <TransitionGroup name="hidden-old-item">
     <div v-for="item in items"
         class="bg-white rounded-md flex flex-col min-w-fit md:flex-row md:flex-wrap gap-2 lg:grid py-2 px-4 mt-1 items-center md:overflow-auto dark:bg-MeivMatteBlack"
         :style="style" :key=item.id>
-        <div v-for="subitem,index in Object.keys(item)"
+            <div v-for="subitem,index in Object.keys(item)"
             class="grid overflow-auto md:text-ellipsis lg:block w-full lg:w-auto gap-3 justify-items-start md:w-[49%] grid-cols-auto-1fr">
-            <component :is="component[index]" v-bind="{ headerTitle: header[index], item: item[subitem] }" />
+                <component :is="component[index]" v-bind="{ headerTitle: header[index], item: item[subitem] }" />
+            </div>
+            <Select v-if="showSelect" :select="resetSelect" :selectItems="selectItems" @selectOption="selectItem($event, item.id)" />
+            <Button v-else @click="selectItem('AddUpdate',item.id)" :text="selectItems[0].value" space="normal" pad="p-1" fontSize="text-md"></Button>
         </div>
-        <Select v-if="showSelect" :select="resetSelect" :selectItems="selectItems" @selectOption="selectItem($event, item.id)" />
-        <Button v-else @click="selectItem('AddUpdate',item.id)" :text="selectItems[0].value" space="normal" pad="p-1" fontSize="text-md"></Button>
-    </div>
+    </TransitionGroup>
     <p v-if="!items.length"
         class="p-4 text-center bg-zinc-300 rounded-md text-xs dark:bg-MeivMatteBlack text-red-500 mt-2">
         {{lang.noDataFiltered}}</p>

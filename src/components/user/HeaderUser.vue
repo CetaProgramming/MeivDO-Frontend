@@ -8,7 +8,9 @@
                     </div>
                 </div>
             </div>
-           <AddUserPop v-if="isAddUserClicked" @activeToast="activeToast" @closePopUp="isAddUserClicked= false" :showActive="false"/>
+            <Transition appear>
+                <AddUserPop v-if="isAddUserClicked" @activeToast="activeToast" @closePopUp="isAddUserClicked= false" :showActive="false"/>
+            </Transition>
 </template>
 
 <script>

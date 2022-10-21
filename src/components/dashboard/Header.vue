@@ -1,10 +1,10 @@
 <template>
     <component :is="this.toast.type" v-if="this.toast.visible" :msg="this.toast.msg" @closeToast="this.toast.visible = false"/>
-    <div class="flex justify-between items-center p-4">
     <div class="flex justify-between items-center p-4" @mouseleave="showHideMenu(false)">
         <Logo class="h-fit"/>
         <div class="relative font-openSans">
             <img class="cursor-pointer dropdown mr-6 w-14 h-14 rounded-full object-top object-cover" @click="showHideMenu(null)" :src=loginStoreImage alt="profile" title="Menu"/>
+            <Transition>
             <div class="absolute mt-3 right-6 md:w-44 w-52 text-black bg-white rounded-md text-sm p-1 dark:bg-MeivMatteBlack dark:text-white before:content-[''] before:block before:absolute before:w-0 before:h-0 before:border-[150px] before:border-t-0 before:border-b-12 before:border-x-12 before:border-l-transparent before:border-r-transparent before:border-b-white dark:before:border-b-black before:right-4 before:top-[-12px]"
                 v-if="isMenuClicked" @click="showHideMenu(false)">
                 <i class="fa-thin fa-user"></i>
@@ -20,10 +20,17 @@
                 <hr>
                 <p class="duration-200 p-1 hover:cursor-pointer sm:hover:bg-slate-200 dark:sm:hover:bg-zinc-900" @click="logoutUser">{{langs.Logout}}</p>
             </div>
+            </Transition>
         </div>
-        <PopupProfile v-if="isProfileClicked" @activeToast="showToast" @closePopUp="isProfileClicked= false"/>
-        <PopupPassword v-if="isPasswordClicked" @activeToast="showToast" @closePopUp="isPasswordClicked= false"/>
-        <PopupSettings v-if="isSettingsClicked" @closePopUp="isSettingsClicked= false" />
+        <Transition appear>
+            <PopupProfile v-if="isProfileClicked" @activeToast="showToast" @closePopUp="isProfileClicked= false"/>
+        </Transition>
+        <Transition appear>
+            <PopupPassword v-if="isPasswordClicked" @activeToast="showToast" @closePopUp="isPasswordClicked= false"/>
+        </Transition>
+        <Transition appear>
+            <PopupSettings v-if="isSettingsClicked" @closePopUp="isSettingsClicked= false" />
+        </Transition>
     </div>
 </template>
 
@@ -59,8 +66,10 @@
                 return userLogin().image;
             },
         },
-        
         methods: {
+            showHideMenu(option = null){
+                this.isMenuClicked = option ?? !this.isMenuClicked;
+            },
             showToast(data){
                 this.toast.msg = data.msg;
                 this.toast.visible = true;

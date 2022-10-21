@@ -1,5 +1,7 @@
 <template>
-    <component :is="this.toast.type" v-if="this.toast.visible" :msg="this.toast.msg" @closeToast="this.toast.visible = false"/>
+    <Transition name="slide-fade">
+        <component :is="this.toast.type" v-if="this.toast.visible" :msg="this.toast.msg" @closeToast="this.toast.visible = false"/>
+    </Transition>
     <div class="bg-MeivAsh  min-h-screen font-openSans dark:bg-zinc-900">
         <div class="px-8 md:px-16 py-8 flex flex-col gap-5">
             <HeaderUser @activeToast="showToast"/>
@@ -11,9 +13,15 @@
             <Paginate @selectPage="changePage" :pag="userStore.pag" />
         </div>
     </div>
-        <PopupResetPassword v-if="isResetClicked" @activeToast="showToast" @closePopUp="isResetClicked= false" :IdUser="userID"/>
-        <PopupDeleteUser v-if="isDeleteClicked" @activeToast="showToast" @closePopUp="isDeleteClicked= false" :IdUser="userID"/>
-        <AddUserPop v-if="isUpdateClick" @activeToast="showToast" @closePopUp="isUpdateClick= false" :user="getDataUser" :showActive="true" />
+        <Transition>
+            <PopupResetPassword v-if="isResetClicked" @activeToast="showToast" @closePopUp="isResetClicked= false" :IdUser="userID"/>
+        </Transition>
+        <Transition>
+            <PopupDeleteUser v-if="isDeleteClicked" @activeToast="showToast" @closePopUp="isDeleteClicked= false" :IdUser="userID"/>
+        </Transition>
+        <Transition>
+            <AddUserPop v-if="isUpdateClick" @activeToast="showToast" @closePopUp="isUpdateClick= false" :user="getDataUser" :showActive="true" />
+        </Transition>
 </template>
 <script>
 import { markRaw } from "vue";

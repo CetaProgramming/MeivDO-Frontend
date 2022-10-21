@@ -9,7 +9,9 @@
             </div>
         </div>
     </div>
-    <component v-if="isAddToolClicked" @closePopUp="isAddToolClicked= false" @activeToast="showToast" :is="componentFilter"></component>
+    <Transition>
+        <component v-if="isAddToolClicked" @closePopUp="isAddToolClicked= false" @activeToast="showToast" :is="componentFilter"></component>
+    </Transition>
 </template>
 
 <script>

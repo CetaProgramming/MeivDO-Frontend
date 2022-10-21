@@ -1,5 +1,7 @@
 <template>
-    <component :is="this.toast.type" v-if="this.toast.visible" :msg="this.toast.msg" @closeToast="this.toast.visible = false"/>
+    <Transition name="slide-fade">
+        <component :is="this.toast.type" v-if="this.toast.visible" :msg="this.toast.msg" @closeToast="this.toast.visible = false"/>
+    </Transition>
     <div class="bg-MeivAsh  min-h-screen font-openSans dark:bg-zinc-900">
         <div class="px-8 md:px-16 py-8 flex flex-col gap-5">
             <HeaderProject @activeToast="showToast"/>
@@ -11,10 +13,18 @@
             <Paginate @selectPage="changePage" :pag="projectStore.pag" />
         </div>
     </div>
+    <Transition>
         <PopupDeleteProject v-if="isDeleteClicked" @activeToast="showToast" @closePopUp="isDeleteClicked= false" :IdProject="projectID"/>
+    </Transition>
+    <Transition>
         <AddProjectPop v-if="isUpdateClick" @activeToast="showToast" @closePopUp="isUpdateClick= false" :project="getDataProject" :showActive="true" />
+    </Transition>
+    <Transition>
         <ShowProjectPop v-if="isShowClick" @activeToast="showToast" @closePopUp="isShowClick= false" :project="getDataProject" :showActive="true" />
+    </Transition>
+    <Transition>
         <ChangeStatusPop v-if="isStatusClick" @activeToast="showToast" @closePopUp="isStatusClick= false" :IdProject="projectID" :project="getDataProject" :showActive="true" />
+    </Transition>
 </template>
 <script>
 import { markRaw } from "vue";
