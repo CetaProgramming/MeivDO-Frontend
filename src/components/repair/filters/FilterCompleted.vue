@@ -5,8 +5,6 @@
             <LabelSelectWithInput ref="selectLabelTool" v-model="FilterRepair.Tool" :name="langsRepair.Tools"
                 :items="tools" itemFilter='code' :default="-1" :placeholder="langsRepair.PlaceHolder">
             </LabelSelectWithInput>
-            <!-- <SelectLabel ref="selectLabelStatus" v-model="FilterRepair.Status" :name="langsRepair.Status.Text"
-                :items="langsRepair.Status.Options" valueItem="id" /> -->
             <InputSearch ref="inputSearchInspection" v-model="FilterRepair.Inspection"
                 :name="langsRepair.KeywordInspection" />
 
@@ -26,11 +24,11 @@ import SelectLabel from '../../forms/SelectLabel.vue';
 import InputSearch from '../../forms/InputSearch.vue';
 import { repairCompletedStore } from '../../../store/repairCompletedStore'
 import { repairMissingStore } from '../../../store/repairMissingStore'
+import { mapState } from 'pinia';
 export default {
     props: ['selectStore'],
     data() {
         return {
-            tools: [],
             FilterRepair: {
                 Tool: '',
                 Inspection: '',
@@ -38,13 +36,18 @@ export default {
             store: {
                 Completed: repairCompletedStore(),
                 Missing: repairMissingStore(),
-            },
+            }
         };
     },
     computed: {
+        ...mapState(repairMissingStore, ['getToolsMissing']),
+        ...mapState(repairCompletedStore, ['getToolsCompleted']),
         langsRepair() {
             return langStore().getLang.PageRepairs.Filters
         },
+        tools(){
+            return this.selectStore === 'Completed' ? this.getToolsCompleted : this.getToolsMissing;
+        }
     },
     watch: {
         async selectStore(value, oldValue) {
@@ -59,8 +62,8 @@ export default {
     },
     methods: {
         async getdata() {
-            const data = await this.store[this.selectStore].getTools()
-            this.tools = data;
+            await this.store[this.selectStore].getTools()
+            // this.tools = data;
         },
         async doSearch(reset = false) {
             await this.store[this.selectStore].doSearch(this.FilterRepair, reset);

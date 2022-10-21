@@ -19,6 +19,11 @@ export const inspectionCompletedStore = defineStore('inspectionCompletedStore', 
             totalItems: null
         }
     },
+    getters: {
+        getToolsInInspections(state){
+            return [...new Set(state.inspections.map(inspection => inspection.tool))];
+        }
+    },
     actions: {
         createObj(inspection) {
             const refTools = toolsStore().getOrAdd(inspection.inspectionDetails.tool);
@@ -139,16 +144,6 @@ export const inspectionCompletedStore = defineStore('inspectionCompletedStore', 
                 throw error
             }
         },
-        // async getStatus() {
-        //     try {
-        //         const response = await axios.get(
-        //             `${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/tools/status`
-        //         );
-        //         return response.data.data
-        //     } catch (error) {
-        //         throw error
-        //     }
-        // },
         async deleteInspection(inspectionId) {
             try {
                 await axios.delete(`${import.meta.env.VITE_API_ENDPOINT}/${import.meta.env.VITE_API_PREFIX}/inspections/${inspectionId}`);
@@ -163,6 +158,13 @@ export const inspectionCompletedStore = defineStore('inspectionCompletedStore', 
         },
         getData(id){
             return this.inspections.find(inspection => id == inspection.id)
-            }
+        },
+        async getTools(){
+            await this.mount();
+            if (this.pag.lastPage > 1)
+                for (let inspection = 2; inspection <= this.pag.lastPage; inspection++) {
+                    await this.load(inspection);
+                }
+        }
     }
 });
