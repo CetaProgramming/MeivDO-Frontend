@@ -2,10 +2,13 @@
     <div class="bg-MeivAsh  min-h-screen font-openSans dark:bg-zinc-900">
         <div class="px-8 md:px-16 py-8 flex flex-col gap-5">
             <HeaderTool @activeToast="showToast" :newOptions="tableOptionSelected" />
-            <component :is="dynamicComponent('Filter')"/>
+            <Transition name="hidden-old-item" appear>    
+                <component :is="dynamicComponent('Filter')"/>
+            </Transition>
+            
             <TableOptions @tableChange="tableChange" />
             <div class="grid gap-1 lg:gap-0 lg:flex lg:flex-col lg:overflow-auto">
-                <TableHeader ref="header"  :header=langsTool.Headers[tableOptionSelected] :style="GetLenght" />
+                <TableHeader ref="header" :header=langsTool.Headers[tableOptionSelected] :style="GetLenght" />
                 <TableBody :header=langsTool.Headers[tableOptionSelected] :component="Components[tableOptionSelected]"
                     :items=store[tableOptionSelected].viewing :style="GetLenght" :selectItems="selectItems"
                     @selectOption="popUpOpen" />
@@ -13,10 +16,14 @@
             <Paginate @selectPage="changePage" :pag="store[tableOptionSelected].pag" />
         </div>
     </div>
-    <component v-if="isActivePopUp" @activeToast="showToast" @closePopUp="isActivePopUp= false"
+    <Transition appear>
+        <component v-if="isActivePopUp" @activeToast="showToast" @closePopUp="isActivePopUp= false"
         :is="dynamicComponent(selectedOption)" v-bind="propsDynamicComponent"/>
-    <component :is="this.toast.type" v-if="this.toast.visible" :msg="this.toast.msg"
-        @closeToast="this.toast.visible = false" />
+    </Transition>
+    <Transition name="slide-fade">
+        <component :is="this.toast.type" v-if="this.toast.visible" :msg="this.toast.msg"
+            @closeToast="this.toast.visible = false" />
+    </Transition>
 </template>
 
 <script>

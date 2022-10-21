@@ -10,8 +10,10 @@
             </div>
         </div>
     </div>
-    <AddUpdateInspection v-if="isAddInspectionClicked " @activeToast="activeToast"
-        @closePopUp="closingteste" :showActive="false" />
+    <Transition>
+        <AddUpdateInspection v-if="isAddInspectionClicked " @activeToast="activeToast"
+            @closePopUp="closingteste" :showActive="false" />
+    </Transition>
 </template>
 
 <script>

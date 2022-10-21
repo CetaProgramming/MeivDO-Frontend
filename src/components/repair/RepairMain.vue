@@ -1,6 +1,8 @@
 <template>
-    <component :is="this.toast.type" v-if="this.toast.visible" :msg="this.toast.msg"
-        @closeToast="this.toast.visible = false" />
+    <Transition name="slide-fade">
+        <component :is="this.toast.type" v-if="this.toast.visible" :msg="this.toast.msg"
+            @closeToast="this.toast.visible = false" />
+    </Transition>
     <div class="bg-MeivAsh  min-h-screen font-openSans dark:bg-zinc-900">
         <div class="px-8 md:px-16 py-8 flex flex-col gap-5">
             <HeaderRepair @activeToast="showToast" :isCompleted="this.tableOptionSelected" />
@@ -16,10 +18,10 @@
             <Paginate @selectPage="changePage" :pag="store[tableOptionSelected].pag" />
         </div>
     </div>
-     <component v-if="isActivePopUp" @activeToast="showToast" @closePopUp="isActivePopUp= false"
-        :is="dynamicComponent(selectedOption)" v-bind="propsDynamicComponent"/>
-    <component :is="this.toast.type" v-if="this.toast.visible" :msg="this.toast.msg"
-        @closeToast="this.toast.visible = false" /> 
+    <Transition>
+        <component v-if="isActivePopUp" @activeToast="showToast" @closePopUp="isActivePopUp= false"
+            :is="dynamicComponent(selectedOption)" v-bind="propsDynamicComponent"/>
+    </Transition>
 </template>
 <script>
 import { markRaw } from "vue";
