@@ -4,7 +4,7 @@
         <div>
             <div class="flex gap-4 ">
                 <NavigateItemMenu />
-                <Button @click="isAddToolClicked = !isAddToolClicked" :text="langsTool.ButtonNew" bg="bg-green-500"
+                <Button @click="isAddToolClicked = !isAddToolClicked" :text="langsTool.ButtonNew" 
                     pad="px-4 py-2" class="rounded-lg"></Button>
             </div>
         </div>

@@ -6,7 +6,7 @@
                 <NavigateItemMenu />
 
                 <Button v-if="this.isCompleted == 'Completed'" @click="isAddInspectionClicked = !isAddInspectionClicked" :text="langsInspection.ButtonNew"
-                    bg="bg-green-500" pad="px-4 py-2" class="rounded-lg"></Button>
+                     pad="px-4 py-2" class="rounded-lg"></Button>
             </div>
         </div>
     </div>
