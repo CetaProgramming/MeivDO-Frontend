@@ -20,6 +20,11 @@ export const repairCompletedStore = defineStore('repairCompletedStore', {
             totalItems: null
         }
     },
+    getters: {
+        getToolsCompleted(state){
+            return [...new Set(state.repairs.map(repair => repair.tool))];
+        }
+    },
     actions: {
         createObj(repair) {
             const refTools = toolsStore().getOrAdd(repair.inspection.tool);

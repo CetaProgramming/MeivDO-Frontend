@@ -20,6 +20,11 @@ export const inspectionMissingStore = defineStore('inspectionMissingStore', {
             totalItems: null
         }
     },
+    getters: {
+        getToolsInInspections(state){
+            return [state.inspectionsMissing.map(inspection => inspection.tool), [...new Set(state.inspectionsMissing.map(inspection => inspection.project))]];
+        }
+    },
     actions: {
         createObj(inspectionMissing) {
             const refTools = toolsStore().getOrAdd(inspectionMissing.tool);
@@ -139,7 +144,6 @@ export const inspectionMissingStore = defineStore('inspectionMissingStore', {
                 for (let inspectionMissing = 2; inspectionMissing <= this.pag.lastPage; inspectionMissing++) {
                     await this.load(inspectionMissing);
                 }
-            return [this.inspectionsMissing.map(inspection => inspection.tool), [...new Set(this.inspectionsMissing.map(inspection => inspection.project))]];
         }
     }
 });

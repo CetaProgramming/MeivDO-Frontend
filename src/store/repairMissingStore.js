@@ -3,8 +3,6 @@ import axios from "axios";
 import { toolsStore } from "./toolsStore";
 import {repairCompletedStore} from './repairCompletedStore'
 
-
-
 export const repairMissingStore = defineStore('repairMissingStore', {
     state: () => {
         return {
@@ -18,6 +16,12 @@ export const repairMissingStore = defineStore('repairMissingStore', {
             pagesLoad: [],
             perPage: null,
             totalItems: null
+        }
+    },
+    getters: {
+        getToolsMissing(state){
+            return [...new Set(state.repairsMissing.map(repair => repair.tool))];
+
         }
     },
     actions: {
@@ -138,8 +142,6 @@ export const repairMissingStore = defineStore('repairMissingStore', {
                 for (let repairMissing = 2; repairMissing <= this.pag.lastPage; repairMissing++) {
                     await this.load(repairMissing);
                 }
-                
-            return [... new Set (this.repairsMissing.map(repairMissing => repairMissing.tool))];
         },
         getData(id){
             return this.repairsMissing.find(repairMissing => id == repairMissing.id)

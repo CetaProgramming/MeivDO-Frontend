@@ -3,10 +3,10 @@
         @submit.prevent="doSearch">
         <div class="grid lg:grid-cols-2 gap-3">
             <LabelSelectWithInput ref="selectLabelTool" v-model="FilterInspection.Tool" :name="langsInspection.Tools"
-                :items="tools" itemFilter='code' :default="-1" :placeholder="langsInspection.PlaceHolder">
+                :items="getToolsAndProjctsInInspections[0]" itemFilter='code' :default="-1" :placeholder="langsInspection.PlaceHolder">
             </LabelSelectWithInput>
             <LabelSelectWithInput ref="selectLabelProject" v-model="FilterInspection.Project" :name="langsInspection.Project"
-                :items="projects" itemFilter='name' :default="-1" :placeholder="langsInspection.PlaceHolderProject">
+                :items="getToolsAndProjctsInInspections[1]" itemFilter='name' :default="-1" :placeholder="langsInspection.PlaceHolderProject">
             </LabelSelectWithInput>
 
         </div>
@@ -24,6 +24,7 @@ import ButtonIcon from '../../widgets/ButtonIcon.vue';
 import { langStore } from '../../../store/langStore'
 import SelectLabel from '../../forms/SelectLabel.vue';
 import {inspectionMissingStore} from '../../../store/inspectionMissingStore'
+import { mapState } from 'pinia';
 export default {
     data() {
         return {
@@ -37,6 +38,7 @@ export default {
         };
     },
     computed: {
+        ...mapState(inspectionMissingStore, ['getToolsAndProjctsInInspections']),
         langsInspection() {
             return langStore().getLang.PageInspections.Filters
         },
@@ -46,9 +48,7 @@ export default {
     },
     methods:{
         async getToolsAndProject(){
-            const [tools, projects] = await inspectionMissingStore().getToolsAndProjects();
-            this.tools = tools;
-            this.projects = projects;
+            await inspectionMissingStore().getToolsAndProjects();
         },
         async doSearch() {
             await inspectionMissingStore().doSearch(this.FilterInspection);
