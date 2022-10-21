@@ -666,6 +666,9 @@
             
         },
         "UpdateRepairMissing": {
+            "updatedSucess":"Repair info successfully updated!",
+            "createdSucess": "Repair successfully added!",
+            "errorCreatedUpdated":"Ocurred a error when doing this task, please verify data!",
             "LabelText": "Status",
             "Tools": "Tool",
             "Projects": "Project",

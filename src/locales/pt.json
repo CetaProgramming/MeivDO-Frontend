@@ -254,7 +254,7 @@
                     "ID",
                     "Código",
                     "Grupo de Ferramentas",
-                    "Status",
+                    "Estado",
                     "Ativo",
                     "Atualizado"
                 ],
@@ -584,37 +584,109 @@
     "PageRepairs": {
         "RepairFeature": {
             "View": "Ver",
-            "ButtonNew": "Novo"
+            "ButtonNew": "Novo",
+            "RepairHeader": [
+                "ID",
+                "Ferramenta",
+                "Inspeção",
+                "Atualizado"
+            ]
+        },
+        "TableOptions": {
+            "name": "Tabelas",
+            "items": [
+                {
+                    "name": "Completas",
+                    "value": "Completed"
+                },
+                {
+                    "name": "Em Falta",
+                    "value": "Missing"
+                }
+            ]
         },
         "Filters": {
             "Keyword": {
                 "Label": "Palavra-Chave",
-                "Input": "Insira o código"
+                "Input": "Digite um código"
             },
-            "KeywordCategory": {
-                "Label": "Palavra-Chave",
-                "Input": "Insira um Nome"
+            "KeywordInspection": {
+                "Label": "Inspeção",
+                "Input": "Digite o ID da inspeção"
             },
             "Status": {
-                "Text": "Ativo",
+                "Text": "Estado",
                 "Options": [
                     {
                         "name": "Ambos",
                         "value": ""
                     },
                     {
-                        "name": "Ativo",
+                        "name": "Bom",
                         "value": 1
                     },
                     {
-                        "name": "Inativo",
+                        "name": "Mau",
                         "value": 0
                     }
                 ]
             },
-            "Text": "Status",
-            "GroupTools": "Grupo de ferramentas",
+            "Text": "Estado",
+            "Tools": "Ferramenta",
+            "Project": "Projeto",
+            "PlaceHolder": "Selecione uma ferramenta",
+            "PlaceHolderProject": "Selecione um projeto",
             "Category": "Categoria"
+        },
+        "AddRepairPop": {
+            "LabelText": "Estado",
+            "Tools": "Ferramenta",
+            "OptionTool": "Digite ou escolha uma ferramenta",
+            "TextButtons":["Bom", "Mau"]
+,            "Title": "Inspeção",
+            "Description": "Descrição",
+            "PlaceholderDescription": "Insira a descrição...",
+            "Save": "Guardar",
+            "DescriptionError": "Descrição é obrigatória!",
+            "SelectButton": "Estado é obrigatório!"
+        },
+        "PopupDeleteRepair": {
+            "DeleteTextFirst": "Tem a certeza que pretende apagar a reparação ",
+            "DeleteTextEnd": "?",
+            "DeleteRepairSucess": "Reparação apagada com sucesso!",
+            "DeleteRepairError": "Repação não conseguiu ser apagada!",
+            "Confirmation": "Sim"
+        },
+        "PopupViewRepair": {
+            "Title": "Reparação",
+            "Tool": "Ferramenta",
+            "Inspection": "Inspeção",
+            "Reason": "Razão",
+            "Solution": "Solução",
+            "Description": "Descrição"
+            
+        },
+        "UpdateRepairMissing": {
+            "updatedSucess":"Atualizadas as informações da reparação com sucesso!",
+            "createdSucess": "Reparacão inserida com sucesso",
+            "errorCreatedUpdated":"Ocorreu um erro ao efetuar a operação, verique os campos",
+            "LabelText": "Estado",
+            "Tools": "Ferramenta",
+            "Projects": "Projeto",
+            "OptionTool": "Digite ou escolha uma ferramenta",
+            "TextButtons":["Bom", "Mau"],           
+            "Title": "Reparação",
+            "Description": "Descrição",
+            "PlaceholderDescription": "Insira a descrição...",
+            "Solution": "Solução",
+            "PlaceholderSolution": "Insira a solução",
+            "Reason": "Razão",
+            "PlaceholderReason": "Insira a razão",
+            "Save": "Guardar",
+            "DescriptionError": "Descrição é obrigatória!",
+            "ReasonError": "Razão é obrigatória!",
+            "SolutionError": "Solução é obrigatória!",
+            "SelectButton": "Estado é obrigatório!"
         }
     },
     "HoursComponents": {
