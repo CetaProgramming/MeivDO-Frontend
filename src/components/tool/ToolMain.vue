@@ -10,7 +10,7 @@
             <div class="grid gap-1 lg:gap-0 lg:flex lg:flex-col lg:overflow-auto">
                 <TableHeader ref="header" :header=langsTool.Headers[tableOptionSelected] :style="GetLenght" />
                 <TableBody :header=langsTool.Headers[tableOptionSelected] :component="Components[tableOptionSelected]"
-                    :items=store[tableOptionSelected].viewing :style="GetLenght" :selectItems="selectItems"
+                    :items=store[tableOptionSelected].viewing :style="GetLenght" :selectItems="langsTool.Options"
                     @selectOption="popUpOpen" />
             </div>
             <Paginate @selectPage="changePage" :pag="store[tableOptionSelected].pag" />
@@ -99,27 +99,7 @@ export default {
             toolStore: toolsStore(),
             groupToolStore: groupToolsStore(),
             selectItems: [
-                {
-                    key: "",
-                    disabled: true,
-                    component: "",
-                    value: "Options"
-                },
-                {
-                    key: "view",
-                    component: "",
-                    value: "View"
-                },
-                {
-                    key: "addUpdate",
-                    component: "",
-                    value: "Update"
-                },
-                {
-                    key: "delete",
-                    component: "",
-                    value: "Delete"
-                }
+
             ],
             toast: {
                 msg: '',

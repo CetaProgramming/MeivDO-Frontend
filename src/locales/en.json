@@ -67,7 +67,30 @@
                 "Updated"
             ],
             "Active": "Active",
-            "Inactive": "Inactive"
+            "Inactive": "Inactive",
+            "Options": [
+                {
+                    "key": "",
+                    "disabled": true,
+                    "component": "",
+                    "value": "Options"
+                },
+                {
+                    "key": "update",
+                    "component": "",
+                    "value": "Update"
+                },
+                {
+                    "key": "resetPassword",
+                    "component": "",
+                    "value": "Reset Password"
+                },
+                {
+                    "key": "deleted",
+                    "component": "",
+                    "value": "Delete"
+                }
+            ]
         },
         "PopupAddUser": {
             "Title": "User",
@@ -269,7 +292,30 @@
                     "Active",
                     "Updated"
                 ]
-            }
+            },
+            "Options": [
+                {
+                    "key": "",
+                    "disabled": true,
+                    "component": "",
+                    "value": "Options"
+                },
+                {
+                    "key": "view",
+                    "component": "",
+                    "value": "View"
+                },
+                {
+                    "key": "addUpdate",
+                    "component": "",
+                    "value": "Update"
+                },
+                {
+                    "key": "delete",
+                    "component": "",
+                    "value": "Delete"
+                }
+            ]
         },
         "TableOptions": {
             "name": "Tables",
@@ -549,6 +595,34 @@
                 "End Date",
                 "Status",
                 "Updated"
+            ],
+            "Options": [
+                {
+                    "key": "",
+                    "disabled": true,
+                    "component": "",
+                    "value": "Options"
+                },
+                {
+                    "key": "show",
+                    "component": "",
+                    "value": "Show"
+                },
+                {
+                    "key": "update",
+                    "component": "",
+                    "value": "Update"
+                },
+                {
+                    "key": "status",
+                    "component": "",
+                    "value": "Change Status"
+                },
+                {
+                    "key": "deleted",
+                    "component": "",
+                    "value": "Delete"
+                }
             ]
         },
         "Filters": {
@@ -717,6 +791,7 @@
     "Options": {
         "TableHeader": ["Code", "GroupTools"],
         "noSearchData": "Nothing to show",
-        "noDataFiltered": "Sorry, not found data!"
+        "noDataFiltered": "Sorry, not found data!",
+        "selectOption": "Select an Option"
     }
 }

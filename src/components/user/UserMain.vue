@@ -8,7 +8,7 @@
             <FilterUsers />
             <div class="grid gap-1 lg:gap-0 lg:flex lg:flex-col lg:overflow-auto">
                 <TableHeader ref="header" :header=langsUser.UserHeader :style="GetLenght" />
-                <TableBody :header=langsUser.UserHeader :component="ComponentUser" :items=userStore.viewing :style="GetLenght" :selectItems="selectItems" @selectOption="popUpOpen" />
+                <TableBody :header=langsUser.UserHeader :component="ComponentUser" :items=userStore.viewing :style="GetLenght" :selectItems="langsUser.Options" @selectOption="popUpOpen" />
             </div>
             <Paginate @selectPage="changePage" :pag="userStore.pag" />
         </div>
@@ -62,27 +62,7 @@ export default {
             isDeleteClicked : false,
             userStore: usersStore(),
             selectItems: [
-                {
-                    key: "",
-                    disabled: true,
-                    component: "",
-                    value: "Options"
-                },
-                {
-                    key: "update",
-                    component: "",
-                    value: "Update"
-                },
-                {
-                    key: "resetPassword",
-                    component: "",
-                    value: "Reset Password"
-                },
-                {
-                    key: "deleted",
-                    component: "",
-                    value: "Delete"
-                }
+                
             ]
         }
     },
