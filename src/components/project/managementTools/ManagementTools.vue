@@ -24,7 +24,7 @@ import FilterTools from './FilterTools.vue';
     export default {
         async mounted(){
             this.activeGroupTools = await groupToolsStore().getActiveGroupTools(1, 'all');
-            this.activeTools = await toolsStore().getActiveTools();
+            this.activeTools = await toolsStore().getActiveAndAvailableTools();
         },
         data(){
             return {
@@ -56,6 +56,7 @@ import FilterTools from './FilterTools.vue';
         },
         methods: {
             searchData(form){
+                console.log(this.activeTools);
                 this.itemsFiltered =  this.filterToolGroup(this.activeTools.filter(tool =>  
                     (form.tool == -1 || (form.tool && tool.id === form.tool)) 
                     && 
