@@ -616,7 +616,7 @@
                 {
                     "key": "status",
                     "component": "",
-                    "value": "Change Status"
+                    "value": "Open / Close"
                 },
                 {
                     "key": "deleted",
