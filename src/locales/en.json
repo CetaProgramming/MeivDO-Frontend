@@ -56,7 +56,7 @@
     },
     "PageUsers":{
         "UserFeature": {
-            "View": "View",
+            "View": "Menu",
             "ButtonNew": "New",
             "UserHeader": [
                 "NO.",
@@ -266,7 +266,7 @@
             "Confirmation": "Yes"
         },
         "ToolFeature": {
-            "View": "View",
+            "View": "Menu",
             "ButtonNew": "New",
             "Active": "Ativo",
             "Inactive": "Inativo",
@@ -365,7 +365,7 @@
     },
     "PageInspections": {
         "InspectionFeature": {
-            "View": "View",
+            "View": "Menu",
             "ButtonNew": "New",
             "Headers": {
                 "Completed": [
@@ -586,7 +586,7 @@
             "TableHeader": ["Code", "GroupTools"]
         },
         "ProjectFeature": {
-            "View": "View",
+            "View": "Menu",
             "ButtonNew": "New",
             "ProjectHeader": [
                 "ID",
@@ -656,7 +656,7 @@
     },
     "PageRepairs": {
         "RepairFeature": {
-            "View": "View",
+            "View": "Menu",
             "ButtonNew": "New",
             "RepairHeader": [
                 "ID",
