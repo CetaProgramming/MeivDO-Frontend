@@ -7,7 +7,7 @@
             class="grid overflow-auto md:text-ellipsis lg:block w-full lg:w-auto gap-3 justify-items-start md:w-[49%] grid-cols-auto-1fr">
                 <component :is="component[index]" v-bind="{ headerTitle: header[index], item: item[subitem] }" />
             </div>
-            <Select v-if="showSelect" :select="resetSelect" :selectItems="selectItems" @selectOption="selectItem($event, item.id)" />
+            <Select v-if="showSelect" :select="resetSelect" :selectItems="selectItems" @selectOption="selectItem($event, item.id)" class="text-lg" />
             <Button v-else @click="selectItem('AddUpdate',item.id)" :text="selectItems[0].value" space="normal" pad="p-1" fontSize="text-md"></Button>
         </div>
     </TransitionGroup>
