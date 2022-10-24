@@ -14,7 +14,8 @@ import {langStore} from './../../store/langStore';
 export default {
     watch:{
         items(){
-            this.$refs.inputValue.value = this.items && this.default !== -1 ? this.items.find(item => item.id == this.default)[this.itemFilter] : ''
+            if(this.items.length && this.default !== -1)
+                this.$refs.inputValue.value = this.items.find(item => item.id == this.default)[this.itemFilter];
         }
     },
     data(){
