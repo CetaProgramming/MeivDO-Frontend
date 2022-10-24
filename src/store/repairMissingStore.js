@@ -21,7 +21,6 @@ export const repairMissingStore = defineStore('repairMissingStore', {
     getters: {
         getToolsMissing(state){
             return [...new Set(state.repairsMissing.map(repair => repair.tool))];
-
         }
     },
     actions: {
