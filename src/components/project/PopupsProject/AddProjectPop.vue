@@ -51,7 +51,7 @@ export default {
             formProjectCreateUpdate: {
                 name: this.project ? this.project.name : '',
                 address: this.project ? this.project.address : '',
-                startDate: this.project ? DataManipulate.formInputDate(this.project.startDate) : '',
+                startDate: this.project ? DataManipulate.formInputDate(this.project.startDate) : DataManipulate.formInputDate(new Date()),
                 endDate: this.project ? DataManipulate.formInputDate(this.project.endDate) : '',
                 tools: this.project ? this.project.project_tools.map(tool => tool.tool_id) : []
             }
