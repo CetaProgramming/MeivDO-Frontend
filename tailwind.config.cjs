@@ -35,6 +35,9 @@ module.exports = {
         'auto-1fr-1fr': 'auto 1fr 1fr',
 
       },
+      zIndex: {
+        '100': '100',
+      },
       maxWidth: {
         '4/5': '80%',
       },

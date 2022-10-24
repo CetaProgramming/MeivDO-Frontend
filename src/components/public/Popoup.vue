@@ -1,6 +1,6 @@
 <template>
     <div id="popUp"
-        class="fixed z-10 left-0 md:fixed bg-black text-black backdrop-blur-md bg-opacity-30 flex justify-center items-center min-h-screen top-0 w-full dark:bg-opacity-70">
+        class="z-100 fixed left-0 md:fixed bg-black text-black backdrop-blur-md bg-opacity-30 flex justify-center items-center min-h-screen top-0 w-full dark:bg-opacity-70">
         <div
             class="md:w-3/5 block overflow-auto w-full min-h-screen md:min-h-fit md:max-h-screen bg-white rounded-md  h-screen md:h-fit  dark:bg-black dark:text-white">
             <div class="p-10 flex flex-col gap-4 ">
