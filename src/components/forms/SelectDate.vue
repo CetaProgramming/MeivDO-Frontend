@@ -1,8 +1,8 @@
 <template>
     <div class="flex flex-col gap-2">
         <Label :name="name" :msg="name" />
-        <div class="flex bg-zinc-300 p-1 rounded-md dark:bg-zinc-800 relative items-center">
-            <Input type="date" ref="inputReset" v-model="value" :default="value"  :placeholder="name.Input" pad="p-1" @input="changeValue" class=" w-full bg-zinc-300 dark:bg-zinc-800" />
+        <div class="flex  p-1 rounded-md dark:bg-zinc-800 relative items-center">
+            <Input type="date" ref="inputReset" v-model="value" :default="value"  :placeholder="name.Input" pad="p-2" @input="changeValue" class=" border-none w-full bg-zinc-300 dark:bg-zinc-800" />
         </div>
     </div>
 </template>
