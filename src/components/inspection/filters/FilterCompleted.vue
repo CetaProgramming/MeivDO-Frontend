@@ -3,7 +3,7 @@
         @submit.prevent="doSearch">
         <div class="grid lg:grid-cols-2 gap-3">
             <LabelSelectWithInput ref="selectLabelTool" v-model="FilterInspection.Tool" :name="langsInspection.Tools"
-                :items="getToolsInInspections" itemFilter='code' :default="-1" :placeholder="langsInspection.PlaceHolder">
+                :items="tools" itemFilter='code' :default="-1" :placeholder="langsInspection.PlaceHolder">
             </LabelSelectWithInput>
             <SelectLabel ref="selectLabelStatus" v-model="FilterInspection.Status" :name="langsInspection.Status.Text"
                 :items="langsInspection.Status.Options" valueItem="value" />
@@ -27,7 +27,6 @@ import { mapState } from 'pinia';
 export default {
     data() {
         return {
-            projects: [],
             tools: [],
             FilterInspection: {
                 Tool: '',
@@ -35,11 +34,18 @@ export default {
             }
         };
     },
+    watch: {
+        getToolsInInspections(value){
+            if(!value.length)
+                return;
+            this.tools = value;
+        }
+    },
     computed: {
         ...mapState(inspectionCompletedStore, ['getToolsInInspections']),
         langsInspection() {
             return langStore().getLang.PageInspections.Filters
-        },
+        }
     },
     async mounted(){
         await inspectionCompletedStore().getTools();
