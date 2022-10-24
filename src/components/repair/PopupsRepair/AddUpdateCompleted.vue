@@ -1,23 +1,20 @@
 <template>
     <Popoup :titlePopUp="langs.Title" class="font-meivdo" @closePopUp="$emit('closePopUp')">
         <form @submit.prevent="AddUpdateRepair" class="flex flex-col gap-5 font-openSans">
-          
-              <LabelShowInfo :header="langs.Tools" :info="this.value && this.value.tool.code"></LabelShowInfo>
-            <LabelShowInfo :header="langs.Projects" :info="this.value && this.value.inspection.id"></LabelShowInfo> 
 
-            <TextAreaLabel ref="formRepairReason" :name="langs.Reason"
-            :placeholder="langs.PlaceholderReason" :msg="langs.ReasonError"
-            v-model="formUpdateRepair.reason" :default="formUpdateRepair.reason">
-        </TextAreaLabel> 
-        <TextAreaLabel ref="formRepairSolution" :name="langs.Solution"
-        :placeholder="langs.PlaceholderSolution" :msg="langs.SolutionError"
-        v-model="formUpdateRepair.solution" :default="formUpdateRepair.solution">
-    </TextAreaLabel> 
-    <TextAreaLabel ref="formRepairDescription" :name="langs.Description"
-        :placeholder="langs.PlaceholderDescription" :msg="langs.DescriptionError"
-        v-model="formUpdateRepair.description" :default="formUpdateRepair.description">
-    </TextAreaLabel> 
-           
+            <LabelShowInfo :header="langs.Tools" :info="this.value && this.value.tool.code"></LabelShowInfo>
+            <LabelShowInfo :header="langs.Projects" :info="this.value && this.value.inspection.id"></LabelShowInfo>
+
+            <TextAreaLabel ref="formRepairReason" :name="langs.Reason" :placeholder="langs.PlaceholderReason"
+                :msg="langs.ReasonError" v-model="formUpdateRepair.reason" :default="formUpdateRepair.reason">
+            </TextAreaLabel>
+            <TextAreaLabel ref="formRepairSolution" :name="langs.Solution" :placeholder="langs.PlaceholderSolution"
+                :msg="langs.SolutionError" v-model="formUpdateRepair.solution" :default="formUpdateRepair.solution">
+            </TextAreaLabel>
+            <TextAreaLabelWithoutError ref="formRepairDescription" :name="langs.Description"
+                :placeholder="langs.PlaceholderDescription" :msg="langs.DescriptionError"
+                v-model="formUpdateRepair.description" :default="formUpdateRepair.description">
+            </TextAreaLabelWithoutError>
             <Button :text="langs.Save"></Button>
         </form>
     </Popoup>
@@ -36,15 +33,16 @@ import ToastError from "../../public/Toast/ToastError.vue"
 import ToastSuccess from "../../public/Toast/ToastSuccess.vue"
 import FormValidate from "../../mixins/FormValidate";
 import LabelShowInfo from '../../forms/LabelShowInfo.vue';
+import TextAreaLabelWithoutError from '../../forms/TextAreaLabelWithoutError.vue';
 export default {
     props: ['value'],
     data() {
         return {
-            activeTools: [],        
+            activeTools: [],
             formUpdateRepair: {
-                description:this.value.description ? this.value.description:  '',
-                reason: this.value.reason ? this.value.reason:  '',
-                solution:this.value.solution ? this.value.solution:  '',
+                description: this.value.description ? this.value.description : '',
+                reason: this.value.reason ? this.value.reason : '',
+                solution: this.value.solution ? this.value.solution : '',
             }
         };
     },
@@ -57,7 +55,7 @@ export default {
         }
     },
     methods: {
-        
+
         activeToast(toast) {
             this.$emit('activeToast', toast);
         },
@@ -99,7 +97,7 @@ export default {
         }
 
     },
-    components: { Popoup, LabelSelectWithInputError, TextAreaLabel, ButtonIcon, Button, LabelPickOptions, LabelShowInfo },
+    components: { Popoup, LabelSelectWithInputError, TextAreaLabel, ButtonIcon, Button, LabelPickOptions, LabelShowInfo, TextAreaLabelWithoutError },
     emits: ['activeToast', 'closePopUp'],
     mixins: [FormValidate]
 }
