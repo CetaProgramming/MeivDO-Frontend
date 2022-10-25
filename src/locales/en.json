@@ -1,0 +1,805 @@
+{
+    "Login": {
+        "WelcomeMessage": "Welcome",
+        "Slogan": "Here you can manage your tools, projects, inspections, repairs and a lot more!",
+        "EmailInput": "Email",
+        "EmailError": "Email is required!",
+        "PasswordInput": "Password",
+        "PasswordError": "Password is required!",
+        "LoginButton": "Login",
+        "LoginWrong": "Email / Password is wrong or your user is not active!"
+    },
+    "MenuDashboard": {
+        "HeadingMenu": "Welcome,",
+        "HeadingMenu2": "What do you want to do today?",
+        "SearchFeat": "Search feature...",
+        "UserProf": "User Profile",
+        "ChangePass": "Change Password",
+        "Settings": "Settings",
+        "Support": "Support",
+        "Logout": "Logout"
+    },
+    "PopupProfile": {
+        "Title1": "User Profile",
+        "Name": "Name",
+        "Role": "Role",
+        "Picture": "Upload photo",
+        "SaveProf": "Save",
+        "updateSucess": "Profile successfully updated!",
+        "nameError": "Name is required!",
+        "bigFile": "The file is too big to be uploaded!",
+        "notImage": "The file uploaded is not an image file!",
+        "updateFailed": "Unable to update profile, please try again later!"
+    },
+    "PopupPassword": {
+        "Title2": "Change Password",
+        "Password": "Current password",
+        "NewPassword": "New password",
+        "ConfirmNewPassword": "Confirm new password",
+        "PasswordError": "Password is required!",
+        "newPasswordError": "New Password is invalid!",
+        "passwordConfirmError": "Password doesn't match!",
+        "changedSucess": "Password changed successfully!",
+        "changedFailed": "Password couldn't be changed, please verify the fields",
+        "SavePass": "Save"
+    },
+    "PopupSettings": {
+        "Title3": "Settings",
+        "DarkMode": "Dark mode",
+        "Zoom": "Zoom",
+        "Language": "Language"
+    },
+    "Paginate": {
+        "Page": "Page",
+        "BtnGo": "Go",
+        "PageNotFound": "Sorry, but the page you try access is not available"
+    },
+    "PageUsers":{
+        "UserFeature": {
+            "View": "Menu",
+            "ButtonNew": "New",
+            "UserHeader": [
+                "NO.",
+                "Name",
+                "Email",
+                "Role",
+                "Status",
+                "Updated"
+            ],
+            "Active": "Active",
+            "Inactive": "Inactive",
+            "Options": [
+                {
+                    "key": "",
+                    "disabled": true,
+                    "component": "",
+                    "value": "Options"
+                },
+                {
+                    "key": "update",
+                    "component": "",
+                    "value": "Update"
+                },
+                {
+                    "key": "resetPassword",
+                    "component": "",
+                    "value": "Reset Password"
+                },
+                {
+                    "key": "deleted",
+                    "component": "",
+                    "value": "Delete"
+                }
+            ]
+        },
+        "PopupAddUser": {
+            "Title": "User",
+            "Name": "Name",
+            "PlaceholderName":"Enter your name",
+            "Email": "Email",
+            "PlaceholderEmail":"Enter your email",
+            "Role": "Role",
+            "Active": "Active",
+            "Upload": "Upload new picture",
+            "Save": "Save",
+            "SelectOption": "Select your option",
+            "updatedSucess": "User info successfully updated!",
+            "createdSucess": "User info successfully added!",
+            "errorCreatedUpdated": "Ocurred a error when doing this task, please verify data!",
+            "EmailError": "Email is required!",
+            "NameError": "Name is required!",
+            "RoleError": "Role is required!"
+        },
+        "PopupUserDelete": {
+            "DeleteTextFirst": "Are you sure you want to delete user ",
+            "DeleteTextEnd": "?",
+            "DeleteUserSucess": "User deleted successfully!",
+            "DeleteUserError": "User couldn't be deleted, please verify",
+            "Confirmation": "Yes"
+        },
+        "PopupUserReset": {
+            "ResetTextFirst": "Are you sure you want to reset user ",
+            "ResetTextEnd": " password?",
+            "ResetPasswordSucess": "Password successfully reset!",
+            "ResetPasswordError": "Password couldn't be reset, please verify",
+            "Confirmation": "Yes"
+        },
+        "Filters": {
+            "Users": {
+                "Keyword": {
+                    "Label": "Keywords",
+                    "Input": "Type a Name or an Email"
+                },
+                "Status": {
+                    "Text": "Status",
+                    "Options": [
+                        {
+                            "name": "Both",
+                            "value": ""
+                        },
+                        {
+                            "name": "Active",
+                            "value": 1
+                        },
+                        {
+                            "name": "Inactive",
+                            "value": 0
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "ItemMenu": {
+        "noItemFound": "No feature available with",
+        "projects": {
+            "img": "src/assets/icons/projects.png",
+            "title": "Projects",
+            "description": "Manage and see projects the company made and see the details of ongoing projects.",
+            "link": "projects"
+        },
+        "inspections": {
+            "img": "src/assets/icons/inspections.png",
+            "title": "Inspections",
+            "description": "View the inspections that the tools have and the detail of each inspection.",
+            "link": "inspections"
+        },
+        "tools": {
+            "img": "src/assets/icons/tools.png",
+            "title": "Tools",
+            "description": "Here you can see the tools the company has as well as their details such as it's state.",
+            "link": "tools"
+        },
+        "repairs": {
+            "img": "src/assets/icons/reparations.png",
+            "title": "Repairs",
+            "description": "View the tools that need a repair, as well as the details of each repair.",
+            "link": "repairs"
+        },
+        "users": {
+            "img": "src/assets/icons/users.png",
+            "title": "Users",
+            "description": "View the list of users of the company.",
+            "link": "users"
+        }
+    },
+    "PageTool": {
+        "Keywords": "Palavras chave",
+        "Category": "Categorias",
+        "SelectOpion": "Selecione a sua opção",
+        "PopupAddTool": {
+            "Title": "Tool",
+            "Code": "Code",
+            "Placeholder": "Insert a code",
+            "Save": "Save",
+            "updatedSucess": "Tool info successfully updated!",
+            "createdSucess": "Tool info successfully added!",
+            "errorCreatedUpdated": "Ocurred a error when doing this task, please verify data!",
+            "CodeError": "Code is required!",
+            "GroupTools": "Group Tools",
+            "GroupToolsError": "Please type or select a group tool!",
+            "GroupToolsPlaceholder": "Type or Select a GroupTool",
+            "Active": "Active"
+        },
+        "PopupAddGroupTool": {
+            "Title": "Group Tool",
+            "Code": "Code",
+            "Placeholder": "Insert a code",
+            "Save": "Save",
+            "updatedSucess": "GroupTool info successfully updated!",
+            "createdSucess": "GroupTool successfully added!",
+            "errorCreatedUpdated": "Ocurred a error when doing this task, please verify data!",
+            "CodeError": "Code is required!",
+            "Category": "Categories",
+            "CategoryError": "Please type or select a category!",
+            "Active": "Active",
+            "UploadNewPicture": "Upload New Picture",
+            "Description": "Description",
+            "DescriptionError": "Description is required!",
+            "OptionCategory": "Write or select category...",
+            "PlaceholderDescription": "Insert a description..."
+        },
+        "PopupAddCategory": {
+            "Title": "Category",
+            "Name": "Name",
+            "Placeholder": "Insert a name",
+            "Save": "Save",
+            "updatedSucess": "Category info successfully updated!",
+            "createdSucess": "Category successfully added!",
+            "errorCreatedUpdated": "Ocurred a error when doing this task, please verify data!",
+            "NameError": "Name is required!",
+            "Active": "Active"
+        },
+        "PopupViewTool": {
+            "Title": "Tool",
+            "Code": "Code",
+            "Active": "Active",
+            "GroupTools": "Group Tools",
+            "Status": "Status"
+        },
+        "PopupViewGroupTool": {
+            "Title": "GroupTool",
+            "Code": "Code",
+            "Active": "Active",
+            "Category": "Category",
+            "Description": "Description"
+        },
+        "PopupViewCategory": {
+            "Title": "Category",
+            "Name": "Name",
+            "Active": "Active"
+        },
+        "PopupDeleteTool": {
+            "Title": "Tool",
+            "DeleteTextFirst": "Are you sure you want to delete tool ",
+            "DeleteTextEnd": "?",
+            "DeleteToolSucess": "Tool deleted successfully!",
+            "DeleteToolError": "Tool couldn't be deleted, please verify",
+            "Confirmation": "Yes"
+        },
+        "PopupDeleteGroupTool": {
+            "Title": "GroupTool",
+            "DeleteTextFirst": "Are you sure you want to delete group tools ",
+            "DeleteTextEnd": "?",
+            "DeleteGroupToolSucess": "Group Tool deleted successfully!",
+            "DeleteGroupToolError": "Group Tool couldn't be deleted, please verify",
+            "Confirmation": "Yes"
+        },
+        "PopupDeleteCategory": {
+            "Title": "Category",
+            "DeleteTextFirst": "Are you sure you want to delete category ",
+            "DeleteTextEnd": "?",
+            "DeleteCategorySucess": "Category deleted successfully!",
+            "DeleteCategoryError": "Category couldn't be deleted, please verify",
+            "Confirmation": "Yes"
+        },
+        "ToolFeature": {
+            "View": "Menu",
+            "ButtonNew": "New",
+            "Active": "Ativo",
+            "Inactive": "Inativo",
+            "Headers": {
+                "Tools": [
+                    "ID",
+                    "Code",
+                    "Group Tool",
+                    "Status",
+                    "Active",
+                    "Updated"
+                ],
+                "GroupTools": [
+                    "ID",
+                    "Code",
+                    "Category",
+                    "Active",
+                    "Updated"
+                ],
+                "Category": [
+                    "ID",
+                    "Name",
+                    "Active",
+                    "Updated"
+                ]
+            },
+            "Options": [
+                {
+                    "key": "",
+                    "disabled": true,
+                    "component": "",
+                    "value": "Options"
+                },
+                {
+                    "key": "view",
+                    "component": "",
+                    "value": "View"
+                },
+                {
+                    "key": "addUpdate",
+                    "component": "",
+                    "value": "Update"
+                },
+                {
+                    "key": "delete",
+                    "component": "",
+                    "value": "Delete"
+                }
+            ]
+        },
+        "TableOptions": {
+            "name": "Tables",
+            "items": [
+                {
+                    "name": "Tools",
+                    "value": "Tools"
+                },
+                {
+                    "name": "GroupTools",
+                    "value": "GroupTools"
+                },
+                {
+                    "name": "Category",
+                    "value": "Category"
+                }
+            ]
+        },
+        "Filters": {
+            "Keyword": {
+                "Label": "Keywords",
+                "Input": "Type a code"
+            },
+            "Status": {
+                "Text": "Active",
+                "Options": [
+                    {
+                        "name": "Both",
+                        "value": ""
+                    },
+                    {
+                        "name": "Active",
+                        "value": 1
+                    },
+                    {
+                        "name": "Inactive",
+                        "value": 0
+                    }
+                ]
+            },
+            "Text": "Status",
+            "GroupTools": "Group Tools",
+            "Category": "Category",
+            "GroupToolsPlaceholder": "Type or Select a GroupTool",
+            "CategoryPlaceholder": "Type or Select a Category"
+        }
+    },
+    "PageInspections": {
+        "InspectionFeature": {
+            "View": "Menu",
+            "ButtonNew": "New",
+            "Headers": {
+                "Completed": [
+                    "ID",
+                    "Tool",
+                    "Status",
+                    "Updated"
+                ],
+                "Missing": [
+                    "ID",
+                    "Tool",
+                    "Project",
+                    "Updated"
+                ],
+                "Keyword": {
+                    "Label": "Keywords",
+                    "Input": "Type a code"
+                },
+                "KeywordCategory": {
+                    "Label": "Keywords",
+                    "Input": "Enter a Name"
+                },
+                "Status": {
+                    "Text": "Active",
+                    "Options": [
+                        {
+                            "name": "Both",
+                            "value": ""
+                        },
+                        {
+                            "name": "Active",
+                            "value": 1
+                        },
+                        {
+                            "name": "Inactive",
+                            "value": 0
+                        }
+                    ]
+                },
+               
+                   "Text": "Status",
+                   "GroupTools": "Group Tools",
+                   "GroupToolsPlaceholder": "Insert a group tool name",
+                   "Category": "Category",
+                   "CategoryPlaceholder": "Insert a category name"   
+            },
+            "Options": {
+                "Completed": [
+                    {
+                        "key": "",
+                        "disabled": true,
+                        "component": "",
+                        "value": "Options"
+                    },
+                    {
+                        "key": "view",
+                        "component": "",
+                        "value": "View"
+                    },
+                    {
+                        "key": "addUpdate",
+                        "component": "",
+                        "value": "Update"
+                    },
+                    {
+                        "key": "delete",
+                        "component": "",
+                        "value": "Delete"
+                    }
+            ],
+                "Missing": [
+                    {
+                        "value": "Create"
+                    }
+                ]
+            }
+        },
+        "TableOptions": {
+            "name": "Tables",
+            "items": [
+                {
+                    "name": "Completed",
+                    "value": "Completed"
+                },
+                {
+                    "name": "Missing",
+                    "value": "Missing"
+                }
+            ]
+        },
+        "Filters": {
+            "Keyword": {
+                "Label": "Keywords",
+                "Input": "Type a code"
+            },
+            "KeywordCategory": {
+                "Label": "Keywords",
+                "Input": "Enter a Name"
+            },
+            "Status": {
+                "Text": "Status",
+                "Options": [
+                    {
+                        "name": "Both",
+                        "value": ""
+                    },
+                    {
+                        "name": "Good",
+                        "value": 1
+                    },
+                    {
+                        "name": "Bad",
+                        "value": 0
+                    }
+                ]
+            },
+            "Text": "Status",
+            "Tools": "Tools",
+            "Project": "Project",
+            "PlaceHolder": "Select a Tool",
+            "PlaceHolderProject": "Select a project",
+            "Category": "Category"
+        },
+        "AddInspectionPop": {
+            "LabelText": "Status",
+            "Tools": "Tool",
+            "OptionTool": "Write or select a tool",
+            "ToolsError": "Tool is required!",
+            "TextButtons":["Good", "Bad"]
+,           "Title": "Inspection",
+            "Description": "Description",
+            "PlaceholderDescription": "Insert a Description",
+            "Save": "Save",
+            "DescriptionError": "Description is required!",
+            "SelectButton": "Status is required!",
+            "updatedSucess": "Inspection info successfully updated!",
+            "createdSucess": "Inspection successfully added!",
+            "errorCreatedUpdated": "Ocurred a error when doing this task, please verify data!"
+        },
+        "UpdateInspectionMissing": {
+            "LabelText": "Status",
+            "Tools": "Tool",
+            "Projects": "Project",
+            "OptionTool": "Write or select a tool...",
+            "TextButtons":["Good", "Bad"]
+,            "Title": "Inspection",
+            "Description": "Description",
+            "PlaceholderDescription": "Insert a Description",
+            "Save": "Save",
+            "DescriptionError": "Description is required!",
+            "SelectButton": "Status is required!"
+        },
+        "PopupDeleteInspection": {
+            "DeleteTextFirst": "Are you sure you want to delete inspection ",
+            "DeleteTextEnd": "?",
+            "DeleteInspectionSucess": "Inspection deleted successfully!",
+            "DeleteInspectionError": "Inspection couldn't be deleted, please verify",
+            "Confirmation": "Yes"
+        },
+        "PopupViewInspection": {
+            "Title": "Inspection",
+            "Code": "Code",
+            "Active": "Active",
+            "Category": "Category",
+            "Description": "Description"
+        }
+    },
+    "PageProjects": {
+        "PopupShowProject": {
+            "Title": "Project",
+            "Name": "Name",
+            "Address": "Address",
+            "StartDate" : "Start Date",
+            "EndDate" : "End Date",
+            "Status" : "Status",
+            "Tools": "Tools"
+        },
+        "PopupAddProject": {
+            "Title": "Project",
+            "Name": "Name",
+            "PlaceholderName": "Enter a Name",
+            "Address": "Address",
+            "PlaceholderAddress": "Enter an Address",
+            "StartDate": "Start Date",
+            "EndDate": "End Date",
+            "Save": "Save",
+            "updatedSucess": "Project info successfully updated!",
+            "createdSucess": "Project info successfully added!",
+            "errorCreatedUpdated": "Ocurred a error when doing this task, please verify data!",
+            "NameError": "Name is required!",
+            "addTools": "Manage Tools"
+        },
+        "PopupProjectDelete": {
+            "DeleteTextFirst": "Are you sure you want to delete project ",
+            "DeleteTextEnd": "?",
+            "DeleteProjectSucess": "Project deleted successfully!",
+            "DeleteProjectError": "Project couldn't be deleted, please verify",
+            "Confirmation": "Yes"
+        },
+        "PopupProjectStatus": {
+            "StatusTextFirst": "Are you sure you want to change project ",
+            "StatusTextEnd": " status?",
+            "StatusProjectSucess": "Project status changed successfully!",
+            "StatusProjectError": "Project status couldn't be changed, please verify",
+            "Confirmation": "Yes"
+        },
+        "ManagementTools": {
+            "Filters": {
+                "CodeInput": {
+                    "Name": "Code",
+                    "Placeholder": "Insert a code" 
+                },
+                "GroupToolsInput": {
+                    "Name": "GroupTools",
+                    "Placeholder": "Insert a GroupTools" 
+                }
+            },
+            "TableHeader": ["Code", "GroupTools"]
+        },
+        "ProjectFeature": {
+            "View": "Menu",
+            "ButtonNew": "New",
+            "ProjectHeader": [
+                "ID",
+                "Name",
+                "Start Date",
+                "End Date",
+                "Status",
+                "Updated"
+            ],
+            "Options": [
+                {
+                    "key": "",
+                    "disabled": true,
+                    "component": "",
+                    "value": "Options"
+                },
+                {
+                    "key": "show",
+                    "component": "",
+                    "value": "Show"
+                },
+                {
+                    "key": "update",
+                    "component": "",
+                    "value": "Update"
+                },
+                {
+                    "key": "status",
+                    "component": "",
+                    "value": "Open / Close"
+                },
+                {
+                    "key": "deleted",
+                    "component": "",
+                    "value": "Delete"
+                }
+            ]
+        },
+        "Filters": {
+            "Keyword": {
+                "Label": "Keywords",
+                "Input": "Type a Name"
+            },
+            "Status": {
+                "Text": "Active",
+                "Options": [
+                    {
+                        "name": "Both",
+                        "value": ""
+                    },
+                    {
+                        "name": "Open",
+                        "value": 1
+                    },
+                    {
+                        "name": "Close",
+                        "value": 0
+                    }
+                ]
+            },
+            "Text": "Status",
+            "GroupTools": "Group Tools",
+            "Category": "Category",
+            "StartDate": "Start Date",
+            "EndDate": "End Date"
+        }
+    },
+    "PageRepairs": {
+        "RepairFeature": {
+            "View": "Menu",
+            "ButtonNew": "New",
+            "RepairHeader": [
+                "ID",
+                "Tool",
+                "Inspection",
+                "Updated"
+            ]
+        },
+        "TableOptions": {
+            "name": "Tables",
+            "items": [
+                {
+                    "name": "Completed",
+                    "value": "Completed"
+                },
+                {
+                    "name": "Missing",
+                    "value": "Missing"
+                }
+            ]
+        },
+        "Filters": {
+            "Keyword": {
+                "Label": "Keywords",
+                "Input": "Type a code"
+            },
+            "KeywordInspection": {
+                "Label": "Inspection",
+                "Input": "Enter ID inspection"
+            },
+            "Status": {
+                "Text": "Status",
+                "Options": [
+                    {
+                        "name": "Both",
+                        "value": ""
+                    },
+                    {
+                        "name": "Good",
+                        "value": 1
+                    },
+                    {
+                        "name": "Bad",
+                        "value": 0
+                    }
+                ]
+            },
+            "Text": "Status",
+            "Tools": "Tools",
+            "Project": "Project",
+            "PlaceHolder": "Select Tool",
+            "PlaceHolderProject": "Select Tool",
+            "Category": "Category"
+        },
+        "AddRepairPop": {
+            "LabelText": "Status",
+            "Tools": "Tool",
+            "OptionTool": "Write or select a tool...",
+            "TextButtons":["Good", "Bad"]
+,            "Title": "Inspection",
+            "Description": "Description",
+            "PlaceholderDescription": "Insert Description",
+            "Save": "Save",
+            "DescriptionError": "Description is required!",
+            "SelectButton": "Status is required"
+        },
+        "PopupDeleteRepair": {
+            "DeleteTextFirst": "Are you sure you want to delete repair ",
+            "DeleteTextEnd": "?",
+            "DeleteRepairSucess": "Repair deleted successfully!",
+            "DeleteRepairError": "Repair couldn't be deleted, please verify",
+            "Confirmation": "Yes"
+        },
+        "PopupViewRepair": {
+            "Title": "Repair",
+            "Tool": "Tool",
+            "Inspection": "Inspection",
+            "Reason": "Reason",
+            "Solution": "Solution",
+            "Description": "Description"
+            
+        },
+        "UpdateRepairMissing": {
+            "updatedSucess":"Repair info successfully updated!",
+            "createdSucess": "Repair successfully added!",
+            "errorCreatedUpdated":"Ocurred a error when doing this task, please verify data!",
+            "LabelText": "Status",
+            "Tools": "Tool",
+            "Projects": "Project",
+            "OptionTool": "Write or select a tool...",
+            "TextButtons":["Good", "Bad"],           
+            "Title": "Repair",
+            "Description": "Description",
+            "PlaceholderDescription": "Insert Description",
+            "Solution": "Solution",
+            "PlaceholderSolution": "Insert a solution",
+            "Reason": "Reason",
+            "PlaceholderReason": "Insert a reson",
+            "Save": "Save",
+            "DescriptionError": "Description is required!",
+            "ReasonError": "Reason is required!",
+            "SolutionError": "Solution is required!",
+            "SelectButton": "Status is required"
+        }
+    },
+    "HoursComponents": {
+        "SEC": {
+            "sing": "second",
+            "plr": "seconds"
+        },
+        "MIN": {
+            "sing": "minute",
+            "plr": "minutes"
+        },
+        "HOUR": {
+            "sing": "hour",
+            "plr": "hours"
+        },
+        "DAY": {
+            "sing": "day",
+            "plr": "days"
+        },
+        "MONTH": {
+            "sing": "month",
+            "plr": "months"
+        },
+        "YEAR": {
+            "sing": "year",
+            "plr": "years"
+        }
+    },
+    "Options": {
+        "TableHeader": ["Code", "GroupTools"],
+        "noSearchData": "Nothing to show",
+        "noDataFiltered": "Sorry, not found data!",
+        "selectOption": "Select an Option"
+    }
+}

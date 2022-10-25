@@ -1,0 +1,31 @@
+{
+  "name": "meivdo",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.2.0",
+    "@fortawesome/free-regular-svg-icons": "^6.2.0",
+    "@fortawesome/free-solid-svg-icons": "^6.2.0",
+    "@fortawesome/vue-fontawesome": "^3.0.1",
+    "@vueuse/core": "^9.1.1",
+    "axios": "^0.27.2",
+    "country-flag-icons": "^1.5.5",
+    "mitt": "^3.0.0",
+    "pinia": "^2.0.21",
+    "vue-cookies": "^1.8.1",
+    "vue-router": "^4.0.13"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^3.0.0",
+    "autoprefixer": "^10.4.8",
+    "postcss": "^8.4.14",
+    "tailwindcss": "^3.1.7",
+    "vite": "^3.0.0"
+  }
+}
