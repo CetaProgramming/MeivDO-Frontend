@@ -15,7 +15,7 @@
             </div> -->
             <div class="flex gap-20 justify-between w-2/4 ">
                 <h1>{{ langs.Language }}</h1>
-                <SelectLanguague class="bg-gray-200" @languagueChangedEvent="languageChanged" />
+                <SelectLanguague class="bg-gray-200" />
             </div>
         </div>
     </Popoup>
