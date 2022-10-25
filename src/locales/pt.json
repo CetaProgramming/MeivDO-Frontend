@@ -267,6 +267,14 @@
             "DeleteGroupToolError":"Não foi possível apagar o grupo de ferramentas, por favor verifique",
             "Confirmation": "Sim"
         },
+        "PopupDeleteCategory": {
+            "Title": "Categoria",
+            "DeleteTextFirst": "Tem a certeza que pretende apagar a categoria ",
+            "DeleteTextEnd": "?",
+            "DeleteCategorySucess": "Categoria apagada com sucesso!",
+            "DeleteCategoryError": "Não foi possível apagar a categoria, por favor verifique",
+            "Confirmation": "Sim"
+        },
         "ToolFeature": {
             "View": "Menu",
             "ButtonNew": "Novo",
