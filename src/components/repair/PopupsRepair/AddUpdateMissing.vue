@@ -2,8 +2,8 @@
     <Popoup :titlePopUp="langs.Title" class="font-meivdo" @closePopUp="$emit('closePopUp')">
         <form @submit.prevent="AddUpdateRepair" class="flex flex-col gap-5 font-openSans">
 
-            <LabelShowInfo :header="langs.Tools" :info="this.value && this.value.tool.code"></LabelShowInfo>
-            <LabelShowInfo :header="langs.Projects" :info="this.value && this.value.inspection"></LabelShowInfo>
+            <LabelShowInfo :header="langs.Tools" :info="this.value && String(this.value.tool.code)"></LabelShowInfo>
+            <LabelShowInfo :header="langs.Projects" :info="this.value && String(this.value.inspection)"></LabelShowInfo>
 
             <TextAreaLabel ref="formRepairReason" :name="langs.Reason" :placeholder="langs.PlaceholderReason"
                 :msg="langs.ReasonError" v-model="formUpdateRepair.reason" :default="formUpdateRepair.reason">
@@ -35,6 +35,8 @@ import ToastSuccess from "../../public/Toast/ToastSuccess.vue"
 import FormValidate from "../../mixins/FormValidate";
 import LabelShowInfo from '../../forms/LabelShowInfo.vue';
 import TextAreaLabelWithoutError from '../../forms/TextAreaLabelWithoutError.vue';
+import { markRaw } from 'vue';
+
 export default {
     props: ['value'],
     data() {
@@ -82,13 +84,13 @@ export default {
                             this.$emit("closePopUp");
                             this.$emit("activeToast", {
                                 msg: this.value && this.langs.updatedSucess || !this.value && this.langs.createdSucess,
-                                type: ToastSuccess
+                                type: markRaw(ToastSuccess)
                             });
                         } catch (error) {
                             console.error(error);
                             this.$emit("activeToast", {
                                 msg: this.langs.errorCreatedUpdated,
-                                type: ToastError
+                                type: markRaw(ToastError)
                             });
                         }
                     })();

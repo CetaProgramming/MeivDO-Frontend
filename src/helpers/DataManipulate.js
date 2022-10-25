@@ -25,7 +25,6 @@ class DataManipulate{
         let dataForm = data;
         if(typeof Date !== dataForm)
             dataForm = new Date(data);
-        console.log(dataForm.toISOString().split('T')[0]);
         return dataForm.toISOString().split('T')[0]
     }
 }

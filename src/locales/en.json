@@ -258,11 +258,19 @@
             "Confirmation": "Yes"
         },
         "PopupDeleteGroupTool": {
-            "Title": "Tool",
-            "DeleteTextFirst": "Are you sure you want to delete tool ",
+            "Title": "GroupTool",
+            "DeleteTextFirst": "Are you sure you want to delete group tools ",
             "DeleteTextEnd": "?",
             "DeleteGroupToolSucess": "Group Tool deleted successfully!",
             "DeleteGroupToolError": "Group Tool couldn't be deleted, please verify",
+            "Confirmation": "Yes"
+        },
+        "PopupDeleteCategory": {
+            "Title": "Category",
+            "DeleteTextFirst": "Are you sure you want to delete category ",
+            "DeleteTextEnd": "?",
+            "DeleteCategorySucess": "Category deleted successfully!",
+            "DeleteCategoryError": "Category couldn't be deleted, please verify",
             "Confirmation": "Yes"
         },
         "ToolFeature": {

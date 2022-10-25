@@ -29,7 +29,6 @@ export default {
     ],
     methods: {
         changeValue(value){
-            console.log(value);
             this.value = !value;
             this.$emit("update:modelValue", !value);
         }

@@ -32,7 +32,7 @@ export default {
     },
     computed: {
         langs() {
-            return langStore().getLang.PageTool.PopupDeleteTool
+            return langStore().getLang.PageTool.PopupDeleteCategory
         }
     },
     methods: {
@@ -41,12 +41,12 @@ export default {
                 await categoryStore().deleteTool(this.value)
                 this.$emit("closePopUp");
                 this.$emit("activeToast", {
-                    msg: this.langs.DeleteToolSucess,
+                    msg: this.langs.DeleteCategorySucess,
                     type: markRaw(ToastSuccess)
                 });
             } catch (error) {
                 this.$emit("activeToast", {
-                    msg: this.langs.DeleteToolError,
+                    msg: this.langs.DeleteCategoryError,
                     type: markRaw(ToastError)
                 });
             }

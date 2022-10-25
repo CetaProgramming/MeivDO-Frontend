@@ -1,5 +1,5 @@
 <template>
-    <Popoup :titlePopUp="langs.Title" class="font-meivdo">
+    <Popoup :titlePopUp="langs.Title" class="font-meivdo" @closePopUp="$emit('closePopUp')">
         <form @submit.prevent="updateProject" class="flex flex-col gap-5">
             <div class="font-openSans grid grid-cols-1 items-center gap-5 md:gap-1 md:justify-between ">
                 <div class="flex flex-col gap-7">
@@ -41,6 +41,7 @@ import SelectDate from '../../forms/SelectDate.vue';
 import DataManipulate from '../../../helpers/DataManipulate';
 import InputCheckbox from '../../forms/InputCheckbox.vue';
 import ManagementTools from '../managementTools/ManagementTools.vue';
+import { markRaw } from 'vue';
 
 export default {
     props: ['status', 'project', 'showStatus'],
@@ -93,17 +94,17 @@ export default {
                             this.$emit("closePopUp");
                             this.$emit("activeToast", {
                                 msg: this.project && this.langs.updatedSucess || !this.user && this.langs.createdSucess,
-                                type: ToastSuccess
+                                type: markRaw(ToastSuccess)
                             });
                         } catch (error) {
                             this.$emit("activeToast", {
                                 msg: this.langs.errorCreatedUpdated,
-                                type: ToastError
+                                type: markRaw(ToastError)
                             });
                          }
                     })();
             } catch (e) {
-                console.log(e);
+                console.error(e);
             }
         },
     },
@@ -120,7 +121,7 @@ export default {
     InputCheckbox,
     ManagementTools
 },
-    emits: ['activeToast'],
+    emits: ['activeToast', 'closePopUp'],
     mixins: [FormValidate]
 }
 </script>
