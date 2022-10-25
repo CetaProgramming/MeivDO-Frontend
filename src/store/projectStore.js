@@ -43,7 +43,6 @@ export const projectStore = defineStore('projectStore', {
             }
         },
         async doSearch({Name = '', Status = '', StartDate = '', EndDate = ''}, reset = false){
-            console.log(reset, this.filtered);
             if(reset && this.filtered === false || !reset && this.filtered === false && (!Name && !Status && !StartDate && !EndDate))
                 return;
             this.filtered = reset ? false : true;

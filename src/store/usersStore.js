@@ -42,7 +42,6 @@ export const usersStore = defineStore('usersStore', {
             }
         },
         async doSearch({Name = '', Active = ''}, reset = false){
-            console.log(reset, this.filtered);
             if(reset && this.filtered === false || !reset && this.filtered === false && (!Name && !Active))
                 return;
             this.filtered = reset ? false : true;

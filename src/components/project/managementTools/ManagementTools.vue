@@ -56,7 +56,6 @@ import FilterTools from './FilterTools.vue';
         },
         methods: {
             searchData(form){
-                console.log(this.activeTools);
                 this.itemsFiltered =  this.filterToolGroup(this.activeTools.filter(tool =>  
                     (form.tool == -1 || (form.tool && tool.id === form.tool)) 
                     && 
