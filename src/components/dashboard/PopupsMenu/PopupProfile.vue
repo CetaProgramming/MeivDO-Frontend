@@ -35,7 +35,7 @@ import ToastSuccess from "../../public/Toast/ToastSuccess.vue"
 import InputLabelError from '../../forms/InputLabelError.vue';
 import Button from '../../widgets/Button.vue';
 import FormValidate from '../../mixins/FormValidate';
-
+import { markRaw } from 'vue';
 
 export default {
     data(){
@@ -70,14 +70,14 @@ export default {
             if(!selectedFile.type.includes("image")){
                 this.$emit("activeToast", {
                     msg: this.langs.notImage,
-                    type: ToastError
+                    type: markRaw(ToastError)
                 });
                 return;
             };
             if(selectedFile.size > 1024 * 1024 *2){
                 this.$emit("activeToast", {
                     msg: this.langs.bigFile,
-                    type: ToastError
+                    type: markRaw(ToastError)
                 });
                 return;
             };
@@ -100,18 +100,18 @@ export default {
                             this.$emit("closePopUp");
                             this.$emit("activeToast", {
                                 msg: this.langs.updateSucess,
-                                type: ToastSuccess
+                                type: markRaw(ToastSuccess)
                             });
                         } catch (error) {
                             console.log(error)
                             this.$emit("activeToast", {
                                 msg: this.langs.updateFailed,
-                                type: ToastError
+                                type: markRaw(ToastError)
                             });
                          }
                     })();
             } catch (e) {
-                console.log(e);
+                console.error(e);
             }
         },
     },

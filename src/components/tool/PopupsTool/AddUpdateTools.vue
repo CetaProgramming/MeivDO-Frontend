@@ -1,5 +1,5 @@
 <template>
-    <Popoup :titlePopUp="langs.Title" class="font-meivdo">
+    <Popoup :titlePopUp="langs.Title" class="font-meivdo" @closePopUp="$emit('closePopUp')">
         <form @submit.prevent="updateTool" class="flex flex-col gap-5">
             <div
                 class="font-openSans grid grid-cols-1 items-center gap-5 md:gap-1  lg:grid-cols-1fr-auto md:justify-between ">
@@ -35,6 +35,8 @@ import ToastError from "../../public/Toast/ToastError.vue"
 import ToastSuccess from "../../public/Toast/ToastSuccess.vue"
 import FormValidate from "../../mixins/FormValidate";
 import LabelSelectWithInputError from "../../forms/LabelSelectWithInputError.vue";
+import { markRaw } from 'vue';
+
 export default {
     props: ['value'],
     data() {
@@ -96,17 +98,17 @@ export default {
                             this.$emit("closePopUp");
                             this.$emit("activeToast", {
                                 msg: this.value && this.langs.updatedSucess || !this.value && this.langs.createdSucess,
-                                type: ToastSuccess
+                                type: markRaw(ToastSuccess)
                             });
                         } catch (error) {
                             this.$emit("activeToast", {
                                 msg: this.langs.errorCreatedUpdated,
-                                type: ToastError
+                                type: markRaw(ToastError)
                             });
                         }
                     })();
             } catch (e) {
-                console.log(e);
+                console.error(e);
             }
         },
 
@@ -119,7 +121,7 @@ export default {
     Button,
     LabelSelectWithInputError
 },
-    emits: ['activeToast'],
+    emits: ['activeToast', 'closePopUp'],
     mixins: [FormValidate]
 }
 
