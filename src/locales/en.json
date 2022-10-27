@@ -153,31 +153,31 @@
     "ItemMenu": {
         "noItemFound": "No feature available with",
         "projects": {
-            "img": "src/assets/icons/projects.png",
+            "img": "assets/icons/projects.png",
             "title": "Projects",
             "description": "Manage and see projects the company made and see the details of ongoing projects.",
             "link": "projects"
         },
         "inspections": {
-            "img": "src/assets/icons/inspections.png",
+            "img": "assets/icons/inspections.png",
             "title": "Inspections",
             "description": "View the inspections that the tools have and the detail of each inspection.",
             "link": "inspections"
         },
         "tools": {
-            "img": "src/assets/icons/tools.png",
+            "img": "assets/icons/tools.png",
             "title": "Tools",
             "description": "Here you can see the tools the company has as well as their details such as it's state.",
             "link": "tools"
         },
         "repairs": {
-            "img": "src/assets/icons/reparations.png",
+            "img": "assets/icons/reparations.png",
             "title": "Repairs",
             "description": "View the tools that need a repair, as well as the details of each repair.",
             "link": "repairs"
         },
         "users": {
-            "img": "src/assets/icons/users.png",
+            "img": "assets/icons/users.png",
             "title": "Users",
             "description": "View the list of users of the company.",
             "link": "users"
