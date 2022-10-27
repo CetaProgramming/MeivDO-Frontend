@@ -155,31 +155,31 @@
     "ItemMenu": {
         "noItemFound": "Não existe a funcionalidade com o nome ",
         "projects": {
-            "img": "src/assets/icons/projects.png",
+            "img": "assets/icons/projects.png",
             "title": "Projetos",
             "description": "Aqui podemos gerir e ver quais os projectos que a empresa realizou e pode ver também os detalhes dos projectos em curso.",
             "link": "projects"
         },
         "inspections": {
-            "img": "src/assets/icons/inspections.png",
+            "img": "assets/icons/inspections.png",
             "title": "Inspeções",
             "description": "Gerir as ferramentas da empresa, ver as inspecções que as ferramentas têm e os detalhes de cada inspecção.",
             "link": "inspections"
         },
         "tools": {
-            "img": "src/assets/icons/tools.png",
+            "img": "assets/icons/tools.png",
             "title": "Ferramentas",
             "description": "Aqui pode ver as ferramentas de que a empresa dispõe, bem como os seus detalhes, tais como o estado.",
             "link": "tools"
         },
         "repairs": {
-            "img": "src/assets/icons/reparations.png",
+            "img": "assets/icons/reparations.png",
             "title": "Reparações",
             "description": "Veja as ferramentas que precisam de uma reparação, como também os detalhes de cada reparação.",
             "link": "repairs"
         },
         "users": {
-            "img": "src/assets/icons/users.png",
+            "img": "assets/icons/users.png",
             "title": "Utilizadores",
             "description": "Ver a lista de utilizadores da empresa.",
             "link": "users"
