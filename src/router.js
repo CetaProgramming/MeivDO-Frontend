@@ -8,44 +8,51 @@ const routes = [
     {
     path: '/',
     name: 'login',
-    component: laziLoad('Login')
+    component: laziLoad('Login'),
+    meta: { requiresAuth: false }
 },
 {
     path: '/dashboard',
     name: 'dashboard',
     component: laziLoad('Dashboard'),
-    
+    meta: { requiresAuth: true }
 },
 {
     path: '/projects',
     name: 'projects',
-    component: laziLoad('ProjectComponent')
+    component: laziLoad('ProjectComponent'),
+    meta: { requiresAuth: true }
 },
 {
     path: '/inspections',
     name: 'inspections',
-    component: laziLoad('InspectionComponent')
+    component: laziLoad('InspectionComponent'),
+    meta: { requiresAuth: true }
 },
 {
     path: '/tools',
     name: 'tools',
-    component: laziLoad('ToolComponent')
+    component: laziLoad('ToolComponent'),
+    meta: { requiresAuth: true }
 },
 {
     path: '/projects',
     name: 'projects',
-    component: laziLoad('ProjectComponent')
+    component: laziLoad('ProjectComponent'),
+    meta: { requiresAuth: true }
 },
 {
     path: '/users',
     name: 'users',
-    component: laziLoad('UserComponent')
+    component: laziLoad('UserComponent'),
+    meta: { requiresAuth: true }
 },
 
 {
     path: '/repairs',
     name: 'repairs',
-    component: laziLoad('RepairsComponent')
+    component: laziLoad('RepairsComponent'),
+    meta: { requiresAuth: true }
 },
 {
     path: "/:pathMatch(.*)*",
@@ -56,16 +63,15 @@ const routes = [
 
 const router = createRouter({ history: createWebHashHistory(), routes});
 
-router.beforeEach(async (to) => {
+router.beforeEach(async (to, from) => {
     const userLoginStore = userLogin();
     try {
-        await userLoginStore.acessUser();
-        if ((userLoginStore.email) && to.name !== 'login' && to.name !== 'dashboard' && !userLoginStore.isAllowed(to.name)) 
-            return { name: 'dashboard' }  
-        if ((userLoginStore.email) && to.name === 'login') 
-            return { name: 'dashboard' }
-        if (!userLoginStore.email && to.name !== 'login') 
-             return { name: 'login' }
+        if(to.meta.requiresAuth && !userLoginStore.email && !await userLoginStore.acessUser()){
+            return { name: 'login' }        
+        }
+        if(!to.meta.requiresAuth && userLoginStore.email){
+            return { name: from.name}
+        }
     } catch (error) {
         userLoginStore.deleteSession();
         return { name: 'login' }
