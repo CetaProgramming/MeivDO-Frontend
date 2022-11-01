@@ -55,22 +55,17 @@ export default {
             } 
         },
         getToolsMissing(value){
-            this.tools = [];
-            if(value.length && this.selectStore != 'Missing')
+            if(this.selectStore != 'Missing')
                 return;
+            this.tools = [];
             this.tools = value;
         },
         getToolsCompleted(value){
+            if(this.selectStore != 'Completed')
+                return;
             this.tools = [];
-            if(value.length && this.selectStore != 'Completed')
-                return;
-            if(!this.getMissingTotal)
-                return;
             this.tools = value;
         }
-    },
-    async mounted() {
-        await this.getdata()
     },
     methods: {
         async getdata() {
