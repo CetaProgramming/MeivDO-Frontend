@@ -1,10 +1,10 @@
 <template>
     <div v-if="pag.lastPage != 1" class=" justify-end bottom-0 right-4 flex" >
         <div class="bg-white flex gap-5  p-3 rounded-md dark:bg-MeivMatteBlack" >
-            <div class="pagination items-center flex gap-2 dark:text-white" @click="changePage">
-                <a v-if="pag.actualPage != 1" :key="1" class="px-2 cursor-pointer hover:bg-black hover:text-white dark:hover:bg-gray-400 dark:hover:text-black">&laquo;</a>
-                <a v-for="index in numberPage" :key="index" class="px-2 cursor-pointer hover:bg-black hover:text-white dark:hover:bg-gray-400 dark:hover:text-black" :class="index == pag.actualPage && 'dark:bg-zinc-800'">{{ index }}</a>
-                <a v-if="pag.actualPage !== pag.lastPage" :key="pag.lastPage" class="px-2 cursor-pointer hover:bg-black hover:text-white dark:hover:bg-gray-400 dark:hover:text-black">&raquo;</a>
+            <div class="pagination items-center flex gap-2 dark:text-white">
+                <a v-if="pag.actualPage != 1" @click="changePage(1)" :key="1" class="px-2 cursor-pointer hover:bg-black hover:text-white dark:hover:bg-gray-400 dark:hover:text-black">&laquo;</a>
+                <a v-for="index in numberPage" :key="index" @click="changePage(index)" class="px-2 cursor-pointer hover:bg-black hover:text-white dark:hover:bg-gray-400 dark:hover:text-black" :class="index == pag.actualPage && 'dark:bg-zinc-800'">{{ index }}</a>
+                <a v-if="pag.actualPage !== pag.lastPage" @click="changePage(pag.lastPage)" :key="pag.lastPage" class="px-2 cursor-pointer hover:bg-black hover:text-white dark:hover:bg-gray-400 dark:hover:text-black">&raquo;</a>
             </div>
             <div class="flex gap-2 items-center">
                 <p class="dark:text-white">{{ langs.Page}}</p>
@@ -48,8 +48,8 @@ export default {
         }
     },
     methods: {
-        changePage(event) {
-            this.$emit("selectPage", event.target.__vnode.key);
+        changePage(pag) {
+            this.$emit("selectPage", pag);
         },
         changePageGO() {
             this.goToPage && this.$emit("selectPage", +this.goToPage);
