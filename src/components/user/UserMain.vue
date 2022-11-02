@@ -10,7 +10,7 @@
                 <TableHeader ref="header" :header=langsUser.UserHeader :style="GetLenght" />
                 <TableBody :header=langsUser.UserHeader :component="ComponentUser" :items=userStore.viewing :style="GetLenght" :selectItems="langsUser.Options" @selectOption="popUpOpen" />
             </div>
-            <Paginate @selectPage="changePage" :pag="userStore.pag" />
+            <Paginate v-if="userStore.viewing.length" @selectPage="changePage" :pag="userStore.pag" />
         </div>
     </div>
         <Transition>
