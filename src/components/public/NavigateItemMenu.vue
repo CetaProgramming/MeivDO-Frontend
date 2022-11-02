@@ -40,7 +40,7 @@ export default {
             }
         },
         itemsMenuRoutes(){
-            return this.getAccess().filter(itemMenu => !itemMenu.includes(this.$route.name));
+            return this.getAccess() && this.getAccess().filter(itemMenu => !itemMenu.includes(this.$route.name));
         }
     },
     components: {
