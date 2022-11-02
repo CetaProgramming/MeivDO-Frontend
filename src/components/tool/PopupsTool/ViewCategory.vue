@@ -4,9 +4,8 @@
         <div
             class="font-openSans grid grid-cols-1 items-center gap-5 md:gap-1  lg:grid-cols-1fr-auto md:justify-between ">
             <div class="flex flex-col gap-2 lg:w-4/5">
-                <LabelShowInfo :header="langs.Code" :info="formCategoryShow.name"></LabelShowInfo>
+                <LabelShowInfo :header="langs.Name" :info="formCategoryShow.name"></LabelShowInfo>
                 <LabelShowStatus :header="langs.Active" :info="formCategoryShow.active.active" ></LabelShowStatus>
-                <!-- {{formCategoryShow.active.active}} -->
             </div>
         </div>
     </Popoup>
@@ -31,7 +30,7 @@ export default {
     },
     computed: {
         langs() {
-            return langStore().getLang.PageTool.PopupViewGroupTool
+            return langStore().getLang.PageTool.PopupViewCategory
         }
     },
     components: {
