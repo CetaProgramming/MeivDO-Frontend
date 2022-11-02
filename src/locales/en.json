@@ -753,7 +753,7 @@
             "errorCreatedUpdated":"Ocurred a error when doing this task, please verify data!",
             "LabelText": "Status",
             "Tools": "Tool",
-            "Projects": "Project",
+            "Projects": "Inspection",
             "OptionTool": "Write or select a tool...",
             "TextButtons":["Good", "Bad"],           
             "Title": "Repair",
