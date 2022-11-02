@@ -754,7 +754,7 @@
             "errorCreatedUpdated":"Ocorreu um erro ao efetuar a operação, verique os campos",
             "LabelText": "Estado",
             "Tools": "Ferramenta",
-            "Projects": "Projeto",
+            "Projects": "Inspeção",
             "OptionTool": "Digite ou escolha uma ferramenta",
             "TextButtons":["Bom", "Mau"],           
             "Title": "Reparação",
