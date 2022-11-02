@@ -10,7 +10,7 @@
                 <TableHeader ref="header" :header=langsProject.ProjectHeader :style="GetLenght" />
                 <TableBody :header=langsProject.ProjectHeader :component="ComponentProject" :items=projectStore.viewing :style="GetLenght" :selectItems="langsProject.Options" @selectOption="popUpOpen" />
             </div>
-            <Paginate @selectPage="changePage" :pag="projectStore.pag" />
+            <Paginate v-if="projectStore.viewing.length" @selectPage="changePage" :pag="projectStore.pag" />
         </div>
     </div>
     <Transition>

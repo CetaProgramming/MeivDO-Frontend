@@ -12,7 +12,7 @@
                 <TableBody :showSelect="tableOptionSelected == 'Missing' ? false: true" :header=langsInspection.Headers[tableOptionSelected] :component="Components[tableOptionSelected]" 
                     :items=store[tableOptionSelected].viewing :style="GetLenght" :selectItems="langsInspection.Options[tableOptionSelected]" @selectOption="popUpOpen" />
             </div>
-            <Paginate @selectPage="changePage" :pag="store[tableOptionSelected].pag" /> 
+            <Paginate v-if="store[tableOptionSelected].viewing.length" @selectPage="changePage" :pag="store[tableOptionSelected].pag" /> 
         </div>
     </div>
     <Transition>
