@@ -11,7 +11,10 @@
             <Button v-else @click="selectItem('AddUpdate',item.id)" :text="selectItems[0].value" space="normal" pad="p-1" fontSize="text-md"></Button>
         </div>
     </TransitionGroup>
-    <p v-if="!items.length"
+    <p v-if="animation && !items.length"
+        class="p-4 text-center bg-zinc-300 rounded-md text-xs dark:bg-MeivMatteBlack text-red-500 mt-2">
+        Loading...</p>
+    <p v-if="!animation && !items.length"
         class="p-4 text-center bg-zinc-300 rounded-md text-xs dark:bg-MeivMatteBlack text-red-500 mt-2">
         {{lang.noDataFiltered}}</p>
 </template>
@@ -24,7 +27,13 @@ import Button from '../../widgets/Button.vue';
 export default {
     data() {
         return {
-            resetSelect: false
+            resetSelect: false,
+            animation: true
+        }
+    },
+    watch: {
+        items(){
+            this.animation = false;
         }
     },
     computed: {
